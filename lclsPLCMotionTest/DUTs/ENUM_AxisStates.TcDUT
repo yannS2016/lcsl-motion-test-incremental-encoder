@@ -7,7 +7,7 @@
 TYPE ENUM_AxisStates :
 (
     UNKNOWN := 0, // UNKNOWN must be in slot 0 or the FB breaks
-    OUT := 1, 
+    OUT := 1,
     YAG := 2,
     TT := 3
 ) UINT;

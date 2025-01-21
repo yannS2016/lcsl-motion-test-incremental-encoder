@@ -9,8 +9,8 @@ VAR
 M1: ST_MotionStage := (sName := 'RATTM:MOTION',
                         bPowerSelf := True,
                         nEnableMode:= ENUM_StageEnableMode.DURING_MOTION,
-						fHomePosition:=0.0, 
-						nHomingMode:=ENUM_EpicsHomeCmd.HIGH_LIMIT);
+                        fHomePosition:=0.0,
+                        nHomingMode:=ENUM_EpicsHomeCmd.HIGH_LIMIT);
 
 {attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1101)^Term 3 (EL7047)^STM Status^Status^Digital input 1'}
 bLimitBackwardEnable AT %I* : BOOL;
@@ -24,10 +24,10 @@ fbmotion1 : FB_MotionStage;
 
 fbStateSetup: FB_StateSetupHelper;
 stDefault: ST_PositionState := (
-	fDelta := 0.5,
-	fVelocity := 1,
-	bMoveOk := TRUE,
-	bValid := TRUE
+    fDelta := 0.5,
+    fVelocity := 1,
+    bMoveOk := TRUE,
+    bValid := TRUE
 );
 ;
 astStates1: ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;

@@ -3,25 +3,28 @@
   <POU Name="MAIN" Id="{7ddf7142-3738-4120-8059-c5d2220b5135}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-{attribute 'pytmc' := 'pv: RATTM:MOTION'}
+
+{attribute 'pytmc' := 'pv: TST:MOTION'}
 //{attribute 'TcLinkTo' := '.nRawEncoderULINT     := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^M1-EL5042^FB Inputs Channel 1^Position'}
-{attribute 'TcLinkTo' := '.nRawEncoderUINT     := TIID^Device 1 (EtherCAT)^Term 1 (EK1101)^Term 2 (EL5101)^ENC Status compact^Counter value'}
-M1: ST_MotionStage := (sName := 'RATTM:MOTION',
+{attribute 'TcLinkTo' := '.nRawEncoderULINT     := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL5042)^FB Inputs Channel 1^Position'}
+//{attribute 'TcLinkTo' := '.nRawEncoderUINT     := TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EL7031)^ENC Status compact^Counter value'}
+M1: ST_MotionStage := (sName := 'TST:MOTION',
                         bPowerSelf := True,
                         nEnableMode:= ENUM_StageEnableMode.DURING_MOTION,
-                        fHomePosition:=0.0,
-                        nHomingMode:=ENUM_EpicsHomeCmd.HIGH_LIMIT);
+						fHomePosition:=0.0, 
+						nHomingMode:=ENUM_EpicsHomeCmd.NONE);
 
-{attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1101)^Term 3 (EL7047)^STM Status^Status^Digital input 1'}
+//{attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^M1-EL1084^Channel 1^Input'}
+{attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EL7031)^STM Status^Status^Digital input 2'}
 bLimitBackwardEnable AT %I* : BOOL;
 
-{attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1101)^Term 3 (EL7047)^STM Status^Status^Digital input 2'}
+//{attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^M1-EL1084^Channel 2^Input'}
+{attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EL7031)^STM Status^Status^Digital input 1'}
 bLimitForwardEnable AT %I* : BOOL;
 
 
 
 fbmotion1 : FB_MotionStage;
-
 fbStateSetup: FB_StateSetupHelper;
 stDefault: ST_PositionState := (
     fDelta := 0.5,
@@ -46,14 +49,15 @@ astStates1: ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbStateSetup(stPositionState:=stDefault, bSetDefault:=TRUE);
+      <ST><![CDATA[M1.bLimitForwardEnable 	:= bLimitForwardEnable;
+M1.bLimitBackwardEnable := bLimitBackwardEnable;
+
+fbStateSetup(stPositionState:=stDefault, bSetDefault:=TRUE);
 
 fbStateSetup(stPositionState:=astStates1[1], sName:='OUT', fPosition:=10);
 fbStateSetup(stPositionState:=astStates1[2], sName:='YAG', fPosition:=20);
 fbStateSetup(stPositionState:=astStates1[3], sName:='TT', fPosition:=30);
 
-M1.bLimitForwardEnable 	:= bLimitForwardEnable;
-M1.bLimitBackwardEnable := bLimitBackwardEnable;
 
 M1.bHardwareEnable := TRUE;
 fbmotion1(stMotionStage:=M1);

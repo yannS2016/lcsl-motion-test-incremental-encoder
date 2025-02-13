@@ -11,8 +11,8 @@ VAR
 M1: ST_MotionStage := (sName := 'TST:MOTION',
                         bPowerSelf := True,
                         nEnableMode:= ENUM_StageEnableMode.DURING_MOTION,
-						fHomePosition:=0.0, 
-						nHomingMode:=ENUM_EpicsHomeCmd.NONE);
+                        fHomePosition:=0.0,
+                        nHomingMode:=ENUM_EpicsHomeCmd.NONE);
 
 //{attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^M1-EL1084^Channel 1^Input'}
 {attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EL7031)^STM Status^Status^Digital input 2'}

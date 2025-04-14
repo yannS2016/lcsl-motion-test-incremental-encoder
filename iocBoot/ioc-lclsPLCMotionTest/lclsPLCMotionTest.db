@@ -2035,7 +2035,7 @@ record(waveform, "TST:SmartAct:MCS2-3C:PLC:stEPSP:sMessage_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(mbbi, "$(PREFIX):STATES:GET_RBV") {
+record(mbbi, "TST:SmartAct:MCS2-3C:STATES:GET_RBV") {
   field(DESC, "SmartActMCS2.eStateGet")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -2055,7 +2055,7 @@ record(mbbi, "$(PREFIX):STATES:GET_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(mbbi, "$(PREFIX):STATES:SET_RBV") {
+record(mbbi, "TST:SmartAct:MCS2-3C:STATES:SET_RBV") {
   field(DESC, "SmartActMCS2.eStateSet")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -2075,7 +2075,7 @@ record(mbbi, "$(PREFIX):STATES:SET_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(mbbo, "$(PREFIX):STATES:SET") {
+record(mbbo, "TST:SmartAct:MCS2-3C:STATES:SET") {
   field(DESC, "SmartActMCS2.eStateSet")
   field(DTYP, "asynInt32")
   field(UDFS, "0")
@@ -2092,7 +2092,7 @@ record(mbbo, "$(PREFIX):STATES:SET") {
   info(archive, "VAL")
 }
 
-record(bi, "$(PREFIX):STATE:01:MOVE_OK_RBV") {
+record(bi, "TST:SmartAct:MCS2-3C::STATE:01:MOVE_OK_RBV") {
   field(DESC, "TRUE if the move would be safe")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -2106,7 +2106,7 @@ record(bi, "$(PREFIX):STATE:01:MOVE_OK_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ai, "$(PREFIX):STATE:01:SETPOINT_RBV") {
+record(ai, "TST:SmartAct:MCS2-3C::STATE:01:SETPOINT_RBV") {
   field(DESC, "Axis position associated with this state")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -2119,7 +2119,7 @@ record(ai, "$(PREFIX):STATE:01:SETPOINT_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ao, "$(PREFIX):STATE:01:SETPOINT") {
+record(ao, "TST:SmartAct:MCS2-3C::STATE:01:SETPOINT") {
   field(DESC, "Axis position associated with this state")
   field(DTYP, "asynFloat64")
   field(UDFS, "0")
@@ -2129,7 +2129,7 @@ record(ao, "$(PREFIX):STATE:01:SETPOINT") {
   info(archive, "VAL")
 }
 
-record(ai, "$(PREFIX):STATE:01:VELO_RBV") {
+record(ai, "TST:SmartAct:MCS2-3C::STATE:01:VELO_RBV") {
   field(DESC, "Speed at which to move to this state")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -2142,7 +2142,7 @@ record(ai, "$(PREFIX):STATE:01:VELO_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ao, "$(PREFIX):STATE:01:VELO") {
+record(ao, "TST:SmartAct:MCS2-3C::STATE:01:VELO") {
   field(DESC, "Speed at which to move to this state")
   field(DTYP, "asynFloat64")
   field(UDFS, "0")
@@ -2152,7 +2152,7 @@ record(ao, "$(PREFIX):STATE:01:VELO") {
   info(archive, "VAL")
 }
 
-record(longin, "$(PREFIX):STATE:01:ENCODER_RBV") {
+record(longin, "TST:SmartAct:MCS2-3C::STATE:01:ENCODER_RBV") {
   field(DESC, "Encoder count associated with this state")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -2164,7 +2164,7 @@ record(longin, "$(PREFIX):STATE:01:ENCODER_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(waveform, "$(PREFIX):STATE:01:NAME_RBV") {
+record(waveform, "TST:SmartAct:MCS2-3C::STATE:01:NAME_RBV") {
   field(DESC, "Name of this position state")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -2180,7 +2180,7 @@ record(waveform, "$(PREFIX):STATE:01:NAME_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bi, "$(PREFIX):STATE:02:MOVE_OK_RBV") {
+record(bi, "TST:SmartAct:MCS2-3C::STATE:02:MOVE_OK_RBV") {
   field(DESC, "TRUE if the move would be safe")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -2194,7 +2194,7 @@ record(bi, "$(PREFIX):STATE:02:MOVE_OK_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ai, "$(PREFIX):STATE:02:SETPOINT_RBV") {
+record(ai, "TST:SmartAct:MCS2-3C::STATE:02:SETPOINT_RBV") {
   field(DESC, "Axis position associated with this state")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -2207,7 +2207,7 @@ record(ai, "$(PREFIX):STATE:02:SETPOINT_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ao, "$(PREFIX):STATE:02:SETPOINT") {
+record(ao, "TST:SmartAct:MCS2-3C::STATE:02:SETPOINT") {
   field(DESC, "Axis position associated with this state")
   field(DTYP, "asynFloat64")
   field(UDFS, "0")
@@ -2217,7 +2217,7 @@ record(ao, "$(PREFIX):STATE:02:SETPOINT") {
   info(archive, "VAL")
 }
 
-record(ai, "$(PREFIX):STATE:02:VELO_RBV") {
+record(ai, "TST:SmartAct:MCS2-3C::STATE:02:VELO_RBV") {
   field(DESC, "Speed at which to move to this state")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -2230,7 +2230,7 @@ record(ai, "$(PREFIX):STATE:02:VELO_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ao, "$(PREFIX):STATE:02:VELO") {
+record(ao, "TST:SmartAct:MCS2-3C::STATE:02:VELO") {
   field(DESC, "Speed at which to move to this state")
   field(DTYP, "asynFloat64")
   field(UDFS, "0")
@@ -2240,7 +2240,7 @@ record(ao, "$(PREFIX):STATE:02:VELO") {
   info(archive, "VAL")
 }
 
-record(longin, "$(PREFIX):STATE:02:ENCODER_RBV") {
+record(longin, "TST:SmartAct:MCS2-3C::STATE:02:ENCODER_RBV") {
   field(DESC, "Encoder count associated with this state")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -2252,7 +2252,7 @@ record(longin, "$(PREFIX):STATE:02:ENCODER_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(waveform, "$(PREFIX):STATE:02:NAME_RBV") {
+record(waveform, "TST:SmartAct:MCS2-3C::STATE:02:NAME_RBV") {
   field(DESC, "Name of this position state")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -2268,7 +2268,7 @@ record(waveform, "$(PREFIX):STATE:02:NAME_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bi, "$(PREFIX):STATE:03:MOVE_OK_RBV") {
+record(bi, "TST:SmartAct:MCS2-3C::STATE:03:MOVE_OK_RBV") {
   field(DESC, "TRUE if the move would be safe")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -2282,7 +2282,7 @@ record(bi, "$(PREFIX):STATE:03:MOVE_OK_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ai, "$(PREFIX):STATE:03:SETPOINT_RBV") {
+record(ai, "TST:SmartAct:MCS2-3C::STATE:03:SETPOINT_RBV") {
   field(DESC, "Axis position associated with this state")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -2295,7 +2295,7 @@ record(ai, "$(PREFIX):STATE:03:SETPOINT_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ao, "$(PREFIX):STATE:03:SETPOINT") {
+record(ao, "TST:SmartAct:MCS2-3C::STATE:03:SETPOINT") {
   field(DESC, "Axis position associated with this state")
   field(DTYP, "asynFloat64")
   field(UDFS, "0")
@@ -2305,7 +2305,7 @@ record(ao, "$(PREFIX):STATE:03:SETPOINT") {
   info(archive, "VAL")
 }
 
-record(ai, "$(PREFIX):STATE:03:VELO_RBV") {
+record(ai, "TST:SmartAct:MCS2-3C::STATE:03:VELO_RBV") {
   field(DESC, "Speed at which to move to this state")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -2318,7 +2318,7 @@ record(ai, "$(PREFIX):STATE:03:VELO_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ao, "$(PREFIX):STATE:03:VELO") {
+record(ao, "TST:SmartAct:MCS2-3C::STATE:03:VELO") {
   field(DESC, "Speed at which to move to this state")
   field(DTYP, "asynFloat64")
   field(UDFS, "0")
@@ -2328,7 +2328,7 @@ record(ao, "$(PREFIX):STATE:03:VELO") {
   info(archive, "VAL")
 }
 
-record(longin, "$(PREFIX):STATE:03:ENCODER_RBV") {
+record(longin, "TST:SmartAct:MCS2-3C::STATE:03:ENCODER_RBV") {
   field(DESC, "Encoder count associated with this state")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -2340,7 +2340,7 @@ record(longin, "$(PREFIX):STATE:03:ENCODER_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(waveform, "$(PREFIX):STATE:03:NAME_RBV") {
+record(waveform, "TST:SmartAct:MCS2-3C::STATE:03:NAME_RBV") {
   field(DESC, "Name of this position state")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -2356,7 +2356,7 @@ record(waveform, "$(PREFIX):STATE:03:NAME_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bi, "$(PREFIX):STATE:RESET_RBV") {
+record(bi, "TST:SmartAct:MCS2-3C::STATE:RESET_RBV") {
   # SmartActMCS2.fbPositionState1D.stEpicsToPlc.bReset
   field(DESC, "SmartActMCS2.fbPosit...EpicsToPlc.bReset")
   field(SCAN, "I/O Intr")
@@ -2371,7 +2371,7 @@ record(bi, "$(PREFIX):STATE:RESET_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bo, "$(PREFIX):STATE:RESET") {
+record(bo, "TST:SmartAct:MCS2-3C::STATE:RESET") {
   # SmartActMCS2.fbPositionState1D.stEpicsToPlc.bReset
   field(DESC, "SmartActMCS2.fbPosit...EpicsToPlc.bReset")
   field(DTYP, "asynInt32")
@@ -2383,7 +2383,7 @@ record(bo, "$(PREFIX):STATE:RESET") {
   info(archive, "VAL")
 }
 
-record(bi, "$(PREFIX):STATE:BUSY_RBV") {
+record(bi, "TST:SmartAct:MCS2-3C::STATE:BUSY_RBV") {
   # SmartActMCS2.fbPositionState1D.stPlcToEpics.bBusy
   field(DESC, "SmartActMCS2.fbPosit...tPlcToEpics.bBusy")
   field(SCAN, "I/O Intr")
@@ -2398,7 +2398,7 @@ record(bi, "$(PREFIX):STATE:BUSY_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bi, "$(PREFIX):STATE:DONE_RBV") {
+record(bi, "TST:SmartAct:MCS2-3C::STATE:DONE_RBV") {
   # SmartActMCS2.fbPositionState1D.stPlcToEpics.bDone
   field(DESC, "SmartActMCS2.fbPosit...tPlcToEpics.bDone")
   field(SCAN, "I/O Intr")
@@ -2413,7 +2413,7 @@ record(bi, "$(PREFIX):STATE:DONE_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bi, "$(PREFIX):STATE:ERR_RBV") {
+record(bi, "TST:SmartAct:MCS2-3C::STATE:ERR_RBV") {
   # SmartActMCS2.fbPositionState1D.stPlcToEpics.bError
   field(DESC, "SmartActMCS2.fbPosit...PlcToEpics.bError")
   field(SCAN, "I/O Intr")
@@ -2428,7 +2428,7 @@ record(bi, "$(PREFIX):STATE:ERR_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(longin, "$(PREFIX):STATE:ERRID_RBV") {
+record(longin, "TST:SmartAct:MCS2-3C::STATE:ERRID_RBV") {
   # SmartActMCS2.fbPositionState1D.stPlcToEpics.nErrorID
   field(DESC, "SmartActMCS2.fbPosit...cToEpics.nErrorID")
   field(SCAN, "I/O Intr")
@@ -2441,7 +2441,7 @@ record(longin, "$(PREFIX):STATE:ERRID_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(waveform, "$(PREFIX):STATE:ERRMSG_RBV") {
+record(waveform, "TST:SmartAct:MCS2-3C::STATE:ERRMSG_RBV") {
   # SmartActMCS2.fbPositionState1D.stPlcToEpics.sErrorMsg
   field(DESC, "SmartActMCS2.fbPosit...ToEpics.sErrorMsg")
   field(SCAN, "I/O Intr")

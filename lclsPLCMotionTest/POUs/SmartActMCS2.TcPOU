@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="SmartActMCS2" Id="{7ddf7142-3738-4120-8059-c5d2220b5135}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM SmartActMCS2
+VAR
+    {attribute 'pytmc':='pv: TST:SmartAct:MCS2-3C'}
+    {attribute 'TcLinkTo' := '
+        .arNetId				:=TIID^Master_EtherCAT^MCS2-3C^InfoData^AdsAddr^netId;
+        .nSlaveAddr				:=TIID^Master_EtherCAT^MCS2-3C^InfoData^AdsAddr^port;
+        .stPiezoDriveStatus		:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Status Word;
+        .nRawEncoderDINT		:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Position Actual Value;
+        .nFollowingError		:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Following Error Actual Value;
+        .nModeOfOperationDisplay:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Modes of Operation Display;
+        .nPiezoDriveControl		:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Control Word;
+        .nModeOfOperation		:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Modes of Operation;
+        .nTargetPosition		:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Target Position;
+        .nProfilVelocity		:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Profile Velocity;
+        .nProfilAcceleration	:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Profile Acceleration;
+    '}
+    M1 : ST_PiezoStage :=
+            (
+                sName:='TST:SmartAct:MCS2-3C',
+                nMotionAxisID:=1,
+                eModule := E_Module.CHAN1,
+                nHomingMode:=ENUM_EpicsHomeCmd.AUTO_ZERO,
+                nEnableMode:= ENUM_StageEnableMode.DURING_MOTION,
+                bPowerSelf:=TRUE,
+                bHardwareEnable:=TRUE,
+                eEgu:=E_DS402EGU.NM, (*namometer*)
+                fScalingFactor:=1,
+                (* this motion parameters are based on the scaling defined above *)
+                fHomePosition:=0.0,
+                fMaxVelocity:=1000000.0,
+                fMaxAcceleration:=10000000.0,
+                fVelocity:=500000,
+                fAcceleration:=1000000,
+                fDeceleration:=1000000
+             );
+
+    fbPiezoDriveDS402Pp : FB_PiezoDriveDS402PP := (stPzStage:=M1);
+
+    // state Position
+    fbStateSetup: FB_StateSetupHelper;
+    stDefault: ST_PositionState :=
+                       (
+                        //sName := 'SmartActMCS2-3C',
+                        fDelta := 500,
+                        fVelocity := 1000000,
+                        fAccel := 1000000,
+                        fDecel := 1000000,
+                        bMoveOk := TRUE,
+                        bValid := TRUE
+                    );
+
+    astStates1: ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+
+    {attribute 'pytmc' := '
+          pv: @(PREFIX):STATES:SET
+          io: io
+    '}
+     eStateSet: ENUM_AxisStates;
+        {attribute 'pytmc' := '
+          pv: @(PREFIX):STATES:GET
+          io: i
+    '}
+    eStateGet: ENUM_AxisStates;
+
+    {attribute 'pytmc' := 'pv: @(PREFIX)'}
+    fbPositionState1D: FB_PositionState1D;
+    bInit	: BOOL;
+    tonTest	: TON;
+    rtReady	: R_TRIG;
+    teStateSet : UINT;
+    teStateGet : UINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbStateSetup(stPositionState:=stDefault, bSetDefault:=TRUE);
+
+fbStateSetup(stPositionState:=astStates1[1], sName:='OUT', fPosition:=100000);
+fbStateSetup(stPositionState:=astStates1[2], sName:='YAG', fPosition:=2000000);
+fbStateSetup(stPositionState:=astStates1[3], sName:='TT', fPosition:=4000000);
+
+fbPositionState1D(
+    stMotionStage:=M1,
+    astPositionState:=astStates1,
+    eEnumSet:=teStateSet,
+    eEnumGet:=teStateGet,
+    bEnable:=TRUE,
+);
+
+fbPiezoDriveDS402Pp();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

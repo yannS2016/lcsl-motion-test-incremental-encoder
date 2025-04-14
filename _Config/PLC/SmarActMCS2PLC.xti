@@ -795,126 +795,6 @@ External Setpoint Generation:
 			</Relations>
 		</DataType>
 		<DataType>
-			<Name GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion" AutoDeleteType="true">ST_DS402DriveStatus</Name>
-			<BitSize>16</BitSize>
-			<SubItem>
-				<Name>ReadyToSwitchOn</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 0 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>SwitchedOn</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 1 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>1</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>OperationEnabled</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 2 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>2</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Fault</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 3 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>3</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>VoltageEnabled</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 4 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>4</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>QuickStopActive</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 5 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>5</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>SwitchOnDisabled</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 6 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>6</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>WarningCondition</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 7 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>7</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>TrajectoryAborted</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 8 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>8</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>RemoteCANopenControl</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 9 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>9</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>TargetReached</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 10 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>10</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>InternalLimitActive</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 11 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>11</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Bit12_OpModeSpecific</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 12 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>12</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Bit13_OpModeSpecific</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 13 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>13</BitOffs>
-			</SubItem>
-		</DataType>
-		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-000000000041}" TcBaseType="true" HideSubItems="true" CName="AmsNetId">AMSNETID</Name>
-			<BitSize>48</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>6</Elements>
-			</ArrayInfo>
-			<Format>
-				<Printf>%d.%d.%d.%d.%d.%d</Printf>
-				<Parameter>[0]</Parameter>
-				<Parameter>[1]</Parameter>
-				<Parameter>[2]</Parameter>
-				<Parameter>[3]</Parameter>
-				<Parameter>[4]</Parameter>
-				<Parameter>[5]</Parameter>
-			</Format>
-		</DataType>
-		<DataType>
 			<Name GUID="{875D2B22-B7EB-497E-B933-0C004593CCF3}" Namespace="MC" TcBaseType="true" HideType="true" IecDeclaration="DWORD;">PLCTONC_AXIS_REF_CTRL</Name>
 			<BitSize>32</BitSize>
 			<SubItem>
@@ -1102,9 +982,9 @@ External Setpoint Generation:
 			</Relations>
 		</DataType>
 	</DataTypes>
-	<Project GUID="{E31ADAA4-9B77-495F-982E-6D67EFCA2359}" Name="lclsPLCMotionTest" PrjFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.plcproj" TmcFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{694A7C5B-9D3A-10F1-7A60-11DA6F5BEB70}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
-			<Name>lclsPLCMotionTest Instance</Name>
+	<Project GUID="{E31ADAA4-9B77-495F-982E-6D67EFCA2359}" Name="SmarActMCS2PLC" PrjFilePath="..\..\SmarActMCS2PLC\SmarActMCS2PLC.plcproj" TmcFilePath="..\..\SmarActMCS2PLC\SmarActMCS2PLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{E102CD7B-67FB-3DE4-9733-994BA8CBAD72}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
+			<Name>SmarActMCS2PLC Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="8" AreaNo="4">
 				<Name>PlcTask Retains</Name>
@@ -1129,59 +1009,24 @@ External Setpoint Generation:
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
 				<Var>
-					<Name>SmartActMCS2.M1.Axis.PlcToNc</Name>
+					<Name>MAIN.M1.Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.bBrakeRelease</Name>
+					<Name>MAIN.M1.bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nPiezoDriveControl</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>SmartActMCS2.M1.nTargetPosition</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>SmartActMCS2.M1.nModeOfOperation</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>SmartActMCS2.M1.nProfilVelocity</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>SmartActMCS2.M1.nProfilAcceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>SmartActMCS2.M1.nProfilDecceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>SmartActMCS2.M1.nVelocityActualValue</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>SmartActMCS2.M1.nScantargetPosition</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>SmartActMCS2.M1.uScantargetVelocity</Name>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].Axis.PlcToNc</Name>
+					<Name>MAIN.fbmotion1.fbDriveVirtual.MasterAxis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].bBrakeRelease</Name>
+					<Name>MAIN.fbPositionState1D.astMotionStageMax[1].Axis.PlcToNc</Name>
+					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbPositionState1D.astMotionStageMax[1].bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
@@ -1189,115 +1034,104 @@ External Setpoint Generation:
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
 				<Var>
-					<Name>SmartActMCS2.M1.Axis.NcToPlc</Name>
+					<Name>MAIN.bLimitBackwardEnable</Name>
+					<Comment><![CDATA[{attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^M1-EL1084^Channel 1^Input'}]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.bLimitForwardEnable</Name>
+					<Comment><![CDATA[{attribute 'TcLinkTo' := 'TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^M1-EL1084^Channel 2^Input'}]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.M1.Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.bLimitForwardEnable</Name>
+					<Name>MAIN.M1.bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.bLimitBackwardEnable</Name>
+					<Name>MAIN.M1.bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.bHome</Name>
+					<Name>MAIN.M1.bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.bHardwareEnable</Name>
+					<Name>MAIN.M1.bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nRawEncoderULINT</Name>
+					<Name>MAIN.M1.nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nRawEncoderUINT</Name>
+					<Name>MAIN.M1.nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nRawEncoderINT</Name>
+					<Name>MAIN.M1.nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nRawEncoderDINT</Name>
+					<Name>MAIN.M1.nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.stPiezoDriveStatus</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
-				</Var>
-				<Var>
-					<Name>SmartActMCS2.M1.nModeOfOperationDisplay</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>SmartActMCS2.M1.nFollowingError</Name>
-					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
-CSP drive mode]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>SmartActMCS2.M1.arNetId</Name>
-					<Comment><![CDATA[ NetId of EtherCAT Master ]]></Comment>
-					<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
-				</Var>
-				<Var>
-					<Name>SmartActMCS2.M1.nSlaveAddr</Name>
-					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].Axis.NcToPlc</Name>
+					<Name>MAIN.fbmotion1.fbDriveVirtual.MasterAxis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].bLimitForwardEnable</Name>
+					<Name>MAIN.fbPositionState1D.astMotionStageMax[1].Axis.NcToPlc</Name>
+					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.fbPositionState1D.astMotionStageMax[1].bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].bLimitBackwardEnable</Name>
+					<Name>MAIN.fbPositionState1D.astMotionStageMax[1].bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].bHome</Name>
+					<Name>MAIN.fbPositionState1D.astMotionStageMax[1].bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].bHardwareEnable</Name>
+					<Name>MAIN.fbPositionState1D.astMotionStageMax[1].bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].nRawEncoderULINT</Name>
+					<Name>MAIN.fbPositionState1D.astMotionStageMax[1].nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].nRawEncoderUINT</Name>
+					<Name>MAIN.fbPositionState1D.astMotionStageMax[1].nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].nRawEncoderINT</Name>
+					<Name>MAIN.fbPositionState1D.astMotionStageMax[1].nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].nRawEncoderDINT</Name>
+					<Name>MAIN.fbPositionState1D.astMotionStageMax[1].nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
@@ -1318,21 +1152,4 @@ CSP drive mode]]></Comment>
 			</TaskPouOids>
 		</Instance>
 	</Project>
-	<Mappings>
-		<OwnerA Name="lclsPLCMotionTest Instance">
-			<OwnerB Name="TIID^Master_EtherCAT^MCS2-3C">
-				<Link VarA="PlcTask Inputs^SmartActMCS2.M1.arNetId" VarB="InfoData^AdsAddr^netId" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^SmartActMCS2.M1.nFollowingError" VarB="Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^SmartActMCS2.M1.nModeOfOperationDisplay" VarB="Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^SmartActMCS2.M1.nRawEncoderDINT" VarB="Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^SmartActMCS2.M1.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^SmartActMCS2.M1.stPiezoDriveStatus" VarB="Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Status Word" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^SmartActMCS2.M1.nModeOfOperation" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Modes of Operation" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^SmartActMCS2.M1.nPiezoDriveControl" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Control Word" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^SmartActMCS2.M1.nProfilAcceleration" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Profile Acceleration" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^SmartActMCS2.M1.nProfilVelocity" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Profile Velocity" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^SmartActMCS2.M1.nTargetPosition" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Target Position" AutoLink="true"/>
-			</OwnerB>
-		</OwnerA>
-	</Mappings>
 </TcSmItem>

@@ -3,7 +3,7 @@
   <POU Name="SmartActMCS2" Id="{7ddf7142-3738-4120-8059-c5d2220b5135}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM SmartActMCS2
 VAR
-    {attribute 'pytmc':='pv: TST:SmartAct:MCS2-3C'}
+  {attribute 'pytmc':='pv: TST:SmartAct:MCS2-3C'}
     {attribute 'TcLinkTo' := '
         .arNetId				:=TIID^Master_EtherCAT^MCS2-3C^InfoData^AdsAddr^netId;
         .nSlaveAddr				:=TIID^Master_EtherCAT^MCS2-3C^InfoData^AdsAddr^port;
@@ -28,16 +28,20 @@ VAR
                 bHardwareEnable:=TRUE,
                 eEgu:=E_DS402EGU.NM, (*namometer*)
                 fScalingFactor:=1,
-                (* this motion parameters are based on the scaling defined above *)
+                (* these motion parameters are based on the scaling defined above *)
                 fHomePosition:=0.0,
                 fMaxVelocity:=1000000.0,
                 fMaxAcceleration:=10000000.0,
                 fVelocity:=500000,
                 fAcceleration:=1000000,
-                fDeceleration:=1000000
+                fDeceleration:=1000000,
+                (*Open Loop Motion Params*)
+                nChanStep := 10,
+                nChanStepAmp:=50,
+                nChanStepFreq:=500
              );
 
-    fbPiezoDriveDS402Pp : FB_PiezoDriveDS402PP := (stPzStage:=M1);
+    fbPiezoDriveDS402Pp : FB_DS402DrivePP (stPzStage:=M1);
 
     // state Position
     fbStateSetup: FB_StateSetupHelper;
@@ -67,11 +71,6 @@ VAR
 
     {attribute 'pytmc' := 'pv: @(PREFIX)'}
     fbPositionState1D: FB_PositionState1D;
-    bInit	: BOOL;
-    tonTest	: TON;
-    rtReady	: R_TRIG;
-    teStateSet : UINT;
-    teStateGet : UINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -84,8 +83,8 @@ fbStateSetup(stPositionState:=astStates1[3], sName:='TT', fPosition:=4000000);
 fbPositionState1D(
     stMotionStage:=M1,
     astPositionState:=astStates1,
-    eEnumSet:=teStateSet,
-    eEnumGet:=teStateGet,
+    eEnumSet:=eStateSet,
+    eEnumGet:=eStateGet,
     bEnable:=TRUE,
 );
 

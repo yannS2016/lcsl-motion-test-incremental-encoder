@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.13">
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.15">
 	<Project ProjectGUID="{8FC85561-A465-4EB1-B35A-29FB3B87DEE1}" TargetNetId="172.21.148.154.1.1" Target64Bit="true" ShowHideConfigurations="#x6">
 		<System>
 			<Settings MaxCpus="4">
@@ -17,6 +17,11 @@
 		<Io>
 			<Device File="Master_EtherCAT.xti" Id="3"/>
 		</Io>
+		<SymbolWatch>
+			<Variable>TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Position Actual Value</Variable>
+			<Variable>TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Following Error Actual Value</Variable>
+			<Variable>TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Control Word</Variable>
+		</SymbolWatch>
 	</Project>
 	<Mappings>
 		<MappingInfo Identifier="{00000000-2001-0850-0020-500840000403}" Id="#x02030010"/>

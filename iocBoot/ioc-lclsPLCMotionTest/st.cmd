@@ -15,7 +15,7 @@
 # Libraries:
 #
 #   LCLS General: * (SLAC)
-#   lcls-twincat-motion: * -> 2.2.2 (SLAC)
+#   lcls-twincat-motion: * -> 2.2.4 (SLAC)
 #   Tc2_Standard: * -> 3.4.5.0 (Beckhoff Automation GmbH)
 #   Tc2_System: * (Beckhoff Automation GmbH)
 #   Tc3_Module: * (Beckhoff Automation GmbH)
@@ -38,7 +38,7 @@ epicsEnvSet("ASYN_PORT",        "ASYN_PLC")
 epicsEnvSet("IPADDR",           "172.21.148.154")
 epicsEnvSet("AMSID",            "172.21.148.154.1.1")
 epicsEnvSet("AMS_PORT",         "851")
-epicsEnvSet("ADS_MAX_PARAMS",   "1178")
+epicsEnvSet("ADS_MAX_PARAMS",   "1190")
 epicsEnvSet("ADS_SAMPLE_MS",    "50")
 epicsEnvSet("ADS_MAX_DELAY_MS", "100")
 epicsEnvSet("ADS_TIMEOUT_MS",   "1000")
@@ -87,8 +87,8 @@ dbLoadRecords("TwinCAT_Project.db", "PREFIX=PLC:lclsPLCMotionTest,PROJECT=lcls-m
 
 #   LCLS General: * (SLAC)
 dbLoadRecords("TwinCAT_Dependency.db", "PREFIX=PLC:lclsPLCMotionTest,DEPENDENCY=LCLS_General,VERSION=*,VENDOR=SLAC")
-#   lcls-twincat-motion: * -> 2.2.2 (SLAC)
-dbLoadRecords("TwinCAT_Dependency.db", "PREFIX=PLC:lclsPLCMotionTest,DEPENDENCY=lcls-twincat-motion,VERSION=2.2.2,VENDOR=SLAC")
+#   lcls-twincat-motion: * -> 2.2.4 (SLAC)
+dbLoadRecords("TwinCAT_Dependency.db", "PREFIX=PLC:lclsPLCMotionTest,DEPENDENCY=lcls-twincat-motion,VERSION=2.2.4,VENDOR=SLAC")
 #   Tc2_Standard: * -> 3.4.5.0 (Beckhoff Automation GmbH)
 dbLoadRecords("TwinCAT_Dependency.db", "PREFIX=PLC:lclsPLCMotionTest,DEPENDENCY=Tc2_Standard,VERSION=3.4.5.0,VENDOR=Beckhoff Automation GmbH")
 #   Tc2_System: * (Beckhoff Automation GmbH)
@@ -101,8 +101,8 @@ cd "$(IOC_TOP)"
 ## PLC Project Database files ##
 dbLoadRecords("lclsPLCMotionTest.db", "PORT=$(ASYN_PORT),PREFIX=PLC:lclsPLCMotionTest:,IOCNAME=$(IOC),IOC=$(IOC)")
 
-# Total records: 178
-callbackSetQueueSize(2356)
+# Total records: 190
+callbackSetQueueSize(2380)
 
 # Autosave and archive settings:
 save_restoreSet_status_prefix("PLC:lclsPLCMotionTest:")

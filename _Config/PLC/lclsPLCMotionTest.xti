@@ -897,24 +897,6 @@ External Setpoint Generation:
 			</SubItem>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-000000000041}" TcBaseType="true" HideSubItems="true" CName="AmsNetId">AMSNETID</Name>
-			<BitSize>48</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>6</Elements>
-			</ArrayInfo>
-			<Format>
-				<Printf>%d.%d.%d.%d.%d.%d</Printf>
-				<Parameter>[0]</Parameter>
-				<Parameter>[1]</Parameter>
-				<Parameter>[2]</Parameter>
-				<Parameter>[3]</Parameter>
-				<Parameter>[4]</Parameter>
-				<Parameter>[5]</Parameter>
-			</Format>
-		</DataType>
-		<DataType>
 			<Name GUID="{875D2B22-B7EB-497E-B933-0C004593CCF3}" Namespace="MC" TcBaseType="true" HideType="true" IecDeclaration="DWORD;">PLCTONC_AXIS_REF_CTRL</Name>
 			<BitSize>32</BitSize>
 			<SubItem>
@@ -1103,7 +1085,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{E31ADAA4-9B77-495F-982E-6D67EFCA2359}" Name="lclsPLCMotionTest" PrjFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.plcproj" TmcFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{1654341F-9F3D-9A42-64FC-BDD631D67009}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{815DC4BF-7BAB-872A-6DFD-CF3C480E534C}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
 			<Name>lclsPLCMotionTest Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="8" AreaNo="4">
@@ -1138,42 +1120,43 @@ External Setpoint Generation:
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nPiezoDriveControl</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
+					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControl</Name>
+					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
+ connected to I/O Task 'Control Word']]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nTargetPosition</Name>
+					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nTargetPosition</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nModeOfOperation</Name>
+					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperation</Name>
 					<Type>SINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nProfilVelocity</Name>
+					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nProfilVelocity</Name>
 					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nProfilAcceleration</Name>
+					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nProfilAcceleration</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nProfilDecceleration</Name>
+					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nProfilDecceleration</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nVelocityActualValue</Name>
+					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nVelocityActualValue</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nScantargetPosition</Name>
+					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nScantargetPosition</Name>
 					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.uScantargetVelocity</Name>
+					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.uScantargetVelocity</Name>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
@@ -1233,27 +1216,31 @@ External Setpoint Generation:
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.stPiezoDriveStatus</Name>
+					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.stDS402DriveStatus</Name>
 					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
 					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nModeOfOperationDisplay</Name>
+					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperationDisplay</Name>
 					<Type>SINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nFollowingError</Name>
+					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nFollowingError</Name>
 					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
 CSP drive mode]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.arNetId</Name>
-					<Comment><![CDATA[ NetId of EtherCAT Master ]]></Comment>
-					<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
+					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControlNC</Name>
+					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
+					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nSlaveAddr</Name>
+					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperationNC</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nSlaveAddr</Name>
 					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
 					<Type>UINT</Type>
 				</Var>
@@ -1321,17 +1308,20 @@ CSP drive mode]]></Comment>
 	<Mappings>
 		<OwnerA Name="lclsPLCMotionTest Instance">
 			<OwnerB Name="TIID^Master_EtherCAT^MCS2-3C">
-				<Link VarA="PlcTask Inputs^SmartActMCS2.M1.arNetId" VarB="InfoData^AdsAddr^netId" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^SmartActMCS2.M1.nFollowingError" VarB="Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^SmartActMCS2.M1.nModeOfOperationDisplay" VarB="Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
 				<Link VarA="PlcTask Inputs^SmartActMCS2.M1.nRawEncoderDINT" VarB="Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^SmartActMCS2.M1.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^SmartActMCS2.M1.stPiezoDriveStatus" VarB="Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Status Word" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^SmartActMCS2.M1.nModeOfOperation" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Modes of Operation" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^SmartActMCS2.M1.nPiezoDriveControl" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Control Word" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^SmartActMCS2.M1.nProfilAcceleration" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Profile Acceleration" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^SmartActMCS2.M1.nProfilVelocity" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Profile Velocity" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^SmartActMCS2.M1.nTargetPosition" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Target Position" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nFollowingError" VarB="Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperationDisplay" VarB="Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.stDS402DriveStatus" VarB="Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Status Word" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControl" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Control Word" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperation" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Modes of Operation" AutoLink="true"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^MCS2-M1">
+				<Link VarA="PlcTask Inputs^SmartActMCS2.M1.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
+				<Link VarA="PlcTask Inputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
+				<Link VarA="PlcTask Inputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^SmartActMCS2.M1.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>

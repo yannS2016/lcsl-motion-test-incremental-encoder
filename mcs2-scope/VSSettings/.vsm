@@ -4,17 +4,35 @@
   <FileName></FileName>
   <Children>
     <Node>
-      <Title>ScopeWizard</Title>
-      <Expanded>False</Expanded>
-      <FileName>C:\Users\ysmandza\Documents\lcls\lcsl-motion-test-incremental-encoder\mcs2-scope\ScopeWizard.tcscopex</FileName>
+      <Title>Scope Project1</Title>
+      <Expanded>True</Expanded>
+      <FileName>C:\Users\ysmandza\Documents\lcls\lcsl-motion-samples\mcs2-scope\Scope Project1.tcscopex</FileName>
       <Children>
         <Node>
           <Title>DataPool</Title>
-          <Expanded>False</Expanded>
+          <Expanded>True</Expanded>
           <FileName></FileName>
           <Children>
             <Node>
+              <Title>ActPos</Title>
+              <Expanded>False</Expanded>
+              <FileName></FileName>
+              <Children />
+            </Node>
+            <Node>
+              <Title>ActVelo</Title>
+              <Expanded>False</Expanded>
+              <FileName></FileName>
+              <Children />
+            </Node>
+            <Node>
               <Title>bServo</Title>
+              <Expanded>False</Expanded>
+              <FileName></FileName>
+              <Children />
+            </Node>
+            <Node>
+              <Title>fPosDiff</Title>
               <Expanded>False</Expanded>
               <FileName></FileName>
               <Children />
@@ -26,25 +44,7 @@
               <Children />
             </Node>
             <Node>
-              <Title>nEncoderCount</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>nFollowingError</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>nModeOfOperationDisplay</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children />
-            </Node>
-            <Node>
-              <Title>nPiezoDriveControl</Title>
+              <Title>nRawEncoderDINT</Title>
               <Expanded>False</Expanded>
               <FileName></FileName>
               <Children />
@@ -53,16 +53,22 @@
         </Node>
         <Node>
           <Title>YT Chart</Title>
-          <Expanded>False</Expanded>
+          <Expanded>True</Expanded>
           <FileName></FileName>
           <Children>
             <Node>
               <Title>Axis Group</Title>
-              <Expanded>False</Expanded>
+              <Expanded>True</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
-                  <Title>nEncoderCount</Title>
+                  <Title>TargetPosition</Title>
+                  <Expanded>False</Expanded>
+                  <FileName></FileName>
+                  <Children />
+                </Node>
+                <Node>
+                  <Title>ActPos</Title>
                   <Expanded>False</Expanded>
                   <FileName></FileName>
                   <Children />
@@ -70,64 +76,12 @@
               </Children>
             </Node>
             <Node>
-              <Title>Axis Group (1)</Title>
-              <Expanded>False</Expanded>
+              <Title>error</Title>
+              <Expanded>True</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
-                  <Title>nFollowingError</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-              </Children>
-            </Node>
-            <Node>
-              <Title>Axis Group (2)</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children>
-                <Node>
-                  <Title>nModeOfOperationDisplay</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-              </Children>
-            </Node>
-            <Node>
-              <Title>Axis Group (3)</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children>
-                <Node>
-                  <Title>nPiezoDriveControl</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-              </Children>
-            </Node>
-            <Node>
-              <Title>Axis Group (4)</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children>
-                <Node>
-                  <Title>fPosition</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-              </Children>
-            </Node>
-            <Node>
-              <Title>Axis Group (5)</Title>
-              <Expanded>False</Expanded>
-              <FileName></FileName>
-              <Children>
-                <Node>
-                  <Title>bServo</Title>
+                  <Title>Error</Title>
                   <Expanded>False</Expanded>
                   <FileName></FileName>
                   <Children />

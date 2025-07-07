@@ -1468,31 +1468,6 @@ record(bi, "TST:SmartAct:MCS2-3C:PLC:bError_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bi, "TST:SmartAct:MCS2-3C:PLC:bHalt_RBV") {
-  field(DESC, "Used to halt current move")
-  field(SCAN, "I/O Intr")
-  field(PINI, "1")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/SmartActMCS2.M1.bHalt?")
-  field(ZNAM, "HALTED")
-  field(ONAM, "NOT_HALTED")
-  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(bo, "TST:SmartAct:MCS2-3C:PLC:bHalt") {
-  field(DESC, "Used to halt current move")
-  field(DTYP, "asynInt32")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/SmartActMCS2.M1.bHalt=")
-  field(ZNAM, "HALTED")
-  field(ONAM, "NOT_HALTED")
-  info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
-  info(archive, "VAL")
-}
-
 record(bi, "TST:SmartAct:MCS2-3C:PLC:bHardwareEnable_RBV") {
   field(DESC, "TRUE if STO not hit")
   field(SCAN, "I/O Intr")
@@ -1553,31 +1528,6 @@ record(bo, "TST:SmartAct:MCS2-3C:PLC:bReset") {
   field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/SmartActMCS2.M1.bReset=")
   field(ZNAM, "FALSE")
   field(ONAM, "TRUE")
-  info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
-  info(archive, "VAL")
-}
-
-record(bi, "TST:SmartAct:MCS2-3C:PLC:bServo_RBV") {
-  field(DESC, "Used to disable close loop mode")
-  field(SCAN, "I/O Intr")
-  field(PINI, "1")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/SmartActMCS2.M1.bServo?")
-  field(ZNAM, "DISABLE")
-  field(ONAM, "ENABLE")
-  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(bo, "TST:SmartAct:MCS2-3C:PLC:bServo") {
-  field(DESC, "Used to disable close loop mode")
-  field(DTYP, "asynInt32")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/SmartActMCS2.M1.bServo=")
-  field(ZNAM, "DISABLE")
-  field(ONAM, "ENABLE")
   info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
   info(archive, "VAL")
 }
@@ -1708,69 +1658,6 @@ record(ai, "TST:SmartAct:MCS2-3C:PLC:fPosDiff_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(longin, "TST:SmartAct:MCS2-3C:PLC:nChanStep_RBV") {
-  field(DESC, "SmartAct: Open Loop Step Count")
-  field(SCAN, "I/O Intr")
-  field(PINI, "1")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/SmartActMCS2.M1.nChanStep?")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(longout, "TST:SmartAct:MCS2-3C:PLC:nChanStep") {
-  field(DESC, "SmartAct: Open Loop Step Count")
-  field(DTYP, "asynInt32")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/SmartActMCS2.M1.nChanStep=")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(longin, "TST:SmartAct:MCS2-3C:PLC:nChanStepAmp_RBV") {
-  field(DESC, "SmartAct: Open Loop Step Amp")
-  field(SCAN, "I/O Intr")
-  field(PINI, "1")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/SmartActMCS2.M1.nChanStepAmp?")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(longout, "TST:SmartAct:MCS2-3C:PLC:nChanStepAmp") {
-  field(DESC, "SmartAct: Open Loop Step Amp")
-  field(DTYP, "asynInt32")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/SmartActMCS2.M1.nChanStepAmp=")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(longin, "TST:SmartAct:MCS2-3C:PLC:nChanStepFreq_RBV") {
-  field(DESC, "SmartAct: Open Loop Step Freq")
-  field(SCAN, "I/O Intr")
-  field(PINI, "1")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/SmartActMCS2.M1.nChanStepFreq?")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(longout, "TST:SmartAct:MCS2-3C:PLC:nChanStepFreq") {
-  field(DESC, "SmartAct: Open Loop Step Freq")
-  field(DTYP, "asynInt32")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/SmartActMCS2.M1.nChanStepFreq=")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
 record(longin, "TST:SmartAct:MCS2-3C:PLC:nEncoderCount_RBV") {
   field(DESC, "Count from encoder hardware")
   field(SCAN, "I/O Intr")
@@ -1793,27 +1680,6 @@ record(longin, "TST:SmartAct:MCS2-3C:PLC:nErrorId_RBV") {
   info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
   info(archive, "VAL")
   field(ASG, "NO_WRITE")
-}
-
-record(longin, "TST:SmartAct:MCS2-3C:PLC:nHoldTime_RBV") {
-  field(DESC, "SmartAct: Set servo mode hold time")
-  field(SCAN, "I/O Intr")
-  field(PINI, "1")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/SmartActMCS2.M1.nHoldTime?")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(longout, "TST:SmartAct:MCS2-3C:PLC:nHoldTime") {
-  field(DESC, "SmartAct: Set servo mode hold time")
-  field(DTYP, "asynInt32")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/SmartActMCS2.M1.nHoldTime=")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS VAL")
-  info(archive, "VAL")
 }
 
 record(waveform, "TST:SmartAct:MCS2-3C:PLC:sErrorMessage_RBV") {
@@ -2223,6 +2089,138 @@ record(mbbo, "$(PREFIX):STATES:SET") {
   field(THST, "TT")
   field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/SmartActMCS2.eStateSet=")
   info(autosaveFields_pass0, "COSV DESC DISS EISV ELSV FFSV FRSV FTSV FVSV NISV ONSV SIMS SVSV SXSV TESV THSV TTSV TVSV TWSV UDFS UNSV VAL ZRSV")
+  info(archive, "VAL")
+}
+
+record(bi, "TST:SmartAct:MCS2-3C:PLC:bServo_RBV") {
+  field(DESC, "Used to disable close loop mode")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/SmartActMCS2.fbMotionStageMCS2CSP.bServo?")
+  field(ZNAM, "DISABLE")
+  field(ONAM, "ENABLE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bo, "TST:SmartAct:MCS2-3C:PLC:bServo") {
+  field(DESC, "Used to disable close loop mode")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/SmartActMCS2.fbMotionStageMCS2CSP.bServo=")
+  field(ZNAM, "DISABLE")
+  field(ONAM, "ENABLE")
+  info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
+  info(archive, "VAL")
+}
+
+record(longin, "TST:SmartAct:MCS2-3C:PLC:nChanStep_RBV") {
+  field(DESC, "SmartAct: Open Loop Step Count")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/SmartActMCS2.fbMotionStageMCS2CSP.nChanStep?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(longout, "TST:SmartAct:MCS2-3C:PLC:nChanStep") {
+  field(DESC, "SmartAct: Open Loop Step Count")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/SmartActMCS2.fbMotionStageMCS2CSP.nChanStep=")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(longin, "TST:SmartAct:MCS2-3C:PLC:nChanStepAmp_RBV") {
+  field(DESC, "SmartAct: Open Loop Step Amp")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/SmartActMCS2.fbMotionStageMCS2CSP.nChanStepAmp?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(longout, "TST:SmartAct:MCS2-3C:PLC:nChanStepAmp") {
+  field(DESC, "SmartAct: Open Loop Step Amp")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/SmartActMCS2.fbMotionStageMCS2CSP.nChanStepAmp=")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "TST:SmartAct:MCS2-3C:PLC:nChanStepEgu_RBV") {
+  field(DESC, "SmartAct: Open Loop Step scale factor")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/SmartActMCS2.fbMotionStageMCS2CSP.nChanStepEgu?")
+  field(PREC, "3")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:SmartAct:MCS2-3C:PLC:nChanStepEgu") {
+  field(DESC, "SmartAct: Open Loop Step scale factor")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/SmartActMCS2.fbMotionStageMCS2CSP.nChanStepEgu=")
+  field(PREC, "3")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(longin, "TST:SmartAct:MCS2-3C:PLC:nChanStepFreq_RBV") {
+  field(DESC, "SmartAct: Open Loop Step Freq")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/SmartActMCS2.fbMotionStageMCS2CSP.nChanStepFreq?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(longout, "TST:SmartAct:MCS2-3C:PLC:nChanStepFreq") {
+  field(DESC, "SmartAct: Open Loop Step Freq")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/SmartActMCS2.fbMotionStageMCS2CSP.nChanStepFreq=")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(longin, "TST:SmartAct:MCS2-3C:PLC:nHoldTime_RBV") {
+  field(DESC, "SmartAct: Set servo mode hold time")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/SmartActMCS2.fbMotionStageMCS2CSP.nHoldTime?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(longout, "TST:SmartAct:MCS2-3C:PLC:nHoldTime") {
+  field(DESC, "SmartAct: Set servo mode hold time")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/SmartActMCS2.fbMotionStageMCS2CSP.nHoldTime=")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS VAL")
   info(archive, "VAL")
 }
 

@@ -9,7 +9,7 @@
     <Name>mcs2-scope</Name>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="ScopeWizard.tcscopex">
+    <Content Include="Scope Project1.tcscopex">
       <SubType>Content</SubType>
     </Content>
   </ItemGroup>

@@ -5,6 +5,7 @@
 VAR
 
     {attribute 'pytmc':='pv: TST:SmartAct:MCS2-3C'}
+
     {attribute 'TcLinkTo' := '
         .nRawEncoderDINT		:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Position Actual Value
     '}
@@ -15,19 +16,18 @@ VAR
                                 bPowerSelf:=TRUE,
                                 bHardwareEnable:=TRUE );
 
-    {attribute 'pytmc':='pv: TST:SmartAct:MCS2-3C'}
-    {attribute 'TcLinkTo' := '
-        .stDS402Drive.nSlaveAddr				:=TIID^Master_EtherCAT^MCS2-3C^InfoData^AdsAddr^port;
-        .stDS402Drive.stDS402DriveStatus	:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Status Word;
-        .stDS402Drive.nFollowingError		:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Following Error Actual Value;
-        .stDS402Drive.nModeOfOperation		:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Modes of Operation;
-        .stDS402Drive.nModeOfOperationDisplay:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Modes of Operation Display;
-        .stDS402Drive.nDS402DriveControl	:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Control Word
-    '}
    {attribute 'TcLinkToOSO' := '
         .stDS402Drive.nModeOfOperationNC	:=<0,8,0>TINC^NC-Task 1 SAF^Axes^MCS2-M1^Drive^Outputs^Out^nCtrl5;
         .stDS402Drive.nDS402DriveControlNC := <0,8,0>TINC^NC-Task 1 SAF^Axes^MCS2-M1^Drive^Outputs^Out^nCtrl1;
         .stDS402Drive.nDS402DriveControlNC := <8,8,0>TINC^NC-Task 1 SAF^Axes^MCS2-M1^Drive^Outputs^Out^nCtrl2
+    '}
+    {attribute 'TcLinkTo' := '
+        .stDS402Drive.nSlaveAddr:=TIID^Master_EtherCAT^MCS2-3C^InfoData^AdsAddr^port;
+        .stDS402Drive.stDS402DriveStatus:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Status Word;
+        .stDS402Drive.nFollowingError:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Following Error Actual Value;
+        .stDS402Drive.nModeOfOperation:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^ctl/mode/pos RxPDO^Modes of Operation;
+        .stDS402Drive.nModeOfOperationDisplay:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Modes of Operation Display;
+        .stDS402Drive.nDS402DriveControl:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^ctl/mode/pos RxPDO^Control Word
     '}
     fbMotionStageMCS2CSP : FB_MotionStageMCS2CSP ( stPiezoStage:=M1, eModule:=E_Module.CHAN1 );
     // state Position

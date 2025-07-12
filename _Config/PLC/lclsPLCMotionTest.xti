@@ -1085,7 +1085,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{E31ADAA4-9B77-495F-982E-6D67EFCA2359}" Name="lclsPLCMotionTest" PrjFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.plcproj" TmcFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{815DC4BF-7BAB-872A-6DFD-CF3C480E534C}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{11E2CE67-C7AC-6CCC-1579-59F3D040F26C}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
 			<Name>lclsPLCMotionTest Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="8" AreaNo="4">
@@ -1313,8 +1313,8 @@ CSP drive mode]]></Comment>
 				<Link VarA="PlcTask Inputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperationDisplay" VarB="Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
 				<Link VarA="PlcTask Inputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
 				<Link VarA="PlcTask Inputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.stDS402DriveStatus" VarB="Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Status Word" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControl" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Control Word" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperation" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos/vel/acc RxPDO^Modes of Operation" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControl" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos RxPDO^Control Word" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperation" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos RxPDO^Modes of Operation" AutoLink="true"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^MCS2-M1">
 				<Link VarA="PlcTask Inputs^SmartActMCS2.M1.Axis.NcToPlc" VarB="Outputs^ToPlc"/>

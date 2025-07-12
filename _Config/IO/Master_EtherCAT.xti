@@ -12,7 +12,7 @@
 		<Image Id="4" AddrType="9" ImageType="3">
 			<Name>Image</Name>
 		</Image>
-		<Box File="MCS2-3C.xti" Id="1">
+		<Box File="E-727.xti" Id="2">
 			<EtherCAT PortABoxInfo="#x00ffffff"/>
 		</Box>
 		<EtherCAT/>

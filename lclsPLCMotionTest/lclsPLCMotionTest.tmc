@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<TcModuleClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance2" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2009/05/TcModuleClass" Hash="{11E2CE67-C7AC-6CCC-1579-59F3D040F26C}" GeneratedBy="TwinCAT XAE Plc">
+<TcModuleClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance2" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2009/05/TcModuleClass" Hash="{B862984A-C206-AEDF-977A-66230085ED77}" GeneratedBy="TwinCAT XAE Plc">
   <DataTypes>
     <DataType>
       <Name Namespace="LCLS_General">ST_System</Name>
@@ -64173,7 +64173,7 @@ CSP drive mode</Comment>
       </Properties>
     </DataType>
     <DataType>
-      <Name>SmartActMCS2</Name>
+      <Name>E727</Name>
       <SubItem>
         <Name Static="true">M1</Name>
         <Type Namespace="lcls_twincat_motion">ST_MotionStage</Type>
@@ -64392,34 +64392,34 @@ CSP drive mode</Comment>
           <ContextId>0</ContextId>
           <ByteSize>192020480</ByteSize>
           <Symbol>
-            <Name>SmartActMCS2.M1.Axis.NcToPlc</Name>
+            <Name>E727.M1.Axis.NcToPlc</Name>
             <BitSize>2048</BitSize>
             <BaseType GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</BaseType>
             <BitOffs>1273177472</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.M1.bLimitForwardEnable</Name>
+            <Name>E727.M1.bLimitForwardEnable</Name>
             <Comment> NC Forward Limit Switch: TRUE if ok to move</Comment>
             <BitSize>8</BitSize>
             <BaseType>BOOL</BaseType>
             <BitOffs>1273185472</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.M1.bLimitBackwardEnable</Name>
+            <Name>E727.M1.bLimitBackwardEnable</Name>
             <Comment> NC Backward Limit Switch: TRUE if ok to move</Comment>
             <BitSize>8</BitSize>
             <BaseType>BOOL</BaseType>
             <BitOffs>1273185480</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.M1.bHome</Name>
+            <Name>E727.M1.bHome</Name>
             <Comment> NO Home Switch: TRUE if at home</Comment>
             <BitSize>8</BitSize>
             <BaseType>BOOL</BaseType>
             <BitOffs>1273185488</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.M1.bHardwareEnable</Name>
+            <Name>E727.M1.bHardwareEnable</Name>
             <Comment> NC STO Input: TRUE if ok to move</Comment>
             <BitSize>8</BitSize>
             <BaseType>BOOL</BaseType>
@@ -64438,48 +64438,48 @@ CSP drive mode</Comment>
             <BitOffs>1273185504</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.M1.nRawEncoderULINT</Name>
+            <Name>E727.M1.nRawEncoderULINT</Name>
             <Comment> Raw encoder IO for ULINT (Biss-C)</Comment>
             <BitSize>64</BitSize>
             <BaseType>ULINT</BaseType>
             <BitOffs>1273185536</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.M1.nRawEncoderUINT</Name>
+            <Name>E727.M1.nRawEncoderUINT</Name>
             <Comment> Raw encoder IO for UINT (Relative Encoders)</Comment>
             <BitSize>16</BitSize>
             <BaseType>UINT</BaseType>
             <BitOffs>1273185600</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.M1.nRawEncoderINT</Name>
+            <Name>E727.M1.nRawEncoderINT</Name>
             <Comment> Raw encoder IO for INT (LVDT)</Comment>
             <BitSize>16</BitSize>
             <BaseType>INT</BaseType>
             <BitOffs>1273185616</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.M1.nRawEncoderDINT</Name>
+            <Name>E727.M1.nRawEncoderDINT</Name>
             <Comment> Raw encoder IO for INT (EL5072 LVDT)</Comment>
             <BitSize>32</BitSize>
             <BaseType>DINT</BaseType>
             <BitOffs>1273185632</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.stDS402DriveStatus</Name>
+            <Name>E727.fbMotionStageMCS2CSP.stDS402Drive.stDS402DriveStatus</Name>
             <Comment> Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. </Comment>
             <BitSize>16</BitSize>
             <BaseType Namespace="lcls_twincat_motion">ST_DS402DriveStatus</BaseType>
             <BitOffs>1273202752</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperationDisplay</Name>
+            <Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperationDisplay</Name>
             <BitSize>8</BitSize>
             <BaseType>SINT</BaseType>
             <BitOffs>1273202768</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nFollowingError</Name>
+            <Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nFollowingError</Name>
             <Comment>nActualPosition 		AT %I*	: 	DINT;
 CSP drive mode</Comment>
             <BitSize>32</BitSize>
@@ -64487,54 +64487,54 @@ CSP drive mode</Comment>
             <BitOffs>1273202784</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControlNC</Name>
+            <Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControlNC</Name>
             <Comment> Connected to NC task Ctrl 1 and Ctrl 2</Comment>
             <BitSize>16</BitSize>
             <BaseType>UINT</BaseType>
             <BitOffs>1273202832</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperationNC</Name>
+            <Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperationNC</Name>
             <BitSize>8</BitSize>
             <BaseType>SINT</BaseType>
             <BitOffs>1273202888</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nSlaveAddr</Name>
+            <Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nSlaveAddr</Name>
             <Comment> Port Number of EtherCAT Slave </Comment>
             <BitSize>16</BitSize>
             <BaseType>UINT</BaseType>
             <BitOffs>1273203136</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].Axis.NcToPlc</Name>
+            <Name>E727.fbPositionState1D.astMotionStageMax[1].Axis.NcToPlc</Name>
             <BitSize>2048</BitSize>
             <BaseType GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</BaseType>
             <BitOffs>1273527552</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].bLimitForwardEnable</Name>
+            <Name>E727.fbPositionState1D.astMotionStageMax[1].bLimitForwardEnable</Name>
             <Comment> NC Forward Limit Switch: TRUE if ok to move</Comment>
             <BitSize>8</BitSize>
             <BaseType>BOOL</BaseType>
             <BitOffs>1273535552</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].bLimitBackwardEnable</Name>
+            <Name>E727.fbPositionState1D.astMotionStageMax[1].bLimitBackwardEnable</Name>
             <Comment> NC Backward Limit Switch: TRUE if ok to move</Comment>
             <BitSize>8</BitSize>
             <BaseType>BOOL</BaseType>
             <BitOffs>1273535560</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].bHome</Name>
+            <Name>E727.fbPositionState1D.astMotionStageMax[1].bHome</Name>
             <Comment> NO Home Switch: TRUE if at home</Comment>
             <BitSize>8</BitSize>
             <BaseType>BOOL</BaseType>
             <BitOffs>1273535568</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].bHardwareEnable</Name>
+            <Name>E727.fbPositionState1D.astMotionStageMax[1].bHardwareEnable</Name>
             <Comment> NC STO Input: TRUE if ok to move</Comment>
             <BitSize>8</BitSize>
             <BaseType>BOOL</BaseType>
@@ -64553,28 +64553,28 @@ CSP drive mode</Comment>
             <BitOffs>1273535584</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].nRawEncoderULINT</Name>
+            <Name>E727.fbPositionState1D.astMotionStageMax[1].nRawEncoderULINT</Name>
             <Comment> Raw encoder IO for ULINT (Biss-C)</Comment>
             <BitSize>64</BitSize>
             <BaseType>ULINT</BaseType>
             <BitOffs>1273535616</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].nRawEncoderUINT</Name>
+            <Name>E727.fbPositionState1D.astMotionStageMax[1].nRawEncoderUINT</Name>
             <Comment> Raw encoder IO for UINT (Relative Encoders)</Comment>
             <BitSize>16</BitSize>
             <BaseType>UINT</BaseType>
             <BitOffs>1273535680</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].nRawEncoderINT</Name>
+            <Name>E727.fbPositionState1D.astMotionStageMax[1].nRawEncoderINT</Name>
             <Comment> Raw encoder IO for INT (LVDT)</Comment>
             <BitSize>16</BitSize>
             <BaseType>INT</BaseType>
             <BitOffs>1273535696</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].nRawEncoderDINT</Name>
+            <Name>E727.fbPositionState1D.astMotionStageMax[1].nRawEncoderDINT</Name>
             <Comment> Raw encoder IO for INT (EL5072 LVDT)</Comment>
             <BitSize>32</BitSize>
             <BaseType>DINT</BaseType>
@@ -64587,20 +64587,20 @@ CSP drive mode</Comment>
           <ContextId>0</ContextId>
           <ByteSize>192020480</ByteSize>
           <Symbol>
-            <Name>SmartActMCS2.M1.Axis.PlcToNc</Name>
+            <Name>E727.M1.Axis.PlcToNc</Name>
             <BitSize>1024</BitSize>
             <BaseType GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</BaseType>
             <BitOffs>1273176448</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.M1.bBrakeRelease</Name>
+            <Name>E727.M1.bBrakeRelease</Name>
             <Comment> NC Brake Output: TRUE to release brake</Comment>
             <BitSize>8</BitSize>
             <BaseType>BOOL</BaseType>
             <BitOffs>1273185496</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControl</Name>
+            <Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControl</Name>
             <Comment> Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
  connected to I/O Task 'Control Word'</Comment>
             <BitSize>16</BitSize>
@@ -64608,63 +64608,63 @@ CSP drive mode</Comment>
             <BitOffs>1273202816</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nTargetPosition</Name>
+            <Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nTargetPosition</Name>
             <BitSize>32</BitSize>
             <BaseType>DINT</BaseType>
             <BitOffs>1273202848</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperation</Name>
+            <Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperation</Name>
             <BitSize>8</BitSize>
             <BaseType>SINT</BaseType>
             <BitOffs>1273202880</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nProfilVelocity</Name>
+            <Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nProfilVelocity</Name>
             <Comment> Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. </Comment>
             <BitSize>32</BitSize>
             <BaseType>DINT</BaseType>
             <BitOffs>1273202912</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nProfilAcceleration</Name>
+            <Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nProfilAcceleration</Name>
             <BitSize>32</BitSize>
             <BaseType>DINT</BaseType>
             <BitOffs>1273202944</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nProfilDecceleration</Name>
+            <Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nProfilDecceleration</Name>
             <BitSize>32</BitSize>
             <BaseType>DINT</BaseType>
             <BitOffs>1273202976</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nVelocityActualValue</Name>
+            <Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nVelocityActualValue</Name>
             <BitSize>32</BitSize>
             <BaseType>DINT</BaseType>
             <BitOffs>1273203008</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nScantargetPosition</Name>
+            <Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nScantargetPosition</Name>
             <Comment> Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. </Comment>
             <BitSize>32</BitSize>
             <BaseType>DINT</BaseType>
             <BitOffs>1273203040</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.uScantargetVelocity</Name>
+            <Name>E727.fbMotionStageMCS2CSP.stDS402Drive.uScantargetVelocity</Name>
             <BitSize>64</BitSize>
             <BaseType>ULINT</BaseType>
             <BitOffs>1273203072</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].Axis.PlcToNc</Name>
+            <Name>E727.fbPositionState1D.astMotionStageMax[1].Axis.PlcToNc</Name>
             <BitSize>1024</BitSize>
             <BaseType GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</BaseType>
             <BitOffs>1273526528</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].bBrakeRelease</Name>
+            <Name>E727.fbPositionState1D.astMotionStageMax[1].bBrakeRelease</Name>
             <Comment> NC Brake Output: TRUE to release brake</Comment>
             <BitSize>8</BitSize>
             <BaseType>BOOL</BaseType>
@@ -73103,7 +73103,7 @@ CSP drive mode</Comment>
             <BitOffs>1273066528</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.M1</Name>
+            <Name>E727.M1</Name>
             <BitSize>26176</BitSize>
             <BaseType Namespace="lcls_twincat_motion">ST_MotionStage</BaseType>
             <Default>
@@ -73143,7 +73143,7 @@ CSP drive mode</Comment>
             <BitOffs>1273176384</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbMotionStageMCS2CSP</Name>
+            <Name>E727.fbMotionStageMCS2CSP</Name>
             <BitSize>159424</BitSize>
             <BaseType Namespace="lcls_twincat_motion">FB_MotionStageMCS2CSP</BaseType>
             <Properties>
@@ -73170,14 +73170,14 @@ CSP drive mode</Comment>
             <BitOffs>1273202560</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbStateSetup</Name>
+            <Name>E727.fbStateSetup</Name>
             <Comment> state Position</Comment>
             <BitSize>92800</BitSize>
             <BaseType Namespace="lcls_twincat_motion">FB_StateSetupHelper</BaseType>
             <BitOffs>1273361984</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.stDefault</Name>
+            <Name>E727.stDefault</Name>
             <BitSize>3712</BitSize>
             <BaseType Namespace="lcls_twincat_motion">ST_PositionState</BaseType>
             <Default>
@@ -73209,7 +73209,7 @@ CSP drive mode</Comment>
             <BitOffs>1273454784</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.astStates1</Name>
+            <Name>E727.astStates1</Name>
             <BitSize>11136</BitSize>
             <BaseType Namespace="lcls_twincat_motion">ST_PositionState</BaseType>
             <ArrayInfo>
@@ -73219,7 +73219,7 @@ CSP drive mode</Comment>
             <BitOffs>1273458496</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.eStateSet</Name>
+            <Name>E727.eStateSet</Name>
             <BitSize>16</BitSize>
             <BaseType>ENUM_AxisStates</BaseType>
             <Properties>
@@ -73234,7 +73234,7 @@ CSP drive mode</Comment>
             <BitOffs>1273469632</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.eStateGet</Name>
+            <Name>E727.eStateGet</Name>
             <BitSize>16</BitSize>
             <BaseType>ENUM_AxisStates</BaseType>
             <Properties>
@@ -73277,7 +73277,7 @@ CSP drive mode</Comment>
             <BitOffs>1273469672</BitOffs>
           </Symbol>
           <Symbol>
-            <Name>SmartActMCS2.fbPositionState1D</Name>
+            <Name>E727.fbPositionState1D</Name>
             <BitSize>94080</BitSize>
             <BaseType Namespace="lcls_twincat_motion">FB_PositionState1D</BaseType>
             <Properties>
@@ -73471,7 +73471,7 @@ CSP drive mode</Comment>
         </Property>
         <Property>
           <Name>ChangeDate</Name>
-          <Value>2025-07-11T18:02:28</Value>
+          <Value>2025-07-12T14:35:32</Value>
         </Property>
         <Property>
           <Name>GeneratedCodeSize</Name>

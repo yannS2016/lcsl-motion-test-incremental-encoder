@@ -5,7 +5,7 @@
     <CycleTime>10000</CycleTime>
     <Priority>20</Priority>
     <PouCall>
-      <Name>SmartActMCS2</Name>
+      <Name>E727</Name>
     </PouCall>
     <TaskFBGuid>{cf0fe61c-2f89-4bd6-ba45-b22623520a12}</TaskFBGuid>
     <Fb_init>{23944dbe-d665-4215-9785-3340c855e2d0}</Fb_init>

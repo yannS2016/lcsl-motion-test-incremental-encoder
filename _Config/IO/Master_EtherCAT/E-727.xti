@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.15" ClassName="CFlbTermDef" SubType="9099">
+	<ImageDatas>
+		<ImageData Id="1000">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000232e0000232e00000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffa15901a15901a15901a15901a15901a15901ffffffffffffffffffffffffffffffa15901a15901a15901a15901a15901ffffffffffffa15901a15901ffffffffffffffffffffffffffffffffffffffffffffffffa15901a15901ffffffffffffffffffffffffa15901a15901ffffffffffffffffffffffffffffffffffffffffffffffffa15901a15901ffffffffffffffffffffffffa15901a15901a15901a15901a15901a15901a15901ffffffffffffffffffa15901a15901ffffffffffffffffffffffffa15901a15901ffffffffffffffffffa15901a15901a15901ffffffffffffa15901a15901ffffffffffffffffffffffffa15901a15901fffffffffffffffffff1d2cea15901a15901ffffffffffffa15901a15901ffffffffffffffffffffffffa15901a15901ffffffffffffffffffa15901a15901a05901ffffffffffffa15901a15901ffffffffffffa15901a15901a15901a15901a15901a15901a15901a15901a15b00ffffffffffffa15901a15901a15901a15901a15901ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</ImageData>
+	</ImageDatas>
+	<Box Id="2" BoxType="9099" BoxFlags="#x00000020">
+		<Name>__FILENAME__</Name>
+		<ImageId>1000</ImageId>
+		<EtherCAT SlaveType="2" PdiType="#x0006" MboxDataLinkLayer="true" StateMBoxPolling="true" UseLrdLwrInsteadOfLrw="true" Unsupported64BitDc="true" CycleMBoxPollingTime="0" CoeType="7" FoeType="1" VendorId="#x0000076d" ProductCode="#x00000001" InfoDataAddr="true" InfoDataSoeDS401="true" PortPhys="17" SlotPdoIncrement="16" SlotIndexIncrement="2048" Type="E-727" Desc="E-727">
+			<SyncMan>001080003600010001000000800080008000001036010000</SyncMan>
+			<SyncMan>801080003200010002000000800080008000801032010000</SyncMan>
+			<SyncMan>001107006400010003000000000000010b00001164010000</SyncMan>
+			<SyncMan>00140b002000010004000000000000010700001420010000</SyncMan>
+			<Fmmu>0000000000000000001100020100000001000000000000000000000000000000</Fmmu>
+			<Fmmu>0000000000000000001400010100000002000000000000000000000000000000</Fmmu>
+			<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
+			<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DcMode>
+			<DcMode>4443000000000000000000000000000044432d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000000</DcMode>
+			<Pdo Name="TxPDO" Index="#x1a00" Flags="#x0280" SyncMan="3">
+				<Entry Name="Statusword" Index="#x6041" Flags="#x00001000">
+					<Type>UINT</Type>
+				</Entry>
+				<Entry Name="Modes of operation display" Index="#x6061" Flags="#x00001000">
+					<Type>BYTE</Type>
+				</Entry>
+				<Entry Name="Position actual value" Index="#x6064" Flags="#x00001000">
+					<Type>DINT</Type>
+				</Entry>
+				<Entry Name="Following error actual value" Index="#x60f4" Flags="#x00001000">
+					<Type>DINT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="RxPDO" Index="#x1600" InOut="1" Flags="#x0280" SyncMan="2">
+				<Entry Name="Controlword" Index="#x6040" Flags="#x00001000">
+					<Type>UINT</Type>
+				</Entry>
+				<Entry Name="Modes of operation" Index="#x6060" Flags="#x00001000">
+					<Type>BYTE</Type>
+				</Entry>
+				<Entry Name="Target position" Index="#x607a" Flags="#x00001000">
+					<Type>DINT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="TxPDO" Index="#x1a10" Flags="#x0280">
+				<Entry Name="Statusword" Index="#x6841" Flags="#x00001000">
+					<Type>UINT</Type>
+				</Entry>
+				<Entry Name="Modes of operation display" Index="#x6861" Flags="#x00001000">
+					<Type>BYTE</Type>
+				</Entry>
+				<Entry Name="Position actual value" Index="#x6864" Flags="#x00001000">
+					<Type>DINT</Type>
+				</Entry>
+				<Entry Name="Following error actual value" Index="#x68f4" Flags="#x00001000">
+					<Type>DINT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="RxPDO" Index="#x1610" InOut="1" Flags="#x0280">
+				<Entry Name="Controlword" Index="#x6840" Flags="#x00001000">
+					<Type>UINT</Type>
+				</Entry>
+				<Entry Name="Modes of operation" Index="#x6860" Flags="#x00001000">
+					<Type>BYTE</Type>
+				</Entry>
+				<Entry Name="Target position" Index="#x687a" Flags="#x00001000">
+					<Type>DINT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="TxPDO" Index="#x1a20" Flags="#x0280">
+				<Entry Name="Statusword" Index="#x7041" Flags="#x00001000">
+					<Type>UINT</Type>
+				</Entry>
+				<Entry Name="Modes of operation display" Index="#x7061" Flags="#x00001000">
+					<Type>BYTE</Type>
+				</Entry>
+				<Entry Name="Position actual value" Index="#x7064" Flags="#x00001000">
+					<Type>DINT</Type>
+				</Entry>
+				<Entry Name="Following error actual value" Index="#x70f4" Flags="#x00001000">
+					<Type>DINT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="RxPDO" Index="#x1620" InOut="1" Flags="#x0280">
+				<Entry Name="Controlword" Index="#x7040" Flags="#x00001000">
+					<Type>UINT</Type>
+				</Entry>
+				<Entry Name="Modes of operation" Index="#x7060" Flags="#x00001000">
+					<Type>BYTE</Type>
+				</Entry>
+				<Entry Name="Target position" Index="#x707a" Flags="#x00001000">
+					<Type>DINT</Type>
+				</Entry>
+			</Pdo>
+			<CoeProfile ProfileNo="402"/>
+			<Slot Name="Axis 1">
+				<SlotData>0000010001000000100000000008000000000000000000000000000000000000</SlotData>
+				<ModuleIdent>1</ModuleIdent>
+				<ModuleIdent>3</ModuleIdent>
+				<Module Id="#x03090004" Type="CSP" Class="">
+					<Name>Module 1 (CSP)</Name>
+					<ImageId>549</ImageId>
+					<ModuleData>6d07000001000000000004000000000000000000000000000000000000000000</ModuleData>
+					<PdoIndex>6656</PdoIndex>
+					<PdoIndex>5632</PdoIndex>
+					<CoeProfile ProfileNo="#x00000192"/>
+				</Module>
+			</Slot>
+			<Slot Name="Axis 2">
+				<SlotData>0000000001000000100000000008000000000000000000000000000000000000</SlotData>
+				<ModuleIdent>1</ModuleIdent>
+				<ModuleIdent>3</ModuleIdent>
+				<Module Id="#x03090005" Type="CSP" Class="">
+					<Name>Module 2 (CSP)</Name>
+					<ImageId>549</ImageId>
+					<ModuleData>6d07000001000000000004000000000000000000000000000000000000000000</ModuleData>
+					<PdoIndex>6672</PdoIndex>
+					<PdoIndex>5648</PdoIndex>
+					<CoeProfile ProfileNo="#x00000192"/>
+				</Module>
+			</Slot>
+			<Slot Name="Axis 3">
+				<SlotData>0000000001000000100000000008000000000000000000000000000000000000</SlotData>
+				<ModuleIdent>1</ModuleIdent>
+				<ModuleIdent>3</ModuleIdent>
+				<Module Id="#x03090006" Type="CSP" Class="">
+					<Name>Module 3 (CSP)</Name>
+					<ImageId>549</ImageId>
+					<ModuleData>6d07000001000000000004000000000000000000000000000000000000000000</ModuleData>
+					<PdoIndex>6688</PdoIndex>
+					<PdoIndex>5664</PdoIndex>
+					<CoeProfile ProfileNo="#x00000192"/>
+				</Module>
+			</Slot>
+		</EtherCAT>
+	</Box>
+</TcSmItem>

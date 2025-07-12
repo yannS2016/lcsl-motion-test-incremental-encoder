@@ -1085,7 +1085,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{E31ADAA4-9B77-495F-982E-6D67EFCA2359}" Name="lclsPLCMotionTest" PrjFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.plcproj" TmcFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{11E2CE67-C7AC-6CCC-1579-59F3D040F26C}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{B862984A-C206-AEDF-977A-66230085ED77}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
 			<Name>lclsPLCMotionTest Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="8" AreaNo="4">
@@ -1111,60 +1111,60 @@ External Setpoint Generation:
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
 				<Var>
-					<Name>SmartActMCS2.M1.Axis.PlcToNc</Name>
+					<Name>E727.M1.Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.bBrakeRelease</Name>
+					<Name>E727.M1.bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControl</Name>
+					<Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControl</Name>
 					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
  connected to I/O Task 'Control Word']]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nTargetPosition</Name>
+					<Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nTargetPosition</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperation</Name>
+					<Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperation</Name>
 					<Type>SINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nProfilVelocity</Name>
+					<Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nProfilVelocity</Name>
 					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nProfilAcceleration</Name>
+					<Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nProfilAcceleration</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nProfilDecceleration</Name>
+					<Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nProfilDecceleration</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nVelocityActualValue</Name>
+					<Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nVelocityActualValue</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nScantargetPosition</Name>
+					<Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nScantargetPosition</Name>
 					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.uScantargetVelocity</Name>
+					<Name>E727.fbMotionStageMCS2CSP.stDS402Drive.uScantargetVelocity</Name>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].Axis.PlcToNc</Name>
+					<Name>E727.fbPositionState1D.astMotionStageMax[1].Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].bBrakeRelease</Name>
+					<Name>E727.fbPositionState1D.astMotionStageMax[1].bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
@@ -1172,119 +1172,119 @@ External Setpoint Generation:
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
 				<Var>
-					<Name>SmartActMCS2.M1.Axis.NcToPlc</Name>
+					<Name>E727.M1.Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.bLimitForwardEnable</Name>
+					<Name>E727.M1.bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.bLimitBackwardEnable</Name>
+					<Name>E727.M1.bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.bHome</Name>
+					<Name>E727.M1.bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.bHardwareEnable</Name>
+					<Name>E727.M1.bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nRawEncoderULINT</Name>
+					<Name>E727.M1.nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nRawEncoderUINT</Name>
+					<Name>E727.M1.nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nRawEncoderINT</Name>
+					<Name>E727.M1.nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.M1.nRawEncoderDINT</Name>
+					<Name>E727.M1.nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.stDS402DriveStatus</Name>
+					<Name>E727.fbMotionStageMCS2CSP.stDS402Drive.stDS402DriveStatus</Name>
 					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
 					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperationDisplay</Name>
+					<Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperationDisplay</Name>
 					<Type>SINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nFollowingError</Name>
+					<Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nFollowingError</Name>
 					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
 CSP drive mode]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControlNC</Name>
+					<Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControlNC</Name>
 					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperationNC</Name>
+					<Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperationNC</Name>
 					<Type>SINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nSlaveAddr</Name>
+					<Name>E727.fbMotionStageMCS2CSP.stDS402Drive.nSlaveAddr</Name>
 					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].Axis.NcToPlc</Name>
+					<Name>E727.fbPositionState1D.astMotionStageMax[1].Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].bLimitForwardEnable</Name>
+					<Name>E727.fbPositionState1D.astMotionStageMax[1].bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].bLimitBackwardEnable</Name>
+					<Name>E727.fbPositionState1D.astMotionStageMax[1].bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].bHome</Name>
+					<Name>E727.fbPositionState1D.astMotionStageMax[1].bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].bHardwareEnable</Name>
+					<Name>E727.fbPositionState1D.astMotionStageMax[1].bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].nRawEncoderULINT</Name>
+					<Name>E727.fbPositionState1D.astMotionStageMax[1].nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].nRawEncoderUINT</Name>
+					<Name>E727.fbPositionState1D.astMotionStageMax[1].nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].nRawEncoderINT</Name>
+					<Name>E727.fbPositionState1D.astMotionStageMax[1].nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>SmartActMCS2.fbPositionState1D.astMotionStageMax[1].nRawEncoderDINT</Name>
+					<Name>E727.fbPositionState1D.astMotionStageMax[1].nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
@@ -1307,21 +1307,9 @@ CSP drive mode]]></Comment>
 	</Project>
 	<Mappings>
 		<OwnerA Name="lclsPLCMotionTest Instance">
-			<OwnerB Name="TIID^Master_EtherCAT^MCS2-3C">
-				<Link VarA="PlcTask Inputs^SmartActMCS2.M1.nRawEncoderDINT" VarB="Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nFollowingError" VarB="Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperationDisplay" VarB="Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.stDS402DriveStatus" VarB="Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Status Word" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControl" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos RxPDO^Control Word" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperation" VarB="Module 1 (MCS2M-D-3C)^ctl/mode/pos RxPDO^Modes of Operation" AutoLink="true"/>
-			</OwnerB>
-			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^MCS2-M1">
-				<Link VarA="PlcTask Inputs^SmartActMCS2.M1.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Inputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
-				<Link VarA="PlcTask Inputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nDS402DriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
-				<Link VarA="PlcTask Inputs^SmartActMCS2.fbMotionStageMCS2CSP.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^SmartActMCS2.M1.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^E-727-M1">
+				<Link VarA="PlcTask Inputs^E727.M1.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^E727.M1.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>

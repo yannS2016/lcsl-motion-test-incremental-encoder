@@ -109,8 +109,8 @@ asynSetTraceInfoMask("$(ASYN_PORT)", -1, 5)
 #define AMPLIFIER_ON_FLAG_USING_CNEN   4
 
 epicsEnvSet("AXIS_NO",         "1")
-epicsEnvSet("MOTOR_PREFIX",    "TST:")
-epicsEnvSet("MOTOR_NAME",      "MOTION")
+epicsEnvSet("MOTOR_PREFIX",    "TST:MOTION:")
+epicsEnvSet("MOTOR_NAME",      "M1")
 epicsEnvSet("DESC",            "MAIN.M1 / Axis 1")
 epicsEnvSet("EGU",             "mm")
 epicsEnvSet("PREC",            "3")

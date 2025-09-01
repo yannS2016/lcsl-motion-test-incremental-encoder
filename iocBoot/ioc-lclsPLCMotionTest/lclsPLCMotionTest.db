@@ -74,7 +74,7 @@ record(longin, "$(PREFIX)LCLSGeneral:LogMessageCount_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bi, "TST:MOTION:PLC:bBacklasStatus_RBV") {
+record(bi, "TST:MOTION:M1:PLC:bBacklasStatus_RBV") {
   field(DESC, "Backlash compensation status")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -88,7 +88,7 @@ record(bi, "TST:MOTION:PLC:bBacklasStatus_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bi, "TST:MOTION:PLC:bError_RBV") {
+record(bi, "TST:MOTION:M1:PLC:bError_RBV") {
   field(DESC, "TRUE if we are in an error state")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -102,7 +102,7 @@ record(bi, "TST:MOTION:PLC:bError_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bi, "TST:MOTION:PLC:bHardwareEnable_RBV") {
+record(bi, "TST:MOTION:M1:PLC:bHardwareEnable_RBV") {
   field(DESC, "TRUE if STO not hit")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -116,7 +116,7 @@ record(bi, "TST:MOTION:PLC:bHardwareEnable_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bi, "TST:MOTION:PLC:bHomeCmd_RBV") {
+record(bi, "TST:MOTION:M1:PLC:bHomeCmd_RBV") {
   field(DESC, "Start the homing routine")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -130,7 +130,7 @@ record(bi, "TST:MOTION:PLC:bHomeCmd_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bo, "TST:MOTION:PLC:bHomeCmd") {
+record(bo, "TST:MOTION:M1:PLC:bHomeCmd") {
   field(DESC, "Start the homing routine")
   field(DTYP, "asynInt32")
   field(UDFS, "0")
@@ -141,7 +141,7 @@ record(bo, "TST:MOTION:PLC:bHomeCmd") {
   info(archive, "VAL")
 }
 
-record(bi, "TST:MOTION:PLC:bReset_RBV") {
+record(bi, "TST:MOTION:M1:PLC:bReset_RBV") {
   field(DESC, "Used internally to reset errors")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -155,7 +155,7 @@ record(bi, "TST:MOTION:PLC:bReset_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bo, "TST:MOTION:PLC:bReset") {
+record(bo, "TST:MOTION:M1:PLC:bReset") {
   field(DESC, "Used internally to reset errors")
   field(DTYP, "asynInt32")
   field(UDFS, "0")
@@ -166,7 +166,7 @@ record(bo, "TST:MOTION:PLC:bReset") {
   info(archive, "VAL")
 }
 
-record(bi, "TST:MOTION:PLC:bBacklashEn_RBV") {
+record(bi, "TST:MOTION:M1:PLC:bBacklashEn_RBV") {
   field(DESC, "Enable Backlash compensation")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -180,7 +180,7 @@ record(bi, "TST:MOTION:PLC:bBacklashEn_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bo, "TST:MOTION:PLC:bBacklashEn") {
+record(bo, "TST:MOTION:M1:PLC:bBacklashEn") {
   field(DESC, "Enable Backlash compensation")
   field(DTYP, "asynInt32")
   field(UDFS, "0")
@@ -191,7 +191,7 @@ record(bo, "TST:MOTION:PLC:bBacklashEn") {
   info(archive, "VAL")
 }
 
-record(bi, "TST:MOTION:PLC:bUserEnable_RBV") {
+record(bi, "TST:MOTION:M1:PLC:bUserEnable_RBV") {
   # Used to disable power entirely for an axis
   field(DESC, "Used to disable powe...irely for an axis")
   field(SCAN, "I/O Intr")
@@ -206,7 +206,7 @@ record(bi, "TST:MOTION:PLC:bUserEnable_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bo, "TST:MOTION:PLC:bUserEnable") {
+record(bo, "TST:MOTION:M1:PLC:bUserEnable") {
   # Used to disable power entirely for an axis
   field(DESC, "Used to disable powe...irely for an axis")
   field(DTYP, "asynInt32")
@@ -218,7 +218,7 @@ record(bo, "TST:MOTION:PLC:bUserEnable") {
   info(archive, "VAL")
 }
 
-record(ai, "TST:MOTION:PLC:fBacklash_RBV") {
+record(ai, "TST:MOTION:M1:PLC:fBacklash_RBV") {
   field(DESC, "Backlash compensation")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -231,7 +231,7 @@ record(ai, "TST:MOTION:PLC:fBacklash_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ao, "TST:MOTION:PLC:fBacklash") {
+record(ao, "TST:MOTION:M1:PLC:fBacklash") {
   field(DESC, "Backlash compensation")
   field(DTYP, "asynFloat64")
   field(UDFS, "0")
@@ -241,7 +241,7 @@ record(ao, "TST:MOTION:PLC:fBacklash") {
   info(archive, "VAL")
 }
 
-record(ai, "TST:MOTION:PLC:fCurrentBacklash_RBV") {
+record(ai, "TST:MOTION:M1:PLC:fCurrentBacklash_RBV") {
   field(DESC, "Currently applied compensation")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -254,7 +254,7 @@ record(ai, "TST:MOTION:PLC:fCurrentBacklash_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ai, "TST:MOTION:PLC:fHomePosition_RBV") {
+record(ai, "TST:MOTION:M1:PLC:fHomePosition_RBV") {
   # Used internally and by the IOC to pick home position
   field(DESC, "Used internally and ...ick home position")
   field(SCAN, "I/O Intr")
@@ -268,7 +268,7 @@ record(ai, "TST:MOTION:PLC:fHomePosition_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ao, "TST:MOTION:PLC:fHomePosition") {
+record(ao, "TST:MOTION:M1:PLC:fHomePosition") {
   # Used internally and by the IOC to pick home position
   field(DESC, "Used internally and ...ick home position")
   field(DTYP, "asynFloat64")
@@ -279,7 +279,7 @@ record(ao, "TST:MOTION:PLC:fHomePosition") {
   info(archive, "VAL")
 }
 
-record(ai, "TST:MOTION:PLC:fPosDiff_RBV") {
+record(ai, "TST:MOTION:M1:PLC:fPosDiff_RBV") {
   field(DESC, "Position lag difference")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -292,7 +292,7 @@ record(ai, "TST:MOTION:PLC:fPosDiff_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(longin, "TST:MOTION:PLC:nEncoderCount_RBV") {
+record(longin, "TST:MOTION:M1:PLC:nEncoderCount_RBV") {
   field(DESC, "Count from encoder hardware")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -304,7 +304,7 @@ record(longin, "TST:MOTION:PLC:nEncoderCount_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(longin, "TST:MOTION:PLC:nErrorId_RBV") {
+record(longin, "TST:MOTION:M1:PLC:nErrorId_RBV") {
   field(DESC, "Error code if nonzero")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -316,7 +316,7 @@ record(longin, "TST:MOTION:PLC:nErrorId_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(waveform, "TST:MOTION:PLC:sErrorMessage_RBV") {
+record(waveform, "TST:MOTION:M1:PLC:sErrorMessage_RBV") {
   field(DESC, "Message to identify the error state")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -332,7 +332,7 @@ record(waveform, "TST:MOTION:PLC:sErrorMessage_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(longin, "TST:MOTION:PLC:AxisPar:PosLagEn_RBV") {
+record(longin, "TST:MOTION:M1:PLC:AxisPar:PosLagEn_RBV") {
   # TRUE if position lag monitor (also known as stall monitor) is enabled.
   field(DESC, "TRUE if position lag...itor) is enabled.")
   field(SCAN, "I/O Intr")
@@ -345,7 +345,7 @@ record(longin, "TST:MOTION:PLC:AxisPar:PosLagEn_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(longin, "TST:MOTION:PLC:AxisPar:SLimMaxEn_RBV") {
+record(longin, "TST:MOTION:M1:PLC:AxisPar:SLimMaxEn_RBV") {
   # TRUE if controller static maximum limit is enabled.
   field(DESC, "TRUE if controller s...limit is enabled.")
   field(SCAN, "I/O Intr")
@@ -358,7 +358,7 @@ record(longin, "TST:MOTION:PLC:AxisPar:SLimMaxEn_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(longin, "TST:MOTION:PLC:AxisPar:SLimMinEn_RBV") {
+record(longin, "TST:MOTION:M1:PLC:AxisPar:SLimMinEn_RBV") {
   # TRUE if controller static minimum limit is enabled.
   field(DESC, "TRUE if controller s...limit is enabled.")
   field(SCAN, "I/O Intr")
@@ -371,7 +371,7 @@ record(longin, "TST:MOTION:PLC:AxisPar:SLimMinEn_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ai, "TST:MOTION:PLC:AxisPar:MaxAccel_RBV") {
+record(ai, "TST:MOTION:M1:PLC:AxisPar:MaxAccel_RBV") {
   # Maximum rate of increase in speed of the axis in EU/s^2.
   field(DESC, "Maximum rate of incr...e axis in EU/s^2.")
   field(SCAN, "I/O Intr")
@@ -385,7 +385,7 @@ record(ai, "TST:MOTION:PLC:AxisPar:MaxAccel_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ai, "TST:MOTION:PLC:AxisPar:PosLagVal_RBV") {
+record(ai, "TST:MOTION:M1:PLC:AxisPar:PosLagVal_RBV") {
   field(DESC, "Maximum magnitude of position lag in EU.")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -398,7 +398,7 @@ record(ai, "TST:MOTION:PLC:AxisPar:PosLagVal_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ai, "TST:MOTION:PLC:AxisPar:PosLagTime_RBV") {
+record(ai, "TST:MOTION:M1:PLC:AxisPar:PosLagTime_RBV") {
   # Maximum allowable duration outside of maximum position lag value in seconds.
   field(DESC, "Maximum allowable du...value in seconds.")
   field(SCAN, "I/O Intr")
@@ -412,7 +412,7 @@ record(ai, "TST:MOTION:PLC:AxisPar:PosLagTime_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ai, "TST:MOTION:PLC:AxisPar:MaxDecel_RBV") {
+record(ai, "TST:MOTION:M1:PLC:AxisPar:MaxDecel_RBV") {
   # Maximum rate of decrease in speed of the axis in EU/s^2.
   field(DESC, "Maximum rate of decr...e axis in EU/s^2.")
   field(SCAN, "I/O Intr")
@@ -426,7 +426,7 @@ record(ai, "TST:MOTION:PLC:AxisPar:MaxDecel_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ai, "TST:MOTION:PLC:AxisPar:EncOffset_RBV") {
+record(ai, "TST:MOTION:M1:PLC:AxisPar:EncOffset_RBV") {
   field(DESC, "Encoder offset in EU.")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -439,7 +439,7 @@ record(ai, "TST:MOTION:PLC:AxisPar:EncOffset_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ai, "TST:MOTION:PLC:AxisPar:EncScaling_RBV") {
+record(ai, "TST:MOTION:M1:PLC:AxisPar:EncScaling_RBV") {
   # Encoder scaling numerator / denominator in EU/COUNT.
   field(DESC, "Encoder scaling nume...ator in EU/COUNT.")
   field(SCAN, "I/O Intr")
@@ -453,7 +453,7 @@ record(ai, "TST:MOTION:PLC:AxisPar:EncScaling_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ai, "TST:MOTION:PLC:AxisPar:SLimMax_RBV") {
+record(ai, "TST:MOTION:M1:PLC:AxisPar:SLimMax_RBV") {
   # Maximum commandable position of the axis in EU.
   field(DESC, "Maximum commandable ...f the axis in EU.")
   field(SCAN, "I/O Intr")
@@ -467,7 +467,7 @@ record(ai, "TST:MOTION:PLC:AxisPar:SLimMax_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ai, "TST:MOTION:PLC:AxisPar:SLimMin_RBV") {
+record(ai, "TST:MOTION:M1:PLC:AxisPar:SLimMin_RBV") {
   # Minimum commandable position of the axis in EU.
   field(DESC, "Minimum commandable ...f the axis in EU.")
   field(SCAN, "I/O Intr")
@@ -481,7 +481,7 @@ record(ai, "TST:MOTION:PLC:AxisPar:SLimMin_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ai, "TST:MOTION:PLC:AxisPar:MaxVel_RBV") {
+record(ai, "TST:MOTION:M1:PLC:AxisPar:MaxVel_RBV") {
   # Maximum commandable speed of the axis in EU/s.
   field(DESC, "Maximum commandable ...the axis in EU/s.")
   field(SCAN, "I/O Intr")
@@ -495,7 +495,7 @@ record(ai, "TST:MOTION:PLC:AxisPar:MaxVel_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bi, "TST:MOTION:PLC:stEPSB:bEPS_OK_RBV") {
+record(bi, "TST:MOTION:M1:PLC:stEPSB:bEPS_OK_RBV") {
   field(DESC, "check if nFlags are all true")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -509,7 +509,7 @@ record(bi, "TST:MOTION:PLC:stEPSB:bEPS_OK_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(longin, "TST:MOTION:PLC:stEPSB:nFlags_RBV") {
+record(longin, "TST:MOTION:M1:PLC:stEPSB:nFlags_RBV") {
   field(DESC, "Contains EPS flags")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -521,7 +521,7 @@ record(longin, "TST:MOTION:PLC:stEPSB:nFlags_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(waveform, "TST:MOTION:PLC:stEPSB:sFlagDesc_RBV") {
+record(waveform, "TST:MOTION:M1:PLC:stEPSB:sFlagDesc_RBV") {
   field(DESC, "semicolon-delimited nFlag variable")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -537,7 +537,7 @@ record(waveform, "TST:MOTION:PLC:stEPSB:sFlagDesc_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(waveform, "TST:MOTION:PLC:stEPSB:sMessage_RBV") {
+record(waveform, "TST:MOTION:M1:PLC:stEPSB:sMessage_RBV") {
   field(DESC, "Message from EPS to usr")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -553,7 +553,7 @@ record(waveform, "TST:MOTION:PLC:stEPSB:sMessage_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bi, "TST:MOTION:PLC:stEPSF:bEPS_OK_RBV") {
+record(bi, "TST:MOTION:M1:PLC:stEPSF:bEPS_OK_RBV") {
   field(DESC, "check if nFlags are all true")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -567,7 +567,7 @@ record(bi, "TST:MOTION:PLC:stEPSF:bEPS_OK_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(longin, "TST:MOTION:PLC:stEPSF:nFlags_RBV") {
+record(longin, "TST:MOTION:M1:PLC:stEPSF:nFlags_RBV") {
   field(DESC, "Contains EPS flags")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -579,7 +579,7 @@ record(longin, "TST:MOTION:PLC:stEPSF:nFlags_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(waveform, "TST:MOTION:PLC:stEPSF:sFlagDesc_RBV") {
+record(waveform, "TST:MOTION:M1:PLC:stEPSF:sFlagDesc_RBV") {
   field(DESC, "semicolon-delimited nFlag variable")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -595,7 +595,7 @@ record(waveform, "TST:MOTION:PLC:stEPSF:sFlagDesc_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(waveform, "TST:MOTION:PLC:stEPSF:sMessage_RBV") {
+record(waveform, "TST:MOTION:M1:PLC:stEPSF:sMessage_RBV") {
   field(DESC, "Message from EPS to usr")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -611,7 +611,7 @@ record(waveform, "TST:MOTION:PLC:stEPSF:sMessage_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bi, "TST:MOTION:PLC:stEPSP:bEPS_OK_RBV") {
+record(bi, "TST:MOTION:M1:PLC:stEPSP:bEPS_OK_RBV") {
   field(DESC, "check if nFlags are all true")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -625,7 +625,7 @@ record(bi, "TST:MOTION:PLC:stEPSP:bEPS_OK_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(longin, "TST:MOTION:PLC:stEPSP:nFlags_RBV") {
+record(longin, "TST:MOTION:M1:PLC:stEPSP:nFlags_RBV") {
   field(DESC, "Contains EPS flags")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -637,7 +637,7 @@ record(longin, "TST:MOTION:PLC:stEPSP:nFlags_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(waveform, "TST:MOTION:PLC:stEPSP:sFlagDesc_RBV") {
+record(waveform, "TST:MOTION:M1:PLC:stEPSP:sFlagDesc_RBV") {
   field(DESC, "semicolon-delimited nFlag variable")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -653,7 +653,7 @@ record(waveform, "TST:MOTION:PLC:stEPSP:sFlagDesc_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(waveform, "TST:MOTION:PLC:stEPSP:sMessage_RBV") {
+record(waveform, "TST:MOTION:M1:PLC:stEPSP:sMessage_RBV") {
   field(DESC, "Message from EPS to usr")
   field(SCAN, "I/O Intr")
   field(PINI, "1")

@@ -4,7 +4,7 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 
-{attribute 'pytmc' := 'pv: TST:MOTION'}
+{attribute 'pytmc' := 'pv: TST:MOTION:M1'}
 M1: ST_MotionStage := (sName := 'TST:MOTION',
                         bPowerSelf := True,
                         nEnableMode:= ENUM_StageEnableMode.DURING_MOTION,

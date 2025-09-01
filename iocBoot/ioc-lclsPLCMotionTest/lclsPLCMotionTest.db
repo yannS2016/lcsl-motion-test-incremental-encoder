@@ -74,6 +74,20 @@ record(longin, "$(PREFIX)LCLSGeneral:LogMessageCount_RBV") {
   field(ASG, "NO_WRITE")
 }
 
+record(bi, "TST:MOTION:PLC:bBacklasStatus_RBV") {
+  field(DESC, "Backlash compensation status")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.M1.bBacklashStatus?")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
 record(bi, "TST:MOTION:PLC:bError_RBV") {
   field(DESC, "TRUE if we are in an error state")
   field(SCAN, "I/O Intr")
@@ -152,6 +166,31 @@ record(bo, "TST:MOTION:PLC:bReset") {
   info(archive, "VAL")
 }
 
+record(bi, "TST:MOTION:PLC:bBacklashEn_RBV") {
+  field(DESC, "Enable Backlash compensation")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.M1.bUserBacklashEn?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bo, "TST:MOTION:PLC:bBacklashEn") {
+  field(DESC, "Enable Backlash compensation")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.M1.bUserBacklashEn=")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
+  info(archive, "VAL")
+}
+
 record(bi, "TST:MOTION:PLC:bUserEnable_RBV") {
   # Used to disable power entirely for an axis
   field(DESC, "Used to disable powe...irely for an axis")
@@ -177,6 +216,42 @@ record(bo, "TST:MOTION:PLC:bUserEnable") {
   field(ONAM, "ENABLE")
   info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
   info(archive, "VAL")
+}
+
+record(ai, "TST:MOTION:PLC:fBacklash_RBV") {
+  field(DESC, "Backlash compensation")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.M1.fBacklash?")
+  field(PREC, "3")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:PLC:fBacklash") {
+  field(DESC, "Backlash compensation")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.M1.fBacklash=")
+  field(PREC, "3")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "TST:MOTION:PLC:fCurrentBacklash_RBV") {
+  field(DESC, "Currently applied compensation")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.M1.fCurrentBacklash?")
+  field(PREC, "3")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
 }
 
 record(ai, "TST:MOTION:PLC:fHomePosition_RBV") {
@@ -1010,22 +1085,6 @@ record(waveform, "MY:PREFIX:STATE:ERRMSG_RBV") {
   field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fbPositionState1D.stPlcToEpics.sErrorMsg?")
   field(FTVL, "CHAR")
   field(NELM, "80")
-  field(MPST, "On Change")
-  field(APST, "On Change")
-  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(waveform, "BYTE:ERRORS_RBV") {
-  field(DESC, "MAIN.scyclicErrorMessages")
-  field(SCAN, "I/O Intr")
-  field(PINI, "1")
-  field(TSE, "-2")
-  field(DTYP, "asynInt8ArrayIn")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.scyclicErrorMessages?")
-  field(FTVL, "CHAR")
-  field(NELM, "800")
   field(MPST, "On Change")
   field(APST, "On Change")
   info(autosaveFields_pass0, "DESC DISS SIMS UDFS")

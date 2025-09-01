@@ -3,11 +3,11 @@
 #
 #         Project: lcls-motion-test.tsproj
 #        PLC name: lclsPLCMotionTest (lclsPLCMotionTest Instance)
-# Generated using: pytmc 2.18.3.dev0+ga0a2c09.d20250331
+# Generated using: pytmc 2.18.2
 # Project version: unknown
 #    Project hash: unknown
-#     PLC IP/host: 172.21.148.154
-#      PLC Net ID: 172.21.148.154.1.1
+#     PLC IP/host: 192.168.1.166
+#      PLC Net ID: 192.168.1.166.1.1
 # ** DEVELOPMENT MODE IOC **
 # * Using IOC boot directory for autosave.
 # * Archiver settings will not be configured.
@@ -35,17 +35,17 @@ dbLoadDatabase("$(ADS_IOC_TOP)/dbd/adsIoc.dbd")
 adsIoc_registerRecordDeviceDriver(pdbbase)
 
 epicsEnvSet("ASYN_PORT",        "ASYN_PLC")
-epicsEnvSet("IPADDR",           "172.21.148.154")
-epicsEnvSet("AMSID",            "172.21.148.154.1.1")
+epicsEnvSet("IPADDR",           "192.168.1.166")
+epicsEnvSet("AMSID",            "192.168.1.166.1.1")
 epicsEnvSet("AMS_PORT",         "851")
-epicsEnvSet("ADS_MAX_PARAMS",   "1173")
+epicsEnvSet("ADS_MAX_PARAMS",   "1178")
 epicsEnvSet("ADS_SAMPLE_MS",    "50")
 epicsEnvSet("ADS_MAX_DELAY_MS", "100")
 epicsEnvSet("ADS_TIMEOUT_MS",   "1000")
 epicsEnvSet("ADS_TIME_SOURCE",  "0")
 
 # Add a route to the PLC automatically:
-system("${ADS_IOC_TOP}/scripts/add_route.sh 172.21.148.154 ^172.*$")
+system("${ADS_IOC_TOP}/scripts/add_route.sh 192.168.1.166 ^172.*$")
 
 # adsAsynPortDriverConfigure(portName, ipaddr, amsaddr, amsport,
 #    asynParamTableSize, priority, noAutoConnect, defaultSampleTimeMS,
@@ -132,7 +132,7 @@ dbLoadRecords("caPutLog.db", "IOC=$(IOC)")
 dbLoadRecords("TwinCAT_TaskInfo.db", "PORT=$(ASYN_PORT),PREFIX=PLC:lclsPLCMotionTest,IDX=1,TASK_PORT=350")
 dbLoadRecords("TwinCAT_AppInfo.db", "PORT=$(ASYN_PORT), PREFIX=PLC:lclsPLCMotionTest")
 
-dbLoadRecords("TwinCAT_Project.db", "PREFIX=PLC:lclsPLCMotionTest,PROJECT=lcls-motion-test.tsproj,HASH=unknown,VERSION=unknown,PYTMC=2.18.3.dev0+ga0a2c09.d20250331,PLC_HOST=172.21.148.154")
+dbLoadRecords("TwinCAT_Project.db", "PREFIX=PLC:lclsPLCMotionTest,PROJECT=lcls-motion-test.tsproj,HASH=unknown,VERSION=unknown,PYTMC=2.18.2,PLC_HOST=192.168.1.166")
 
 #   LCLS General: * (SLAC)
 dbLoadRecords("TwinCAT_Dependency.db", "PREFIX=PLC:lclsPLCMotionTest,DEPENDENCY=LCLS_General,VERSION=*,VENDOR=SLAC")
@@ -150,8 +150,8 @@ cd "$(IOC_TOP)"
 ## PLC Project Database files ##
 dbLoadRecords("lclsPLCMotionTest.db", "PORT=$(ASYN_PORT),PREFIX=PLC:lclsPLCMotionTest:,IOCNAME=$(IOC),IOC=$(IOC)")
 
-# Total records: 173
-callbackSetQueueSize(2346)
+# Total records: 178
+callbackSetQueueSize(2356)
 
 # Autosave and archive settings:
 save_restoreSet_status_prefix("PLC:lclsPLCMotionTest:")

@@ -1446,9 +1446,7 @@ External Setpoint Generation:
 				<OtherSettings AllowMotionCmdToSlave="true"/>
 			</AxisPara>
 			<Encoder Name="Enc" EncType="1">
-				<EncPara ScaleFactorDenominator="2">
-					<ParameterChanged>36</ParameterChanged>
-				</EncPara>
+				<EncPara ScaleFactorDenominator="2"/>
 				<Vars VarGrpType="1">
 					<Name>Inputs</Name>
 					<Var>

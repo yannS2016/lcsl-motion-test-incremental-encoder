@@ -571,15 +571,14 @@ record(ai, "TST:MOTION:M1:PLC:AxisStatus:PLC:fActVelocity_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ai, "TST:MOTION:M1:PLC:AxisStatus:PLC:nCmdData_RBV") {
+record(longin, "TST:MOTION:M1:PLC:AxisStatus:PLC:nCmdData_RBV") {
   field(DESC, "Error code if nonzero")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
   field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/TS_MS=10/MAIN.M1.stAxisStatus.fVelocity?")
-  field(PREC, "3")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/TS_MS=10/MAIN.M1.stAxisStatus.nCmdData?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
   info(archive, "VAL")
   field(ASG, "NO_WRITE")
 }

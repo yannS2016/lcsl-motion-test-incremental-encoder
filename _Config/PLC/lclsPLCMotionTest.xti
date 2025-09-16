@@ -983,7 +983,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{E31ADAA4-9B77-495F-982E-6D67EFCA2359}" Name="lclsPLCMotionTest" PrjFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.plcproj" TmcFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{410B0998-081A-090D-20F2-C88B138E9040}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{7E2F3A9A-832E-14FF-1877-0746AC4A6A17}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
 			<Name>lclsPLCMotionTest Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="8" AreaNo="4">
@@ -1009,10 +1009,6 @@ External Setpoint Generation:
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
 				<Var>
-					<Name>NcAxis_GVL.testAxis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
 					<Name>MAIN.M1.Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
@@ -1037,10 +1033,6 @@ External Setpoint Generation:
 			</Vars>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
-				<Var>
-					<Name>NcAxis_GVL.testAxis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
 				<Var>
 					<Name>MAIN.bLimitBackwardEnable</Name>
 					<Type>BOOL</Type>

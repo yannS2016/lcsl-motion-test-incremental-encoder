@@ -3,7 +3,7 @@
 #
 #         Project: lcls-motion-test.tsproj
 #        PLC name: lclsPLCMotionTest (lclsPLCMotionTest Instance)
-# Generated using: pytmc 2.18.3.dev2+g94c62dbb0
+# Generated using: pytmc 2.18.3.dev2+g94c62dbb0.d20251004
 # Project version: unknown
 #    Project hash: unknown
 #     PLC IP/host: 192.168.1.172
@@ -110,7 +110,7 @@ cd "$(ADS_IOC_TOP)/db"
 # Macros for visualization/screens (all axes)
 epicsEnvSet("MOTOR_PORT",     "PLC_ADS")
 epicsEnvSet("PREFIX",         "PLC:lclsPLCMotionTest:")
-epicsEnvSet("NUMAXES",        "2")
+epicsEnvSet("NUMAXES",        "3")
 
 # ---- FB_MotionStage (StreamDevice) ----
 # All axes in this IOC are FB_MotionStage (motor.db style)
@@ -127,55 +127,6 @@ epicsEnvSet("ECAXISFIELDINIT", "")
 epicsEnvSet("AMPLIFIER_FLAGS", "")
 dbLoadRecords("motor.template", "PORT=$(ASYN_PORT), ADSPORT=$(AMS_PORT), ADSPATH=$(MOTOR_ADS_PATH), PREFIX=$(MOTOR_PREFIX), M=$(MOTOR_NAME)")
 
-epicsEnvSet("MOTOR_PORT",     "PLC_ADS")
-epicsEnvSet("PREFIX",         "PLC:lclsPLCMotionTest:")
-epicsEnvSet("NUMAXES",        "3")
-epicsEnvSet("MOVE_POLL_RATE", "200")
-epicsEnvSet("IDLE_POLL_RATE", "1000")
-
-EthercatMCCreateController("$(MOTOR_PORT)", "$(ASYN_PORT)", "$(NUMAXES)", "$(MOVE_POLL_RATE)", "$(IDLE_POLL_RATE)")
-
-#define ASYN_TRACE_ERROR     0x0001
-#define ASYN_TRACEIO_DEVICE  0x0002
-#define ASYN_TRACEIO_FILTER  0x0004
-#define ASYN_TRACEIO_DRIVER  0x0008
-#define ASYN_TRACE_FLOW      0x0010
-#define ASYN_TRACE_WARNING   0x0020
-#define ASYN_TRACE_INFO      0x0040
-asynSetTraceMask("$(ASYN_PORT)", -1, 0x41)
-
-#define ASYN_TRACEIO_NODATA 0x0000
-#define ASYN_TRACEIO_ASCII  0x0001
-#define ASYN_TRACEIO_ESCAPE 0x0002
-#define ASYN_TRACEIO_HEX    0x0004
-asynSetTraceIOMask("$(ASYN_PORT)", -1, 2)
-
-#define ASYN_TRACEINFO_TIME 0x0001
-#define ASYN_TRACEINFO_PORT 0x0002
-#define ASYN_TRACEINFO_SOURCE 0x0004
-#define ASYN_TRACEINFO_THREAD 0x0008
-asynSetTraceInfoMask("$(ASYN_PORT)", -1, 5)
-
-#define AMPLIFIER_ON_FLAG_CREATE_AXIS  1
-#define AMPLIFIER_ON_FLAG_WHEN_HOMING  2
-#define AMPLIFIER_ON_FLAG_USING_CNEN   4
-
-epicsEnvSet("AXIS_NO",         "3")
-epicsEnvSet("MOTOR_PREFIX",    "TST:MOTION:")
-epicsEnvSet("MOTOR_NAME",      "M1")
-epicsEnvSet("DESC",            "MAIN.M1 / Axis 3")
-epicsEnvSet("EGU",             "mm")
-epicsEnvSet("PREC",            "3")
-epicsEnvSet("AXISCONFIG",      "")
-epicsEnvSet("ECAXISFIELDINIT", "")
-epicsEnvSet("AMPLIFIER_FLAGS", "")
-
-EthercatMCCreateAxis("$(MOTOR_PORT)", "$(AXIS_NO)", "$(AMPLIFIER_FLAGS)", "$(AXISCONFIG)")
-dbLoadRecords("EthercatMC.template", "PREFIX=$(MOTOR_PREFIX), MOTOR_NAME=$(MOTOR_NAME), R=$(MOTOR_NAME)-, MOTOR_PORT=$(MOTOR_PORT), ASYN_PORT=$(ASYN_PORT), AXIS_NO=$(AXIS_NO), DESC=$(DESC), PREC=$(PREC), EGU=$(EGU) $(ECAXISFIELDINIT)")
-dbLoadRecords("EthercatMCreadback.template", "PREFIX=$(MOTOR_PREFIX), MOTOR_NAME=$(MOTOR_NAME), R=$(MOTOR_NAME)-, MOTOR_PORT=$(MOTOR_PORT), ASYN_PORT=$(ASYN_PORT), AXIS_NO=$(AXIS_NO), DESC=$(DESC), PREC=$(PREC) ")
-dbLoadRecords("EthercatMCdebug.template", "PREFIX=$(MOTOR_PREFIX), MOTOR_NAME=$(MOTOR_NAME), MOTOR_PORT=$(MOTOR_PORT), AXIS_NO=$(AXIS_NO), PREC=3")
-
-
 dbLoadRecords("iocSoft.db", "IOC=PLC:lclsPLCMotionTest")
 dbLoadRecords("save_restoreStatus.db", "P=PLC:lclsPLCMotionTest:")
 dbLoadRecords("caPutLog.db", "IOC=$(IOC)")
@@ -184,7 +135,7 @@ dbLoadRecords("caPutLog.db", "IOC=$(IOC)")
 dbLoadRecords("TwinCAT_TaskInfo.db", "PORT=$(ASYN_PORT),PREFIX=PLC:lclsPLCMotionTest,IDX=1,TASK_PORT=350")
 dbLoadRecords("TwinCAT_AppInfo.db", "PORT=$(ASYN_PORT), PREFIX=PLC:lclsPLCMotionTest")
 
-dbLoadRecords("TwinCAT_Project.db", "PREFIX=PLC:lclsPLCMotionTest,PROJECT=lcls-motion-test.tsproj,HASH=unknown,VERSION=unknown,PYTMC=2.18.3.dev2+g94c62dbb0,PLC_HOST=192.168.1.172")
+dbLoadRecords("TwinCAT_Project.db", "PREFIX=PLC:lclsPLCMotionTest,PROJECT=lcls-motion-test.tsproj,HASH=unknown,VERSION=unknown,PYTMC=2.18.3.dev2+g94c62dbb0.d20251004,PLC_HOST=192.168.1.172")
 
 #   LCLS General: * (SLAC)
 dbLoadRecords("TwinCAT_Dependency.db", "PREFIX=PLC:lclsPLCMotionTest,DEPENDENCY=LCLS_General,VERSION=*,VENDOR=SLAC")

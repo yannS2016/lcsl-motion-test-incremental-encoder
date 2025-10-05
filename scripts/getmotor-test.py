@@ -12,8 +12,8 @@ from pytmc.bin import template
 project = parser.parse("/opt/epics/iocs/motion-abstraction/lcls-motion-test.tsproj")
 for plc in project.plcs:
    symbol_by_type = template.get_symbols_by_type(plc)
-   stages = symbol_by_type.get("Symbol_FB_MotionStage", [])
-   print(f"stages: {stages}.")
-   # motors = template.get_motors(plc)
+   #stages = symbol_by_type.get("Symbol_FB_MotionStage", [])
+   #print(f"stages: {stages}.")
+   motors = template.get_motors(plc)
    #print(f"In PLC {plc.name}, found {len(motors)} pragma'd motor symbols.")
-   #print(f"In PLC {plc.name}, found {len(motors)} pragma'd motor symbols,motor: {motors}.")
+   print(f"In PLC {plc.name}, found {len(motors)} pragma'd motor symbols,motor: {motors}.")

@@ -10,9 +10,6 @@
 					<Name>PlcTask</Name>
 				</Task>
 			</Tasks>
-			<TypeSystem>
-				<AdditionalTmcFile Name="PMPS" File="..\..\02-PCDS Libraries\lcls-twincat-pmps\lcls-twincat-pmps\PMPS\PMPS.tmc"/>
-			</TypeSystem>
 		</System>
 		<Motion>
 			<NC File="NC.xti"/>

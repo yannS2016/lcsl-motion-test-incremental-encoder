@@ -17,7 +17,15 @@ VAR
 	{attribute 'pytmc' := 'pv: TST:MOTION:M1'}
     fbPositionState1D_1 : FB_PositionState1D;
     astStates1          : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    {attribute 'pytmc' := '
+      pv: TST:MOTION:M1:STATES:SET
+      io: io
+    '}
     eStateSet1          : ENUM_AxisStates;
+    {attribute 'pytmc' := '
+      pv: TST:MOTION:M1:STATES:GET
+      io: i
+    '}
     eStateGet1          : ENUM_AxisStates;
 
     (* Axis 2 *)
@@ -31,14 +39,22 @@ VAR
     );
     fbMotionStage2      : FB_MotionStage;
     fbStateSetup2       : FB_StateSetupHelper;
-    {attribute 'pytmc' := 'pv: TST:MOTION:M1'}
+    {attribute 'pytmc' := 'pv: TST:MOTION:M2'}
     fbPositionState1D_2 : FB_PositionState1D;
     astStates2          : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    {attribute 'pytmc' := '
+      pv: TST:MOTION:M2:STATES:SET
+      io: io
+    '}
     eStateSet2          : ENUM_AxisStates;
+    {attribute 'pytmc' := '
+      pv: TST:MOTION:M2:STATES:GET
+      io: i
+    '}
     eStateGet2          : ENUM_AxisStates;
 
     (* Axis 3 *)
-    {attribute 'pytmc' := 'pv: TST:MOTION:M2'}
+    {attribute 'pytmc' := 'pv: TST:MOTION:M3'}
     M3 : ST_MotionStage := (
         sName := 'TST:MOTION3',
         bPowerSelf := TRUE,
@@ -51,7 +67,15 @@ VAR
     {attribute 'pytmc' := 'pv: TST:MOTION:M3'}
     fbPositionState1D_3 : FB_PositionState1D;
     astStates3          : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    {attribute 'pytmc' := '
+      pv: TST:MOTION:M3:STATES:SET
+      io: io
+    '}
     eStateSet3          : ENUM_AxisStates;
+    {attribute 'pytmc' := '
+      pv: TST:MOTION:M3:STATES:GET
+      io: i
+    '}
     eStateGet3          : ENUM_AxisStates;
 
     stDefault : ST_PositionState := (

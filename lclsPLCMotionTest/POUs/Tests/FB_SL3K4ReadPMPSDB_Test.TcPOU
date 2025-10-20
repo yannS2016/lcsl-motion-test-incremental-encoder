@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_SL3K4ReadPMPSDB_Test" Id="{c2e88f97-4bc3-4244-8345-74403a58b70a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK INTERNAL FB_SL3K4ReadPMPSDB_Test EXTENDS FB_TestSuite
+VAR
+    astSl3k4State : ARRAY[1..2] OF ST_SL3K4State;
+    DUT            : FB_SL3K4ReadPMPSDB(astSl3k4State:=astSl3k4State, fbFFHWO:= GVL_PMPS.fbFastFaultOutput1);
+    fbTestHelper   : FB_PMPSJsonTestHelper;
+    astBeam        : ARRAY[1..2] OF ST_DbStateParams;
+    devName        : STRING := 'SL3K4';
+	fbReadTimer : TON := (PT:=T#3S);
+	fbTestTimer: TON := (IN:=TRUE, PT:=T#8S);
+	nTestStep : UINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TEST(__POUNAME());
+
+		
+CASE nTestStep OF
+	0:
+		// ------ Manual population of test DB device states --------
+		// Prepare beam parameter DB states for test
+		astBeam[E_SL3K4State.NORMAL].stBeamParams.nBCRange   := 16#7FFF; // 0b111111111111111, all 15 classes enabled
+		astBeam[E_SL3K4State.NORMAL].stBeamParams.nTran      := 15;
+		astBeam[E_SL3K4State.NORMAL].stBeamParams.nRate      := 120;
+		astBeam[E_SL3K4State.NORMAL].nRequestAssertionID     := 1;
+		astBeam[E_SL3K4State.NORMAL].sPmpsState              := 'NORMAL';
+		
+		astBeam[E_SL3K4State.MAINTENANCE].stBeamParams.nBCRange   := 16#0040; // 0b000000000100000, only class 6 enabled
+		astBeam[E_SL3K4State.MAINTENANCE].stBeamParams.nTran      := 0.01;
+		astBeam[E_SL3K4State.MAINTENANCE].stBeamParams.nRate      := 0;
+		astBeam[E_SL3K4State.MAINTENANCE].nRequestAssertionID     := 2;
+		astBeam[E_SL3K4State.MAINTENANCE].sPmpsState              := 'MAINTENANCE';
+
+		fbTestHelper.sDevName:=  'SL3K4';
+		fbTestHelper.bExecute := TRUE;
+		nTestStep := 1;
+	1:  
+		DUT.sDeviceName := 'SL3K4';
+		DUT.bFileReaderBusy := TRUE;
+		fbReadTimer.IN:=TRUE;
+		nTestStep := 2;
+	
+	2:
+		IF 	fbReadTimer.Q THEN
+			DUT.bFileReaderBusy := FALSE;
+			fbTestHelper.bExecute := FALSE;
+			nTestStep := 3;
+		END_IF
+	3:
+		IF DUT.bStatesReady THEN
+			AssertTrue(Condition:=DUT.bLoadedNormal,      Message:='NORMAL state loaded (OK) #1');
+			AssertTrue(Condition:=DUT.bLoadedMaintenance, Message:='MAINTENANCE state loaded (OK) #2');
+			AssertFalse(Condition:=DUT.bError,            Message:='No error on good load #3');
+			AssertTrue(Condition:=astSl3k4State[E_SL3K4State.NORMAL].stPMPS.sPmpsState = astBeam[E_SL3K4State.NORMAL].sPmpsState, Message:='Wrong pmps state name #4');
+			AssertTrue(Condition:=astSl3k4State[E_SL3K4State.NORMAL].stPMPS.stBeamParams.nBCRange = astBeam[E_SL3K4State.NORMAL].stBeamParams.nBCRange, Message:='NORMAL nBeamClassRange correct #5');
+			AssertTrue(Condition:=astSl3k4State[E_SL3K4State.MAINTENANCE].stPMPS.sPmpsState = astBeam[E_SL3K4State.MAINTENANCE].sPmpsState, Message:='Wrong pmps state name #6');			
+			AssertTrue(Condition:=astSl3k4State[E_SL3K4State.MAINTENANCE].stPMPS.stBeamParams.nBCRange = astBeam[E_SL3K4State.MAINTENANCE].stBeamParams.nBCRange, Message:='MAINTENANCE nBeamClassRange correct #7');
+			nTestStep := 4;			
+		END_IF
+
+	4:// ------------ Test: Device not found ------------
+		DUT.sDeviceName := 'BAD_DEVICE';
+		DUT.bReadNow := TRUE;
+		nTestStep := 5;	
+	5:
+		IF DUT.bError THEN
+			AssertTrue(Condition:=DUT.bStatesReady,	Message:='Not ready: beam parameter invalid');
+ 			AssertFalse(Condition:=DUT.bLoadedNormal OR DUT.bLoadedMaintenance, Message:='No state loaded for missing device #6');
+			nTestStep := 6;	
+		END_IF
+	6:
+		DUT.sDeviceName := 'SL3K4';
+		DUT.bReadNow := TRUE;
+		nTestStep := 7;	
+END_CASE
+
+	
+fbReadTimer();
+
+// --- Use test helper to inject the mock DB for 'SL3K4' before each test ---
+// Populate "JSON DB" for device 'SL3K4'
+fbTestHelper(
+	astBeamParams := astBeam,
+);
+		
+//----- Test: Both states present and valid ----
+DUT(
+	bFileReaderError := FALSE,
+	jsonDoc := PMPS_GVL.BP_jsonDoc   // Inject your own test JSON
+);
+
+IF fbTestTimer.Q THEN
+
+    TEST_FINISHED();
+END_IF
+
+]]></ST>
+    </Implementation>
+    <Method Name="Test_LoadBothStates_OK" Id="{a8011b3d-ec8e-4073-abae-5bce8a8419e1}">
+      <Declaration><![CDATA[METHOD PRIVATE Test_LoadBothStates_OK
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST(__POUNAME());
+// DUT.sDeviceName := 'SL3K4';
+// DUT.bReadNow := TRUE;
+// DUT.fbFFHWO := fbFFHWO;
+// DUT.
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_DGPDSequenceMover" Id="{7187c3a0-0612-433c-9b7d-d930a75224ae}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DGPDSequenceMover
+VAR
+	
+	(* Axis X *)
+	{attribute 'TcLinkToOSO' := '
+		.stDS402Drive.nModeOfOperationNC      := <0,8,0>TINC^NC-Task 1^Axes^M9_DREAM_DGPD_MMT_X^Drive^Outputs^Out^nCtrl5;
+		.stDS402Drive.nDS402DriveControlNC.0  := <0,8,0>TINC^NC-Task 1^Axes^M9_DREAM_DGPD_MMT_X^Drive^Outputs^Out^nCtrl1;
+		.stDS402Drive.nDS402DriveControlNC.1  := <8,8,0>TINC^NC-Task 1^Axes^M9_DREAM_DGPD_MMT_X^Drive^Outputs^Out^nCtrl2;
+	'}
+	{attribute 'TcLinkTo' := '
+		.stDS402Drive.nSlaveAddr              := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^InfoData^AdsAddr^port;
+		.stDS402Drive.stDS402DriveStatus      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Status Word;
+		.stDS402Drive.nFollowingError         := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Following Error Actual Value;
+		.stDS402Drive.nModeOfOperation        := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:X^ctl/mode/pos RxPDO^Modes of Operation;
+		.stDS402Drive.nModeOfOperationDisplay := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Modes of Operation Display;
+		.stDS402Drive.nDS402DriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:X^ctl/mode/pos RxPDO^Control Word;
+	'}
+	fb_DGPD_X : FB_MotionStageMCS2(stPiezoStage:=Main.M9, eModule:=E_Module.CHAN1);
+	
+	(* Axis Y *)
+	{attribute 'TcLinkToOSO' := '
+		.stDS402Drive.nModeOfOperationNC      := <0,8,0>TINC^NC-Task 1^Axes^M10_DREAM_DGPD_MMT_Y^Drive^Outputs^Out^nCtrl5;
+		.stDS402Drive.nDS402DriveControlNC.0  := <0,8,0>TINC^NC-Task 1^Axes^M10_DREAM_DGPD_MMT_Y^Drive^Outputs^Out^nCtrl1;
+		.stDS402Drive.nDS402DriveControlNC.1  := <8,8,0>TINC^NC-Task 1^Axes^M10_DREAM_DGPD_MMT_Y^Drive^Outputs^Out^nCtrl2;
+	'}
+	{attribute 'TcLinkTo' := '
+		.stDS402Drive.nSlaveAddr              := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^InfoData^AdsAddr^port;
+		.stDS402Drive.stDS402DriveStatus      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Status Word;
+		.stDS402Drive.nFollowingError         := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Following Error Actual Value;
+		.stDS402Drive.nModeOfOperation        := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Y^ctl/mode/pos RxPDO^Modes of Operation;
+		.stDS402Drive.nModeOfOperationDisplay := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Modes of Operation Display;
+		.stDS402Drive.nDS402DriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Y^ctl/mode/pos RxPDO^Control Word;
+	'}
+	fb_DGPD_Y : FB_MotionStageMCS2(stPiezoStage:=Main.M10, eModule:=E_Module.CHAN2);
+	
+	(* Axis Z *)
+	{attribute 'TcLinkToOSO' := '
+		.stDS402Drive.nModeOfOperationNC      := <0,8,0>TINC^NC-Task 1^Axes^M11_DREAM_DGPD_MMT_Z^Drive^Outputs^Out^nCtrl5;
+		.stDS402Drive.nDS402DriveControlNC.0  := <0,8,0>TINC^NC-Task 1^Axes^M11_DREAM_DGPD_MMT_Z^Drive^Outputs^Out^nCtrl1;
+		.stDS402Drive.nDS402DriveControlNC.1  := <8,8,0>TINC^NC-Task 1^Axes^M11_DREAM_DGPD_MMT_Z^Drive^Outputs^Out^nCtrl2;
+	'}
+	{attribute 'TcLinkTo' := '
+		.stDS402Drive.nSlaveAddr              := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^InfoData^AdsAddr^port;
+		.stDS402Drive.stDS402DriveStatus      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^mode/status/pos/fError TxPDO^Status Word;
+		.stDS402Drive.nFollowingError         := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^mode/status/pos/fError TxPDO^Following Error Actual Value;
+		.stDS402Drive.nModeOfOperation        := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^ctl/mode/pos RxPDO^Modes of Operation;
+		.stDS402Drive.nModeOfOperationDisplay := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^mode/status/pos/fError TxPDO^Modes of Operation Display;
+		.stDS402Drive.nDS402DriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^ctl/mode/pos RxPDO^Control Word;
+	'}
+	fb_DGPD_Z : FB_MotionStageMCS2(stPiezoStage:=Main.M11, eModule:=E_Module.CHAN3);
+	
+	(* Axis RET *)
+	{attribute 'TcLinkToOSO' := '
+		.stDS402Drive.nModeOfOperationNC      := <0,8,0>TINC^NC-Task 1^Axes^M12_DREAM_DGPD_MMT_RET^Drive^Outputs^Out^nCtrl5;
+		.stDS402Drive.nDS402DriveControlNC.0  := <0,8,0>TINC^NC-Task 1^Axes^M12_DREAM_DGPD_MMT_RET^Drive^Outputs^Out^nCtrl1;
+		.stDS402Drive.nDS402DriveControlNC.1  := <8,8,0>TINC^NC-Task 1^Axes^M12_DREAM_DGPD_MMT_RET^Drive^Outputs^Out^nCtrl2;
+	'}
+	{attribute 'TcLinkTo' := '
+		.stDS402Drive.nSlaveAddr              := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^InfoData^AdsAddr^port;
+		.stDS402Drive.stDS402DriveStatus      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Status Word;
+		.stDS402Drive.nFollowingError         := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Following Error Actual Value;
+		.stDS402Drive.nModeOfOperation        := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:DGPD:MMT:RET^ctl/mode/pos RxPDO^Modes of Operation;
+		.stDS402Drive.nModeOfOperationDisplay := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Modes of Operation Display;
+		.stDS402Drive.nDS402DriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:DGPD:MMT:RET^ctl/mode/pos RxPDO^Control Word;
+	'}
+	fb_DGPD_RET : FB_MotionStageMCS2(stPiezoStage:=Main.M12, eModule:=E_Module.CHAN1);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_Init" Id="{5b4d88cb-0b55-484a-bd29-edaa8c31b12c}">
+      <Declaration><![CDATA[//FB_Init is always available implicitly and it is used primarily for initialization.
+//The return value is not evaluated. For a specific influence, you can also declare the
+//methods explicitly and provide additional code there with the standard initialization
+//code. You can evaluate the return value.
+METHOD FB_Init: BOOL
+VAR_INPUT
+    bInitRetains: BOOL; // TRUE: the retain variables are initialized (reset warm / reset cold)
+    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)  
+
+    stRefX1  : REFERENCE TO ST_MotionStage;
+    stRefX2	: REFERENCE TO ST_MotionStage;
+    stRefY1  : REFERENCE TO ST_MotionStage;
+    stRefY2  : REFERENCE TO ST_MotionStage;
+    fbRefFFHWO       : REFERENCE TO FB_HardwareFFOutput;   // Fast Fault hardware relay IO (passed in)
+    fbRefArbiter     : REFERENCE TO FB_Arbiter;            // PMPS Arbiter block (passed in)
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.stRefX1 := stRefX1;
+THIS^.stRefX2 := stRefX2;
+THIS^.stRefY1 := stRefY1;
+THIS^.stRefY2 := stRefY2;
+
+THIS^.fbRefFFHWO       := fbRefFFHWO;   
+THIS^.fbRefArbiter     := fbRefArbiter;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

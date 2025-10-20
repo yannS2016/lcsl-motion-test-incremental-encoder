@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="PRG_PMPS_POST" Id="{bc0e6ef0-5f0b-43ff-b35e-1caeb1aba08b}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PRG_PMPS_POST
+VAR
+//     fbArbiterIO: FB_SubSysToArbiter_IO;
+//     fb_Arbiter: FB_Arbiter(1);
+// 	fbDreamScatterSlitPMPS : FB_SL3K4(
+// 		stRefX1:=Main.M13, 
+// 		stRefX2:=Main.M14,
+// 		stRefY1:=Main.M15, 
+// 		stRefY2:=Main.M16, 
+// 		fbRefArbiter:= GVL_PMPS.fbArbiter,
+// 		fbRefFFHWO:= GVL_PMPS.fbFastFaultOutput1
+// 	);
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

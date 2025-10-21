@@ -10,12 +10,13 @@ END_VAR]]></Declaration>
       <ST><![CDATA[MOTION_GVL.fbStandardPMPSDB(
     io_fbFFHWO:=GVL_PMPS.fbFastFaultOutput1,
     bEnable:=TRUE,
-    sPLCName:='plc-tst-bsd',
+    sPLCName:='plc-tst-bsd2',
     sDirectory:='/home/ecs-user/pmpsdb/'
 );
 
 fbSL3K4ReadPMPSDB(
 	bFileReaderBusy := MOTION_GVL.fbPmpsFileReader.bBusy,
+	sDeviceName := 'SL3K4',
 	bFileReaderError := MOTION_GVL.fbPmpsFileReader.bError,
 	jsonDoc := PMPS_GVL.BP_jsonDoc   // Inject your own test JSON
 );

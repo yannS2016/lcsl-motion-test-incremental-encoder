@@ -3,14 +3,16 @@
   <POU Name="FB_SL3K4" Id="{dec1d628-e499-461c-bd3b-fc39c76517dd}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_SL3K4
 VAR
-    stRefX1	: REFERENCE TO ST_MotionStage;
-    stRefX2 : REFERENCE TO ST_MotionStage;
-    stRefY1 : REFERENCE TO ST_MotionStage;
-    stRefY2 : REFERENCE TO ST_MotionStage;
+    stTopBlade : REFERENCE TO ST_MotionStage;
+    stBottomBlade : REFERENCE TO ST_MotionStage;
+    stNorthBlade : REFERENCE TO ST_MotionStage;
+    stSouthBlade : REFERENCE TO ST_MotionStage;
 
-    fbRefFFHWO       : REFERENCE TO FB_HardwareFFOutput;   // Fast Fault hardware relay IO (passed in)
-    fbRefArbiter     : REFERENCE TO FB_Arbiter;            // PMPS Arbiter block (passed in)
-
+    fbFFHWO       : REFERENCE TO FB_HardwareFFOutput;   // Fast Fault hardware relay IO (passed in)
+    fbArbiter     : REFERENCE TO FB_Arbiter;            // PMPS Arbiter block (passed in)
+    fbPerMotorFFO: FB_PerMotorFFOND;
+    fbEncErrorFFO: FB_EncErrorFFO;
+    ffProgErr    : FB_FastFault;
     {attribute 'pytmc' := 'pv: STATE'}
     stEpicsToPlc     : ST_StateEpicsToPlc;
     {attribute 'pytmc' := 'pv: STATE'}
@@ -81,17 +83,15 @@ VAR
 	'}
 	fb_SLIT_Y2 : FB_MotionStageMCS2(stPiezoStage:=Main.M16, eModule:=E_Module.CHAN2);
 
- {attribute 'pytmc' := 'pv: SLIT_STATE'}
-    eSlitState           : E_SLIT_STATE;
+ 	{attribute 'pytmc' := 'pv: SL3K4:STATE'}
+    eSL3K4State           : E_SL3K4STATE;
 
-    astAxis      : ARRAY[1..4] OF  ST_MotionStage;
-    fbPerMotorFFO: FB_PerMotorFFOND;
-    fbEncErrorFFO: FB_EncErrorFFO;
-    ffProgErr    : FB_FastFault;
+    astMotionStage      : ARRAY[1..4] OF  ST_MotionStage;
+
 
     // PMPS parameter sets (setup at config time)
-    MaintenanceParams    : ST_BeamParams := PMPS_GVL.cstMaintenanceParams;
-    NormalParams         : ST_BeamParams := PMPS_GVL.cstNormalParams;
+    MaintenanceParams    : ST_BeamParams := PMPS_GVL.cst0RateBeam;
+    NormalParams         : ST_BeamParams := PMPS_GVL.cst0RateBeam;
     nUID_Maint           : UDINT := 1001;
     nUID_Norm            : UDINT := 1000;
     nActiveMotorCount    : UINT := 4;
@@ -113,12 +113,122 @@ VAR
     anyAxisError  : BOOL;
     bModeChange   : BOOL;
     bArbiterError : BOOL;
-    nPrevMode     : E_SLIT_STATE := UNKNOWN; // Track last asserted state to manage assertions
+    nPrevMode     : E_SL3K4State := E_SL3K4State.NORMAL; // Track last asserted state to manage assertions
     axis          : INT;
+	// SL3K4 Beam parameters
+	sDeviceName : STRING := 'SL3K4';
+    astSl3k4State : ARRAY[1..2] OF ST_SL3K4State;
+	// get PMPDB state parameters
+    fbSL3K4ReadPMPSDB	: FB_SL3K4ReadPMPSDB(astSl3k4State:=astSl3k4State, fbFFHWO:= GVL_PMPS.fbFastFaultOutput1);
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[// --- Assign blade references each scan ---
+astMotionStage[1] := stTopBlade;
+astMotionStage[2] := stBottomBlade;
+astMotionStage[3] := stNorthBlade;
+astMotionStage[4] := stSouthBlade;
+
+// --- Mode logic
+bMaintenanceActive := (eSL3K4State = E_SL3K4STATE.MAINTENANCE);
+
+// --- Remove previous arbiter request if mode has changed
+IF nPrevMode <>  eSL3K4State THEN
+    IF nPrevMode = E_SL3K4STATE.NORMAL THEN
+        fbArbiter.RemoveRequest(nUID_Norm);
+    ELSIF nPrevMode = E_SL3K4STATE.MAINTENANCE THEN
+        fbArbiter.RemoveRequest(nUID_Maint);
+    END_IF
+    nPrevMode :=  eSL3K4State;
+END_IF
+
+// --- Add current PMPS request (duplicate-protected, maintenance or normal)
+IF bMaintenanceActive THEN
+    IF NOT fbArbiter.CheckRequest(nUID_Maint) THEN
+        fbArbiter.AddRequest(
+			nReqID := nUID_Maint, 
+			sDevName:=sDeviceName, 
+			stReqBP := astSl3k4State[E_SL3K4State.MAINTENANCE].stPMPS.stBeamParams,
+		);
+    END_IF
+    bPMPSMaintenance := fbArbiter.CheckRequest(nUID_Maint);
+ELSE
+    IF NOT fbArbiter.CheckRequest(nUID_Norm) THEN
+        fbArbiter.AddRequest(
+			nReqID := nUID_Norm, 
+			sDevName:=sDeviceName, 
+			stReqBP := astSl3k4State[E_SL3K4State.NORMAL].stPMPS.stBeamParams,
+		);
+    END_IF
+    bPMPSAllowed := fbArbiter.CheckRequest(nUID_Norm);
+END_IF
+
+bArbiterError := fbArbiter.bFault OR fbArbiter.ArbitrationDenied;
+
+allAxesIdle := TRUE;
+anyAxisError := FALSE;
+FOR axis := 1 TO 4 DO
+    IF astMotionStage[axis].bBusy THEN allAxesIdle := FALSE; END_IF
+    IF astMotionStage[axis].bFault THEN anyAxisError := TRUE; END_IF
+END_FOR
+
+// ---- Manual/Scatter logic for axis enable/locking ----
+FOR axis := 1 TO 4 DO
+    IF bMaintenanceActive AND bPMPSMaintenance AND NOT bArbiterError THEN
+        astMotionStage[axis].bPowerSelf   := TRUE;  // Scatter block is "owner"
+        astMotionStage[axis].bAllEnable   := bEnableMotion;
+        astMotionStage[axis].bHardwareEnable := TRUE;
+        astMotionStage[axis].nBrakeMode   := ENUM_StageBrakeMode.NO_BRAKE;
+        abBladeEnable[axis] := astMotionStage[axis].bAllEnable;
+    ELSE
+        astMotionStage[axis].bPowerSelf   := FALSE;
+        astMotionStage[axis].bAllEnable   := FALSE;
+        astMotionStage[axis].bHardwareEnable := TRUE;
+        astMotionStage[axis].nBrakeMode   := ENUM_StageBrakeMode.NO_BRAKE;
+        abBladeEnable[axis] := FALSE;
+    END_IF
+END_FOR
+
+bSafeToMove := bMaintenanceActive AND bPMPSMaintenance AND NOT anyAxisError AND NOT bArbiterError;
+bLocked := NOT bSafeToMove OR bArbiterError;
+
+// --- Per-motor fast fault logic (uses all blades) ---
+fbPerMotorFFO(
+    astMotionStage := ,
+    fbFFHWO := fbFFHWO,
+    nActiveMotorCount := 4,
+    sDeviceName := sDeviceName
+);
+bFastFault := fbPerMotorFFO.bFault;
+
+// --- Encoder error fast fault (optional, if you want per-blade encoder safety) ---
+fbEncErrorFFO(
+    astMotionStage := [stTopBlade, stBottomBlade, stNorthBlade, stSouthBlade],
+    fbFFHWO := fbFFHWO
+);
+bEncoderFault := fbEncErrorFFO.bFault;
+
+// --- Programmer error: not exactly 4 axes present
+bProgrammerError := nActiveMotorCount <> 4;
+ffProgErr(
+    i_xOK := NOT bProgrammerError,
+    i_xAutoReset := TRUE,
+    i_DevName := sDeviceName,
+    i_Desc := 'Programmer error picking motor count',
+    i_TypeCode := E_MotionFFType.INTERNAL_ERROR,
+    io_fbFFHWO := fbFFHWO
+);
+
+// --- Compose status message for debug/diagnostics
+IF bArbiterError THEN
+    sStatusMsg := 'Arbiter error or beam permission denied.';
+ELSIF bFastFault OR bEncoderFault OR bProgrammerError THEN
+    sStatusMsg := 'Device fast faulted (axis, encoder, or config error)';
+ELSIF bMaintenanceActive THEN
+    sStatusMsg := 'Maintenance: PMPS safe, axes enabled for manual scatter/homing.';
+ELSE
+    sStatusMsg := 'Normal: Axes locked for PMPS protection.';
+END_IF]]></ST>
     </Implementation>
     <Method Name="FB_Init" Id="{69f5868f-3054-4962-be93-290684220d71}">
       <Declaration><![CDATA[//FB_Init is always available implicitly and it is used primarily for initialization.

@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_SL3K4BPTM_Test" Id="{a1a6ce70-6653-4c80-9b5b-1d92badddb84}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SL3K4BPTM_Test EXTENDS FB_TestSuite
+VAR
+    stGoal1: ST_DbStateParams;
+    stGoal2: ST_DbStateParams;
+    stTrans: ST_DbStateParams;
+    stNoBeam: ST_BeamParams;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[stGoal1.stBeamParams := PMPS_GVL.cstFullBeam;
+stGoal1.nRequestAssertionID := 1;
+stGoal1.sPmpsState := 'stGoal1';
+stGoal2.stBeamParams := PMPS_GVL.cstFullBeam;
+stGoal2.stBeamParams.nTran := 0.5;
+stGoal2.nRequestAssertionID := 2;
+stGoal2.sPmpsState := 'stGoal2';
+stTrans.stBeamParams := PMPS_GVL.cst0RateBeam;
+stTrans.nRequestAssertionID := 3;
+stTrans.sPmpsState := 'stTrans';
+
+// Just put a blanket global no beam so these won't wait for any changes ever
+//PMPS_GVL.stCurrentBeamParameters := stNoBeam;
+
+TestInit();]]></ST>
+    </Implementation>
+    <Method Name="AssertInPool" Id="{5056bafd-89c3-46f4-ab8e-06ca32e90f38}">
+      <Declaration><![CDATA[METHOD PRIVATE AssertInPool
+VAR_IN_OUT
+    fbArbiter: FB_Arbiter;
+    stDbStateParams: ST_DbStateParams;
+END_VAR
+VAR_INPUT
+    bInPool: BOOL;
+    sContext: STRING;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF bInPool THEN
+    AssertTrue(
+        fbArbiter.CheckRequestInPool(stDbStateParams.nRequestAssertionID),
+        CONCAT(CONCAT(stDbStateParams.sPmpsState, ' Beam parameters were not in the pool '), sContext),
+    );
+ELSE
+    AssertFalse(
+        fbArbiter.CheckRequestInPool(stDbStateParams.nRequestAssertionID),
+        CONCAT(CONCAT(stDbStateParams.sPmpsState, ' Beam parameters unexpectedly found in the pool '), sContext),
+    );
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestInit" Id="{9ba98f92-27d3-427c-970e-2e057474de76}">
+      <Declaration><![CDATA[METHOD PRIVATE TestInit
+(*
+    If we initialize with still motors, do we get an arbiter request at the current goal? Hopefully we do.
+*)
+VAR_INST
+    fbBptm      : FB_SL3K4BPTM;
+    fbArbiter   : FB_Arbiter(1);
+    fbFFHWO     : FB_HardwareFFOutput := (bAutoReset := TRUE);
+    tonTestTimeout : TON;
+    testState      : INT := 0;
+    testDone       : BOOL := FALSE;
+    fbSubSysIO : FB_DummyArbIO;
+	stGoal: ST_DbStateParams;
+ 	doneLatch    : BOOL := FALSE; // Simulate "done" step
+    tonGoalTimer: TON := ( PT:=T#100MS);
+    tonTimer: TON := ( IN:=TRUE, PT:=T#5S);
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TwoNormalGoalsWithPendingTransition');
+
+CASE testState OF
+
+// 0: Startup - Set first normal goal
+0:
+    stGoal := stGoal1;
+    testState := 1;
+
+// 1: Wait for goal 1 transition to complete and assert state
+1:
+    IF fbBptm.bDone THEN
+        AssertInPool(fbArbiter, stGoal1, TRUE,  'Goal 1 should be active after transition #1');
+        AssertInPool(fbArbiter, stTrans, FALSE, 'Transition should be inactive after goal 1 done #2');
+        testState := 2;
+    END_IF
+
+// 2: Set goal 2
+2:
+    stGoal := stGoal2;
+    testState := 3;
+
+// 3: Wait for goal 2 transition to complete and assert state
+3:
+    IF fbBptm.bDone THEN
+        AssertInPool(fbArbiter, stGoal2, TRUE,  'Goal 2 should be active after transition #3');
+        AssertInPool(fbArbiter, stTrans, FALSE, 'Transition should be inactive after goal 2 done #4');
+        testState := 4;
+    END_IF
+
+// 4: Simulate goal change during transition (pending transition scenario)
+4:
+    stGoal := stGoal1; // Request goal 1 again
+	tonGoalTimer.IN:=TRUE;
+    testState := 5;
+
+// 5: Immediately swap to goal 2 before transition to goal 1 completes
+5:
+	IF tonGoalTimer.Q THEN
+		stGoal := stGoal2; // Request goal 2 while previous goal is not done
+		tonGoalTimer.IN:=FALSE;
+		testState := 6;		
+	END_IF
+
+
+// 6: Wait for pending transition to complete, then assert transition pool state
+6:
+    IF fbBptm.bTransitionAuthorized THEN
+        // While transition is underway, transition params must be in the pool
+        AssertInPool(fbArbiter, stTrans, TRUE,  'Transition request active during pending transition #5');
+        AssertInPool(fbArbiter, stGoal1, FALSE, 'Goal 1 should not be active #6');
+    END_IF
+    IF fbBptm.bDone THEN
+        // After transition is complete, goal 2 should be active and transition cleared
+        AssertInPool(fbArbiter, stGoal2, TRUE,   'Goal 2 should be active after transition #8');
+        AssertInPool(fbArbiter, stTrans, FALSE,  'Transition cleared after goal 2 complete #9');
+        testState := 99;
+    END_IF
+
+// 99: Done
+99:
+    TEST_FINISHED();
+
+END_CASE
+
+// Single FB call per scan
+fbBptm(
+    fbArbiter      := fbArbiter,
+    fbFFHWO        := fbFFHWO,
+    stGoalParams   := stGoal,
+    stTransParams  := stTrans,
+    bEnable        := TRUE
+);
+
+// Auxiliary subsystem IO, timer, and timeout protection
+fbSubSysIO(
+    LA := fbArbiter,
+    FFO := fbFFHWO,
+);
+
+tonGoalTimer();
+tonTimer();
+IF tonTimer.Q THEN
+    AssertFalse(TRUE, 'Timeout in test: transition handling failed #10');
+    TEST_FINISHED();
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

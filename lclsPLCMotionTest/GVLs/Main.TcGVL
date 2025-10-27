@@ -76,9 +76,6 @@ VAR_GLOBAL
         .nRawEncoderDINT		:=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y2^mode/status/pos/fError TxPDO^Position Actual Value
     '}
     M16: ST_MotionStage := (sName := 'SL3K4:SCATTER:MMT:Y2');
-
-	FB_PMPSJsonTestHelper : FB_PMPSJsonTestHelper;
-	astBeam: ARRAY[0..2] OF ST_DbStateParams;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

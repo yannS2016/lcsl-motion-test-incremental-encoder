@@ -2,260 +2,319 @@
 <TcPlcObject Version="1.1.0.1">
   <POU Name="FB_SL3K4" Id="{dec1d628-e499-461c-bd3b-fc39c76517dd}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_SL3K4
+VAR_IN_OUT
+	// The motors to move.
+ 	stTopBlade       : ST_MotionStage;
+    stBottomBlade    : ST_MotionStage;
+    stNorthBlade     : ST_MotionStage;
+    stSouthBlade     : ST_MotionStage;
+ 	// The arbiter to request beam conditions from.
+    fbArbiter            : FB_Arbiter;
+	// The fast fault output to fault to.
+    fbFFHWO              : FB_HardwareFFOutput;
+END_VAR
+
+VAR_INPUT
+    bFileReaderBusy  : BOOL;
+    bFileReaderError : BOOL;
+    sTransitionKey   : STRING;
+    // Set this to TRUE to enable position limit checks, or FALSE to disable them.
+    bEnableDriftCheck : BOOL := TRUE;
+    fDriftTolerance   : LREAL := 0.003; 
+	bEnableBeamParams : BOOL := TRUE;
+    // Set this to TRUE to re-read the loaded database immediately (useful for debug)
+    bReadDBNow: BOOL;
+END_VAR
+
 VAR
-    stTopBlade : REFERENCE TO ST_MotionStage;
-    stBottomBlade : REFERENCE TO ST_MotionStage;
-    stNorthBlade : REFERENCE TO ST_MotionStage;
-    stSouthBlade : REFERENCE TO ST_MotionStage;
+    fbPerMotorFFO        : FB_PerMotorFFOND;
+    fbEncErrorFFO        : FB_EncErrorFFO;
+	fbMiscStatesErrorFFO : FB_MiscStatesErrorFFO;
+    ffDriftFFO           : FB_FastFault;
+    ffProgrammerError    : FB_FastFault;
+	fbSL3K4BPTM : FB_SL3K4BPTM;
+ 	fbMotionClearAsserts: FB_MotionClearAsserts;
 
-    fbFFHWO       : REFERENCE TO FB_HardwareFFOutput;   // Fast Fault hardware relay IO (passed in)
-    fbArbiter     : REFERENCE TO FB_Arbiter;            // PMPS Arbiter block (passed in)
-    fbPerMotorFFO: FB_PerMotorFFOND;
-    fbEncErrorFFO: FB_EncErrorFFO;
-    ffProgErr    : FB_FastFault;
-    {attribute 'pytmc' := 'pv: STATE'}
-    stEpicsToPlc     : ST_StateEpicsToPlc;
-    {attribute 'pytmc' := 'pv: STATE'}
-    stPMPSEpicsToPlc : ST_StatePMPSEpicsToPlc;
-
-
-	(* Axis X1 *)
-	{attribute 'TcLinkToOSO' := '
-		.stDS402Drive.nModeOfOperationNC      := <0,8,0>TINC^NC-Task 1^Axes^M13_DREAM_SLIT_MMT_X1^Drive^Outputs^Out^nCtrl5;
-		.stDS402Drive.nDS402DriveControlNC.0  := <0,8,0>TINC^NC-Task 1^Axes^M13_DREAM_SLIT_MMT_X1^Drive^Outputs^Out^nCtrl1;
-		.stDS402Drive.nDS402DriveControlNC.1  := <8,8,0>TINC^NC-Task 1^Axes^M13_DREAM_SLIT_MMT_X1^Drive^Outputs^Out^nCtrl2;
-	'}
-	{attribute 'TcLinkTo' := '
-		.stDS402Drive.nSlaveAddr              := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^InfoData^AdsAddr^port;
-		.stDS402Drive.stDS402DriveStatus      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Status Word;
-		.stDS402Drive.nFollowingError         := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Following Error Actual Value;
-		.stDS402Drive.nModeOfOperation        := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:X1^ctl/mode/pos RxPDO^Modes of Operation;
-		.stDS402Drive.nModeOfOperationDisplay := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Modes of Operation Display;
-		.stDS402Drive.nDS402DriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:X1^ctl/mode/pos RxPDO^Control Word;
-	'}
-	fb_SLIT_X1 : FB_MotionStageMCS2(stPiezoStage:=Main.M13, eModule:=E_Module.CHAN2);
-	
-	(* Axis X2 *)
-	{attribute 'TcLinkToOSO' := '
-		.stDS402Drive.nModeOfOperationNC      := <0,8,0>TINC^NC-Task 1^Axes^M14_DREAM_SLIT_MMT_X2^Drive^Outputs^Out^nCtrl5;
-		.stDS402Drive.nDS402DriveControlNC.0  := <0,8,0>TINC^NC-Task 1^Axes^M14_DREAM_SLIT_MMT_X2^Drive^Outputs^Out^nCtrl1;
-		.stDS402Drive.nDS402DriveControlNC.1  := <8,8,0>TINC^NC-Task 1^Axes^M14_DREAM_SLIT_MMT_X2^Drive^Outputs^Out^nCtrl2;
-	'}
-	{attribute 'TcLinkTo' := '
-		.stDS402Drive.nSlaveAddr              := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^InfoData^AdsAddr^port;
-		.stDS402Drive.stDS402DriveStatus      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Status Word;
-		.stDS402Drive.nFollowingError         := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Following Error Actual Value;
-		.stDS402Drive.nModeOfOperation        := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:X2^ctl/mode/pos RxPDO^Modes of Operation;
-		.stDS402Drive.nModeOfOperationDisplay := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Modes of Operation Display;
-		.stDS402Drive.nDS402DriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:X2^ctl/mode/pos RxPDO^Control Word;
-	'}
-	fb_SLIT_X2 : FB_MotionStageMCS2(stPiezoStage:=Main.M14, eModule:=E_Module.CHAN3);
-	
-	(* Axis Y1 *)
-	{attribute 'TcLinkToOSO' := '
-		.stDS402Drive.nModeOfOperationNC      := <0,8,0>TINC^NC-Task 1^Axes^M15_DREAM_SLIT_MMT_Y1^Drive^Outputs^Out^nCtrl5;
-		.stDS402Drive.nDS402DriveControlNC.0  := <0,8,0>TINC^NC-Task 1^Axes^M15_DREAM_SLIT_MMT_Y1^Drive^Outputs^Out^nCtrl1;
-		.stDS402Drive.nDS402DriveControlNC.1  := <8,8,0>TINC^NC-Task 1^Axes^M15_DREAM_SLIT_MMT_Y1^Drive^Outputs^Out^nCtrl2;
-	'}
-	{attribute 'TcLinkTo' := '
-		.stDS402Drive.nSlaveAddr              := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^InfoData^AdsAddr^port;
-		.stDS402Drive.stDS402DriveStatus      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Status Word;
-		.stDS402Drive.nFollowingError         := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Following Error Actual Value;
-		.stDS402Drive.nModeOfOperation        := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y1^ctl/mode/pos RxPDO^Modes of Operation;
-		.stDS402Drive.nModeOfOperationDisplay := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Modes of Operation Display;
-		.stDS402Drive.nDS402DriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y1^ctl/mode/pos RxPDO^Control Word;
-	'}
-	fb_SLIT_Y1 : FB_MotionStageMCS2(stPiezoStage:=Main.M15, eModule:=E_Module.CHAN1);
-	
-	(* Axis Y2 *)
-	{attribute 'TcLinkToOSO' := '
-		.stDS402Drive.nModeOfOperationNC      := <0,8,0>TINC^NC-Task 1^Axes^M16_DREAM_SLIT_MMT_Y2^Drive^Outputs^Out^nCtrl5;
-		.stDS402Drive.nDS402DriveControlNC.0  := <0,8,0>TINC^NC-Task 1^Axes^M16_DREAM_SLIT_MMT_Y2^Drive^Outputs^Out^nCtrl1;
-		.stDS402Drive.nDS402DriveControlNC.1  := <8,8,0>TINC^NC-Task 1^Axes^M16_DREAM_SLIT_MMT_Y2^Drive^Outputs^Out^nCtrl2;
-	'}
-	{attribute 'TcLinkTo' := '
-		.stDS402Drive.nSlaveAddr              := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^InfoData^AdsAddr^port;
-		.stDS402Drive.stDS402DriveStatus      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y2^mode/status/pos/fError TxPDO^Status Word;
-		.stDS402Drive.nFollowingError         := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y2^mode/status/pos/fError TxPDO^Following Error Actual Value;
-		.stDS402Drive.nModeOfOperation        := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y2^ctl/mode/pos RxPDO^Modes of Operation;
-		.stDS402Drive.nModeOfOperationDisplay := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y2^mode/status/pos/fError TxPDO^Modes of Operation Display;
-		.stDS402Drive.nDS402DriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y2^ctl/mode/pos RxPDO^Control Word;
-	'}
-	fb_SLIT_Y2 : FB_MotionStageMCS2(stPiezoStage:=Main.M16, eModule:=E_Module.CHAN2);
-
- 	{attribute 'pytmc' := 'pv: SL3K4:STATE'}
-    eSL3K4State           : E_SL3K4STATE;
-
-    astMotionStage      : ARRAY[1..4] OF  ST_MotionStage;
-
-
-    // PMPS parameter sets (setup at config time)
-    MaintenanceParams    : ST_BeamParams := PMPS_GVL.cst0RateBeam;
-    NormalParams         : ST_BeamParams := PMPS_GVL.cst0RateBeam;
-    nUID_Maint           : UDINT := 1001;
-    nUID_Norm            : UDINT := 1000;
-    nActiveMotorCount    : UINT := 4;
-
-    // Status
-    abBladeEnable        : ARRAY[1..4] OF BOOL;
+    //eSL3K4State          : E_SL3K4State := E_SL3K4State.MAINTENANCE;
+    {attribute 'pytmc' := 'pv: SL3K4:STATE'}
+    eReqState: UINT;
+    nPrevMode            : E_SL3K4State := E_SL3K4State.NORMAL;
+    astMotionStage       : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF ST_MotionStage;
+    abBladeEnable        : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF BOOL;
+    stMaintenanceGoal : ST_DbStateParams;
+    stNormalGoal      : ST_DbStateParams;
+    stTransitionGoal  : ST_DbStateParams;
+    bDBStatesLoaded   : BOOL := FALSE;
     bSafeToMove          : BOOL;
     bLocked              : BOOL;
     bMaintenanceActive   : BOOL;
-    bFastFault           : BOOL;
-    bEncoderFault        : BOOL;
-    bPMPSAllowed         : BOOL;
-    bPMPSMaintenance     : BOOL;
     bProgrammerError     : BOOL;
     sStatusMsg           : STRING;
+    bAnybladeError       : BOOL;
+    bArbiterError        : BOOL;
+    nBlades              : UINT;
+    nActiveMotorCount    : UINT := 4;
 
-    // Internal logic
-    allAxesIdle   : BOOL;
-    anyAxisError  : BOOL;
-    bModeChange   : BOOL;
-    bArbiterError : BOOL;
-    nPrevMode     : E_SL3K4State := E_SL3K4State.NORMAL; // Track last asserted state to manage assertions
-    axis          : INT;
-	// SL3K4 Beam parameters
-	sDeviceName : STRING := 'SL3K4';
-    astSl3k4State : ARRAY[1..2] OF ST_SL3K4State;
-	// get PMPDB state parameters
-    fbSL3K4ReadPMPSDB	: FB_SL3K4ReadPMPSDB(astSl3k4State:=astSl3k4State, fbFFHWO:= GVL_PMPS.fbFastFaultOutput1);
+    fbSL3K4ReadPMPSDB    : FB_SL3K4ReadPMPSDB;
+    sDeviceName          : STRING := 'SL3K4';
+
+    stGoalParams         : ST_DbStateParams;
+    stTransParams        : ST_DbStateParams;
+
+    bDBReloadRequested   : BOOL := TRUE; 
+    bDBReloadNow         : BOOL := FALSE;
+    bReadNow             : BOOL := FALSE;
+
+    // BPTM simulation support
+    bDone               : BOOL;
+    bDriftFF            : BOOL;
+    bLastTransAuth      : BOOL := FALSE;
+    bEnable             : BOOL;
+    tArbiterTimeout     : TIME := T#3s;
+    bMoveOnArbiterTimeout : BOOL := TRUE;
+    bResetBPTMTimeout   : BOOL := FALSE;
+    bRetry              : BOOL := FALSE;
+    bAtState            : BOOL := TRUE;
+    bInternalAuth       : BOOL := FALSE;
+    bArbiterTimeout     : BOOL := FALSE;
+
+    fDrift              : LREAL;
+    allAxesIdle         : BOOL;
+    axis                : INT;
+    i                   : DINT;
+    bGoalIsMaintenance  : BOOL := FALSE;
+    bGoalIsNormal       : BOOL := FALSE;
+	bFoundTransition: BOOL;
+	bFoundGoal: BOOL;
+
+	fbLogger : FB_LogMessage := (eSubsystem:=E_SubSystem.MOTION);
+	eSevr: LCLS_General.TcEventSeverity;
+    sLastStatusMsg : STRING := '';
+    eLastSevr : TcEventSeverity := TcEventSeverity.Info;
+	bTransitionAuthorized: BOOL;
+	rtEnable: R_TRIG;
+	nGoalAtClear: UINT;
+	rtUpdateDBState : R_TRIG;
+	bFoundNormal: BOOL;
+	bFoundMaintenance: BOOL;
 END_VAR
-]]></Declaration>
+
+VAR_OUTPUT
+    {attribute 'pytmc' := 'pv: STATE'}
+    stPMPSEpicsToPlc     : ST_StatePMPSEpicsToPlc;
+    // The PMPS database lookup associated with the current position state.
+    stDbStateParams: ST_DbStateParams;
+END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// --- Assign blade references each scan ---
+      <ST><![CDATA[// --- Assign 4-blade references, every scan ---
 astMotionStage[1] := stTopBlade;
 astMotionStage[2] := stBottomBlade;
 astMotionStage[3] := stNorthBlade;
 astMotionStage[4] := stSouthBlade;
 
-// --- Mode logic
-bMaintenanceActive := (eSL3K4State = E_SL3K4STATE.MAINTENANCE);
+// --- PMPS DB Read / safety check (with reload logic)
+fbSL3K4ReadPMPSDB(
+	fbFFHWO := fbFFHWO,
+    bFileReaderError := bFileReaderError,
+    bFileReaderBusy  := bFileReaderBusy,
+    sDeviceName      := sDeviceName,
+    sTransitionKey   := sTransitionKey,
+    jsonDoc          := PMPS_GVL.BP_jsonDoc
+);
 
-// --- Remove previous arbiter request if mode has changed
-IF nPrevMode <>  eSL3K4State THEN
-    IF nPrevMode = E_SL3K4STATE.NORMAL THEN
-        fbArbiter.RemoveRequest(nUID_Norm);
-    ELSIF nPrevMode = E_SL3K4STATE.MAINTENANCE THEN
-        fbArbiter.RemoveRequest(nUID_Maint);
-    END_IF
-    nPrevMode :=  eSL3K4State;
+bProgrammerError := nActiveMotorCount <> UPPER_BOUND(astMotionStage, 1);
+
+IF NOT fbSL3K4ReadPMPSDB.bStatesReady THEN
+    FOR nBlades := 1 TO nActiveMotorCount DO
+        astMotionStage[nBlades].bPowerSelf := FALSE;
+        astMotionStage[nBlades].bUserEnable := FALSE;
+        astMotionStage[nBlades].nBrakeMode := ENUM_StageBrakeMode.NO_BRAKE;
+        abBladeEnable[nBlades] := FALSE;
+    END_FOR
+    bSafeToMove   := FALSE;
+    bLocked       := TRUE;
+    sStatusMsg    := 'PMPS parameter DB not loaded. Axes locked!';
+    RETURN;
 END_IF
 
-// --- Add current PMPS request (duplicate-protected, maintenance or normal)
-IF bMaintenanceActive THEN
-    IF NOT fbArbiter.CheckRequest(nUID_Maint) THEN
-        fbArbiter.AddRequest(
-			nReqID := nUID_Maint, 
-			sDevName:=sDeviceName, 
-			stReqBP := astSl3k4State[E_SL3K4State.MAINTENANCE].stPMPS.stBeamParams,
-		);
-    END_IF
-    bPMPSMaintenance := fbArbiter.CheckRequest(nUID_Maint);
-ELSE
-    IF NOT fbArbiter.CheckRequest(nUID_Norm) THEN
-        fbArbiter.AddRequest(
-			nReqID := nUID_Norm, 
-			sDevName:=sDeviceName, 
-			stReqBP := astSl3k4State[E_SL3K4State.NORMAL].stPMPS.stBeamParams,
-		);
-    END_IF
-    bPMPSAllowed := fbArbiter.CheckRequest(nUID_Norm);
-END_IF
 
-bArbiterError := fbArbiter.bFault OR fbArbiter.ArbitrationDenied;
+// --- Parameter extraction by state name (robust, no index reliance) ---
+rtUpdateDBState(CLK := fbSL3K4ReadPMPSDB.bStatesReady);
 
-allAxesIdle := TRUE;
-anyAxisError := FALSE;
-FOR axis := 1 TO 4 DO
-    IF astMotionStage[axis].bBusy THEN allAxesIdle := FALSE; END_IF
-    IF astMotionStage[axis].bFault THEN anyAxisError := TRUE; END_IF
-END_FOR
+IF rtUpdateDBState.Q THEN
+    // Clear found flags
+    bFoundTransition := FALSE;
+    bFoundNormal := FALSE;
+    bFoundMaintenance := FALSE;
 
-// ---- Manual/Scatter logic for axis enable/locking ----
-FOR axis := 1 TO 4 DO
-    IF bMaintenanceActive AND bPMPSMaintenance AND NOT bArbiterError THEN
-        astMotionStage[axis].bPowerSelf   := TRUE;  // Scatter block is "owner"
-        astMotionStage[axis].bAllEnable   := bEnableMotion;
-        astMotionStage[axis].bHardwareEnable := TRUE;
-        astMotionStage[axis].nBrakeMode   := ENUM_StageBrakeMode.NO_BRAKE;
-        abBladeEnable[axis] := astMotionStage[axis].bAllEnable;
+    FOR i := 0 TO UPPER_BOUND(fbSL3K4ReadPMPSDB.astDbStateParams, 1) DO
+        IF fbSL3K4ReadPMPSDB.astDbStateParams[i].sPmpsState = sTransitionKey THEN
+			stTransitionGoal := fbSL3K4ReadPMPSDB.astDbStateParams[i];
+  			bFoundTransition := TRUE;
+		ELSIF 	fbSL3K4ReadPMPSDB.astDbStateParams[i].sPmpsState = 'MAINTENANCE' THEN
+			stMaintenanceGoal := fbSL3K4ReadPMPSDB.astDbStateParams[i];
+			bFoundMaintenance := TRUE;
+		ELSIF 	fbSL3K4ReadPMPSDB.astDbStateParams[i].sPmpsState = 'NORMAL' THEN
+                stNormalGoal := fbSL3K4ReadPMPSDB.astDbStateParams[i];
+                bFoundNormal := TRUE;		
+		END_IF
+    END_FOR
+
+    // Final check
+    IF NOT (bFoundTransition AND bFoundNormal AND bFoundMaintenance) THEN
+        sStatusMsg := 'Error: Required PMPS state not found in DB!';
+        bProgrammerError := TRUE;
     ELSE
-        astMotionStage[axis].bPowerSelf   := FALSE;
-        astMotionStage[axis].bAllEnable   := FALSE;
-        astMotionStage[axis].bHardwareEnable := TRUE;
-        astMotionStage[axis].nBrakeMode   := ENUM_StageBrakeMode.NO_BRAKE;
-        abBladeEnable[axis] := FALSE;
+        bDBStatesLoaded := TRUE;
     END_IF
-END_FOR
+END_IF
 
-bSafeToMove := bMaintenanceActive AND bPMPSMaintenance AND NOT anyAxisError AND NOT bArbiterError;
-bLocked := NOT bSafeToMove OR bArbiterError;
+IF bDBStatesLoaded THEN
+    IF eReqState = E_SL3K4State.MAINTENANCE THEN
+        stGoalParams := stMaintenanceGoal;
+    ELSIF eReqState = E_SL3K4State.NORMAL THEN
+        stGoalParams := stNormalGoal;
+    END_IF
+    stTransParams := stTransitionGoal;
+END_IF
 
-// --- Per-motor fast fault logic (uses all blades) ---
-fbPerMotorFFO(
-    astMotionStage := ,
-    fbFFHWO := fbFFHWO,
-    nActiveMotorCount := 4,
-    sDeviceName := sDeviceName
-);
-bFastFault := fbPerMotorFFO.bFault;
 
-// --- Encoder error fast fault (optional, if you want per-blade encoder safety) ---
-fbEncErrorFFO(
-    astMotionStage := [stTopBlade, stBottomBlade, stNorthBlade, stSouthBlade],
-    fbFFHWO := fbFFHWO
-);
-bEncoderFault := fbEncErrorFFO.bFault;
-
-// --- Programmer error: not exactly 4 axes present
-bProgrammerError := nActiveMotorCount <> 4;
-ffProgErr(
+ffProgrammerError(
     i_xOK := NOT bProgrammerError,
     i_xAutoReset := TRUE,
     i_DevName := sDeviceName,
-    i_Desc := 'Programmer error picking motor count',
+    i_Desc := 'Required PMPS state not found in DB',
+    i_TypeCode := E_MotionFFType.INTERNAL_ERROR,
+    io_fbFFHWO := fbFFHWO
+);
+// --- BPTM arbitration and error fast faulting ---
+bEnable :=  eReqState<>0 AND NOT bProgrammerError AND stPMPSEpicsToPlc.bArbiterEnabled AND bEnableBeamParams;
+rtEnable(CLK:=bEnable);
+
+fbSL3K4BPTM(
+    fbArbiter      := fbArbiter,
+    fbFFHWO        := fbFFHWO,
+	sDeviceName    := sDeviceName,
+    stGoalParams   := stGoalParams,
+    stTransParams  := stTransParams,
+    bEnable        := bEnable,
+	bRetry		   := rtEnable.Q AND nGoalAtClear = eReqState,
+	bTransitionAuthorized=>	bTransitionAuthorized
+);
+
+fbMotionClearAsserts(
+    astDbStateParams:=fbSL3K4ReadPMPSDB.astDbStateParams,
+    fbArbiter:=fbArbiter,
+    bExecute:=NOT fbSL3K4BPTM.bEnable,
+);
+IF fbMotionClearAsserts.bExecute THEN
+    nGoalAtClear := eReqState;
+END_IF
+
+// --- Blade error aggregation
+bAnybladeError := FALSE;
+FOR nBlades := 1 TO nActiveMotorCount DO
+    IF astMotionStage[nBlades].bError THEN bAnybladeError := TRUE; END_IF
+END_FOR
+
+// --- Safe-to-move logic as per BPTM best practice
+bSafeToMove := NOT bTransitionAuthorized AND fbSL3K4BPTM.bDone AND NOT bAnybladeError;
+bLocked     := NOT bSafeToMove;
+
+// --- Enable/locking and deadband drift-fast-fault logic
+bDriftFF := FALSE;
+FOR nBlades := 1 TO nActiveMotorCount DO
+    CASE eSL3K4State OF
+
+        E_SL3K4State.NORMAL:
+            abBladeEnable[nBlades] := FALSE;
+            astMotionStage[nBlades].bPowerSelf := FALSE;
+            astMotionStage[nBlades].bUserEnable := FALSE;
+            astMotionStage[nBlades].nBrakeMode := ENUM_StageBrakeMode.NO_BRAKE;
+			IF bEnableDriftCheck THEN
+				fDrift := ABS(astMotionStage[nBlades].axis.NcToPlc.ActPos - astMotionStage[nBlades].fPosition);
+				IF fDrift > fDriftTolerance THEN
+					bDriftFF := TRUE;
+					sStatusMsg := CONCAT(astMotionStage[nBlades].sName, ' drifted out of 3um deadband in normal mode');
+					astMotionStage[nBlades].sCustomErrorMessage := sStatusMsg;
+				END_IF			
+			END_IF
+
+
+        E_SL3K4State.MAINTENANCE:
+            IF bSafeToMove THEN
+                astMotionStage[nBlades].bPowerSelf := TRUE;
+                astMotionStage[nBlades].bUserEnable := TRUE;
+                astMotionStage[nBlades].nBrakeMode := ENUM_StageBrakeMode.NO_BRAKE;
+                abBladeEnable[nBlades] := TRUE;
+            ELSE
+                astMotionStage[nBlades].bPowerSelf := FALSE;
+                astMotionStage[nBlades].bUserEnable := FALSE;
+                astMotionStage[nBlades].nBrakeMode := ENUM_StageBrakeMode.NO_BRAKE;
+                abBladeEnable[nBlades] := FALSE;
+            END_IF
+
+        ELSE
+            astMotionStage[nBlades].bPowerSelf := FALSE;
+            astMotionStage[nBlades].bUserEnable := FALSE;
+            astMotionStage[nBlades].nBrakeMode := ENUM_StageBrakeMode.NO_BRAKE;
+            abBladeEnable[nBlades] := FALSE;
+    END_CASE
+END_FOR
+
+IF bEnableBeamParams THEN
+    fbMiscStatesErrorFFO.stCurrentBeamReq := fbSL3K4ReadPMPSDB.astDbStateParams[eSL3K4State].stBeamParams;
+ELSE
+    fbMiscStatesErrorFFO.stCurrentBeamReq := PMPS_GVL.cstFullBeam;
+END_IF
+
+fbMiscStatesErrorFFO(
+    fbArbiter:=fbArbiter,
+    fbFFHWO:=fbFFHWO,
+    sDeviceName:=sDeviceName,
+    bKnownState:=eSL3K4State > 0,
+    nTransitionID:=fbSL3K4ReadPMPSDB.astDbStateParams[0].nRequestAssertionID,
+);
+
+// --- Per-motor fast fault, drift, and programmer error
+fbPerMotorFFO(
+    astMotionStage := astMotionStage,
+    fbFFHWO := fbFFHWO,
+    nActiveMotorCount := nActiveMotorCount,
+    sDeviceName := sDeviceName
+);
+
+ffDriftFFO(
+    i_xOK := NOT bDriftFF,
+    i_xAutoReset := TRUE,
+    i_DevName := sDeviceName,
+    i_Desc := 'locked out blades drifting beyond allowable delta',
     i_TypeCode := E_MotionFFType.INTERNAL_ERROR,
     io_fbFFHWO := fbFFHWO
 );
 
-// --- Compose status message for debug/diagnostics
-IF bArbiterError THEN
-    sStatusMsg := 'Arbiter error or beam permission denied.';
-ELSIF bFastFault OR bEncoderFault OR bProgrammerError THEN
-    sStatusMsg := 'Device fast faulted (axis, encoder, or config error)';
-ELSIF bMaintenanceActive THEN
+// --- Status message and logging
+IF bDriftFF OR bProgrammerError THEN
+    sStatusMsg := 'Device fast faulted (blades, encoder, or config error)';
+    eSevr := TcEventSeverity.Critical;
+ELSIF bGoalIsMaintenance THEN
     sStatusMsg := 'Maintenance: PMPS safe, axes enabled for manual scatter/homing.';
+    eSevr := TcEventSeverity.Info;
 ELSE
     sStatusMsg := 'Normal: Axes locked for PMPS protection.';
-END_IF]]></ST>
+    eSevr := TcEventSeverity.Info;
+END_IF
+
+// --- Log only on change
+IF (sStatusMsg <> sLastStatusMsg) THEN
+    fbLogger(
+        sMsg  := sStatusMsg,
+        eSevr := eSevr
+    );
+    sLastStatusMsg := sStatusMsg;
+    eLastSevr := eSevr;
+END_IF
+]]></ST>
     </Implementation>
-    <Method Name="FB_Init" Id="{69f5868f-3054-4962-be93-290684220d71}">
-      <Declaration><![CDATA[//FB_Init is always available implicitly and it is used primarily for initialization.
-//The return value is not evaluated. For a specific influence, you can also declare the
-//methods explicitly and provide additional code there with the standard initialization
-//code. You can evaluate the return value.
-METHOD FB_Init: BOOL
-VAR_INPUT
-    bInitRetains: BOOL; // TRUE: the retain variables are initialized (reset warm / reset cold)
-    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)  
-
-    stRefX1  : REFERENCE TO ST_MotionStage;
-    stRefX2	: REFERENCE TO ST_MotionStage;
-    stRefY1  : REFERENCE TO ST_MotionStage;
-    stRefY2  : REFERENCE TO ST_MotionStage;
-    fbRefFFHWO       : REFERENCE TO FB_HardwareFFOutput;   // Fast Fault hardware relay IO (passed in)
-    fbRefArbiter     : REFERENCE TO FB_Arbiter;            // PMPS Arbiter block (passed in)
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[THIS^.stRefX1 := stRefX1;
-THIS^.stRefX2 := stRefX2;
-THIS^.stRefY1 := stRefY1;
-THIS^.stRefY2 := stRefY2;
-
-THIS^.fbRefFFHWO       := fbRefFFHWO;   
-THIS^.fbRefArbiter     := fbRefArbiter;]]></ST>
-      </Implementation>
-    </Method>
   </POU>
 </TcPlcObject>

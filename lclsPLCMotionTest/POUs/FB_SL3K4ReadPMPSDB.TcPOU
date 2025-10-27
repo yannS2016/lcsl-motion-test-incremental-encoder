@@ -1,22 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="FB_SL3K4ReadPMPSDB" Id="{bbf2cac6-9f54-4c2d-b415-c76e1add5790}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK INTERNAL FB_SL3K4ReadPMPSDB
-
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SL3K4ReadPMPSDB
 VAR_INPUT
     sDeviceName      : STRING;
-    bReadNow         : BOOL;
-    bFileReaderBusy  : BOOL;       // External input for file reader busy
-    bFileReaderError : BOOL;       // External input for file reader error
-    jsonDoc          : SJsonValue; // Pass in, do not read global!
+    bFileReaderBusy  : BOOL;
+    bFileReaderError : BOOL;
+    sTransitionKey   : STRING;
+    jsonDoc          : SJsonValue;
+END_VAR
+
+VAR_IN_OUT
+    fbFFHWO          : FB_HardwareFFOutput;	
 END_VAR
 
 VAR
-    {attribute 'no_copy'}
-    astSl3k4State :REFERENCE TO ARRAY[1..2] OF ST_SL3K4State;
-    {attribute 'no_copy'}
-    fbFFHWO      : REFERENCE TO FB_HardwareFFOutput; 
-    arrParams   : ARRAY[1..2] OF ST_DbStateParams;
     fbJsonLoader: FB_JsonDocToSafeBP;
     ffError     : FB_FastFault;
     ftDbBusy    : F_TRIG;
@@ -26,105 +24,78 @@ VAR
 END_VAR
 
 VAR_OUTPUT
+    astDbStateParams   : ARRAY[0..GeneralConstants.MAX_STATES] OF ST_DbStateParams;
     bLoadedNormal      : BOOL;
     bLoadedMaintenance : BOOL;
     bFirstReadDone     : BOOL;
     bError             : BOOL;
-	bStatesReady	   : BOOL;
-	bAllStatesLoaded	: BOOL;
+    bStatesReady       : BOOL;
+    bAllStatesLoaded   : BOOL;
     nErrId             : UDINT;
     sErrMsg            : STRING;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF NOT __ISVALIDREF(astSl3k4State) OR NOT __ISVALIDREF(fbFFHWO) THEN
+      <ST><![CDATA[// Only reload and assert if external fast fault output is valid
+IF NOT __ISVALIDREF(fbFFHWO) THEN
     RETURN;
 END_IF
 
-arrParams[1].sPmpsState := 'NORMAL';
-arrParams[2].sPmpsState := 'MAINTENANCE';
+// Map state strings for DB lookup (indexing strictly controlled/setup by config/tool)
+astDbStateParams[0].sPmpsState := sTransitionKey; // Transition state
+astDbStateParams[1].sPmpsState := 'NORMAL';
+astDbStateParams[2].sPmpsState := 'MAINTENANCE';
 
-// Edge trigger for DB reader busy->not busy (makes for safe reloads and testability)
+// --- Edge-trigger: Only reload DB when reader finishes (Busy->not busy)
 ftDbBusy(CLK := bFileReaderBusy);
 IF ftDbBusy.Q THEN
-    bReadPmpsDb S= NOT bFileReaderError;
+    bReadPmpsDb := NOT bFileReaderError; // One-shot trigger: only reload if successful parse
 END_IF
 
-bReadPmpsDb S= bFirstReadDone AND bReadNow;
-bReadNow := FALSE;
-
+// Call JSON loader to parse PMPS parameters
 fbJsonLoader(
     bExecute    := bReadPmpsDb,
     jsonDoc     := jsonDoc,
     sDeviceName := sDeviceName,
-    arrStates   := arrParams,
+    arrStates   := astDbStateParams,
     io_fbFFHWO  := fbFFHWO
 );
-
-bReadPmpsDb R= NOT fbJsonLoader.bBusy;
-ftRead(CLK := fbJsonLoader.bBusy);
-bFirstReadDone S= ftRead.Q AND NOT fbJsonLoader.bError;
-
-bError     := fbJsonLoader.bError;
-nErrId     := fbJsonLoader.nErrId;
-sErrMsg    := fbJsonLoader.sErrMsg;
-
-// --- New: Compose a block-wide flag showing ALL states have been loaded and valid ---
-bAllStatesLoaded := TRUE;
-FOR i := 1 TO 2 DO
-    bAllStatesLoaded := bAllStatesLoaded AND arrParams[i].bBeamParamsLoaded;
-END_FOR
-
-// Only update outputs if loader finished, no error, and all states loaded
-IF fbJsonLoader.bBusy = FALSE AND NOT bError AND bAllStatesLoaded THEN
-    FOR i := 1 TO 2 DO
-        astSl3k4State[i].sName    := arrParams[i].sPmpsState;
-        astSl3k4State[i].stPMPS   := arrParams[i];
-        astSl3k4State[i].bValid   := arrParams[i].bBeamParamsLoaded;
-        astSl3k4State[i].bUpdated := bReadPmpsDb;
-    END_FOR
-    bLoadedNormal      := astSl3k4State[1].bValid;
-    bLoadedMaintenance := astSl3k4State[2].bValid;
-    bStatesReady       := TRUE;
-ELSE
-    // Not ready: Mark all invalid
-    FOR i := 1 TO 2 DO
-        astSl3k4State[i].bValid   := FALSE;
-        astSl3k4State[i].bUpdated := FALSE;
-		//astSl3k4State[i].stPMPS.sPmpsState 
-    END_FOR
-    bLoadedNormal      := FALSE;
-    bLoadedMaintenance := FALSE;
-    bStatesReady       := FALSE;
+// Reset reload request when JSON loader is done (not busy)
+IF NOT fbJsonLoader.bBusy THEN
+    bReadPmpsDb := FALSE;
 END_IF
 
+// Track first DB read completion
+ftRead(CLK := fbJsonLoader.bBusy);
+IF ftRead.Q AND NOT fbJsonLoader.bError THEN
+    bFirstReadDone := TRUE;
+END_IF
 
-// -- Fast fault is still triggered by loader error as before
+// Error outputs and reporting
+bError  := fbJsonLoader.bError;
+nErrId  := fbJsonLoader.nErrId;
+sErrMsg := fbJsonLoader.sErrMsg;
+
+// --- Check if all state params are loaded (including transition, normal, maintenance) ---
+bAllStatesLoaded := TRUE;
+FOR i := 0 TO 2 DO
+    bAllStatesLoaded := bAllStatesLoaded AND astDbStateParams[i].bBeamParamsLoaded;
+END_FOR
+
+bLoadedNormal      := astDbStateParams[1].bBeamParamsLoaded;
+bLoadedMaintenance := astDbStateParams[2].bBeamParamsLoaded;
+
+// Final readiness: device is ready only when DB load finished successfully and all states loaded
+bStatesReady := (fbJsonLoader.bBusy = FALSE) AND (NOT bError) AND bAllStatesLoaded;
+
+// Fast fault handling for loader or DB error
 ffError(
-    i_xOK := NOT bError,
+    i_xOK        := NOT bError,
     i_xAutoReset := TRUE,
-    i_DevName := sDeviceName,
-    i_Desc := 'PMPS DB load error (NORMAL/MAINTENANCE)',
-    i_TypeCode := E_MotionFFType.INTERNAL_ERROR,
-    io_fbFFHWO := fbFFHWO
+    i_DevName    := sDeviceName,
+    i_Desc       := 'PMPS DB load error (TRANSITION/NORMAL/MAINTENANCE)',
+    i_TypeCode   := E_MotionFFType.INTERNAL_ERROR,
+    io_fbFFHWO   := fbFFHWO
 );]]></ST>
     </Implementation>
-    <Method Name="FB_Init" Id="{4704d93f-b7cf-4440-ad76-110797e729cc}">
-      <Declaration><![CDATA[//FB_Init is always available implicitly and it is used primarily for initialization.
-//The return value is not evaluated. For a specific influence, you can also declare the
-//methods explicitly and provide additional code there with the standard initialization
-//code. You can evaluate the return value.
-METHOD FB_Init: BOOL
-VAR_INPUT
-    bInitRetains: BOOL; // TRUE: the retain variables are initialized (reset warm / reset cold)
-    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)
-
-    astSl3k4State :REFERENCE TO ARRAY[1..2] OF ST_SL3K4State;
-    fbFFHWO      : REFERENCE TO FB_HardwareFFOutput;  
-END_VAR]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[THIS^.astSl3k4State REF= astSl3k4State;
-THIS^.fbFFHWO REF= fbFFHWO;]]></ST>
-      </Implementation>
-    </Method>
   </POU>
 </TcPlcObject>

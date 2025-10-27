@@ -3,8 +3,6 @@
   <POU Name="PRG_PMPS_PRE" Id="{7ddf7142-3738-4120-8059-c5d2220b5135}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM PRG_PMPS_PRE
 VAR
-    astSl3k4State : ARRAY[1..2] OF ST_SL3K4State;
-    fbSL3K4ReadPMPSDB	: FB_SL3K4ReadPMPSDB(astSl3k4State:=astSl3k4State, fbFFHWO:= GVL_PMPS.fbFastFaultOutput1);
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[MOTION_GVL.fbStandardPMPSDB(
@@ -13,14 +11,6 @@ END_VAR]]></Declaration>
     sPLCName:='plc-tst-bsd2',
     sDirectory:='/home/ecs-user/pmpsdb/'
 );
-
-fbSL3K4ReadPMPSDB(
-	bFileReaderBusy := MOTION_GVL.fbPmpsFileReader.bBusy,
-	sDeviceName := 'SL3K4',
-	bFileReaderError := MOTION_GVL.fbPmpsFileReader.bError,
-	jsonDoc := PMPS_GVL.BP_jsonDoc   // Inject your own test JSON
-);
-
 ]]></ST>
     </Implementation>
   </POU>

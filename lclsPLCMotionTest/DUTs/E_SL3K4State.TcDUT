@@ -8,8 +8,9 @@ TYPE E_SL3K4State :
 (
 	TRANSITION := 0,
 	NORMAL := 1,
-	MAINTENANCE := 2
-);
+	MAINTENANCE := 2,
+	UNKNOWN := 3
+)UINT;
 END_TYPE
 ]]></Declaration>
   </DUT>

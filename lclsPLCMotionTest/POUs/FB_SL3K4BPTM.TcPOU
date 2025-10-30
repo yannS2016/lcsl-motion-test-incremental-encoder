@@ -33,9 +33,11 @@ VAR_INPUT
 END_VAR
 
 VAR_OUTPUT
-    bTransitionAuthorized  : BOOL;          // TRUE: motors are allowed to initiate transition
-    bDone                  : BOOL;          // TRUE: beam parameter transition completed successfully
-    bMotorCountError       : BOOL;          // TRUE: number of motors is invalid/configuration error
+    bTransitionAuthorized  : BOOL;
+	bBusy				   : BOOL;
+    bDone                  : BOOL;
+	bError : BOOL;
+    bMotorCountError       : BOOL;
 END_VAR
 
 VAR
@@ -69,7 +71,9 @@ IF bEnable THEN
         stCurrentBeamParameters := PMPS_GVL.stCurrentBeamParameters,
         bRetry := bRetry,
         q_xTransitionAuthorized => bInternalAuth,
-        bDone => bDone
+        bDone => bDone,
+		bBusy=>bBusy,
+		bError => bError
     );
 
     // Fast Fault for BPTM error

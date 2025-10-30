@@ -3,7 +3,11 @@
   <POU Name="FB_SL3K4_Test" Id="{4cd567df-faf8-4c92-a022-7ee8ed605221}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK INTERNAL FB_SL3K4_Test EXTENDS FB_TestSuite
 VAR
-    testStages    : ARRAY[1..4] OF ST_MotionStage;
+    testStage1    : ST_MotionStage;
+    testStage2    : ST_MotionStage;
+    testStage3    : ST_MotionStage;
+    testStage4    : ST_MotionStage;
+	
     fbFFHWO       : FB_HardwareFFOutput;
     fbArbiter     : FB_Arbiter(1);
     astDummyBeam  : ARRAY[0..2] OF ST_DbStateParams;
@@ -26,15 +30,16 @@ END_VAR
 	astDummyBeam[E_SL3K4State.NORMAL].stBeamParams.nBCRange         := 16#7FFF;    // All 15 classes
 	astDummyBeam[E_SL3K4State.NORMAL].stBeamParams.nTran            := 15;
 	astDummyBeam[E_SL3K4State.NORMAL].stBeamParams.nRate            := 120;
-	astDummyBeam[E_SL3K4State.NORMAL].nRequestAssertionID           := 1;
+	astDummyBeam[E_SL3K4State.NORMAL].nRequestAssertionID           := 2;
 	astDummyBeam[E_SL3K4State.NORMAL].sPmpsState                    := 'NORMAL';
 	
 	astDummyBeam[E_SL3K4State.MAINTENANCE].stBeamParams.nBCRange    := 16#0040;    // Only class 6
 	astDummyBeam[E_SL3K4State.MAINTENANCE].stBeamParams.nTran       := 0.01;
 	astDummyBeam[E_SL3K4State.MAINTENANCE].stBeamParams.nRate       := 0;
-	astDummyBeam[E_SL3K4State.MAINTENANCE].nRequestAssertionID      := 2;
+	astDummyBeam[E_SL3K4State.MAINTENANCE].nRequestAssertionID      := 3;
 	astDummyBeam[E_SL3K4State.MAINTENANCE].sPmpsState               := 'MAINTENANCE';
-	
+
+	astDummyBeam[E_SL3K4State.TRANSITION].nRequestAssertionID       := 1;
 	astDummyBeam[E_SL3K4State.TRANSITION].stBeamParams              := PMPS_GVL.cst0RateBeam;
 	astDummyBeam[E_SL3K4State.TRANSITION].sPmpsState                := 'TRANSITION';
 	fbTestHelper.sDevName := 'SL3K4';
@@ -63,10 +68,10 @@ fbTestHelper(
 );
 
 testFB(
-   stTopBlade    := testStages[1],
-   stBottomBlade := testStages[2],
-   stNorthBlade  := testStages[3],
-   stSouthBlade  := testStages[4],
+   stTopBlade    := testStage1,
+   stBottomBlade := testStage2,
+   stNorthBlade  := testStage3,
+   stSouthBlade  := testStage4,
    bFileReaderError := FALSE,
    sTransitionKey   := 'TRANSITION',
    fbFFHWO       := fbFFHWO,

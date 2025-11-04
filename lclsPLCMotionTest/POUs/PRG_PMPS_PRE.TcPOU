@@ -8,16 +8,16 @@ VAR
     {attribute 'TcLinkTo' := '
         .nRawEncoderDINT		:=TIID^Master_EtherCAT^MCS2-3C^Module 1 (MCS2M-D-3C)^mode/status/pos/fError TxPDO^Position Actual Value
     '}
-    testStage1    : ST_MotionStage :=  (	
+    testStage1    : ST_MCS2Stage :=  (	
 			sName:='SmartAct:MCS2-3C',
 			nHomingMode:=E_EpicsHomeCmd.AUTOZERO,
             nEnableMode:= ENUM_StageEnableMode.DURING_MOTION,
             bPowerSelf:=TRUE,
             bHardwareEnable:=TRUE 
 	);
-    testStage2    : ST_MotionStage;
-    testStage3    : ST_MotionStage;
-    testStage4    : ST_MotionStage;
+    testStage2    : ST_MCS2Stage;
+    testStage3    : ST_MCS2Stage;
+    testStage4    : ST_MCS2Stage;
 	
     fbFFHWO       : FB_HardwareFFOutput;
     fbArbiter     : FB_Arbiter(1);

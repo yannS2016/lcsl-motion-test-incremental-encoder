@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_DGPD_Test" Id="{2462b3a4-983f-4c26-b410-40ad42e98eef}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DGPD_Test EXTENDS FB_TestSuite
+VAR
+	fbDGPD : FB_DGPD;
+    // Axis motion stages (hardware interface or simulation)
+    stMCS2StageRET : ST_MCS2Stage;
+    stMCS2StageX   : ST_MCS2Stage;
+    stMCS2StageY   : ST_MCS2Stage;
+    stMCS2StageZ   : ST_MCS2Stage;
+
+	fbMotionRET : FB_MotionStage;
+	fbMotionX : FB_MotionStage;
+	fbMotionY : FB_MotionStage;
+	fbMotionZ : FB_MotionStage;
+
+	// General control/flags
+    bHVActive            : BOOL := FALSE;
+    bEnablePositionLimits: BOOL := TRUE;
+    bReadDBNow           : BOOL := FALSE;
+    bReset               : BOOL := FALSE;
+    bMaintenanceMode     : BOOL := FALSE;
+    bEnableBeamParams    : BOOL := TRUE;
+    bEnableMotion        : BOOL := TRUE;
+    // Device/transition key names
+    sDeviceName    : STRING := 'test';
+    sTransitionKey : STRING := 'trans';
+	fbArbiterIO: FB_DummyArbIO;
+	fbTestTimer : TON := (IN:=TRUE, PT:=T#120S);
+	bInit: BOOL := TRUE;
+	iState: UINT;
+	 eSetTarget    : E_DGPDStates := E_DGPDStates.UNKNOWN; // Current target
+	testStep: UINT;
+	nTestCase: UINT;
+    eSetTargetArr : ARRAY[0..4] OF E_DGPDStates := [E_DGPDStates.TARGET1A, E_DGPDStates.TARGET2, E_DGPDStates.TARGET4,  E_DGPDStates.TARGET1B, E_DGPDStates.OUT];
+    targetIndex : INT := 1;
+    sequenceStep : INT := 0; // state machine step for the current target
+    randomIndex   : INT := 1;
+    doneOnce      : BOOL := FALSE;
+    // Vars to reduce noise in motion simulation
+    initMotion    : BOOL := FALSE;
+	bEPSEnable : BOOL := TRUE;
+	nTestTarget: UINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TEST(__POUNAME());
+
+IF bInit THEN
+	// Hardware/limit "enables" (one-time)
+	stMCS2StageRET.bHardwareEnable := TRUE; stMCS2StageRET.bLimitForwardEnable := TRUE; stMCS2StageRET.bLimitBackwardEnable := TRUE;
+	stMCS2StageX.bHardwareEnable   := TRUE; stMCS2StageX.bLimitForwardEnable   := TRUE; stMCS2StageX.bLimitBackwardEnable   := TRUE;
+	stMCS2StageY.bHardwareEnable   := TRUE; stMCS2StageY.bLimitForwardEnable   := TRUE; stMCS2StageY.bLimitBackwardEnable   := TRUE;
+	stMCS2StageZ.bHardwareEnable   := TRUE; stMCS2StageZ.bLimitForwardEnable   := TRUE; stMCS2StageZ.bLimitBackwardEnable   := TRUE;
+    bInit := FALSE;
+END_IF
+
+CASE nTestCase OF
+    0:
+        // All safe
+        stMCS2StageRET.stMCS2ChanParams.stChannelState.bIsCalibrated := TRUE; stMCS2StageRET.stMCS2ChanParams.stChannelState.bIsReferenced := TRUE; stMCS2StageRET.stMCS2ChanParams.stChannelState.bSensorPresent := TRUE;
+        stMCS2StageX.stMCS2ChanParams.stChannelState.bIsCalibrated   := TRUE; stMCS2StageX.stMCS2ChanParams.stChannelState.bIsReferenced   := TRUE; stMCS2StageX.stMCS2ChanParams.stChannelState.bSensorPresent   := TRUE;
+        stMCS2StageY.stMCS2ChanParams.stChannelState.bIsCalibrated   := TRUE; stMCS2StageY.stMCS2ChanParams.stChannelState.bIsReferenced   := TRUE; stMCS2StageY.stMCS2ChanParams.stChannelState.bSensorPresent   := TRUE;
+        stMCS2StageZ.stMCS2ChanParams.stChannelState.bIsCalibrated   := TRUE; stMCS2StageZ.stMCS2ChanParams.stChannelState.bIsReferenced   := TRUE; stMCS2StageZ.stMCS2ChanParams.stChannelState.bSensorPresent   := TRUE;
+        bHVActive := FALSE;
+        nTestCase := 1;
+    1:
+        AssertEquals_BOOL(TRUE, fbDGPD.bSafeToMoveRET, 'RET should be safe to move');
+        AssertEquals_BOOL(TRUE, fbDGPD.bSafeToMoveX,   'X should be safe to move');
+        AssertEquals_BOOL(TRUE, fbDGPD.bSafeToMoveY,   'Y should be safe to move');
+        AssertEquals_BOOL(TRUE, fbDGPD.bSafeToMoveZ,   'Z should be safe to move');
+        AssertEquals_BOOL(TRUE, fbDGPD.bSafeToMove,    'Global safe-to-move should be TRUE');
+        nTestCase := 2;
+    2:
+        // RET calibration fail
+        stMCS2StageRET.stMCS2ChanParams.stChannelState.bIsCalibrated := FALSE; stMCS2StageRET.stMCS2ChanParams.stChannelState.bIsReferenced := TRUE; stMCS2StageRET.stMCS2ChanParams.stChannelState.bSensorPresent := TRUE;
+        bHVActive := FALSE;
+        nTestCase := 3;
+    3:
+        AssertEquals_BOOL(FALSE, fbDGPD.bSafeToMoveRET, 'RET should not be safe (calib fail)');
+        AssertEquals_BOOL(TRUE, fbDGPD.bSafeToMoveX,   'X should be safe');
+        AssertEquals_BOOL(TRUE, fbDGPD.bSafeToMoveY,   'Y should be safe');
+        AssertEquals_BOOL(TRUE, fbDGPD.bSafeToMoveZ,   'Z should be safe');
+        AssertEquals_BOOL(FALSE, fbDGPD.bSafeToMove,   'Global safe-to-move should be FALSE');
+        nTestCase := 4;
+    4:
+        // HV active fails all
+        stMCS2StageRET.stMCS2ChanParams.stChannelState.bIsCalibrated := TRUE; stMCS2StageRET.stMCS2ChanParams.stChannelState.bIsReferenced := TRUE; stMCS2StageRET.stMCS2ChanParams.stChannelState.bSensorPresent := TRUE;
+        stMCS2StageX.stMCS2ChanParams.stChannelState.bIsCalibrated   := TRUE; stMCS2StageX.stMCS2ChanParams.stChannelState.bIsReferenced   := TRUE; stMCS2StageX.stMCS2ChanParams.stChannelState.bSensorPresent   := TRUE;
+        stMCS2StageY.stMCS2ChanParams.stChannelState.bIsCalibrated   := TRUE; stMCS2StageY.stMCS2ChanParams.stChannelState.bIsReferenced   := TRUE; stMCS2StageY.stMCS2ChanParams.stChannelState.bSensorPresent   := TRUE;
+        stMCS2StageZ.stMCS2ChanParams.stChannelState.bIsCalibrated   := TRUE; stMCS2StageZ.stMCS2ChanParams.stChannelState.bIsReferenced   := TRUE; stMCS2StageZ.stMCS2ChanParams.stChannelState.bSensorPresent   := TRUE;
+        bHVActive := TRUE;
+        nTestCase := 5;
+    5:
+        AssertEquals_BOOL(FALSE, fbDGPD.bSafeToMoveRET, 'RET not safe when HV active');
+        AssertEquals_BOOL(FALSE, fbDGPD.bSafeToMoveX, 'X not safe when HV active');
+        AssertEquals_BOOL(FALSE, fbDGPD.bSafeToMoveY, 'Y not safe when HV active');
+        AssertEquals_BOOL(FALSE, fbDGPD.bSafeToMoveZ, 'Z not safe when HV active');
+        AssertEquals_BOOL(FALSE, fbDGPD.bSafeToMove,  'Global not safe when HV active');
+        nTestCase := 6;
+    6:
+        // X reference fail
+        stMCS2StageX.stMCS2ChanParams.stChannelState.bIsReferenced := FALSE;
+        bHVActive := FALSE;
+        nTestCase := 7;
+    7:
+        AssertEquals_BOOL(FALSE, fbDGPD.bSafeToMoveX, 'X not safe with ref fail');
+        AssertEquals_BOOL(FALSE, fbDGPD.bSafeToMove, 'Global not safe with X fail');
+        stMCS2StageRET.stMCS2ChanParams.stChannelState.bIsCalibrated := TRUE; stMCS2StageRET.stMCS2ChanParams.stChannelState.bIsReferenced := TRUE; stMCS2StageRET.stMCS2ChanParams.stChannelState.bSensorPresent := TRUE;
+        stMCS2StageX.stMCS2ChanParams.stChannelState.bIsCalibrated   := TRUE; stMCS2StageX.stMCS2ChanParams.stChannelState.bIsReferenced   := TRUE; stMCS2StageX.stMCS2ChanParams.stChannelState.bSensorPresent   := TRUE;
+        stMCS2StageY.stMCS2ChanParams.stChannelState.bIsCalibrated   := TRUE; stMCS2StageY.stMCS2ChanParams.stChannelState.bIsReferenced   := TRUE; stMCS2StageY.stMCS2ChanParams.stChannelState.bSensorPresent   := TRUE;
+        stMCS2StageZ.stMCS2ChanParams.stChannelState.bIsCalibrated   := TRUE; stMCS2StageZ.stMCS2ChanParams.stChannelState.bIsReferenced   := TRUE; stMCS2StageZ.stMCS2ChanParams.stChannelState.bSensorPresent   := TRUE;
+        bHVActive := FALSE;
+        nTestCase := 8;
+        
+	8: // Drives a full sequence against a random target, axes at various starting OUT/TARGET states.
+        CASE testStep OF
+            0:
+                IF fbDGPD.fbSequencer.bEnteredInit OR fbDGPD.fbSequencer.bEnteredDone THEN
+                    IF nTestTarget > 5 THEN
+                        // All targets tested, finish test
+                        nTestCase := 9;
+                    ELSE
+                        eSetTarget := eSetTargetArr[nTestTarget];
+                        testStep := 1;
+                    END_IF
+                END_IF
+
+            1:
+                IF fbDGPD.fbSequencer.bEnteredCheckOut THEN
+                    IF fbDGPD.fbSequencer.stPlcToEpicsX.nGetValue <> E_DGPDStates.OUT THEN
+                        AssertEquals_BOOL(TRUE, fbDGPD.fbSequencer.bMoveX, 'X commanded OUT');
+                    ELSIF fbDGPD.fbSequencer.stPlcToEpicsY.nGetValue <> E_DGPDStates.OUT THEN
+                        AssertEquals_BOOL(TRUE, fbDGPD.fbSequencer.bMoveY, 'Y commanded OUT');
+                    ELSIF fbDGPD.fbSequencer.stPlcToEpicsZ.nGetValue <> E_DGPDStates.OUT THEN
+                        AssertEquals_BOOL(TRUE, fbDGPD.fbSequencer.bMoveZ, 'Z commanded OUT');
+                    ELSE
+                        AssertEquals_BOOL(FALSE, fbDGPD.fbSequencer.bMoveX, 'No X move after all OUT');
+                        AssertEquals_BOOL(FALSE, fbDGPD.fbSequencer.bMoveY, 'No Y move after all OUT');
+                        AssertEquals_BOOL(FALSE, fbDGPD.fbSequencer.bMoveZ, 'No Z move after all OUT');
+                        testStep := 2;
+                    END_IF
+                END_IF
+            2: IF fbDGPD.fbSequencer.bEnteredMoveRETToTarget THEN
+                    AssertEquals_BOOL(TRUE, fbDGPD.fbSequencer.bMoveRET, 'RET moves to target');
+                    testStep := 3;
+                END_IF
+            3: IF fbDGPD.fbSequencer.bEnteredMoveXToTarget THEN
+                    AssertEquals_BOOL(TRUE, fbDGPD.fbSequencer.bMoveX, 'X moves to target');
+                    testStep := 4;
+                END_IF
+            4: IF fbDGPD.fbSequencer.bEnteredMoveYToTarget THEN
+                    AssertEquals_BOOL(TRUE, fbDGPD.fbSequencer.bMoveY, 'Y moves to target');
+                    testStep := 5;
+                END_IF
+            5: IF fbDGPD.fbSequencer.bEnteredMoveZToTarget THEN
+                    AssertEquals_BOOL(TRUE, fbDGPD.fbSequencer.bMoveZ, 'Z moves to target');
+                    testStep := 6;
+                END_IF
+            6: IF fbDGPD.fbSequencer.bEnteredDone THEN
+                    AssertEquals_BOOL(TRUE, fbDGPD.bSequenceComplete, 'Sequence should be complete');
+                    AssertEquals_INT(eSetTarget, fbDGPD.fbSequencer.stPlcToEpicsRET.nGetValue, 'RET at target');
+                    AssertEquals_INT(eSetTarget, fbDGPD.fbSequencer.stPlcToEpicsX.nGetValue,   'X at target');
+                    AssertEquals_INT(eSetTarget, fbDGPD.fbSequencer.stPlcToEpicsY.nGetValue,   'Y at target');
+                    AssertEquals_INT(eSetTarget, fbDGPD.fbSequencer.stPlcToEpicsZ.nGetValue,   'Z at target');
+                    nTestTarget := nTestTarget + 1;   // Move to next target after done
+                    testStep := 0;                    // Restart for new target
+                END_IF
+        END_CASE
+//         IF nTestTarget > 5 THEN
+//             nTestCase := 9;
+//             doneOnce  := TRUE;
+//         END_IF
+END_CASE
+
+//------------------------------------------------------------------
+// Simulated beam param mode enabled (if applicable)
+fbDGPD.BeamParamSim(
+    bSimMode := TRUE,
+);
+
+// Call main FB
+fbDGPD(
+	eSetTarget            := eSetTarget,
+    stMCS2StageRET        := stMCS2StageRET,
+    stMCS2StageX          := stMCS2StageX,
+    stMCS2StageY          := stMCS2StageY,
+    stMCS2StageZ          := stMCS2StageZ,
+    fbFFHWO               := GVL_PMPS.fbFastFaultOutput1,
+    fbArbiter             := GVL_PMPS.fbArbiter,
+    bHVActive             := bHVActive,
+    bEnablePositionLimits := bEnablePositionLimits,
+    sDeviceName           := sDeviceName,
+    sTransitionKey        := sTransitionKey,
+    bReadDBNow            := NOT bInit,
+    bReset                := bReset,
+	bEPSEnable            := bEPSEnable,
+	// place all stages into maintenance mode.
+    bMaintenanceMode      := bMaintenanceMode,
+    bEnableBeamParams     := bEnableBeamParams,
+    bEnableMotion         := bEnableMotion,
+);
+
+// All axes (simulate scan/cycle for each)
+fbMotionRET(stMotionStage := stMCS2StageRET);
+fbMotionX  (stMotionStage := stMCS2StageX);
+fbMotionY  (stMotionStage := stMCS2StageY);
+fbMotionZ  (stMotionStage := stMCS2StageZ);
+
+fbTestTimer();
+IF nTestCase = 10 OR fbTestTimer.Q THEN
+    TEST_FINISHED();
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

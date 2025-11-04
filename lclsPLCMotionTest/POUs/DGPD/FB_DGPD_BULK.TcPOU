@@ -1,0 +1,506 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_DGPD_BULK" Id="{20c69c25-603f-4858-a7fa-2b29ad29987d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DGPD_BULK
+VAR_IN_OUT
+    stMCS2StageRET : ST_MCS2Stage;
+    stMCS2StageX   : ST_MCS2Stage;
+    stMCS2StageY   : ST_MCS2Stage;
+    stMCS2StageZ   : ST_MCS2Stage;
+    // The fast fault output to fault to.
+    fbFFHWO: FB_HardwareFFOutput;
+    // The arbiter to request beam conditions from.
+    fbArbiter: FB_Arbiter;
+END_VAR
+VAR_INPUT
+    bHVActive            : BOOL;
+    bEnablePositionLimits: BOOL;
+    sDeviceName          : STRING := 'test';
+    sTransitionKey       : STRING := 'trans';
+    bReadDBNow           : BOOL;
+    bReset               : BOOL;
+    bMaintenanceMode     : BOOL;
+    bEnableBeamParams: BOOL;
+    // use this to block state request activation on top of eps.
+    bEnableMotion        : BOOL;
+    eSetTarget: UINT;
+END_VAR
+VAR_OUTPUT
+    bSafeToMoveRET : BOOL;
+    bSafeToMoveX   : BOOL;
+    bSafeToMoveY   : BOOL;
+    bSafeToMoveZ   : BOOL;
+    bSafeToMove    : BOOL;
+    bMoveRET          : BOOL;
+    bMoveX            : BOOL;
+    bMoveY            : BOOL;
+    bMoveZ            : BOOL;
+    bSequenceComplete : BOOL;
+    axisSequenceStep  : E_DGPD_SequenceStep;
+	nRETCurrState     : E_DGPDStates;
+	nXCurrState     : E_DGPDStates;
+	nYCurrState     : E_DGPDStates;
+	nZCurrState     : E_DGPDStates;
+    bEnteredInit            : BOOL;
+    bEnteredCheckOut        : BOOL;
+    bEnteredMoveRETToTarget : BOOL;
+    bEnteredMoveXToTarget   : BOOL;
+    bEnteredMoveYToTarget   : BOOL;
+    bEnteredMoveZToTarget   : BOOL;
+    bEnteredDone            : BOOL;
+    bEnteredError           : BOOL;
+    bError_RETCollision : BOOL;
+END_VAR
+VAR
+    stPlcToEpicsRET : ST_StatePlcToEpics;
+    stPlcToEpicsX   : ST_StatePlcToEpics;
+    stPlcToEpicsY   : ST_StatePlcToEpics;
+    stPlcToEpicsZ   : ST_StatePlcToEpics;
+	
+	fbDGPDEPS	  : FB_DGPDEPS;
+	fbSequencer   : FB_SequenceMover;
+
+    // --- RET axis ---
+    astPositionStateRET : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    fbPositionStateRET : FB_PositionStatePMPS1D;
+    fbStateSetupRET : FB_StateSetupHelper;
+    eGetRETTarget : UINT;
+    eSetRETTarget : UINT;
+    // --- X axis ---
+    astPositionStateX : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    fbPositionStateX : FB_PositionStatePMPS1D;
+    fbStateSetupX : FB_StateSetupHelper;
+    eSetXTarget   : UINT;
+    eGetXTarget   : UINT;
+    // --- Y axis ---
+    astPositionStateY : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    fbPositionStateY : FB_PositionStatePMPS1D;
+    fbStateSetupY : FB_StateSetupHelper;
+    eSetYTarget   : UINT;
+    eGetYTarget   : UINT;
+    // --- Z axis ---
+    astPositionStateZ : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    fbPositionStateZ : FB_PositionStatePMPS1D;
+    eGetZTarget   : UINT;
+    eSetZTarget   : UINT;
+
+    fbStateSetup : FB_StateSetupHelper;
+    stDefault : ST_PositionState := (
+        fDelta := 1.0,
+        fVelocity := 0.5,
+        fAccel := 2.51748,
+        fDecel := 2.51748,
+        bMoveOk := TRUE,
+        bValid := TRUE
+    );
+
+	bInit: BOOL := TRUE;
+	bSimMode : BOOL;
+	
+//////////////////////////
+
+stDefaultRET : ST_PositionState := (
+    sName := 'RET:SmartActMCS2-3C',
+    fDelta := 1.0,
+    fVelocity := 5,
+    fAccel := 25,
+    fDecel := 25,
+    bMoveOk := TRUE,
+    bValid := TRUE
+);
+
+
+stDefaultX : ST_PositionState := (
+    sName := 'X:SmartActMCS2-3C',
+    fDelta := 1.0,
+    fVelocity := 5,
+    fAccel := 25,
+    fDecel := 25,
+    bMoveOk := TRUE,
+    bValid := TRUE
+);
+
+
+stDefaultY : ST_PositionState := (
+    sName := 'Y:SmartActMCS2-3C',
+    fDelta := 1.0,
+    fVelocity := 5,
+    fAccel := 25,
+    fDecel := 25,
+    bMoveOk := TRUE,
+    bValid := TRUE
+);
+
+fbStateSetupZ : FB_StateSetupHelper;
+
+stDefaultZ : ST_PositionState := (
+    sName := 'Z:SmartActMCS2-3C',
+    fDelta := 1.0,
+    fVelocity := 5,
+    fAccel := 25,
+    fDecel := 25,
+    bMoveOk := TRUE,
+    bValid := TRUE
+);
+	jsonHelper: FB_PMPSJsonTestHelper;
+	astBeam: ARRAY[0..GeneralConstants.MAX_STATES] OF ST_DbStateParams;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF bInit THEN
+    // --- RET axis ---
+    stMCS2StageRET.bHardwareEnable := TRUE;
+    stMCS2StageRET.nHomingMode     := E_EpicsHomeCmd.AUTOZERO;
+    stMCS2StageRET.nEnableMode     := ENUM_StageEnableMode.DURING_MOTION;
+
+    // --- X axis ---
+    stMCS2StageX.bHardwareEnable := TRUE;
+    stMCS2StageX.nHomingMode     := E_EpicsHomeCmd.AUTOZERO;
+    stMCS2StageX.nEnableMode     := ENUM_StageEnableMode.DURING_MOTION;
+
+    // --- Y axis ---
+    stMCS2StageY.bHardwareEnable := TRUE;
+    stMCS2StageY.nHomingMode     := E_EpicsHomeCmd.AUTOZERO;
+    stMCS2StageY.nEnableMode     := ENUM_StageEnableMode.DURING_MOTION;
+
+    // --- Z axis ---
+    stMCS2StageZ.bHardwareEnable := TRUE;
+    stMCS2StageZ.nHomingMode     := E_EpicsHomeCmd.AUTOZERO;
+    stMCS2StageZ.nEnableMode     := ENUM_StageEnableMode.DURING_MOTION;
+
+    // Only do this block once
+    bInit := FALSE;
+END_IF
+
+(* Initialization / Setup (typically called once at startup) *)
+StateSetup();
+
+// ========================EPS Checks (per axis)========================
+// fbDGPDEPS(
+//      stMCS2StageRET := stMCS2StageRET,
+//      stMCS2StageX   := stMCS2StageX,
+//      stMCS2StageY   := stMCS2StageY,
+//      stMCS2StageZ   := stMCS2StageZ,
+//      bHVActive      := bHVActive
+//  );
+
+fbSequencer(
+    eDGPDStateSet := eSetTarget,
+    stPlcToEpicsRET := fbPositionStateRET.stPlcToEpics,
+    stPlcToEpicsX   := fbPositionStateX.stPlcToEpics,
+    stPlcToEpicsY   := fbPositionStateY.stPlcToEpics,
+    stPlcToEpicsZ   := fbPositionStateZ.stPlcToEpics,
+	eRETTarget := eSetRETTarget,
+	eXTarget   := eSetXTarget,
+	eYTarget   := eSetYTarget,
+	eZTarget   := eSetZTarget
+);
+
+// --- RET axis ---
+fbPositionStateRET(
+    sDeviceName:=sDeviceName,
+    sTransitionKey:=sTransitionKey,
+    stMotionStage        := stMCS2StageRET,
+    astPositionState     := astPositionStateRET,
+    eEnumSet             := eSetRETTarget,
+    eEnumGet             := eGetRETTarget,
+    fbFFHWO              := fbFFHWO,
+    fbArbiter            := fbArbiter,
+    bReadDBNow           := NOT bInit,
+    bEnableMotion        := fbSequencer.bMoveRET AND bEnableMotion,
+    bEnableBeamParams    := bEnableBeamParams,
+    bEnablePositionLimits:= bEnablePositionLimits
+);
+
+stMCS2StageRET.bPowerSelf := FALSE;
+
+// --- X axis ---
+fbPositionStateX(
+    sDeviceName:=sDeviceName,
+    sTransitionKey:=sTransitionKey,
+    stMotionStage        := stMCS2StageX,
+    astPositionState     := astPositionStateX,
+    eEnumSet             := eSetXTarget,
+    eEnumGet             := eGetXTarget,
+    fbFFHWO              := fbFFHWO,
+    fbArbiter            := fbArbiter,
+    bReadDBNow           := NOT bInit,
+    bEnableMotion        := fbSequencer.bMoveX AND bEnableMotion,
+    bEnableBeamParams    := bEnableBeamParams,
+    bEnablePositionLimits:= bEnablePositionLimits
+);
+// --- X axis ---
+stMCS2StageX.bPowerSelf := FALSE;
+
+
+// --- Y axis ---
+fbPositionStateY(
+    sDeviceName:=sDeviceName,
+    sTransitionKey:=sTransitionKey,
+    stMotionStage        := stMCS2StageY,
+    astPositionState     := astPositionStateY,
+    eEnumSet             := eSetYTarget,
+    eEnumGet             := eGetYTarget,
+    fbFFHWO              := fbFFHWO,
+    fbArbiter            := fbArbiter,
+    bReadDBNow           := NOT bInit,
+    bEnableMotion        := fbSequencer.bMoveY AND bEnableMotion,
+    bEnableBeamParams    := bEnableBeamParams,
+    bEnablePositionLimits:= bEnablePositionLimits
+);
+// --- Y axis ---
+stMCS2StageY.bPowerSelf := FALSE;
+
+
+fbPositionStateZ(
+    sDeviceName:=sDeviceName,
+    sTransitionKey:=sTransitionKey,
+    stMotionStage        := stMCS2StageZ,
+    astPositionState     := astPositionStateZ,
+    eEnumSet             := eSetZTarget,
+    eEnumGet             := eGetZTarget,
+    fbFFHWO              := fbFFHWO,
+    fbArbiter            := fbArbiter,
+    bReadDBNow           := NOT bInit,
+    bEnableMotion        := fbSequencer.bMoveZ AND bEnableMotion,
+    bEnableBeamParams    := bEnableBeamParams,
+    bEnablePositionLimits:= bEnablePositionLimits
+);
+stMCS2StageZ.bPowerSelf := FALSE;
+
+bSafeToMoveRET := fbDGPDEPS.bSafeToMoveRET;
+bSafeToMoveX   := fbDGPDEPS.bSafeToMoveX;
+bSafeToMoveY   := fbDGPDEPS.bSafeToMoveY;
+bSafeToMoveZ   := fbDGPDEPS.bSafeToMoveZ;
+bSafeToMove    := fbDGPDEPS.bSafeToMove;
+
+bMoveRET         :=	fbSequencer.bMoveRET;
+bMoveX           :=	fbSequencer.bMoveX;
+bMoveY           :=	fbSequencer.bMoveY;
+bMoveZ           :=	fbSequencer.bMoveZ;
+bSequenceComplete:=	fbSequencer.bSequenceComplete;
+axisSequenceStep :=	fbSequencer.axisSequenceStep ;
+bEnteredInit           :=	fbSequencer.bEnteredInit;
+bEnteredCheckOut       :=	fbSequencer.bEnteredCheckOut;
+bEnteredMoveRETToTarget:=	fbSequencer.bEnteredMoveRETToTarget;
+bEnteredMoveXToTarget  :=	fbSequencer.bEnteredMoveXToTarget;
+bEnteredMoveYToTarget  :=	fbSequencer.bEnteredMoveYToTarget;
+bEnteredMoveZToTarget  :=	fbSequencer.bEnteredMoveZToTarget;
+bEnteredDone           :=	fbSequencer.bEnteredDone;
+bEnteredError          :=	fbSequencer.bEnteredError;
+
+nRETCurrState   := fbPositionStateRET.stPlcToEpics.nGetValue;
+nXCurrState     := fbPositionStateX.stPlcToEpics.nGetValue;
+nYCurrState     := fbPositionStateY.stPlcToEpics.nGetValue;
+nZCurrState     := fbPositionStateZ.stPlcToEpics.nGetValue;]]></ST>
+    </Implementation>
+    <Method Name="BeamParamSim" Id="{618e789d-7965-41e6-b360-378fb06ba1e5}">
+      <Declaration><![CDATA[METHOD BeamParamSim
+VAR_INPUT
+	bSimMode : BOOL;
+	astPositionStateRET : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+	astPositionStateX : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+	astPositionStateY : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+	astPositionStateZ : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.astPositionStateRET := astPositionStateRET;
+THIS^.astPositionStateX := astPositionStateX;
+THIS^.astPositionStateY := astPositionStateY;
+THIS^.astPositionStateZ := astPositionStateZ;
+this^.bSimMode := bSimMode;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="StateSetup" Id="{7b509eed-8168-4dc3-8699-5bde4c8ebfea}">
+      <Declaration><![CDATA[(* Initialization / Setup (typically called once at startup) *)
+METHOD StateSetup
+VAR_INST
+	iState: UINT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT bSimMode THEN
+// Create all beam parameter sets for all states in E_DGPDStates
+astBeam[E_DGPDStates.Unknown].stBeamParams := PMPS_GVL.cst0RateBeam;
+astBeam[E_DGPDStates.Unknown].nRequestAssertionID := 1;
+astBeam[E_DGPDStates.Unknown].sPmpsState := 'trans';
+
+astBeam[E_DGPDStates.OUT].stBeamParams := PMPS_GVL.cstFullBeam;
+astBeam[E_DGPDStates.OUT].nRequestAssertionID := 2;
+astBeam[E_DGPDStates.OUT].sPmpsState := 'out';
+
+// Example with random fakes -- you set as needed
+astBeam[E_DGPDStates.TARGET1A].stBeamParams := PMPS_GVL.cstFullBeam; astBeam[E_DGPDStates.TARGET1A].stBeamParams.nTran := 0.12;
+astBeam[E_DGPDStates.TARGET1A].nRequestAssertionID := 3; astBeam[E_DGPDStates.TARGET1A].sPmpsState := 'target1a';
+
+astBeam[E_DGPDStates.TARGET1B].stBeamParams := PMPS_GVL.cstFullBeam; astBeam[E_DGPDStates.TARGET1B].stBeamParams.nTran := 0.23;
+astBeam[E_DGPDStates.TARGET1B].nRequestAssertionID := 4; astBeam[E_DGPDStates.TARGET1B].sPmpsState := 'target1b';
+
+astBeam[E_DGPDStates.TARGET1C].stBeamParams := PMPS_GVL.cstFullBeam; astBeam[E_DGPDStates.TARGET1C].stBeamParams.nTran := 0.34;
+astBeam[E_DGPDStates.TARGET1C].nRequestAssertionID := 5; astBeam[E_DGPDStates.TARGET1C].sPmpsState := 'target1c';
+
+astBeam[E_DGPDStates.TARGET1D].stBeamParams := PMPS_GVL.cstFullBeam; astBeam[E_DGPDStates.TARGET1D].stBeamParams.nTran := 0.45;
+astBeam[E_DGPDStates.TARGET1D].nRequestAssertionID := 6; astBeam[E_DGPDStates.TARGET1D].sPmpsState := 'target1d';
+
+astBeam[E_DGPDStates.TARGET2].stBeamParams := PMPS_GVL.cstFullBeam; astBeam[E_DGPDStates.TARGET2].stBeamParams.nTran := 0.56;
+astBeam[E_DGPDStates.TARGET2].nRequestAssertionID := 7; astBeam[E_DGPDStates.TARGET2].sPmpsState := 'target2';
+
+astBeam[E_DGPDStates.TARGET3].stBeamParams := PMPS_GVL.cstFullBeam; astBeam[E_DGPDStates.TARGET3].stBeamParams.nTran := 0.67;
+astBeam[E_DGPDStates.TARGET3].nRequestAssertionID := 8; astBeam[E_DGPDStates.TARGET3].sPmpsState := 'target3';
+
+astBeam[E_DGPDStates.TARGET4].stBeamParams := PMPS_GVL.cstFullBeam; astBeam[E_DGPDStates.TARGET4].stBeamParams.nTran := 0.78;
+astBeam[E_DGPDStates.TARGET4].nRequestAssertionID := 9; astBeam[E_DGPDStates.TARGET4].sPmpsState := 'target4';
+
+astBeam[E_DGPDStates.TARGET5].stBeamParams := PMPS_GVL.cstFullBeam; astBeam[E_DGPDStates.TARGET5].stBeamParams.nTran := 0.89;
+astBeam[E_DGPDStates.TARGET5].nRequestAssertionID := 10; astBeam[E_DGPDStates.TARGET5].sPmpsState := 'target5';
+
+// === Assign beam parameters and names to each axis's position array ===
+FOR iState := E_DGPDStates.Unknown TO E_DGPDStates.TARGET5 DO
+    astPositionStateRET[iState].stPMPS := astBeam[iState];
+     astPositionStateRET[iState].sName  := TO_STRING(iState);
+    astPositionStateX[iState].stPMPS := astBeam[iState];
+    astPositionStateX[iState].sName  := TO_STRING(iState);
+    astPositionStateY[iState].stPMPS := astBeam[iState];
+    astPositionStateY[iState].sName  := TO_STRING(iState);
+    astPositionStateZ[iState].stPMPS := astBeam[iState];
+    astPositionStateZ[iState].sName  := TO_STRING(iState);
+END_FOR
+
+// Load a fake json doc to be consumed by our FB
+jsonHelper(
+    astBeamParams:=astBeam,
+    bExecute:=TRUE,
+    sDevName:='test',
+);
+
+// --- RET axis ---
+fbStateSetupRET(stPositionState := stDefaultRET, bSetDefault := TRUE);
+fbStateSetupRET(stPositionState := astPositionStateRET[1], fPosition := 100.0);
+fbStateSetupRET(stPositionState := astPositionStateRET[2], fPosition := 110.0);
+fbStateSetupRET(stPositionState := astPositionStateRET[3], fPosition := 120.0);
+fbStateSetupRET(stPositionState := astPositionStateRET[4], fPosition := 130.0);
+fbStateSetupRET(stPositionState := astPositionStateRET[5], fPosition := 140.0);
+fbStateSetupRET(stPositionState := astPositionStateRET[6], fPosition := 150.0);
+fbStateSetupRET(stPositionState := astPositionStateRET[7], fPosition := 160.0);
+fbStateSetupRET(stPositionState := astPositionStateRET[8], fPosition := 170.0);
+fbStateSetupRET(stPositionState := astPositionStateRET[9], fPosition := 180.0);
+
+// --- X axis ---
+fbStateSetupX(stPositionState := stDefaultX, bSetDefault := TRUE);
+fbStateSetupX(stPositionState := astPositionStateX[1], fPosition := 200.0);
+fbStateSetupX(stPositionState := astPositionStateX[2], fPosition := 210.0);
+fbStateSetupX(stPositionState := astPositionStateX[3], fPosition := 220.0);
+fbStateSetupX(stPositionState := astPositionStateX[4], fPosition := 230.0);
+fbStateSetupX(stPositionState := astPositionStateX[5], fPosition := 240.0);
+fbStateSetupX(stPositionState := astPositionStateX[6], fPosition := 250.0);
+fbStateSetupX(stPositionState := astPositionStateX[7], fPosition := 260.0);
+fbStateSetupX(stPositionState := astPositionStateX[8], fPosition := 270.0);
+fbStateSetupX(stPositionState := astPositionStateX[9], fPosition := 280.0);
+
+// --- Y axis ---
+fbStateSetupY(stPositionState := stDefaultY, bSetDefault := TRUE);
+fbStateSetupY(stPositionState := astPositionStateY[1], fPosition := 300.0);
+fbStateSetupY(stPositionState := astPositionStateY[2], fPosition := 310.0);
+fbStateSetupY(stPositionState := astPositionStateY[3], fPosition := 320.0);
+fbStateSetupY(stPositionState := astPositionStateY[4], fPosition := 330.0);
+fbStateSetupY(stPositionState := astPositionStateY[5], fPosition := 340.0);
+fbStateSetupY(stPositionState := astPositionStateY[6], fPosition := 350.0);
+fbStateSetupY(stPositionState := astPositionStateY[7], fPosition := 360.0);
+fbStateSetupY(stPositionState := astPositionStateY[8], fPosition := 370.0);
+fbStateSetupY(stPositionState := astPositionStateY[9], fPosition := 380.0);
+
+// --- Z axis ---
+fbStateSetupZ(stPositionState := stDefaultZ, bSetDefault := TRUE);
+fbStateSetupZ(stPositionState := astPositionStateZ[1], fPosition := 400.0);
+fbStateSetupZ(stPositionState := astPositionStateZ[2], fPosition := 410.0);
+fbStateSetupZ(stPositionState := astPositionStateZ[3], fPosition := 420.0);
+fbStateSetupZ(stPositionState := astPositionStateZ[4], fPosition := 430.0);
+fbStateSetupZ(stPositionState := astPositionStateZ[5], fPosition := 440.0);
+fbStateSetupZ(stPositionState := astPositionStateZ[6], fPosition := 450.0);
+fbStateSetupZ(stPositionState := astPositionStateZ[7], fPosition := 460.0);
+fbStateSetupZ(stPositionState := astPositionStateZ[8], fPosition := 470.0);
+fbStateSetupZ(stPositionState := astPositionStateZ[9], fPosition := 480.0);
+// 	fbStateSetup(stPositionState := stDefault, bSetDefault := TRUE);
+// 	fbStateSetup(stPositionState := astPositionStateRET[E_DGPDStates.OUT],        fDelta := 0.1, sName := 'OUT',         fPosition := 0.5);
+// 	astPositionStateRET[E_DGPDStates.OUT].stPMPS.sPmpsState := 'DREAM:PF-OUT';
+// 	fbStateSetup(stPositionState := astPositionStateRET[E_DGPDStates.TARGET1A],   fDelta := 0.1, sName := 'TARGET1A',    fPosition := 1.54);
+// 	astPositionStateRET[E_DGPDStates.TARGET1A].stPMPS.sPmpsState := 'DREAM:PF-TARGET1A';
+// 	fbStateSetup(stPositionState := astPositionStateRET[E_DGPDStates.TARGET1B],   fDelta := 0.1, sName := 'TARGET1B',    fPosition := 2.57);
+// 	astPositionStateRET[E_DGPDStates.TARGET1B].stPMPS.sPmpsState := 'DREAM:PF-TARGET1B';
+// 	fbStateSetup(stPositionState := astPositionStateRET[E_DGPDStates.TARGET1C],   fDelta := 0.1, sName := 'TARGET1C',    fPosition := 3.61);
+// 	astPositionStateRET[E_DGPDStates.TARGET1C].stPMPS.sPmpsState := 'DREAM:PF-TARGET1C';
+// 	fbStateSetup(stPositionState := astPositionStateRET[E_DGPDStates.TARGET1D],   fDelta := 0.1, sName := 'TARGET1D',    fPosition := 4.64);
+// 	astPositionStateRET[E_DGPDStates.TARGET1D].stPMPS.sPmpsState := 'DREAM:PF-TARGET1D';
+// 	fbStateSetup(stPositionState := astPositionStateRET[E_DGPDStates.TARGET2],    fDelta := 0.1, sName := 'TARGET2',     fPosition := 5.68);
+// 	astPositionStateRET[E_DGPDStates.TARGET2].stPMPS.sPmpsState := 'DREAM:PF-TARGET2';
+// 	fbStateSetup(stPositionState := astPositionStateRET[E_DGPDStates.TARGET3],    fDelta := 0.1, sName := 'TARGET3',     fPosition := 6.71);
+// 	astPositionStateRET[E_DGPDStates.TARGET3].stPMPS.sPmpsState := 'DREAM:PF-TARGET3';
+// 	fbStateSetup(stPositionState := astPositionStateRET[E_DGPDStates.TARGET4],    fDelta := 0.1, sName := 'TARGET4',     fPosition := 7.75);
+// 	astPositionStateRET[E_DGPDStates.TARGET4].stPMPS.sPmpsState := 'DREAM:PF-TARGET4';
+// 	fbStateSetup(stPositionState := astPositionStateRET[E_DGPDStates.TARGET5],    fDelta := 0.1, sName := 'TARGET5',     fPosition := 8.79);
+// 	astPositionStateRET[E_DGPDStates.TARGET5].stPMPS.sPmpsState := 'DREAM:PF-TARGET5';
+// 	
+// 	fbStateSetup(stPositionState := astPositionStateX[E_DGPDStates.OUT],        fDelta := 0.1, sName := 'OUT',         fPosition := 0.5);
+// 	astPositionStateX[E_DGPDStates.OUT].stPMPS.sPmpsState := 'DREAM:PF-OUT';
+// 	fbStateSetup(stPositionState := astPositionStateX[E_DGPDStates.TARGET1A],   fDelta := 0.1, sName := 'TARGET1A',    fPosition := 1.54);
+// 	astPositionStateX[E_DGPDStates.TARGET1A].stPMPS.sPmpsState := 'DREAM:PF-TARGET1A';
+// 	fbStateSetup(stPositionState := astPositionStateX[E_DGPDStates.TARGET1B],   fDelta := 0.1, sName := 'TARGET1B',    fPosition := 2.57);
+// 	astPositionStateX[E_DGPDStates.TARGET1B].stPMPS.sPmpsState := 'DREAM:PF-TARGET1B';
+// 	fbStateSetup(stPositionState := astPositionStateX[E_DGPDStates.TARGET1C],   fDelta := 0.1, sName := 'TARGET1C',    fPosition := 3.61);
+// 	astPositionStateX[E_DGPDStates.TARGET1C].stPMPS.sPmpsState := 'DREAM:PF-TARGET1C';
+// 	fbStateSetup(stPositionState := astPositionStateX[E_DGPDStates.TARGET1D],   fDelta := 0.1, sName := 'TARGET1D',    fPosition := 4.64);
+// 	astPositionStateX[E_DGPDStates.TARGET1D].stPMPS.sPmpsState := 'DREAM:PF-TARGET1D';
+// 	fbStateSetup(stPositionState := astPositionStateX[E_DGPDStates.TARGET2],    fDelta := 0.1, sName := 'TARGET2',     fPosition := 5.68);
+// 	astPositionStateX[E_DGPDStates.TARGET2].stPMPS.sPmpsState := 'DREAM:PF-TARGET2';
+// 	fbStateSetup(stPositionState := astPositionStateX[E_DGPDStates.TARGET3],    fDelta := 0.1, sName := 'TARGET3',     fPosition := 6.71);
+// 	astPositionStateX[E_DGPDStates.TARGET3].stPMPS.sPmpsState := 'DREAM:PF-TARGET3';
+// 	fbStateSetup(stPositionState := astPositionStateX[E_DGPDStates.TARGET4],    fDelta := 0.1, sName := 'TARGET4',     fPosition := 7.75);
+// 	astPositionStateX[E_DGPDStates.TARGET4].stPMPS.sPmpsState := 'DREAM:PF-TARGET4';
+// 	fbStateSetup(stPositionState := astPositionStateX[E_DGPDStates.TARGET5],    fDelta := 0.1, sName := 'TARGET5',     fPosition := 8.79);
+// 	astPositionStateX[E_DGPDStates.TARGET5].stPMPS.sPmpsState := 'DREAM:PF-TARGET5';
+// 	
+// 	fbStateSetup(stPositionState := astPositionStateY[E_DGPDStates.OUT],        fDelta := 0.1, sName := 'OUT',         fPosition := 0.5);
+// 	astPositionStateY[E_DGPDStates.OUT].stPMPS.sPmpsState := 'DREAM:PF-OUT';
+// 	fbStateSetup(stPositionState := astPositionStateY[E_DGPDStates.TARGET1A],   fDelta := 0.1, sName := 'TARGET1A',    fPosition := 1.54);
+// 	astPositionStateY[E_DGPDStates.TARGET1A].stPMPS.sPmpsState := 'DREAM:PF-TARGET1A';
+// 	fbStateSetup(stPositionState := astPositionStateY[E_DGPDStates.TARGET1B],   fDelta := 0.1, sName := 'TARGET1B',    fPosition := 2.57);
+// 	astPositionStateY[E_DGPDStates.TARGET1B].stPMPS.sPmpsState := 'DREAM:PF-TARGET1B';
+// 	fbStateSetup(stPositionState := astPositionStateY[E_DGPDStates.TARGET1C],   fDelta := 0.1, sName := 'TARGET1C',    fPosition := 3.61);
+// 	
+// 	astPositionStateY[E_DGPDStates.TARGET1C].stPMPS.sPmpsState := 'DREAM:PF-TARGET1C';
+// 	fbStateSetup(stPositionState := astPositionStateY[E_DGPDStates.TARGET1D],   fDelta := 0.1, sName := 'TARGET1D',    fPosition := 4.64);
+// 	astPositionStateY[E_DGPDStates.TARGET1D].stPMPS.sPmpsState := 'DREAM:PF-TARGET1D';
+// 	fbStateSetup(stPositionState := astPositionStateY[E_DGPDStates.TARGET2],    fDelta := 0.1, sName := 'TARGET2',     fPosition := 5.68);
+// 	astPositionStateY[E_DGPDStates.TARGET2].stPMPS.sPmpsState := 'DREAM:PF-TARGET2';
+// 	fbStateSetup(stPositionState := astPositionStateY[E_DGPDStates.TARGET3],    fDelta := 0.1, sName := 'TARGET3',     fPosition := 6.71);
+// 	astPositionStateY[E_DGPDStates.TARGET3].stPMPS.sPmpsState := 'DREAM:PF-TARGET3';
+// 	fbStateSetup(stPositionState := astPositionStateY[E_DGPDStates.TARGET4],    fDelta := 0.1, sName := 'TARGET4',     fPosition := 7.75);
+// 	astPositionStateY[E_DGPDStates.TARGET4].stPMPS.sPmpsState := 'DREAM:PF-TARGET4';
+// 	fbStateSetup(stPositionState := astPositionStateY[E_DGPDStates.TARGET5],    fDelta := 0.1, sName := 'TARGET5',     fPosition := 8.79);
+// 	astPositionStateY[E_DGPDStates.TARGET5].stPMPS.sPmpsState := 'DREAM:PF-TARGET5';
+// 	
+// 	fbStateSetup(stPositionState := astPositionStateZ[E_DGPDStates.OUT],        fDelta := 0.1, sName := 'OUT',         fPosition := 0.5);
+// 	astPositionStateZ[E_DGPDStates.OUT].stPMPS.sPmpsState := 'DREAM:PF-OUT';
+// 	fbStateSetup(stPositionState := astPositionStateZ[E_DGPDStates.TARGET1A],   fDelta := 0.1, sName := 'TARGET1A',    fPosition := 1.54);
+// 	astPositionStateZ[E_DGPDStates.TARGET1A].stPMPS.sPmpsState := 'DREAM:PF-TARGET1A';
+// 	fbStateSetup(stPositionState := astPositionStateZ[E_DGPDStates.TARGET1B],   fDelta := 0.1, sName := 'TARGET1B',    fPosition := 2.57);
+// 	astPositionStateZ[E_DGPDStates.TARGET1B].stPMPS.sPmpsState := 'DREAM:PF-TARGET1B';
+// 	fbStateSetup(stPositionState := astPositionStateZ[E_DGPDStates.TARGET1C],   fDelta := 0.1, sName := 'TARGET1C',    fPosition := 3.61);
+// 	astPositionStateZ[E_DGPDStates.TARGET1C].stPMPS.sPmpsState := 'DREAM:PF-TARGET1C';
+// 	fbStateSetup(stPositionState := astPositionStateZ[E_DGPDStates.TARGET1D],   fDelta := 0.1, sName := 'TARGET1D',    fPosition := 4.64);
+// 	astPositionStateZ[E_DGPDStates.TARGET1D].stPMPS.sPmpsState := 'DREAM:PF-TARGET1D';
+// 	fbStateSetup(stPositionState := astPositionStateZ[E_DGPDStates.TARGET2],    fDelta := 0.1, sName := 'TARGET2',     fPosition := 5.68);
+// 	astPositionStateZ[E_DGPDStates.TARGET2].stPMPS.sPmpsState := 'DREAM:PF-TARGET2';
+// 	fbStateSetup(stPositionState := astPositionStateZ[E_DGPDStates.TARGET3],    fDelta := 0.1, sName := 'TARGET3',     fPosition := 6.71);
+// 	astPositionStateZ[E_DGPDStates.TARGET3].stPMPS.sPmpsState := 'DREAM:PF-TARGET3';
+// 	fbStateSetup(stPositionState := astPositionStateZ[E_DGPDStates.TARGET4],    fDelta := 0.1, sName := 'TARGET4',     fPosition := 7.75);
+// 	astPositionStateZ[E_DGPDStates.TARGET4].stPMPS.sPmpsState := 'DREAM:PF-TARGET4';
+// 	fbStateSetup(stPositionState := astPositionStateZ[E_DGPDStates.TARGET5],    fDelta := 0.1, sName := 'TARGET5',     fPosition := 8.79);
+// 	astPositionStateZ[E_DGPDStates.TARGET5].stPMPS.sPmpsState := 'DREAM:PF-TARGET5';	
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

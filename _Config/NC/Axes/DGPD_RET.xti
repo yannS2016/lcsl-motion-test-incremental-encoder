@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.13" ClassName="CNcSafTaskDef" SubType="0" TcProjectVariant="hardware">
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.13" ClassName="CNcAxisDef" SubType="1" TcProjectVariant="hardware">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-000000000035}" TcBaseType="true" HideType="true">UINTARR2</Name>
@@ -1424,1282 +1424,169 @@ External Setpoint Generation:
 			</Relations>
 		</DataType>
 	</DataTypes>
-	<NC>
-		<SafTask Priority="4" CycleTime="20000" AmsPort="501" IoAtBegin="true" SafTaskInfo="256" HighPrioAds="true">
-			<Name>NC-Task 1 SAF</Name>
-			<Vars VarGrpType="1" InsertType="1">
+	<Axis Id="14" CreateSymbols="true" AxisType="1">
+		<Name>__FILENAME__</Name>
+		<ProjectVariant PvUseDisable="true">
+			<Variant>
+				<Name>dev</Name>
+				<Name>hardware</Name>
+				<Disable>false</Disable>
+			</Variant>
+			<Variant>
+				<Name>unittest</Name>
+				<Disable>true</Disable>
+			</Variant>
+		</ProjectVariant>
+		<AxisPara>
+			<OtherSettings AllowMotionCmdToSlave="true"/>
+		</AxisPara>
+		<Encoder Name="Enc" EncType="1">
+			<Vars VarGrpType="1">
 				<Name>Inputs</Name>
-			</Vars>
-			<Vars VarGrpType="2" InsertType="1">
-				<Name>Outputs</Name>
-			</Vars>
-			<Image Id="3" AddrType="1" ImageType="1">
-				<Name>Image</Name>
-			</Image>
-		</SafTask>
-		<SvbTask Priority="8" CycleTime="100000" AmsPort="511">
-			<Name>NC-Task 1 SVB</Name>
-		</SvbTask>
-		<Axis Id="2" CreateSymbols="true" AxisType="1">
-			<Name>M9_DREAM_DGPD_MMT_X</Name>
-			<ProjectVariant PvUseDisable="true">
-				<Variant>
-					<Name>dev</Name>
-					<Name>unittest</Name>
-					<Disable>true</Disable>
-				</Variant>
-				<Variant>
-					<Name>hardware</Name>
-					<Disable>false</Disable>
-				</Variant>
-			</ProjectVariant>
-			<AxisPara>
-				<OtherSettings AllowMotionCmdToSlave="true"/>
-			</AxisPara>
-			<Encoder Name="Enc" EncType="1">
-				<EncPara ScaleFactorDenominator="2"/>
-				<Vars VarGrpType="1">
-					<Name>Inputs</Name>
-					<Var>
-						<Name>In</Name>
-						<Type GUID="{901C2423-655B-45CE-B7E3-21F174F0F99F}" Namespace="MC">NCENCODERSTRUCT_IN2B</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn6</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn7</Name>
-							<Comment><![CDATA[Drive Velocity Actual Value
+				<Var>
+					<Name>In</Name>
+					<Type GUID="{901C2423-655B-45CE-B7E3-21F174F0F99F}" Namespace="MC">NCENCODERSTRUCT_IN2B</Type>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataIn1</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataIn2</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataIn3</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataIn4</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataIn5</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataIn6</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataIn7</Name>
+						<Comment><![CDATA[Drive Velocity Actual Value
 ]]></Comment>
-						</SubVar>
-					</Var>
-				</Vars>
-				<Vars VarGrpType="2">
-					<Name>Outputs</Name>
-					<Var>
-						<Name>Out</Name>
-						<Type GUID="{9CC50AB2-5D79-4869-A3C2-1FA7761BAFEA}" Namespace="MC">NCENCODERSTRUCT_OUT2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-			</Encoder>
-			<Drive Name="Drive" DrvType="5">
-				<DrvPara>
-					<Analog TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
-					<TimeComp TaskDelayCycles="1"/>
-				</DrvPara>
-				<Vars VarGrpType="1">
-					<Name>Inputs</Name>
-					<Var>
-						<Name>In</Name>
-						<Type GUID="{F95C7C69-0C87-46C4-9559-1285CCA5B23A}" Namespace="MC">NCDRIVESTRUCT_IN2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-				<Vars VarGrpType="2">
-					<Name>Outputs</Name>
-					<Var>
-						<Name>Out</Name>
-						<Type GUID="{644DC4BD-3D15-4DCB-94C7-24F3A5D579AA}" Namespace="MC">NCDRIVESTRUCT_OUT2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut2</Name>
-						</SubVar>
-						<SubVar>
-							<Name>nCtrl2</Name>
-							<Comment><![CDATA[Digital Outputs Setpoint Generator:
+					</SubVar>
+				</Var>
+			</Vars>
+			<Vars VarGrpType="2">
+				<Name>Outputs</Name>
+				<Var>
+					<Name>Out</Name>
+					<Type GUID="{9CC50AB2-5D79-4869-A3C2-1FA7761BAFEA}" Namespace="MC">NCENCODERSTRUCT_OUT2</Type>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataOut1</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataOut2</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataOut3</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataOut4</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataOut5</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataOut6</Name>
+					</SubVar>
+				</Var>
+			</Vars>
+		</Encoder>
+		<Drive Name="Drive" DrvType="5">
+			<DrvPara>
+				<Analog TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
+				<TimeComp TaskDelayCycles="1"/>
+			</DrvPara>
+			<Vars VarGrpType="1">
+				<Name>Inputs</Name>
+				<Var>
+					<Name>In</Name>
+					<Type GUID="{F95C7C69-0C87-46C4-9559-1285CCA5B23A}" Namespace="MC">NCDRIVESTRUCT_IN2</Type>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataIn1</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataIn2</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataIn3</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataIn4</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataIn5</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataIn6</Name>
+					</SubVar>
+				</Var>
+			</Vars>
+			<Vars VarGrpType="2">
+				<Name>Outputs</Name>
+				<Var>
+					<Name>Out</Name>
+					<Type GUID="{644DC4BD-3D15-4DCB-94C7-24F3A5D579AA}" Namespace="MC">NCDRIVESTRUCT_OUT2</Type>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataOut1</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataOut2</Name>
+					</SubVar>
+					<SubVar>
+						<Name>nCtrl2</Name>
+						<Comment><![CDATA[Digital Outputs Setpoint Generator:
 0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
 0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
 0x80 (1000 0000) = Stop
 ]]></Comment>
-						</SubVar>
-						<SubVar>
-							<Name>nCtrl3</Name>
-							<Comment><![CDATA[Digital Outputs (Setpoint Generator + Position Controller):
+					</SubVar>
+					<SubVar>
+						<Name>nCtrl3</Name>
+						<Comment><![CDATA[Digital Outputs (Setpoint Generator + Position Controller):
 0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
 0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
 0x80 (1000 0000) = Stop
 ]]></Comment>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-			</Drive>
-			<Controller Name="Ctrl" CtrType="1">
-				<CtrPara PriorControlFactor="1">
-					<Observer BandWidth="20"/>
-				</CtrPara>
-			</Controller>
-			<Vars VarGrpType="1" InsertType="1">
-				<Name>Inputs</Name>
-				<Var>
-					<Name>FromPlc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataOut3</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataOut4</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataOut5</Name>
+					</SubVar>
+					<SubVar TypeFormatIndex="2">
+						<Name>nDataOut6</Name>
+					</SubVar>
 				</Var>
 			</Vars>
-			<Vars VarGrpType="2" InsertType="1">
-				<Name>Outputs</Name>
-				<Var>
-					<Name>ToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-			</Vars>
-		</Axis>
-		<Axis Id="3" CreateSymbols="true" AxisType="1">
-			<Name>M10_DREAM_DGPD_MMT_Y</Name>
-			<ProjectVariant PvUseDisable="true">
-				<Variant>
-					<Name>dev</Name>
-					<Name>unittest</Name>
-					<Disable>true</Disable>
-				</Variant>
-				<Variant>
-					<Name>hardware</Name>
-					<Disable>false</Disable>
-				</Variant>
-			</ProjectVariant>
-			<AxisPara>
-				<OtherSettings AllowMotionCmdToSlave="true"/>
-			</AxisPara>
-			<Encoder Name="Enc" EncType="1">
-				<EncPara ScaleFactorDenominator="2"/>
-				<Vars VarGrpType="1">
-					<Name>Inputs</Name>
-					<Var>
-						<Name>In</Name>
-						<Type GUID="{901C2423-655B-45CE-B7E3-21F174F0F99F}" Namespace="MC">NCENCODERSTRUCT_IN2B</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn6</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn7</Name>
-							<Comment><![CDATA[Drive Velocity Actual Value
-]]></Comment>
-						</SubVar>
-					</Var>
-				</Vars>
-				<Vars VarGrpType="2">
-					<Name>Outputs</Name>
-					<Var>
-						<Name>Out</Name>
-						<Type GUID="{9CC50AB2-5D79-4869-A3C2-1FA7761BAFEA}" Namespace="MC">NCENCODERSTRUCT_OUT2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-			</Encoder>
-			<Drive Name="Drive" DrvType="5">
-				<DrvPara>
-					<Analog TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
-					<TimeComp TaskDelayCycles="1"/>
-				</DrvPara>
-				<Vars VarGrpType="1">
-					<Name>Inputs</Name>
-					<Var>
-						<Name>In</Name>
-						<Type GUID="{F95C7C69-0C87-46C4-9559-1285CCA5B23A}" Namespace="MC">NCDRIVESTRUCT_IN2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-				<Vars VarGrpType="2">
-					<Name>Outputs</Name>
-					<Var>
-						<Name>Out</Name>
-						<Type GUID="{644DC4BD-3D15-4DCB-94C7-24F3A5D579AA}" Namespace="MC">NCDRIVESTRUCT_OUT2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut2</Name>
-						</SubVar>
-						<SubVar>
-							<Name>nCtrl2</Name>
-							<Comment><![CDATA[Digital Outputs Setpoint Generator:
-0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
-0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
-0x80 (1000 0000) = Stop
-]]></Comment>
-						</SubVar>
-						<SubVar>
-							<Name>nCtrl3</Name>
-							<Comment><![CDATA[Digital Outputs (Setpoint Generator + Position Controller):
-0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
-0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
-0x80 (1000 0000) = Stop
-]]></Comment>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-			</Drive>
-			<Controller Name="Ctrl" CtrType="1">
-				<CtrPara PriorControlFactor="1">
-					<Observer BandWidth="20"/>
-				</CtrPara>
-			</Controller>
-			<Vars VarGrpType="1" InsertType="1">
-				<Name>Inputs</Name>
-				<Var>
-					<Name>FromPlc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-			</Vars>
-			<Vars VarGrpType="2" InsertType="1">
-				<Name>Outputs</Name>
-				<Var>
-					<Name>ToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-			</Vars>
-		</Axis>
-		<Axis Id="1" CreateSymbols="true" AxisType="1">
-			<Name>M11_DREAM_DGPD_MMT_Z</Name>
-			<ProjectVariant PvUseDisable="true">
-				<Variant>
-					<Name>dev</Name>
-					<Name>unittest</Name>
-					<Disable>true</Disable>
-				</Variant>
-				<Variant>
-					<Name>hardware</Name>
-					<Disable>false</Disable>
-				</Variant>
-			</ProjectVariant>
-			<AxisPara>
-				<OtherSettings AllowMotionCmdToSlave="true"/>
-			</AxisPara>
-			<Encoder Name="Enc" EncType="1">
-				<EncPara ScaleFactorDenominator="2"/>
-				<Vars VarGrpType="1">
-					<Name>Inputs</Name>
-					<Var>
-						<Name>In</Name>
-						<Type GUID="{901C2423-655B-45CE-B7E3-21F174F0F99F}" Namespace="MC">NCENCODERSTRUCT_IN2B</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn6</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn7</Name>
-							<Comment><![CDATA[Drive Velocity Actual Value
-]]></Comment>
-						</SubVar>
-					</Var>
-				</Vars>
-				<Vars VarGrpType="2">
-					<Name>Outputs</Name>
-					<Var>
-						<Name>Out</Name>
-						<Type GUID="{9CC50AB2-5D79-4869-A3C2-1FA7761BAFEA}" Namespace="MC">NCENCODERSTRUCT_OUT2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-			</Encoder>
-			<Drive Name="Drive" DrvType="5">
-				<DrvPara>
-					<Analog TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
-					<TimeComp TaskDelayCycles="1"/>
-				</DrvPara>
-				<Vars VarGrpType="1">
-					<Name>Inputs</Name>
-					<Var>
-						<Name>In</Name>
-						<Type GUID="{F95C7C69-0C87-46C4-9559-1285CCA5B23A}" Namespace="MC">NCDRIVESTRUCT_IN2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-				<Vars VarGrpType="2">
-					<Name>Outputs</Name>
-					<Var>
-						<Name>Out</Name>
-						<Type GUID="{644DC4BD-3D15-4DCB-94C7-24F3A5D579AA}" Namespace="MC">NCDRIVESTRUCT_OUT2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut2</Name>
-						</SubVar>
-						<SubVar>
-							<Name>nCtrl2</Name>
-							<Comment><![CDATA[Digital Outputs Setpoint Generator:
-0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
-0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
-0x80 (1000 0000) = Stop
-]]></Comment>
-						</SubVar>
-						<SubVar>
-							<Name>nCtrl3</Name>
-							<Comment><![CDATA[Digital Outputs (Setpoint Generator + Position Controller):
-0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
-0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
-0x80 (1000 0000) = Stop
-]]></Comment>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-			</Drive>
-			<Controller Name="Ctrl" CtrType="1">
-				<CtrPara PriorControlFactor="1">
-					<Observer BandWidth="20"/>
-				</CtrPara>
-			</Controller>
-			<Vars VarGrpType="1" InsertType="1">
-				<Name>Inputs</Name>
-				<Var>
-					<Name>FromPlc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-			</Vars>
-			<Vars VarGrpType="2" InsertType="1">
-				<Name>Outputs</Name>
-				<Var>
-					<Name>ToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-			</Vars>
-		</Axis>
-		<Axis Id="4" CreateSymbols="true" AxisType="1">
-			<Name>M12_DREAM_DGPD_MMT_RET</Name>
-			<ProjectVariant PvUseDisable="true">
-				<Variant>
-					<Name>dev</Name>
-					<Name>unittest</Name>
-					<Disable>true</Disable>
-				</Variant>
-				<Variant>
-					<Name>hardware</Name>
-					<Disable>false</Disable>
-				</Variant>
-			</ProjectVariant>
-			<AxisPara>
-				<OtherSettings AllowMotionCmdToSlave="true"/>
-			</AxisPara>
-			<Encoder Name="Enc" EncType="19">
-				<EncPara MaxCount="#xffffffff"/>
-				<Vars VarGrpType="1">
-					<Name>Inputs</Name>
-					<Var>
-						<Name>In</Name>
-						<Type GUID="{901C2423-655B-45CE-B7E3-21F174F0F99F}" Namespace="MC">NCENCODERSTRUCT_IN2B</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn6</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn7</Name>
-							<Comment><![CDATA[Drive Velocity Actual Value
-]]></Comment>
-						</SubVar>
-					</Var>
-				</Vars>
-				<Vars VarGrpType="2">
-					<Name>Outputs</Name>
-					<Var>
-						<Name>Out</Name>
-						<Type GUID="{9CC50AB2-5D79-4869-A3C2-1FA7761BAFEA}" Namespace="MC">NCENCODERSTRUCT_OUT2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-			</Encoder>
-			<Drive Name="Drive" DrvType="16">
-				<DrvPara MaxCount="#xffffffff">
-					<Analog TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
-					<TimeComp TaskDelayCycles="1"/>
-				</DrvPara>
-				<Vars VarGrpType="1">
-					<Name>Inputs</Name>
-					<Var>
-						<Name>In</Name>
-						<Type GUID="{F95C7C69-0C87-46C4-9559-1285CCA5B23A}" Namespace="MC">NCDRIVESTRUCT_IN2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-				<Vars VarGrpType="2">
-					<Name>Outputs</Name>
-					<Var>
-						<Name>Out</Name>
-						<Type GUID="{644DC4BD-3D15-4DCB-94C7-24F3A5D579AA}" Namespace="MC">NCDRIVESTRUCT_OUT2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-			</Drive>
-			<Controller Name="Ctrl" CtrType="1">
-				<CtrPara PriorControlFactor="1">
-					<Observer BandWidth="20"/>
-				</CtrPara>
-			</Controller>
-			<Vars VarGrpType="1" InsertType="1">
-				<Name>Inputs</Name>
-				<Var>
-					<Name>FromPlc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-			</Vars>
-			<Vars VarGrpType="2" InsertType="1">
-				<Name>Outputs</Name>
-				<Var>
-					<Name>ToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-			</Vars>
-		</Axis>
-		<Axis Id="9" CreateSymbols="true" AxisType="1">
-			<Name>M16_DREAM_SLIT_MMT_Y2</Name>
-			<ProjectVariant PvUseDisable="true">
-				<Variant>
-					<Name>dev</Name>
-					<Name>unittest</Name>
-					<Disable>true</Disable>
-				</Variant>
-				<Variant>
-					<Name>hardware</Name>
-					<Disable>false</Disable>
-				</Variant>
-			</ProjectVariant>
-			<AxisPara>
-				<OtherSettings AllowMotionCmdToSlave="true"/>
-			</AxisPara>
-			<Encoder Name="Enc" EncType="19">
-				<EncPara MaxCount="#xffffffff"/>
-				<Vars VarGrpType="1">
-					<Name>Inputs</Name>
-					<Var>
-						<Name>In</Name>
-						<Type GUID="{901C2423-655B-45CE-B7E3-21F174F0F99F}" Namespace="MC">NCENCODERSTRUCT_IN2B</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn6</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn7</Name>
-							<Comment><![CDATA[Drive Velocity Actual Value
-]]></Comment>
-						</SubVar>
-					</Var>
-				</Vars>
-				<Vars VarGrpType="2">
-					<Name>Outputs</Name>
-					<Var>
-						<Name>Out</Name>
-						<Type GUID="{9CC50AB2-5D79-4869-A3C2-1FA7761BAFEA}" Namespace="MC">NCENCODERSTRUCT_OUT2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-			</Encoder>
-			<Drive Name="Drive" DrvType="16">
-				<DrvPara MaxCount="#xffffffff">
-					<Analog TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
-					<TimeComp TaskDelayCycles="1"/>
-				</DrvPara>
-				<Vars VarGrpType="1">
-					<Name>Inputs</Name>
-					<Var>
-						<Name>In</Name>
-						<Type GUID="{F95C7C69-0C87-46C4-9559-1285CCA5B23A}" Namespace="MC">NCDRIVESTRUCT_IN2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-				<Vars VarGrpType="2">
-					<Name>Outputs</Name>
-					<Var>
-						<Name>Out</Name>
-						<Type GUID="{644DC4BD-3D15-4DCB-94C7-24F3A5D579AA}" Namespace="MC">NCDRIVESTRUCT_OUT2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-			</Drive>
-			<Controller Name="Ctrl" CtrType="1">
-				<CtrPara PriorControlFactor="1">
-					<Observer BandWidth="20"/>
-				</CtrPara>
-			</Controller>
-			<Vars VarGrpType="1" InsertType="1">
-				<Name>Inputs</Name>
-				<Var>
-					<Name>FromPlc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-			</Vars>
-			<Vars VarGrpType="2" InsertType="1">
-				<Name>Outputs</Name>
-				<Var>
-					<Name>ToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-			</Vars>
-		</Axis>
-		<Axis Id="8" CreateSymbols="true" AxisType="1">
-			<Name>M15_DREAM_SLIT_MMT_Y1</Name>
-			<ProjectVariant PvUseDisable="true">
-				<Variant>
-					<Name>dev</Name>
-					<Name>unittest</Name>
-					<Disable>true</Disable>
-				</Variant>
-				<Variant>
-					<Name>hardware</Name>
-					<Disable>false</Disable>
-				</Variant>
-			</ProjectVariant>
-			<AxisPara>
-				<OtherSettings AllowMotionCmdToSlave="true"/>
-			</AxisPara>
-			<Encoder Name="Enc" EncType="19">
-				<EncPara MaxCount="#xffffffff"/>
-				<Vars VarGrpType="1">
-					<Name>Inputs</Name>
-					<Var>
-						<Name>In</Name>
-						<Type GUID="{901C2423-655B-45CE-B7E3-21F174F0F99F}" Namespace="MC">NCENCODERSTRUCT_IN2B</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn6</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn7</Name>
-							<Comment><![CDATA[Drive Velocity Actual Value
-]]></Comment>
-						</SubVar>
-					</Var>
-				</Vars>
-				<Vars VarGrpType="2">
-					<Name>Outputs</Name>
-					<Var>
-						<Name>Out</Name>
-						<Type GUID="{9CC50AB2-5D79-4869-A3C2-1FA7761BAFEA}" Namespace="MC">NCENCODERSTRUCT_OUT2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-			</Encoder>
-			<Drive Name="Drive" DrvType="16">
-				<DrvPara MaxCount="#xffffffff">
-					<Analog TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
-					<TimeComp TaskDelayCycles="1"/>
-				</DrvPara>
-				<Vars VarGrpType="1">
-					<Name>Inputs</Name>
-					<Var>
-						<Name>In</Name>
-						<Type GUID="{F95C7C69-0C87-46C4-9559-1285CCA5B23A}" Namespace="MC">NCDRIVESTRUCT_IN2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-				<Vars VarGrpType="2">
-					<Name>Outputs</Name>
-					<Var>
-						<Name>Out</Name>
-						<Type GUID="{644DC4BD-3D15-4DCB-94C7-24F3A5D579AA}" Namespace="MC">NCDRIVESTRUCT_OUT2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-			</Drive>
-			<Controller Name="Ctrl" CtrType="1">
-				<CtrPara PriorControlFactor="1">
-					<Observer BandWidth="20"/>
-				</CtrPara>
-			</Controller>
-			<Vars VarGrpType="1" InsertType="1">
-				<Name>Inputs</Name>
-				<Var>
-					<Name>FromPlc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-			</Vars>
-			<Vars VarGrpType="2" InsertType="1">
-				<Name>Outputs</Name>
-				<Var>
-					<Name>ToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-			</Vars>
-		</Axis>
-		<Axis Id="7" CreateSymbols="true" AxisType="1">
-			<Name>M14_DREAM_SLIT_MMT_X2</Name>
-			<ProjectVariant PvUseDisable="true">
-				<Variant>
-					<Name>dev</Name>
-					<Name>unittest</Name>
-					<Disable>true</Disable>
-				</Variant>
-				<Variant>
-					<Name>hardware</Name>
-					<Disable>false</Disable>
-				</Variant>
-			</ProjectVariant>
-			<AxisPara>
-				<OtherSettings AllowMotionCmdToSlave="true"/>
-			</AxisPara>
-			<Encoder Name="Enc" EncType="19">
-				<EncPara MaxCount="#xffffffff"/>
-				<Vars VarGrpType="1">
-					<Name>Inputs</Name>
-					<Var>
-						<Name>In</Name>
-						<Type GUID="{901C2423-655B-45CE-B7E3-21F174F0F99F}" Namespace="MC">NCENCODERSTRUCT_IN2B</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn6</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn7</Name>
-							<Comment><![CDATA[Drive Velocity Actual Value
-]]></Comment>
-						</SubVar>
-					</Var>
-				</Vars>
-				<Vars VarGrpType="2">
-					<Name>Outputs</Name>
-					<Var>
-						<Name>Out</Name>
-						<Type GUID="{9CC50AB2-5D79-4869-A3C2-1FA7761BAFEA}" Namespace="MC">NCENCODERSTRUCT_OUT2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-			</Encoder>
-			<Drive Name="Drive" DrvType="16">
-				<DrvPara MaxCount="#xffffffff">
-					<Analog TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
-					<TimeComp TaskDelayCycles="1"/>
-				</DrvPara>
-				<Vars VarGrpType="1">
-					<Name>Inputs</Name>
-					<Var>
-						<Name>In</Name>
-						<Type GUID="{F95C7C69-0C87-46C4-9559-1285CCA5B23A}" Namespace="MC">NCDRIVESTRUCT_IN2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-				<Vars VarGrpType="2">
-					<Name>Outputs</Name>
-					<Var>
-						<Name>Out</Name>
-						<Type GUID="{644DC4BD-3D15-4DCB-94C7-24F3A5D579AA}" Namespace="MC">NCDRIVESTRUCT_OUT2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-			</Drive>
-			<Controller Name="Ctrl" CtrType="1">
-				<CtrPara PriorControlFactor="1">
-					<Observer BandWidth="20"/>
-				</CtrPara>
-			</Controller>
-			<Vars VarGrpType="1" InsertType="1">
-				<Name>Inputs</Name>
-				<Var>
-					<Name>FromPlc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-			</Vars>
-			<Vars VarGrpType="2" InsertType="1">
-				<Name>Outputs</Name>
-				<Var>
-					<Name>ToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-			</Vars>
-		</Axis>
-		<Axis Id="5" CreateSymbols="true" AxisType="1">
-			<Name>M13_DREAM_SLIT_MMT_X1</Name>
-			<ProjectVariant PvUseDisable="true">
-				<Variant>
-					<Name>dev</Name>
-					<Name>unittest</Name>
-					<Disable>true</Disable>
-				</Variant>
-				<Variant>
-					<Name>hardware</Name>
-					<Disable>false</Disable>
-				</Variant>
-			</ProjectVariant>
-			<AxisPara>
-				<OtherSettings AllowMotionCmdToSlave="true"/>
-			</AxisPara>
-			<Encoder Name="Enc" EncType="19">
-				<EncPara MaxCount="#xffffffff"/>
-				<Vars VarGrpType="1">
-					<Name>Inputs</Name>
-					<Var>
-						<Name>In</Name>
-						<Type GUID="{901C2423-655B-45CE-B7E3-21F174F0F99F}" Namespace="MC">NCENCODERSTRUCT_IN2B</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn6</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn7</Name>
-							<Comment><![CDATA[Drive Velocity Actual Value
-]]></Comment>
-						</SubVar>
-					</Var>
-				</Vars>
-				<Vars VarGrpType="2">
-					<Name>Outputs</Name>
-					<Var>
-						<Name>Out</Name>
-						<Type GUID="{9CC50AB2-5D79-4869-A3C2-1FA7761BAFEA}" Namespace="MC">NCENCODERSTRUCT_OUT2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-			</Encoder>
-			<Drive Name="Drive" DrvType="16">
-				<DrvPara MaxCount="#xffffffff">
-					<Analog TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
-					<TimeComp TaskDelayCycles="1"/>
-				</DrvPara>
-				<Vars VarGrpType="1">
-					<Name>Inputs</Name>
-					<Var>
-						<Name>In</Name>
-						<Type GUID="{F95C7C69-0C87-46C4-9559-1285CCA5B23A}" Namespace="MC">NCDRIVESTRUCT_IN2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataIn6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-				<Vars VarGrpType="2">
-					<Name>Outputs</Name>
-					<Var>
-						<Name>Out</Name>
-						<Type GUID="{644DC4BD-3D15-4DCB-94C7-24F3A5D579AA}" Namespace="MC">NCDRIVESTRUCT_OUT2</Type>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut1</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut2</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut3</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut4</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut5</Name>
-						</SubVar>
-						<SubVar TypeFormatIndex="2">
-							<Name>nDataOut6</Name>
-						</SubVar>
-					</Var>
-				</Vars>
-			</Drive>
-			<Controller Name="Ctrl" CtrType="1">
-				<CtrPara PriorControlFactor="1">
-					<Observer BandWidth="20"/>
-				</CtrPara>
-			</Controller>
-			<Vars VarGrpType="1" InsertType="1">
-				<Name>Inputs</Name>
-				<Var>
-					<Name>FromPlc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-			</Vars>
-			<Vars VarGrpType="2" InsertType="1">
-				<Name>Outputs</Name>
-				<Var>
-					<Name>ToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-			</Vars>
-		</Axis>
-		<Axis File="Axis_test4.xti" Id="10"/>
-		<Axis File="Axis_test2.xti" Id="11"/>
-		<Axis File="Axis_test3.xti" Id="12"/>
-		<Axis File="DGPD_Z_TEST.xti" Id="20"/>
-		<Axis File="DGPD_Z.xti" Id="17"/>
-		<Axis File="DGPD_Y_TEST.xti" Id="19"/>
-		<Axis File="DGPD_Y.xti" Id="16"/>
-		<Axis File="DGPD_X_TEST.xti" Id="18"/>
-		<Axis File="DGPD_X.xti" Id="15"/>
-		<Axis File="DGPD_RET_TEST.xti" Id="21"/>
-		<Axis File="DGPD_RET.xti" Id="14"/>
-		<Axis File="Axis_test1.xti" Id="6"/>
-		<Axis File="MCS2-M1.xti" Id="13"/>
-	</NC>
+		</Drive>
+		<Controller Name="Ctrl" CtrType="1">
+			<CtrPara PriorControlFactor="1">
+				<Observer BandWidth="20"/>
+			</CtrPara>
+		</Controller>
+		<Vars VarGrpType="1" InsertType="1">
+			<Name>Inputs</Name>
+			<Var>
+				<Name>FromPlc</Name>
+				<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+			</Var>
+		</Vars>
+		<Vars VarGrpType="2" InsertType="1">
+			<Name>Outputs</Name>
+			<Var>
+				<Name>ToPlc</Name>
+				<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+			</Var>
+		</Vars>
+	</Axis>
 </TcSmItem>

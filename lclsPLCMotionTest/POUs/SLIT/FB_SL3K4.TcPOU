@@ -3,10 +3,10 @@
   <POU Name="FB_SL3K4" Id="{dec1d628-e499-461c-bd3b-fc39c76517dd}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_SL3K4
 VAR_IN_OUT
-    stTopBlade       : ST_MotionStage;
-    stBottomBlade    : ST_MotionStage;
-    stNorthBlade     : ST_MotionStage;
-    stSouthBlade     : ST_MotionStage;
+    stTopBlade       : ST_MCS2Stage;
+    stBottomBlade    : ST_MCS2Stage;
+    stNorthBlade     : ST_MCS2Stage;
+    stSouthBlade     : ST_MCS2Stage;
     fbArbiter        : FB_Arbiter;
     fbFFHWO          : FB_HardwareFFOutput;
 END_VAR
@@ -21,10 +21,9 @@ VAR_INPUT
 
 END_VAR
 VAR
+	test : ST_MCS2Stage;
     {attribute 'hide'}
-    fbPerMotorFFO        : FB_PerMotorFFOND;
-    {attribute 'hide'}
-    fbEncErrorFFO        : FB_EncErrorFFO;
+    fbPerMotorFFO        : FB_PerMCS2MotorFFOND;
     {attribute 'hide'}
     fbMiscStatesErrorFFO : FB_MiscStatesErrorFFO;
     {attribute 'hide'}
@@ -40,7 +39,7 @@ VAR
     {attribute 'hide'}
     nPrevMode            : E_SL3K4State := E_SL3K4State.NORMAL;
     {attribute 'hide'}
-    astMotionStage       : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF ST_MotionStage;
+    astMotionStage       : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF ST_MCS2Stage;
     {attribute 'hide'}
     abBladeEnable        : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF BOOL;
     {attribute 'hide'}

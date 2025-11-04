@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_SequenceMover_Test" Id="{099e2bdc-8bfe-4e3f-9e84-acb8d7b40212}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SequenceMover_Test EXTENDS FB_TestSuite
+VAR
+    fbSequencer   : FB_SequenceMover;
+
+    // Per-axis state feedback structs (simulate axis state block outputs)
+    stPlcToEpicsRET : ST_StatePlcToEpics := (nGetValue := E_DGPDStates.OUT, bBusy := FALSE, bDone := TRUE, bError := FALSE, nErrorID := 0, sErrorMsg := '');
+    stPlcToEpicsX   : ST_StatePlcToEpics := (nGetValue := E_DGPDStates.OUT, bBusy := FALSE, bDone := TRUE, bError := FALSE, nErrorID := 0, sErrorMsg := '');
+    stPlcToEpicsY   : ST_StatePlcToEpics := (nGetValue := E_DGPDStates.OUT, bBusy := FALSE, bDone := TRUE, bError := FALSE, nErrorID := 0, sErrorMsg := '');
+    stPlcToEpicsZ   : ST_StatePlcToEpics := (nGetValue := E_DGPDStates.OUT, bBusy := FALSE, bDone := TRUE, bError := FALSE, nErrorID := 0, sErrorMsg := '');
+
+    eRETTarget : E_DGPDStates;
+    eXTarget   : E_DGPDStates;
+    eYTarget   : E_DGPDStates;
+    eZTarget   : E_DGPDStates;
+	
+    eTarget       : E_DGPDStates := E_DGPDStates.OUT;
+    testStep      : INT := 0;
+    doneOnce      : BOOL := FALSE;
+    bReset        : BOOL := FALSE;
+
+    // Optional for random target testing:
+    randomTarget       : E_DGPDStates;
+    randomTestIndex    : INT := 0;
+    randomTestTargetArr: ARRAY[1..4] OF E_DGPDStates := [E_DGPDStates.TARGET1B, E_DGPDStates.TARGET4, E_DGPDStates.TARGET2, E_DGPDStates.TARGET5];
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TEST(__POUNAME());
+
+FOR randomTestIndex := 1 TO 4 DO
+    testStep := 0;
+    doneOnce := FALSE;
+
+    randomTarget := randomTestTargetArr[randomTestIndex];
+    // Initial: axes not out (simulate at random previous targets)
+    stPlcToEpicsRET.nGetValue := randomTarget;
+    stPlcToEpicsX.nGetValue   := E_DGPDStates.TARGET3;
+    stPlcToEpicsY.nGetValue   := E_DGPDStates.TARGET2;
+    stPlcToEpicsZ.nGetValue   := E_DGPDStates.TARGET4;
+    eTarget := randomTarget;
+
+    // Simulate axes "ready" and "not busy": set .bDone and !.bBusy
+    stPlcToEpicsRET.bDone := TRUE; stPlcToEpicsRET.bBusy := FALSE;
+    stPlcToEpicsX.bDone   := TRUE; stPlcToEpicsX.bBusy   := FALSE;
+    stPlcToEpicsY.bDone   := TRUE; stPlcToEpicsY.bBusy   := FALSE;
+    stPlcToEpicsZ.bDone   := TRUE; stPlcToEpicsZ.bBusy   := FALSE;
+
+    // step through the state machine as in a single test
+    REPEAT
+        fbSequencer(
+            eDGPDStateSet := eTarget,
+            stPlcToEpicsRET := stPlcToEpicsRET,
+            stPlcToEpicsX   := stPlcToEpicsX,
+            stPlcToEpicsY   := stPlcToEpicsY,
+            stPlcToEpicsZ   := stPlcToEpicsZ,
+			eRETTarget := eRETTarget,
+			eXTarget   := eXTarget,
+			eYTarget   := eYTarget,
+			eZTarget   := eZTarget
+        );
+
+        CASE testStep OF
+            0: // INIT
+                IF fbSequencer.bEnteredInit THEN
+                    AssertEquals_BOOL(FALSE, fbSequencer.bMoveRET,  'INIT: RET should not move #1');
+                    AssertEquals_BOOL(FALSE, fbSequencer.bMoveX,    'INIT: X should not move #2');
+                    AssertEquals_BOOL(FALSE, fbSequencer.bMoveY,    'INIT: Y should not move #3');
+                    AssertEquals_BOOL(FALSE, fbSequencer.bMoveZ,    'INIT: Z should not move #4');
+                    AssertEquals_BOOL(FALSE, fbSequencer.bSequenceComplete, 'Not complete on INIT #5');
+                    testStep := 1;
+                END_IF
+
+            1: // CHECK_OUT, stepwise, X not OUT first
+                IF fbSequencer.bEnteredCheckOut THEN
+                    IF stPlcToEpicsX.nGetValue <> E_DGPDStates.OUT THEN
+                        AssertEquals_BOOL(TRUE, fbSequencer.bMoveX, 'X commanded OUT #6');
+                        stPlcToEpicsX.nGetValue := E_DGPDStates.OUT;
+                    ELSIF stPlcToEpicsY.nGetValue <> E_DGPDStates.OUT THEN
+                        AssertEquals_BOOL(TRUE, fbSequencer.bMoveY, 'Y commanded OUT #7');
+                        stPlcToEpicsY.nGetValue := E_DGPDStates.OUT;
+                    ELSIF stPlcToEpicsZ.nGetValue <> E_DGPDStates.OUT THEN
+                        AssertEquals_BOOL(TRUE, fbSequencer.bMoveZ, 'Z commanded OUT #8');
+                        stPlcToEpicsZ.nGetValue := E_DGPDStates.OUT;
+                    ELSE
+                        AssertEquals_BOOL(FALSE, fbSequencer.bMoveX, 'No X move after all OUT #9');
+                        AssertEquals_BOOL(FALSE, fbSequencer.bMoveY, 'No Y move after all OUT #10');
+                        AssertEquals_BOOL(FALSE, fbSequencer.bMoveZ, 'No Z move after all OUT #11');
+                        testStep := 2;
+                    END_IF
+                END_IF
+
+            2: // MOVE_RET_TO_TARGET: now RET should move
+                IF fbSequencer.bEnteredMoveRETToTarget THEN
+                    IF stPlcToEpicsRET.nGetValue <> eTarget THEN
+                        AssertEquals_BOOL(TRUE, fbSequencer.bMoveRET, 'RET moves to target #12');
+                    END_IF
+                    stPlcToEpicsRET.nGetValue := eTarget; // Simulate RET arriving at target
+                    testStep := 3;
+                END_IF
+
+            3: // MOVE_X_TO_TARGET: now X should move
+                IF fbSequencer.bEnteredMoveXToTarget THEN
+                    AssertEquals_BOOL(TRUE, fbSequencer.bMoveX, 'X moves to target #13');
+                    stPlcToEpicsX.nGetValue := eTarget; // Simulate X arriving at target
+                    testStep := 4;
+                END_IF
+
+            4: // MOVE_Y_TO_TARGET: now Y should move
+                IF fbSequencer.bEnteredMoveYToTarget THEN
+                    AssertEquals_BOOL(TRUE, fbSequencer.bMoveY, 'Y moves to target #14');
+                    stPlcToEpicsY.nGetValue := eTarget; // Simulate Y arriving at target
+                    testStep := 5;
+                END_IF
+
+            5: // MOVE_Z_TO_TARGET: now Z should move
+                IF fbSequencer.bEnteredMoveZToTarget THEN
+                    AssertEquals_BOOL(TRUE, fbSequencer.bMoveZ, 'Z moves to target #15');
+                    stPlcToEpicsZ.nGetValue := eTarget; // Simulate Z arriving at target
+                    testStep := 6;
+                END_IF
+
+            6: // Sequence done, check all
+                IF fbSequencer.bEnteredDone THEN
+                    AssertEquals_BOOL(FALSE, fbSequencer.bMoveRET, 'DONE: RET should not move #16');
+                    AssertEquals_BOOL(FALSE, fbSequencer.bMoveX,   'DONE: X should not move #17');
+                    AssertEquals_BOOL(FALSE, fbSequencer.bMoveY,   'DONE: Y should not move #18');
+                    AssertEquals_BOOL(FALSE, fbSequencer.bMoveZ,   'DONE: Z should not move #19');
+                    AssertEquals_BOOL(TRUE, fbSequencer.bSequenceComplete, 'bSequenceComplete TRUE at DONE #20');
+                    AssertEquals_INT(eTarget, stPlcToEpicsRET.nGetValue, 'RET should be at target at DONE #21');
+                    AssertEquals_INT(eTarget, stPlcToEpicsX.nGetValue,   'X should be at target at DONE #22');
+                    AssertEquals_INT(eTarget, stPlcToEpicsY.nGetValue,   'Y should be at target at DONE #23');
+                    AssertEquals_INT(eTarget, stPlcToEpicsZ.nGetValue,   'Z should be at target at DONE #24');
+                    doneOnce := TRUE; // End test for this target
+                    testStep := 7;
+                END_IF
+        END_CASE
+    UNTIL doneOnce
+    END_REPEAT
+END_FOR
+
+IF randomTestIndex = 5 THEN
+    TEST_FINISHED();
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -3,11 +3,11 @@
   <POU Name="FB_SL3K4_Test" Id="{4cd567df-faf8-4c92-a022-7ee8ed605221}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK INTERNAL FB_SL3K4_Test EXTENDS FB_TestSuite
 VAR
-    testStage1    : ST_MotionStage;
-    testStage2    : ST_MotionStage;
-    testStage3    : ST_MotionStage;
-    testStage4    : ST_MotionStage;
-	
+    testStage1    : ST_MCS2Stage;
+    testStage2    : ST_MCS2Stage;
+    testStage3    : ST_MCS2Stage;
+    testStage4    : ST_MCS2Stage;
+	testStage5    : REFERENCE TO ST_MotionStage;
     fbFFHWO       : FB_HardwareFFOutput;
     fbArbiter     : FB_Arbiter(1);
     astDummyBeam  : ARRAY[0..2] OF ST_DbStateParams;
@@ -43,7 +43,8 @@ END_VAR
 	astDummyBeam[E_SL3K4State.TRANSITION].stBeamParams              := PMPS_GVL.cst0RateBeam;
 	astDummyBeam[E_SL3K4State.TRANSITION].sPmpsState                := 'TRANSITION';
 	fbTestHelper.sDevName := 'SL3K4';
-		
+
+//testStage5 REF= testStage1;
 CASE nTestStep OF
 	0:
 		// Write dummy beam assertions to test location

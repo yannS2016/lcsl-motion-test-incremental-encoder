@@ -18,7 +18,13 @@
     <LibraryReferences>{fa071ac5-a9d4-413e-83f5-d687f423c3a5}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\E_DGPDStates.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ENUM_AxisStates.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\E_DGPD_SequenceStep.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\E_SL3K4State.TcDUT">
@@ -38,22 +44,27 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_SL3K4.TcPOU">
-      <SubType>Code</SubType>
-      <ExcludeFromBuild>false</ExcludeFromBuild>
-    </Compile>
-    <Compile Include="POUs\FB_DGPDSequenceMover.TcPOU">
-      <SubType>Code</SubType>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </Compile>
-    <Compile Include="POUs\FB_SL3K4BPTM.TcPOU">
+    <Compile Include="POUs\DGPD\FB_DGPD.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_SL3K4ReadPMPSDB.TcPOU">
+    <Compile Include="POUs\DGPD\FB_DGPDEPS.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\DGPD\FB_DGPD_BULK.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\DGPD\FB_SequenceMover.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\DGPD\PRG_DGPD.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\DGPD\PRG_DGPD_SAMPLE.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\PRG_IN_VACUUM_MOTION.TcPOU">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="POUs\PRG_PMPS_PRE.TcPOU">
       <SubType>Code</SubType>
@@ -66,14 +77,41 @@
     <Compile Include="POUs\PRG_TEST.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\SLIT\FB_PerMCS2MotorFFOND.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\SLIT\FB_SL3K4.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\SLIT\FB_SL3K4BPTM.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\SLIT\FB_SL3K4ReadPMPSDB.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Tests\FB_DGPDEPS_Test.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Tests\FB_DGPD_Test.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Tests\FB_PMPSStateConfigHelper.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Tests\FB_SequenceMover_Test.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Tests\FB_SL3K4BPTM_Test.TcPOU">
       <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="POUs\Tests\FB_SL3K4ReadPMPSDB_Test.TcPOU">
       <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="POUs\Tests\FB_SL3K4_Test.TcPOU">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
     <Compile Include="UnitTest.TcTTO">
       <SubType>Code</SubType>
@@ -82,6 +120,8 @@
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
+    <Folder Include="POUs\DGPD" />
+    <Folder Include="POUs\SLIT" />
     <Folder Include="POUs\Tests" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
@@ -91,9 +131,9 @@
       <DefaultResolution>LCLS General, * (SLAC)</DefaultResolution>
       <Namespace>LCLS_General</Namespace>
       <Parameters>
-        <Parameter ListName="GENERALCONSTANTS" xmlns="">
+        <Parameter ListName="GENERALCONSTANTS">
           <Key>MAX_STATES</Key>
-          <Value>3</Value>
+          <Value>10</Value>
         </Parameter>
       </Parameters>
     </PlaceholderReference>
@@ -103,7 +143,7 @@
       <Parameters>
         <Parameter ListName="MOTIONCONSTANTS">
           <Key>MAX_STATE_MOTORS</Key>
-          <Value>4</Value>
+          <Value>10</Value>
         </Parameter>
       </Parameters>
     </PlaceholderReference>

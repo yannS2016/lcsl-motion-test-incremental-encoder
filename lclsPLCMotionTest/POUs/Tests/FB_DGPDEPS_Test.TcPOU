@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_DGPDEPS_Test" Id="{c2ce7d04-1049-466b-9e65-50a81b5c1ecf}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DGPDEPS_Test EXTENDS FB_TestSuite
+VAR
+   fbEPS      : FB_DGPDEPS;
+    stRET, stX, stY, stZ : ST_MCS2Stage;
+    bHVActive  : BOOL;
+    axisSafe   : ARRAY[1..4] OF BOOL;
+    allSafe    : BOOL;
+    iCase      : INT;
+    msg        : STRING;
+	// Test cases: [bCalRET,bRefRET,bSensRET,bCalX,bRefX,bSensX,bCalY,bRefY,bSensY,bCalZ,bRefZ,bSensZ], bHVActive
+	//testCases : ARRAY[1..15] OF ARRAY[1..13] OF BOOL;
+    testCases : ARRAY[1..15] OF ARRAY[1..13] OF BOOL := [
+    //   CalRET RefRET SensRET CalX  RefX  SensX  CalY  RefY  SensY  CalZ  RefZ  SensZ   HV
+    // All safe
+    [ TRUE,  TRUE,  TRUE,   TRUE,  TRUE,  TRUE,  TRUE,  TRUE,  TRUE,  TRUE,  TRUE,  TRUE,  FALSE ],
+
+    // All unsafe (all F, HV F)
+    [ FALSE, FALSE, FALSE,  FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,  FALSE ],
+
+    // Each axis: sensor fail only
+    [ TRUE, TRUE, FALSE,  TRUE, TRUE, TRUE,  TRUE, TRUE, TRUE,  TRUE, TRUE, TRUE,  FALSE ],
+    [ TRUE, TRUE, TRUE,   TRUE, TRUE, FALSE, TRUE, TRUE, TRUE,  TRUE, TRUE, TRUE,  FALSE ],
+    [ TRUE, TRUE, TRUE,   TRUE, TRUE, TRUE,  TRUE, TRUE, FALSE, TRUE, TRUE, TRUE,  FALSE ],
+    [ TRUE, TRUE, TRUE,   TRUE, TRUE, TRUE,  TRUE, TRUE, TRUE,  TRUE, TRUE, FALSE, FALSE ],
+
+    // Each axis: reference fail only
+    [ TRUE, FALSE, TRUE,  TRUE, TRUE, TRUE,  TRUE, TRUE, TRUE,  TRUE, TRUE, TRUE,  FALSE ],
+    [ TRUE, TRUE, TRUE,   TRUE, FALSE, TRUE, TRUE, TRUE, TRUE,  TRUE, TRUE, TRUE,  FALSE ],
+    [ TRUE, TRUE, TRUE,   TRUE, TRUE, TRUE,  TRUE, FALSE, TRUE, TRUE, TRUE, TRUE,  FALSE ],
+    [ TRUE, TRUE, TRUE,   TRUE, TRUE, TRUE,  TRUE, TRUE, TRUE,  TRUE, FALSE, TRUE, FALSE ],
+
+    // Each axis: calibrated fail only
+    [ FALSE, TRUE, TRUE,  TRUE, TRUE, TRUE,  TRUE, TRUE, TRUE,  TRUE, TRUE, TRUE,  FALSE ],
+    [ TRUE, TRUE, TRUE,   FALSE, TRUE, TRUE, TRUE, TRUE, TRUE,  TRUE, TRUE, TRUE,  FALSE ],
+    [ TRUE, TRUE, TRUE,   TRUE, TRUE, TRUE,  FALSE, TRUE, TRUE, TRUE, TRUE, TRUE,  FALSE ],
+    [ TRUE, TRUE, TRUE,   TRUE, TRUE, TRUE,  TRUE, TRUE, TRUE,  FALSE, TRUE, TRUE, FALSE ],
+
+    // HV on (all other flags are TRUE)
+    [ TRUE, TRUE, TRUE,   TRUE, TRUE, TRUE,  TRUE, TRUE, TRUE,  TRUE, TRUE, TRUE,  TRUE ]
+    ];
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TEST(__POUNAME());
+
+FOR iCase := 1 TO 15 DO
+
+    // Extract test case fields for all axes and HV
+    stRET.stMCS2ChanParams.stChannelState.bIsCalibrated  := testCases[iCase][1];
+    stRET.stMCS2ChanParams.stChannelState.bIsReferenced  := testCases[iCase][2];
+    stRET.stMCS2ChanParams.stChannelState.bSensorPresent := testCases[iCase][3];
+    stX.stMCS2ChanParams.stChannelState.bIsCalibrated    := testCases[iCase][4];
+    stX.stMCS2ChanParams.stChannelState.bIsReferenced    := testCases[iCase][5];
+    stX.stMCS2ChanParams.stChannelState.bSensorPresent   := testCases[iCase][6];
+    stY.stMCS2ChanParams.stChannelState.bIsCalibrated    := testCases[iCase][7];
+    stY.stMCS2ChanParams.stChannelState.bIsReferenced    := testCases[iCase][8];
+    stY.stMCS2ChanParams.stChannelState.bSensorPresent   := testCases[iCase][9];
+    stZ.stMCS2ChanParams.stChannelState.bIsCalibrated    := testCases[iCase][10];
+    stZ.stMCS2ChanParams.stChannelState.bIsReferenced    := testCases[iCase][11];
+    stZ.stMCS2ChanParams.stChannelState.bSensorPresent   := testCases[iCase][12];
+    bHVActive := testCases[iCase][13];
+
+    fbEPS(
+        stMCS2StageRET := stRET,
+        stMCS2StageX   := stX,
+        stMCS2StageY   := stY,
+        stMCS2StageZ   := stZ,
+        bHVActive      := bHVActive
+    );
+
+    axisSafe[1] := (testCases[iCase][1] AND testCases[iCase][2] AND testCases[iCase][3] AND (NOT bHVActive));
+    axisSafe[2] := (testCases[iCase][4] AND testCases[iCase][5] AND testCases[iCase][6] AND (NOT bHVActive));
+    axisSafe[3] := (testCases[iCase][7] AND testCases[iCase][8] AND testCases[iCase][9] AND (NOT bHVActive));
+    axisSafe[4] := (testCases[iCase][10] AND testCases[iCase][11] AND testCases[iCase][12] AND (NOT bHVActive));
+    allSafe := axisSafe[1] AND axisSafe[2] AND axisSafe[3] AND axisSafe[4];
+
+    msg := CONCAT('Case ', CONCAT( INT_TO_STRING(iCase), ':'));
+    AssertEquals_BOOL(axisSafe[1], fbEPS.bSafeToMoveRET, CONCAT(msg, CONCAT(' RET Safe fail', CONCAT ('#', TO_STRING(iCase)))));
+    AssertEquals_BOOL(axisSafe[2], fbEPS.bSafeToMoveX,   CONCAT(msg, CONCAT(' X Safe fail', CONCAT ('#', TO_STRING(iCase)))));
+    AssertEquals_BOOL(axisSafe[3], fbEPS.bSafeToMoveY,   CONCAT(msg, CONCAT(' Y Safe fail',CONCAT ('#', TO_STRING(iCase)))));
+    AssertEquals_BOOL(axisSafe[4], fbEPS.bSafeToMoveZ,   CONCAT(msg, CONCAT(' Z Safe fail', CONCAT ('#', TO_STRING(iCase)))));
+    AssertEquals_BOOL(allSafe,     fbEPS.bSafeToMove,    CONCAT(msg, CONCAT(' Global Safe fail', CONCAT ('#', TO_STRING(iCase)))));
+
+END_FOR
+
+TEST_FINISHED();
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,7 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
   <POU Name="FB_DGPD" Id="{7187c3a0-0612-433c-9b7d-d930a75224ae}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_DGPD
+    <Declaration><![CDATA[(*
+	FB_DGPD – Four-Axis DREAM DGPD Sequence and Maintenance Axis Interlock Controller
+	
+	This function block implements the complete interlock, sequencing, and maintenance/manual mode logic
+	for the DREAM Sample Paddle's 4 axis (RET, X, Y, Z). It supports:
+	- Automatic sequence mode: RET, X, Y, Z move in a defined interlocked order toward user-selected targets with overall safety interlock.
+	- Maintenance/manual mode: Allows for per-axis manual positioning, with full collision avoidance and safe-to-move checks.
+	- Dynamic, cyclic evaluation of safety via EPS (HV interlock, calibration/reference/sensor status for each axis in both forward and backward directions).
+	- Latching and auto-latching of maintenance mode for all axes, with safe global exit via edge-detection (F_TRIG).
+*)
+FUNCTION_BLOCK FB_DGPD
 VAR_IN_OUT
     stMCS2StageRET : ST_MCS2Stage;
     stMCS2StageX   : ST_MCS2Stage;
@@ -11,6 +21,7 @@ VAR_IN_OUT
     fbFFHWO: FB_HardwareFFOutput;
     // The arbiter to request beam conditions from.
     fbArbiter: FB_Arbiter;
+	eSetTarget: UINT;
 END_VAR
 VAR_INPUT
     bHVActive            : BOOL;
@@ -18,13 +29,23 @@ VAR_INPUT
     sDeviceName          : STRING := 'test';
     sTransitionKey       : STRING := 'trans';
     bReadDBNow           : BOOL;
+    {attribute 'pytmc' := '
+        pv: DREAM:DGPD:RESET
+        io: io
+    '}
     bReset               : BOOL;
+    {attribute 'pytmc' := '
+        pv: DREAM:DGPD:bMaintMode
+        io: io
+    '}
     bMaintenanceMode     : BOOL;
     bEnableBeamParams: BOOL;
     // use this to block state request activation on top of eps.
     bEnableMotion        : BOOL;
 	bEPSEnable           : BOOL := TRUE;
-    eSetTarget: UINT;
+    ePrevSetTarget: UINT;
+	// in Target deadband
+	fDelta : LREAL := 0.003;
 END_VAR
 VAR_OUTPUT
     bSafeToMoveRET : BOOL;
@@ -37,11 +58,11 @@ VAR_OUTPUT
     bMoveY            : BOOL;
     bMoveZ            : BOOL;
     bSequenceComplete : BOOL;
-    axisSequenceStep  : E_DGPD_SequenceStep;
-	nRETCurrState     : E_DGPDStates;
-	nXCurrState     : E_DGPDStates;
-	nYCurrState     : E_DGPDStates;
-	nZCurrState     : E_DGPDStates;
+    axisSequenceStep  : E_DGPDSequence;
+	nRETCurrState     : E_DGPDState;
+	nXCurrState     : E_DGPDState;
+	nYCurrState     : E_DGPDState;
+	nZCurrState     : E_DGPDState;
     bEnteredInit            : BOOL;
     bEnteredCheckOut        : BOOL;
     bEnteredMoveRETToTarget : BOOL;
@@ -53,14 +74,18 @@ VAR_OUTPUT
     bError_RETCollision : BOOL;
 END_VAR
 VAR
-    stPlcToEpicsRET : ST_StatePlcToEpics;
-    stPlcToEpicsX   : ST_StatePlcToEpics;
-    stPlcToEpicsY   : ST_StatePlcToEpics;
-    stPlcToEpicsZ   : ST_StatePlcToEpics;
-	
-	fbDGPDEPS	  : FB_DGPDEPS;
-	fbSequencer   : FB_SequenceMover;
-
+    stEpicsToPlcRET			: ST_StateEpicsToPlc;
+    stPMPSEpicsToPlcRET		: ST_StatePMPSEpicsToPlc;
+    stEpicsToPlcX			: ST_StateEpicsToPlc;
+    stPMPSEpicsToPlcX		: ST_StatePMPSEpicsToPlc;
+    stEpicsToPlcY			: ST_StateEpicsToPlc;
+    stPMPSEpicsToPlcY		: ST_StatePMPSEpicsToPlc;
+    stEpicsToPlcZ			: ST_StateEpicsToPlc;
+    stPMPSEpicsToPlcZ		: ST_StatePMPSEpicsToPlc;
+	bGlobalReset			: BOOL;
+	fbDGPDEPS	  			: FB_DGPDEPS;
+	fbSequencer   			: FB_SequenceMover;
+	fbDGPDManual			: FB_DGPDManual;
     // --- RET axis ---
     astPositionStateRET : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
     fbPositionStateRET : FB_PositionStatePMPS1D;
@@ -85,22 +110,28 @@ VAR
     eGetZTarget   : UINT;
     eSetZTarget   : UINT;
 
-    fbStateSetup : FB_StateSetupHelper;
-    stDefault : ST_PositionState := (
-        fDelta := 1.0,
-        fVelocity := 0.5,
-        fAccel := 2.51748,
-        fDecel := 2.51748,
-        bMoveOk := TRUE,
-        bValid := TRUE
-    );
-
 	bInit: BOOL := TRUE;
 	bSimMode : BOOL;
-	
+	rtReset  : R_TRIG;
+    ftrMaintModeRET : F_TRIG;
+    ftrMaintModeX   : F_TRIG;
+    ftrMaintModeY   : F_TRIG;
+    ftrMaintModeZ   : F_TRIG;
+    ftrGlobalMaint  : F_TRIG;
+	rtMaintenanceMode : R_TRIG;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF bInit THEN
+      <ST><![CDATA[IF NOT __ISVALIDREF(fbFFHWO)
+	OR NOT __ISVALIDREF(fbArbiter)
+	OR NOT __ISVALIDREF(stMCS2StageRET)
+	OR NOT __ISVALIDREF(stMCS2StageY) 
+	OR NOT __ISVALIDREF(stMCS2StageZ)
+	OR NOT __ISVALIDREF(stMCS2StageX )
+THEN
+	RETURN;
+END_IF
+
+IF bInit THEN
     // --- RET axis ---
     stMCS2StageRET.bHardwareEnable := TRUE;
     stMCS2StageRET.nHomingMode     := E_EpicsHomeCmd.AUTOZERO;
@@ -138,17 +169,73 @@ fbDGPDEPS(
      bHVActive      := bHVActive
  );
 
-fbSequencer(
-    eDGPDStateSet := eSetTarget,
-    stPlcToEpicsRET := fbPositionStateRET.stPlcToEpics,
-    stPlcToEpicsX   := fbPositionStateX.stPlcToEpics,
-    stPlcToEpicsY   := fbPositionStateY.stPlcToEpics,
-    stPlcToEpicsZ   := fbPositionStateZ.stPlcToEpics,
-	eRETTarget := eSetRETTarget,
-	eXTarget   := eSetXTarget,
-	eYTarget   := eSetYTarget,
-	eZTarget   := eSetZTarget
-);
+rtReset(CLK:=bReset);
+
+IF rtReset.Q THEN
+	stEpicsToPlcRET.bReset := bReset;
+	stEpicsToPlcX.bReset := bReset;
+	stEpicsToPlcY.bReset := bReset;
+	stEpicsToPlcZ.bReset := bReset;
+	bReset := FALSE;	
+END_IF
+
+// Step 1: Fan-in - detect if *any* axis or global flag is set, latch
+//bMaintenanceMode := bMaintenanceMode OR stPMPSEpicsToPlcRET.bMaintMode OR stPMPSEpicsToPlcX.bMaintMode OR stPMPSEpicsToPlcY.bMaintMode OR stPMPSEpicsToPlcZ.bMaintMode;
+// Step 2: Fan-out, latching
+rtMaintenanceMode(CLK:=bMaintenanceMode OR stPMPSEpicsToPlcRET.bMaintMode OR stPMPSEpicsToPlcX.bMaintMode OR stPMPSEpicsToPlcY.bMaintMode OR stPMPSEpicsToPlcZ.bMaintMode);
+
+IF rtMaintenanceMode.Q THEN
+	bMaintenanceMode := TRUE;
+    stPMPSEpicsToPlcRET.bMaintMode := TRUE;
+    stPMPSEpicsToPlcX.bMaintMode   := TRUE;
+    stPMPSEpicsToPlcY.bMaintMode   := TRUE;
+    stPMPSEpicsToPlcZ.bMaintMode   := TRUE;
+END_IF
+
+// Step 3: Edge detection (reset if any falling edge on maintenance or global)
+ftrMaintModeRET(CLK := stPMPSEpicsToPlcRET.bMaintMode);
+ftrMaintModeX(CLK   := stPMPSEpicsToPlcX.bMaintMode);
+ftrMaintModeY(CLK   := stPMPSEpicsToPlcY.bMaintMode);
+ftrMaintModeZ(CLK   := stPMPSEpicsToPlcZ.bMaintMode);
+ftrGlobalMaint(CLK  := bMaintenanceMode);
+
+IF ftrMaintModeRET.Q OR ftrMaintModeX.Q OR ftrMaintModeY.Q OR ftrMaintModeZ.Q OR ftrGlobalMaint.Q THEN
+    stPMPSEpicsToPlcRET.bMaintMode := FALSE;
+    stPMPSEpicsToPlcX.bMaintMode   := FALSE;
+    stPMPSEpicsToPlcY.bMaintMode   := FALSE;
+    stPMPSEpicsToPlcZ.bMaintMode   := FALSE;
+    bMaintenanceMode               := FALSE;
+END_IF
+
+// Step 4: Maintenance or sequence operation
+IF bMaintenanceMode THEN
+
+    fbDGPDManual(
+        astPositionStateX := astPositionStateX,
+        astPositionStateY := astPositionStateY,
+        astPositionStateZ := astPositionStateZ,
+        stMCS2StageX      := stMCS2StageX,
+        stMCS2StageY      := stMCS2StageY,
+        stMCS2StageZ      := stMCS2StageZ,
+        fDelta            := fDelta
+    );
+    fbDGPDEPS.epsMaintenanceMode(bRETSafeToMove := fbDGPDManual.bSafeToMoveRET);
+	// override any attemps from user to set target state in manual mode
+	// we dont want an immediate move when sewitching back to sequence move.
+	eSetTarget := E_DGPDState.UNKNOWN;
+ELSE
+    fbSequencer(
+        eDGPDStateSet := eSetTarget,
+        stPlcToEpicsRET := fbPositionStateRET.stPlcToEpics,
+        stPlcToEpicsX   := fbPositionStateX.stPlcToEpics,
+        stPlcToEpicsY   := fbPositionStateY.stPlcToEpics,
+        stPlcToEpicsZ   := fbPositionStateZ.stPlcToEpics,
+        eRETTarget := eSetRETTarget,
+        eXTarget   := eSetXTarget,
+        eYTarget   := eSetYTarget,
+        eZTarget   := eSetZTarget
+    );
+END_IF
 
 // --- RET axis ---
 fbPositionStateRET(
@@ -156,6 +243,8 @@ fbPositionStateRET(
     sTransitionKey:=sTransitionKey,
     stMotionStage        := stMCS2StageRET,
     astPositionState     := astPositionStateRET,
+	stPMPSEpicsToPlc     :=  stPMPSEpicsToPlcRET,
+	stEpicsToPlc         := stEpicsToPlcRET,
     eEnumSet             := eSetRETTarget,
     eEnumGet             := eGetRETTarget,
     fbFFHWO              := fbFFHWO,
@@ -174,6 +263,8 @@ fbPositionStateX(
     sTransitionKey:=sTransitionKey,
     stMotionStage        := stMCS2StageX,
     astPositionState     := astPositionStateX,
+	stPMPSEpicsToPlc    :=  stPMPSEpicsToPlcX,
+	stEpicsToPlc         := stEpicsToPlcX,
     eEnumSet             := eSetXTarget,
     eEnumGet             := eGetXTarget,
     fbFFHWO              := fbFFHWO,
@@ -193,6 +284,8 @@ fbPositionStateY(
     sTransitionKey:=sTransitionKey,
     stMotionStage        := stMCS2StageY,
     astPositionState     := astPositionStateY,
+	stPMPSEpicsToPlc    :=  stPMPSEpicsToPlcY,
+	stEpicsToPlc         := stEpicsToPlcY,
     eEnumSet             := eSetYTarget,
     eEnumGet             := eGetYTarget,
     fbFFHWO              := fbFFHWO,
@@ -211,6 +304,8 @@ fbPositionStateZ(
     sTransitionKey:=sTransitionKey,
     stMotionStage        := stMCS2StageZ,
     astPositionState     := astPositionStateZ,
+	stPMPSEpicsToPlc    :=  stPMPSEpicsToPlcZ,
+	stEpicsToPlc         := stEpicsToPlcZ,
     eEnumSet             := eSetZTarget,
     eEnumGet             := eGetZTarget,
     fbFFHWO              := fbFFHWO,

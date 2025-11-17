@@ -9,10 +9,6 @@ VAR
     stMCS2StageX   : ST_MCS2Stage;
     stMCS2StageY   : ST_MCS2Stage;
     stMCS2StageZ   : ST_MCS2Stage;
-//     stMCS2StageRET : ST_MotionStage;
-//     stMCS2StageX   : ST_MotionStage;
-//     stMCS2StageY   : ST_MotionStage;
-//     stMCS2StageZ   : ST_MotionStage;
 	
 // 	fbMotionRET 	: FB_MotionStageMCS2 ( stMotionStage:=stMCS2StageRET, eModule:=E_Module.CHAN1 );;
 // 	fbMotionX 		: FB_MotionStageMCS2 ( stMotionStage:=stMCS2StageX, eModule:=E_Module.CHAN2 );;
@@ -38,7 +34,7 @@ VAR
 
 	bInit: BOOL := TRUE;
 	iState: UINT;
-	 eSetTarget    : E_DGPDStates := E_DGPDStates.UNKNOWN; // Current target
+	 eSetTarget    : E_DGPDState := E_DGPDState.UNKNOWN; // Current target
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -68,6 +64,11 @@ IF bInit THEN
     bInit := FALSE;
 END_IF
 
+stMCS2StageRET.stMCS2ChanParams.stChannelState.bIsCalibrated := TRUE; stMCS2StageRET.stMCS2ChanParams.stChannelState.bIsReferenced := TRUE; stMCS2StageRET.stMCS2ChanParams.stChannelState.bSensorPresent := TRUE;
+stMCS2StageX.stMCS2ChanParams.stChannelState.bIsCalibrated   := TRUE; stMCS2StageX.stMCS2ChanParams.stChannelState.bIsReferenced   := TRUE; stMCS2StageX.stMCS2ChanParams.stChannelState.bSensorPresent   := TRUE;
+stMCS2StageY.stMCS2ChanParams.stChannelState.bIsCalibrated   := TRUE; stMCS2StageY.stMCS2ChanParams.stChannelState.bIsReferenced   := TRUE; stMCS2StageY.stMCS2ChanParams.stChannelState.bSensorPresent   := TRUE;
+stMCS2StageZ.stMCS2ChanParams.stChannelState.bIsCalibrated   := TRUE; stMCS2StageZ.stMCS2ChanParams.stChannelState.bIsReferenced   := TRUE; stMCS2StageZ.stMCS2ChanParams.stChannelState.bSensorPresent   := TRUE;
+bHVActive := FALSE;
 // 
 // we want to use simulated beam parameters
 fbDGPD.BeamParamSim(
@@ -88,11 +89,10 @@ fbDGPD(
     sTransitionKey        := sTransitionKey,
     bReadDBNow            := NOT bInit,
     bReset                := bReset,
-	bEPSEnable            := FALSE,
-	// place all stages into maintenance mode.
-    bMaintenanceMode      := bMaintenanceMode,
+	bEPSEnable            := TRUE,
     bEnableBeamParams     := bEnableBeamParams,
     bEnableMotion         := bEnableMotion,
+	fDelta				  := 0.003
 );
 // fbMotionRET();
 // fbMotionX();

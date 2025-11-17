@@ -18,13 +18,13 @@
     <LibraryReferences>{fa071ac5-a9d4-413e-83f5-d687f423c3a5}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DUTs\E_DGPDStates.TcDUT">
+    <Compile Include="DUTs\E_DGPDState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ENUM_AxisStates.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\E_DGPD_SequenceStep.TcDUT">
+    <Compile Include="DUTs\E_DGPDSequence.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\E_SL3K4State.TcDUT">
@@ -48,6 +48,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\DGPD\FB_DGPDEPS.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\DGPD\FB_DGPDManual.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\DGPD\FB_DGPD_BULK.TcPOU">
@@ -112,9 +115,6 @@
     <Compile Include="POUs\Tests\FB_SL3K4_Test.TcPOU">
       <SubType>Code</SubType>
       <ExcludeFromBuild>false</ExcludeFromBuild>
-    </Compile>
-    <Compile Include="UnitTest.TcTTO">
-      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

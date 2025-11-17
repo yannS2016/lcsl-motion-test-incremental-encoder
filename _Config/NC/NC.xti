@@ -2688,9 +2688,6 @@ External Setpoint Generation:
 				</Var>
 			</Vars>
 		</Axis>
-		<Axis File="Axis_test4.xti" Id="10"/>
-		<Axis File="Axis_test2.xti" Id="11"/>
-		<Axis File="Axis_test3.xti" Id="12"/>
 		<Axis File="DGPD_Z_TEST.xti" Id="20"/>
 		<Axis File="DGPD_Z.xti" Id="17"/>
 		<Axis File="DGPD_Y_TEST.xti" Id="19"/>
@@ -2699,7 +2696,6 @@ External Setpoint Generation:
 		<Axis File="DGPD_X.xti" Id="15"/>
 		<Axis File="DGPD_RET_TEST.xti" Id="21"/>
 		<Axis File="DGPD_RET.xti" Id="14"/>
-		<Axis File="Axis_test1.xti" Id="6"/>
 		<Axis File="MCS2-M1.xti" Id="13"/>
 	</NC>
 </TcSmItem>

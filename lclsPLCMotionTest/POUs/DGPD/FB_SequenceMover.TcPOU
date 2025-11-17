@@ -11,17 +11,17 @@
 *)
 FUNCTION_BLOCK FB_SequenceMover
 VAR_IN_OUT
-    eRETTarget : E_DGPDStates;
-    eXTarget   : E_DGPDStates;
-    eYTarget   : E_DGPDStates;
-    eZTarget   : E_DGPDStates;
+    eRETTarget : E_DGPDState;
+    eXTarget   : E_DGPDState;
+    eYTarget   : E_DGPDState;
+    eZTarget   : E_DGPDState;
 END_VAR
 VAR_INPUT
     stPlcToEpicsRET : ST_StatePlcToEpics;
     stPlcToEpicsX   : ST_StatePlcToEpics;
     stPlcToEpicsY   : ST_StatePlcToEpics;
     stPlcToEpicsZ   : ST_StatePlcToEpics;
-    eDGPDStateSet : E_DGPDStates;
+    eDGPDStateSet : E_DGPDState;
 END_VAR
 
 VAR_OUTPUT
@@ -30,7 +30,7 @@ VAR_OUTPUT
     bMoveY            : BOOL;
     bMoveZ            : BOOL;
     bSequenceComplete : BOOL;
-    axisSequenceStep  : E_DGPD_SequenceStep;
+    axisSequenceStep  : E_DGPDSequence;
 
     bEnteredInit            : BOOL;
     bEnteredCheckOut        : BOOL;
@@ -44,7 +44,7 @@ END_VAR
 
 VAR
     bReset          : BOOL;
-    previousTarget : E_DGPDStates := E_DGPDStates.UNKNOWN;
+    previousTarget : E_DGPDState := E_DGPDState.UNKNOWN;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -61,94 +61,94 @@ bSequenceComplete := FALSE;
 
 CASE axisSequenceStep OF
 
-    E_DGPD_SequenceStep.INIT:
+    E_DGPDSequence.INIT:
         bEnteredInit := TRUE;
         IF eDGPDStateSet <> previousTarget THEN
             previousTarget := eDGPDStateSet;
-            axisSequenceStep := E_DGPD_SequenceStep.CHECK_OUT;
+            axisSequenceStep := E_DGPDSequence.CHECK_OUT;
         END_IF
 
-    E_DGPD_SequenceStep.CHECK_OUT:
+    E_DGPDSequence.CHECK_OUT:
         bEnteredCheckOut := TRUE;
-        IF stPlcToEpicsX.bError THEN axisSequenceStep := E_DGPD_SequenceStep.ERROR; END_IF
-        IF stPlcToEpicsY.bError THEN axisSequenceStep := E_DGPD_SequenceStep.ERROR; END_IF
-        IF stPlcToEpicsZ.bError THEN axisSequenceStep := E_DGPD_SequenceStep.ERROR; END_IF
+        IF stPlcToEpicsX.bError THEN axisSequenceStep := E_DGPDSequence.ERROR; END_IF
+        IF stPlcToEpicsY.bError THEN axisSequenceStep := E_DGPDSequence.ERROR; END_IF
+        IF stPlcToEpicsZ.bError THEN axisSequenceStep := E_DGPDSequence.ERROR; END_IF
 
-        IF (stPlcToEpicsX.nGetValue = E_DGPDStates.OUT)
-         AND (stPlcToEpicsY.nGetValue = E_DGPDStates.OUT)
-         AND (stPlcToEpicsZ.nGetValue = E_DGPDStates.OUT) THEN
-            axisSequenceStep := E_DGPD_SequenceStep.MOVE_RET_TO_TARGET;
+        IF (stPlcToEpicsX.nGetValue = E_DGPDState.OUT)
+         AND (stPlcToEpicsY.nGetValue = E_DGPDState.OUT)
+         AND (stPlcToEpicsZ.nGetValue = E_DGPDState.OUT) THEN
+            axisSequenceStep := E_DGPDSequence.MOVE_RET_TO_TARGET;
         ELSE
-            IF (stPlcToEpicsX.nGetValue <> E_DGPDStates.OUT) (*AND NOT stPlcToEpicsX.bBusy*) THEN
+            IF (stPlcToEpicsX.nGetValue <> E_DGPDState.OUT) (*AND NOT stPlcToEpicsX.bBusy*) THEN
                 bMoveX := TRUE;
-                eXTarget := E_DGPDStates.OUT;
-            ELSIF (stPlcToEpicsY.nGetValue <> E_DGPDStates.OUT) (*AND NOT stPlcToEpicsY.bBusy*) THEN
+                eXTarget := E_DGPDState.OUT;
+            ELSIF (stPlcToEpicsY.nGetValue <> E_DGPDState.OUT) (*AND NOT stPlcToEpicsY.bBusy*) THEN
                 bMoveY := TRUE;
-                eYTarget := E_DGPDStates.OUT;
-            ELSIF (stPlcToEpicsZ.nGetValue <> E_DGPDStates.OUT) (*AND NOT stPlcToEpicsZ.bBusy*) THEN
+                eYTarget := E_DGPDState.OUT;
+            ELSIF (stPlcToEpicsZ.nGetValue <> E_DGPDState.OUT) (*AND NOT stPlcToEpicsZ.bBusy*) THEN
                 bMoveZ := TRUE;
-                eZTarget := E_DGPDStates.OUT;
+                eZTarget := E_DGPDState.OUT;
             END_IF
         END_IF
 
-    E_DGPD_SequenceStep.MOVE_RET_TO_TARGET:
+    E_DGPDSequence.MOVE_RET_TO_TARGET:
         bEnteredMoveRETToTarget := TRUE;
         IF stPlcToEpicsRET.bError THEN
-            axisSequenceStep := E_DGPD_SequenceStep.ERROR;
+            axisSequenceStep := E_DGPDSequence.ERROR;
         ELSIF (stPlcToEpicsRET.nGetValue <> eDGPDStateSet) (*AND NOT stPlcToEpicsRET.bBusy*) THEN
             bMoveRET := TRUE;
             eRETTarget := eDGPDStateSet;
         ELSIF stPlcToEpicsRET.nGetValue = eDGPDStateSet  AND NOT stPlcToEpicsRET.bBusy THEN
-            axisSequenceStep := E_DGPD_SequenceStep.MOVE_X_TO_TARGET;
+            axisSequenceStep := E_DGPDSequence.MOVE_X_TO_TARGET;
         END_IF
 
-    E_DGPD_SequenceStep.MOVE_X_TO_TARGET:
+    E_DGPDSequence.MOVE_X_TO_TARGET:
         bEnteredMoveXToTarget := TRUE;
         IF stPlcToEpicsX.bError THEN
-            axisSequenceStep := E_DGPD_SequenceStep.ERROR;
+            axisSequenceStep := E_DGPDSequence.ERROR;
         ELSIF (stPlcToEpicsX.nGetValue <> eDGPDStateSet) (*AND NOT stPlcToEpicsX.bBusy*) THEN
             bMoveX := TRUE;
             eXTarget := eDGPDStateSet;
         ELSIF stPlcToEpicsX.nGetValue = eDGPDStateSet  AND NOT stPlcToEpicsX.bBusy THEN
-            axisSequenceStep := E_DGPD_SequenceStep.MOVE_Y_TO_TARGET;
+            axisSequenceStep := E_DGPDSequence.MOVE_Y_TO_TARGET;
         END_IF
 
-    E_DGPD_SequenceStep.MOVE_Y_TO_TARGET:
+    E_DGPDSequence.MOVE_Y_TO_TARGET:
         bEnteredMoveYToTarget := TRUE;
         IF stPlcToEpicsY.bError THEN
-            axisSequenceStep := E_DGPD_SequenceStep.ERROR;
+            axisSequenceStep := E_DGPDSequence.ERROR;
         ELSIF (stPlcToEpicsY.nGetValue <> eDGPDStateSet) (*AND NOT stPlcToEpicsY.bBusy*) THEN
             bMoveY := TRUE;
             eYTarget := eDGPDStateSet;
         ELSIF stPlcToEpicsY.nGetValue = eDGPDStateSet AND NOT stPlcToEpicsY.bBusy THEN
-            axisSequenceStep := E_DGPD_SequenceStep.MOVE_Z_TO_TARGET;
+            axisSequenceStep := E_DGPDSequence.MOVE_Z_TO_TARGET;
         END_IF
 
-    E_DGPD_SequenceStep.MOVE_Z_TO_TARGET:
+    E_DGPDSequence.MOVE_Z_TO_TARGET:
         bEnteredMoveZToTarget := TRUE;
         IF stPlcToEpicsZ.bError THEN
-            axisSequenceStep := E_DGPD_SequenceStep.ERROR;
+            axisSequenceStep := E_DGPDSequence.ERROR;
         ELSIF (stPlcToEpicsZ.nGetValue <> eDGPDStateSet) (*AND NOT stPlcToEpicsZ.bBusy*) THEN
             bMoveZ := TRUE;
             eZTarget := eDGPDStateSet;
         ELSIF stPlcToEpicsZ.nGetValue = eDGPDStateSet AND stPlcToEpicsZ.bDone AND NOT stPlcToEpicsZ.bBusy THEN
-            axisSequenceStep := E_DGPD_SequenceStep.DONE;
+            axisSequenceStep := E_DGPDSequence.DONE;
         END_IF
 
-    E_DGPD_SequenceStep.DONE:
+    E_DGPDSequence.DONE:
         bEnteredDone := TRUE;
         bSequenceComplete := TRUE;
         IF eDGPDStateSet <> previousTarget THEN
-            axisSequenceStep := E_DGPD_SequenceStep.INIT;
+            axisSequenceStep := E_DGPDSequence.INIT;
             bSequenceComplete := FALSE;
         END_IF
 
-    E_DGPD_SequenceStep.ERROR:
+    E_DGPDSequence.ERROR:
         bEnteredError := TRUE;
         bMoveRET := FALSE; bMoveX := FALSE; bMoveY := FALSE; bMoveZ := FALSE;
         bSequenceComplete := FALSE;
         IF bReset THEN
-            axisSequenceStep := E_DGPD_SequenceStep.INIT;
+            axisSequenceStep := E_DGPDSequence.INIT;
         END_IF
 END_CASE]]></ST>
     </Implementation>

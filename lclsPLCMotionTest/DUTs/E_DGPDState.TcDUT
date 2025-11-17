@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="E_DGPDStates" Id="{018f8515-71cb-4f89-95db-5b7ba67f56e9}">
+  <DUT Name="E_DGPDState" Id="{018f8515-71cb-4f89-95db-5b7ba67f56e9}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 {attribute 'to_string'}
-TYPE E_DGPDStates :
+TYPE E_DGPDState :
 (
 		UNKNOWN:=0,
         OUT,

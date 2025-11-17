@@ -30,10 +30,10 @@ VAR
 	fbTestTimer : TON := (IN:=TRUE, PT:=T#120S);
 	bInit: BOOL := TRUE;
 	iState: UINT;
-	 eSetTarget    : E_DGPDStates := E_DGPDStates.UNKNOWN; // Current target
+	 eSetTarget    : E_DGPDState := E_DGPDState.UNKNOWN; // Current target
 	testStep: UINT;
 	nTestCase: UINT;
-    eSetTargetArr : ARRAY[0..4] OF E_DGPDStates := [E_DGPDStates.TARGET1A, E_DGPDStates.TARGET2, E_DGPDStates.TARGET4,  E_DGPDStates.TARGET1B, E_DGPDStates.OUT];
+    eSetTargetArr : ARRAY[0..4] OF E_DGPDState := [E_DGPDState.TARGET1A, E_DGPDState.TARGET2, E_DGPDState.TARGET4,  E_DGPDState.TARGET1B, E_DGPDState.OUT];
     targetIndex : INT := 1;
     sequenceStep : INT := 0; // state machine step for the current target
     randomIndex   : INT := 1;
@@ -129,11 +129,11 @@ CASE nTestCase OF
 
             1:
                 IF fbDGPD.fbSequencer.bEnteredCheckOut THEN
-                    IF fbDGPD.fbSequencer.stPlcToEpicsX.nGetValue <> E_DGPDStates.OUT THEN
+                    IF fbDGPD.fbSequencer.stPlcToEpicsX.nGetValue <> E_DGPDState.OUT THEN
                         AssertEquals_BOOL(TRUE, fbDGPD.fbSequencer.bMoveX, 'X commanded OUT');
-                    ELSIF fbDGPD.fbSequencer.stPlcToEpicsY.nGetValue <> E_DGPDStates.OUT THEN
+                    ELSIF fbDGPD.fbSequencer.stPlcToEpicsY.nGetValue <> E_DGPDState.OUT THEN
                         AssertEquals_BOOL(TRUE, fbDGPD.fbSequencer.bMoveY, 'Y commanded OUT');
-                    ELSIF fbDGPD.fbSequencer.stPlcToEpicsZ.nGetValue <> E_DGPDStates.OUT THEN
+                    ELSIF fbDGPD.fbSequencer.stPlcToEpicsZ.nGetValue <> E_DGPDState.OUT THEN
                         AssertEquals_BOOL(TRUE, fbDGPD.fbSequencer.bMoveZ, 'Z commanded OUT');
                     ELSE
                         AssertEquals_BOOL(FALSE, fbDGPD.fbSequencer.bMoveX, 'No X move after all OUT');
@@ -197,7 +197,7 @@ fbDGPD(
     bReset                := bReset,
 	bEPSEnable            := bEPSEnable,
 	// place all stages into maintenance mode.
-    bMaintenanceMode      := bMaintenanceMode,
+    bMaintMode      := bMaintenanceMode,
     bEnableBeamParams     := bEnableBeamParams,
     bEnableMotion         := bEnableMotion,
 );

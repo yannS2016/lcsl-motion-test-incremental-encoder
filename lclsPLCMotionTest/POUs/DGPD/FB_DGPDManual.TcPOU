@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_DGPDManual" Id="{39ae7374-d9aa-4e7c-96db-2f110a50d3fa}" SpecialFunc="None">
+    <Declaration><![CDATA[(*
+	Manual-mode interlock helper for maintenance positioning of DREAM DGPD.
+	
+	This function block assesses whether X, Y, and Z axes are all within a specified
+	tolerance (fDelta) of their defined 'OUT' position. If so, bSafeToMoveRET is set TRUE,
+	allowing safe movement of the RET axis (e.g., during maintenance or manual mode). 
+*)
+FUNCTION_BLOCK FB_DGPDManual
+VAR_IN_OUT
+    astPositionStateX: ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    astPositionStateY: ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    astPositionStateZ: ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    stMCS2StageX: ST_MCS2Stage;
+    stMCS2StageY: ST_MCS2Stage;
+    stMCS2StageZ: ST_MCS2Stage;
+END_VAR
+
+VAR_INPUT
+    fDelta : LREAL; // allowed tolerance
+END_VAR
+
+VAR_OUTPUT
+    bSafeToMoveRET: BOOL;            // TRUE if all axes are at OUT position within delta
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT __ISVALIDREF(astPositionStateX)
+	OR NOT __ISVALIDREF(astPositionStateY)
+	OR NOT __ISVALIDREF(astPositionStateZ)
+	OR NOT __ISVALIDREF(stMCS2StageY) 
+	OR NOT __ISVALIDREF(stMCS2StageZ)
+	OR NOT __ISVALIDREF(stMCS2StageX )
+THEN
+	RETURN;
+END_IF
+
+// --- Maintenance Mode RET Move Interlock Logic ---
+bSafeToMoveRET := TRUE;
+
+// Only when all are within tolerance, RET is safe to move
+bSafeToMoveRET := ABS(stMCS2StageX.Axis.NcToPlc.ActPos - astPositionStateX[E_DGPDState.OUT].fPosition) <= fDelta
+				  AND  ABS(stMCS2StageY.Axis.NcToPlc.ActPos - astPositionStateY[E_DGPDState.OUT].fPosition) <= fDelta
+				  AND  ABS(stMCS2StageZ.Axis.NcToPlc.ActPos - astPositionStateZ[E_DGPDState.OUT].fPosition) <= fDelta;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

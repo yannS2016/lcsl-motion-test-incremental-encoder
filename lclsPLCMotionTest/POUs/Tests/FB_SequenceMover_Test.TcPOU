@@ -6,25 +6,25 @@ VAR
     fbSequencer   : FB_SequenceMover;
 
     // Per-axis state feedback structs (simulate axis state block outputs)
-    stPlcToEpicsRET : ST_StatePlcToEpics := (nGetValue := E_DGPDStates.OUT, bBusy := FALSE, bDone := TRUE, bError := FALSE, nErrorID := 0, sErrorMsg := '');
-    stPlcToEpicsX   : ST_StatePlcToEpics := (nGetValue := E_DGPDStates.OUT, bBusy := FALSE, bDone := TRUE, bError := FALSE, nErrorID := 0, sErrorMsg := '');
-    stPlcToEpicsY   : ST_StatePlcToEpics := (nGetValue := E_DGPDStates.OUT, bBusy := FALSE, bDone := TRUE, bError := FALSE, nErrorID := 0, sErrorMsg := '');
-    stPlcToEpicsZ   : ST_StatePlcToEpics := (nGetValue := E_DGPDStates.OUT, bBusy := FALSE, bDone := TRUE, bError := FALSE, nErrorID := 0, sErrorMsg := '');
+    stPlcToEpicsRET : ST_StatePlcToEpics := (nGetValue := E_DGPDState.OUT, bBusy := FALSE, bDone := TRUE, bError := FALSE, nErrorID := 0, sErrorMsg := '');
+    stPlcToEpicsX   : ST_StatePlcToEpics := (nGetValue := E_DGPDState.OUT, bBusy := FALSE, bDone := TRUE, bError := FALSE, nErrorID := 0, sErrorMsg := '');
+    stPlcToEpicsY   : ST_StatePlcToEpics := (nGetValue := E_DGPDState.OUT, bBusy := FALSE, bDone := TRUE, bError := FALSE, nErrorID := 0, sErrorMsg := '');
+    stPlcToEpicsZ   : ST_StatePlcToEpics := (nGetValue := E_DGPDState.OUT, bBusy := FALSE, bDone := TRUE, bError := FALSE, nErrorID := 0, sErrorMsg := '');
 
-    eRETTarget : E_DGPDStates;
-    eXTarget   : E_DGPDStates;
-    eYTarget   : E_DGPDStates;
-    eZTarget   : E_DGPDStates;
+    eRETTarget : E_DGPDState;
+    eXTarget   : E_DGPDState;
+    eYTarget   : E_DGPDState;
+    eZTarget   : E_DGPDState;
 	
-    eTarget       : E_DGPDStates := E_DGPDStates.OUT;
+    eTarget       : E_DGPDState := E_DGPDState.OUT;
     testStep      : INT := 0;
     doneOnce      : BOOL := FALSE;
     bReset        : BOOL := FALSE;
 
     // Optional for random target testing:
-    randomTarget       : E_DGPDStates;
+    randomTarget       : E_DGPDState;
     randomTestIndex    : INT := 0;
-    randomTestTargetArr: ARRAY[1..4] OF E_DGPDStates := [E_DGPDStates.TARGET1B, E_DGPDStates.TARGET4, E_DGPDStates.TARGET2, E_DGPDStates.TARGET5];
+    randomTestTargetArr: ARRAY[1..4] OF E_DGPDState := [E_DGPDState.TARGET1B, E_DGPDState.TARGET4, E_DGPDState.TARGET2, E_DGPDState.TARGET5];
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[TEST(__POUNAME());
@@ -36,9 +36,9 @@ FOR randomTestIndex := 1 TO 4 DO
     randomTarget := randomTestTargetArr[randomTestIndex];
     // Initial: axes not out (simulate at random previous targets)
     stPlcToEpicsRET.nGetValue := randomTarget;
-    stPlcToEpicsX.nGetValue   := E_DGPDStates.TARGET3;
-    stPlcToEpicsY.nGetValue   := E_DGPDStates.TARGET2;
-    stPlcToEpicsZ.nGetValue   := E_DGPDStates.TARGET4;
+    stPlcToEpicsX.nGetValue   := E_DGPDState.TARGET3;
+    stPlcToEpicsY.nGetValue   := E_DGPDState.TARGET2;
+    stPlcToEpicsZ.nGetValue   := E_DGPDState.TARGET4;
     eTarget := randomTarget;
 
     // Simulate axes "ready" and "not busy": set .bDone and !.bBusy
@@ -74,15 +74,15 @@ FOR randomTestIndex := 1 TO 4 DO
 
             1: // CHECK_OUT, stepwise, X not OUT first
                 IF fbSequencer.bEnteredCheckOut THEN
-                    IF stPlcToEpicsX.nGetValue <> E_DGPDStates.OUT THEN
+                    IF stPlcToEpicsX.nGetValue <> E_DGPDState.OUT THEN
                         AssertEquals_BOOL(TRUE, fbSequencer.bMoveX, 'X commanded OUT #6');
-                        stPlcToEpicsX.nGetValue := E_DGPDStates.OUT;
-                    ELSIF stPlcToEpicsY.nGetValue <> E_DGPDStates.OUT THEN
+                        stPlcToEpicsX.nGetValue := E_DGPDState.OUT;
+                    ELSIF stPlcToEpicsY.nGetValue <> E_DGPDState.OUT THEN
                         AssertEquals_BOOL(TRUE, fbSequencer.bMoveY, 'Y commanded OUT #7');
-                        stPlcToEpicsY.nGetValue := E_DGPDStates.OUT;
-                    ELSIF stPlcToEpicsZ.nGetValue <> E_DGPDStates.OUT THEN
+                        stPlcToEpicsY.nGetValue := E_DGPDState.OUT;
+                    ELSIF stPlcToEpicsZ.nGetValue <> E_DGPDState.OUT THEN
                         AssertEquals_BOOL(TRUE, fbSequencer.bMoveZ, 'Z commanded OUT #8');
-                        stPlcToEpicsZ.nGetValue := E_DGPDStates.OUT;
+                        stPlcToEpicsZ.nGetValue := E_DGPDState.OUT;
                     ELSE
                         AssertEquals_BOOL(FALSE, fbSequencer.bMoveX, 'No X move after all OUT #9');
                         AssertEquals_BOOL(FALSE, fbSequencer.bMoveY, 'No Y move after all OUT #10');

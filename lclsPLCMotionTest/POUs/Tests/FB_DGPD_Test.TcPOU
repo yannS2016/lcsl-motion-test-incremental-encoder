@@ -197,7 +197,7 @@ fbDGPD(
     bReset                := bReset,
 	bEPSEnable            := bEPSEnable,
 	// place all stages into maintenance mode.
-    bMaintMode      := bMaintenanceMode,
+    //bMaintMode      := bMaintenanceMode,
     bEnableBeamParams     := bEnableBeamParams,
     bEnableMotion         := bEnableMotion,
 );

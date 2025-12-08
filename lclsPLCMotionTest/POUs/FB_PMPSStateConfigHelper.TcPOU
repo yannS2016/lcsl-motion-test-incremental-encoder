@@ -10,15 +10,12 @@ VAR_IN_OUT
 	astPositionStateZ : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
 END_VAR
 
-
 VAR
 fbStateSetupRET : FB_StateSetupHelper;
 	stDefaultRET : ST_PositionState := (
 		sName := 'RET:SmartActMCS2-3C',
-		fDelta := 1.0,
-		fVelocity := 25,
-		fAccel := 150,
-		fDecel := 150,
+		fDelta := 0.003,
+		fVelocity := 0.25,
 		bMoveOk := TRUE,
 		bValid := TRUE
 	);
@@ -26,10 +23,8 @@ fbStateSetupRET : FB_StateSetupHelper;
 	fbStateSetupX : FB_StateSetupHelper;
 	stDefaultX : ST_PositionState := (
 		sName := 'X:SmartActMCS2-3C',
-		fDelta := 1.0,
-		fVelocity := 25,
-		fAccel := 150,
-		fDecel := 150,
+		fDelta := 0.003,
+		fVelocity := 0.25,
 		bMoveOk := TRUE,
 		bValid := TRUE
 	);
@@ -37,10 +32,8 @@ fbStateSetupRET : FB_StateSetupHelper;
 	fbStateSetupY : FB_StateSetupHelper;
 	stDefaultY : ST_PositionState := (
 		sName := 'Y:SmartActMCS2-3C',
-		fDelta := 1.0,
-		fVelocity := 25,
-		fAccel := 150,
-		fDecel := 150,
+		fDelta := 0.003,
+		fVelocity := 0.25,
 		bMoveOk := TRUE,
 		bValid := TRUE
 	);
@@ -48,10 +41,8 @@ fbStateSetupRET : FB_StateSetupHelper;
 	fbStateSetupZ : FB_StateSetupHelper;
 	stDefaultZ : ST_PositionState := (
 		sName := 'Z:SmartActMCS2-3C',
-		fDelta := 1.0,
-		fVelocity := 25,
-		fAccel := 150,
-		fDecel := 150,
+		fDelta := 0.003,
+		fVelocity := 1,
 		bMoveOk := TRUE,
 		bValid := TRUE
 	);
@@ -117,51 +108,51 @@ jsonHelper(
 
 // --- RET axis ---
 fbStateSetupRET(stPositionState := stDefaultRET, bSetDefault := TRUE);
-fbStateSetupRET(stPositionState := astPositionStateRET[1], fPosition := 100.0);
-fbStateSetupRET(stPositionState := astPositionStateRET[2], fPosition := 110.0);
-fbStateSetupRET(stPositionState := astPositionStateRET[3], fPosition := 120.0);
-fbStateSetupRET(stPositionState := astPositionStateRET[4], fPosition := 130.0);
-fbStateSetupRET(stPositionState := astPositionStateRET[5], fPosition := 140.0);
-fbStateSetupRET(stPositionState := astPositionStateRET[6], fPosition := 150.0);
-fbStateSetupRET(stPositionState := astPositionStateRET[7], fPosition := 160.0);
-fbStateSetupRET(stPositionState := astPositionStateRET[8], fPosition := 170.0);
-fbStateSetupRET(stPositionState := astPositionStateRET[9], fPosition := 180.0);
+fbStateSetupRET(stPositionState := astPositionStateRET[1], fPosition := 1.02);
+fbStateSetupRET(stPositionState := astPositionStateRET[2], fPosition := 3.24);
+fbStateSetupRET(stPositionState := astPositionStateRET[3], fPosition := 5.67);
+fbStateSetupRET(stPositionState := astPositionStateRET[4], fPosition := 8.91);
+fbStateSetupRET(stPositionState := astPositionStateRET[5], fPosition := 11.88);
+fbStateSetupRET(stPositionState := astPositionStateRET[6], fPosition := 13.77);
+fbStateSetupRET(stPositionState := astPositionStateRET[7], fPosition := 15.60);
+fbStateSetupRET(stPositionState := astPositionStateRET[8], fPosition := 17.42);
+fbStateSetupRET(stPositionState := astPositionStateRET[9], fPosition := 19.83);
 
 // --- X axis ---
 fbStateSetupX(stPositionState := stDefaultX, bSetDefault := TRUE);
-fbStateSetupX(stPositionState := astPositionStateX[1], fPosition := 200.0);
-fbStateSetupX(stPositionState := astPositionStateX[2], fPosition := 210.0);
-fbStateSetupX(stPositionState := astPositionStateX[3], fPosition := 220.0);
-fbStateSetupX(stPositionState := astPositionStateX[4], fPosition := 230.0);
-fbStateSetupX(stPositionState := astPositionStateX[5], fPosition := 240.0);
-fbStateSetupX(stPositionState := astPositionStateX[6], fPosition := 250.0);
-fbStateSetupX(stPositionState := astPositionStateX[7], fPosition := 260.0);
-fbStateSetupX(stPositionState := astPositionStateX[8], fPosition := 270.0);
-fbStateSetupX(stPositionState := astPositionStateX[9], fPosition := 280.0);
+fbStateSetupX(stPositionState := astPositionStateX[1], fPosition := 0.94);
+fbStateSetupX(stPositionState := astPositionStateX[2], fPosition := 2.18);
+fbStateSetupX(stPositionState := astPositionStateX[3], fPosition := 4.75);
+fbStateSetupX(stPositionState := astPositionStateX[4], fPosition := 6.09);
+fbStateSetupX(stPositionState := astPositionStateX[5], fPosition := 9.44);
+fbStateSetupX(stPositionState := astPositionStateX[6], fPosition := 12.13);
+fbStateSetupX(stPositionState := astPositionStateX[7], fPosition := 14.05);
+fbStateSetupX(stPositionState := astPositionStateX[8], fPosition := 17.36);
+fbStateSetupX(stPositionState := astPositionStateX[9], fPosition := 19.79);
 
 // --- Y axis ---
 fbStateSetupY(stPositionState := stDefaultY, bSetDefault := TRUE);
-fbStateSetupY(stPositionState := astPositionStateY[1], fPosition := 300.0);
-fbStateSetupY(stPositionState := astPositionStateY[2], fPosition := 310.0);
-fbStateSetupY(stPositionState := astPositionStateY[3], fPosition := 320.0);
-fbStateSetupY(stPositionState := astPositionStateY[4], fPosition := 330.0);
-fbStateSetupY(stPositionState := astPositionStateY[5], fPosition := 340.0);
-fbStateSetupY(stPositionState := astPositionStateY[6], fPosition := 350.0);
-fbStateSetupY(stPositionState := astPositionStateY[7], fPosition := 360.0);
-fbStateSetupY(stPositionState := astPositionStateY[8], fPosition := 370.0);
-fbStateSetupY(stPositionState := astPositionStateY[9], fPosition := 380.0);
+fbStateSetupY(stPositionState := astPositionStateY[1], fPosition := 1.71);
+fbStateSetupY(stPositionState := astPositionStateY[2], fPosition := 3.65);
+fbStateSetupY(stPositionState := astPositionStateY[3], fPosition := 5.19);
+fbStateSetupY(stPositionState := astPositionStateY[4], fPosition := 6.81);
+fbStateSetupY(stPositionState := astPositionStateY[5], fPosition := 9.29);
+fbStateSetupY(stPositionState := astPositionStateY[6], fPosition := 10.56);
+fbStateSetupY(stPositionState := astPositionStateY[7], fPosition := 13.33);
+fbStateSetupY(stPositionState := astPositionStateY[8], fPosition := 15.07);
+fbStateSetupY(stPositionState := astPositionStateY[9], fPosition := 18.62);
 
 // --- Z axis ---
 fbStateSetupZ(stPositionState := stDefaultZ, bSetDefault := TRUE);
-fbStateSetupZ(stPositionState := astPositionStateZ[1], fPosition := 400.0);
-fbStateSetupZ(stPositionState := astPositionStateZ[2], fPosition := 410.0);
-fbStateSetupZ(stPositionState := astPositionStateZ[3], fPosition := 420.0);
-fbStateSetupZ(stPositionState := astPositionStateZ[4], fPosition := 430.0);
-fbStateSetupZ(stPositionState := astPositionStateZ[5], fPosition := 440.0);
-fbStateSetupZ(stPositionState := astPositionStateZ[6], fPosition := 450.0);
-fbStateSetupZ(stPositionState := astPositionStateZ[7], fPosition := 460.0);
-fbStateSetupZ(stPositionState := astPositionStateZ[8], fPosition := 470.0);
-fbStateSetupZ(stPositionState := astPositionStateZ[9], fPosition := 480.0);]]></ST>
+fbStateSetupZ(stPositionState := astPositionStateZ[1], fPosition := 1.26);
+fbStateSetupZ(stPositionState := astPositionStateZ[2], fPosition := 3.46);
+fbStateSetupZ(stPositionState := astPositionStateZ[3], fPosition := 5.18);
+fbStateSetupZ(stPositionState := astPositionStateZ[4], fPosition := 6.73);
+fbStateSetupZ(stPositionState := astPositionStateZ[5], fPosition := 9.08);
+fbStateSetupZ(stPositionState := astPositionStateZ[6], fPosition := 11.64);
+fbStateSetupZ(stPositionState := astPositionStateZ[7], fPosition := 13.85);
+fbStateSetupZ(stPositionState := astPositionStateZ[8], fPosition := 17.09);
+fbStateSetupZ(stPositionState := astPositionStateZ[9], fPosition := 19.65);]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

@@ -136,7 +136,7 @@ IF NOT bTransitionAuthorized OR bProgrammerError THEN
     tonDoneSim(IN := FALSE);
     bDoneMoving := FALSE;
 END_IF
-
+// even lower.
 tonDoneSim(PT := T#250ms);      // Set timer duration (simulate 250ms move done)
 ]]></ST>
     </Implementation>

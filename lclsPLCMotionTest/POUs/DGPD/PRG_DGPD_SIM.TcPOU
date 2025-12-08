@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="PRG_DGPD" Id="{823a5c15-827d-43b0-9820-76476fd1f31e}" SpecialFunc="None">
-    <Declaration><![CDATA[PROGRAM PRG_DGPD
+  <POU Name="PRG_DGPD_SIM" Id="{823a5c15-827d-43b0-9820-76476fd1f31e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PRG_DGPD_SIM
 VAR
 	fbDGPD : FB_DGPD;
     // Axis motion stages (hardware interface or simulation)

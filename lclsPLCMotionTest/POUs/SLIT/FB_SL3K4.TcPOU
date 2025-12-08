@@ -35,7 +35,7 @@ VAR
     {attribute 'hide'}
     fbMotionClearAsserts : FB_MotionClearAsserts;
     {attribute 'pytmc' := 'pv: SL3K4:STATE'}
-    eReqState            : UINT := E_SL3K4State.UNKNOWN;
+    eReqState            : UINT := E_SL3K4State.NORMAL;// use as default.
     {attribute 'hide'}
     nPrevMode            : E_SL3K4State := E_SL3K4State.NORMAL;
     {attribute 'hide'}
@@ -149,7 +149,7 @@ VAR
     rtTransDone          : R_TRIG;
 
     bModeTransitionStarted : BOOL := FALSE;
-    bModeTransitionPending : BOOL := FALSE;
+    bModeTransitionDone : BOOL := FALSE;
     bTransitionCompleted   : BOOL := FALSE;
 END_VAR]]></Declaration>
     <Implementation>
@@ -170,7 +170,7 @@ fbSL3K4ReadPMPSDB(
 );
 
 // --- Programmer error if wrong motor count ---
-bProgrammerError := nActiveMotorCount <> UPPER_BOUND(astMotionStage, 1);
+//bProgrammerError := nActiveMotorCount <> (UPPER_BOUND(astMotionStage, 1) - LOWER_BOUND(astMotionStage, 1) + 1);
 
 // --- Early lock and fail-safe if DB not loaded ---
 IF NOT fbSL3K4ReadPMPSDB.bStatesReady THEN
@@ -269,25 +269,24 @@ FOR nBlades := 1 TO nActiveMotorCount DO
     END_IF
 END_FOR
 
-// --- Robust multi-stage transition logic ---
 // Rising edge detection
 rtTransAuth(CLK := bTransitionAuthorized);
 rtTransDone(CLK := fbSL3K4BPTM.bDone);
 
-// Multi-stage flags (reset only on mode change or BPTM error/busy)
+// (reset only on mode change or BPTM error/busy)
 IF rtTransAuth.Q THEN
     bModeTransitionStarted := TRUE;
 END_IF
 IF rtTransDone.Q THEN
-    bModeTransitionPending := TRUE;
+    bModeTransitionDone := TRUE;
 END_IF
-bTransitionCompleted := bModeTransitionStarted AND bModeTransitionPending;
+bTransitionCompleted := bModeTransitionStarted AND bModeTransitionDone;
 
 // Clear all transition flags & safe-to-move if a request starts or error/busy encountered
 IF (eReqState <> nGoalAtClear) OR fbSL3K4BPTM.bBusy OR fbSL3K4BPTM.bError THEN
     bSafeToMove := FALSE;
     bModeTransitionStarted := fbSL3K4BPTM.bBusy;
-    bModeTransitionPending := FALSE;
+    bModeTransitionDone := FALSE;
     bTransitionCompleted := FALSE;
     nGoalAtClear := eReqState;
 END_IF
@@ -316,6 +315,7 @@ FOR nBlades := 1 TO nActiveMotorCount DO
                     fDrift := ABS(astMotionStage[nBlades].axis.NcToPlc.ActPos - astMotionStage[nBlades].fPosition);
                     IF fDrift > fDriftTolerance THEN
                         bDriftFF := TRUE;
+						// use  the drifttolerance in the error message.
                         sStatusMsg := CONCAT(astMotionStage[nBlades].sName, ' drifted out of 3um deadband in normal mode');
                         astMotionStage[nBlades].sCustomErrorMessage := sStatusMsg;
                     END_IF

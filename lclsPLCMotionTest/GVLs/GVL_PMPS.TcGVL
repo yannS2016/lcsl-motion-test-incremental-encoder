@@ -7,7 +7,7 @@ VAR_GLOBAL
     {attribute 'pytmc' := 'pv: PLC:DREAM:MOTION:ARB:01'}
     fbArbiter: FB_Arbiter(1);
 
-    {attribute 'pytmc' := 'pv: PLC:DREAM:MOTION:FFO:02'}
+    {attribute 'pytmc' := 'pv: PLC:DREAM:MOTION:FFO:01'}
     {attribute 'TcLinkTo' := '.q_xFastFaultOut:=TIIB[PMPS_FFO]^Channel 2^Output'}
     fbFastFaultOutput1: FB_HardwareFFOutput := (bAutoReset := TRUE, i_sNetID:='172.21.92.73.1.1');
 END_VAR]]></Declaration>

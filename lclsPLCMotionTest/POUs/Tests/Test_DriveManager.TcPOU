@@ -1,0 +1,487 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="Test_DriveManager" Id="{21b1b160-0cb9-4a2f-9d9d-5c132d6c6de3}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Test_DriveManager
+VAR
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[singleAxis();]]></ST>
+    </Implementation>
+    <Method Name="MultiAxes" Id="{13d211a0-4542-4092-9f05-d397fe0472df}">
+      <Declaration><![CDATA[METHOD MultiAxes
+VAR_INST
+    fbDriveManager   : ARRAY[1..3] OF FB_DriveDS402Manager;
+    Axis             : ARRAY[1..3] OF ST_MCS2Stage; // MAIN.M12, MAIN.M13, MAIN.M14
+    nTestState       : INT := 0;
+    tonTestStep      : TON;
+    tonTimeoutStep   : TON;
+    bSystemInit      : ARRAY[1..3] OF BOOL := [TRUE, TRUE, TRUE];
+    bExecParamsRead  : ARRAY[1..3] OF BOOL := [FALSE, FALSE, FALSE];
+    nCommandLocal    : ARRAY[1..3] OF E_EpicsMotorCmd := [0, 0, 0];
+    bModeOk          : ARRAY[1..3] OF BOOL := [FALSE, FALSE, FALSE];
+    bFlagOk          : ARRAY[1..3] OF BOOL := [FALSE, FALSE, FALSE];
+    bAllOk           : BOOL := TRUE; // Helper flag for all axes
+    sErrorMsg        : ARRAY[1..3] OF STRING[128];
+	eSevr                : LCLS_General.TcEventSeverity;
+    fbLogger         : ARRAY[1..3] OF FB_LogMessage := [
+                           (eSubsystem:=E_SubSystem.MOTION),
+                           (eSubsystem:=E_SubSystem.MOTION),
+                           (eSubsystem:=E_SubSystem.MOTION)
+                       ];
+END_VAR
+
+VAR
+	i: UINT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Axis[1] := MAIN.M9;
+Axis[2] := MAIN.M10;
+Axis[3] := MAIN.M12;
+
+// --- Simulate boot sequence for all axes ---
+FOR i := 1 TO 3 DO
+    IF bSystemInit[i] THEN
+        IF Axis[i].Axis.NcToPlc.AxisId <> 0 THEN
+            fbDriveManager[i].bStartupActive := nCommandLocal[i] <> E_EpicsMotorCmd.MOVE_ABSOLUTE; 
+            bExecParamsRead[i] := TRUE;
+            bSystemInit[i] := FALSE;
+        END_IF
+    END_IF
+
+    fbDriveManager[i](stMCS2Stage := Axis[i], bUserExec := Axis[i].bExecute);
+END_FOR
+
+tonTestStep(PT := T#10S);
+tonTimeoutStep(PT := T#10S);
+
+// --- Global State Machine ---
+CASE nTestState OF
+    // --- INIT ---
+    0:
+        FOR i := 1 TO 3 DO
+            Axis[i].stDS402Drive.nDriveControl := 128;
+        END_FOR
+        tonTimeoutStep(IN := TRUE);
+        nTestState := 110;
+
+    // --- CSP TEST ---
+    110:
+        IF tonTimeoutStep.Q THEN
+            FOR i := 1 TO 3 DO
+                Axis[i].bMoveCmd := TRUE;
+            END_FOR
+            tonTimeoutStep(IN:=FALSE);
+            tonTestStep(IN := TRUE);
+            nTestState := 10;
+        END_IF
+
+    10: // Wait for transition, then check mode match for ALL axes
+        IF tonTestStep.Q THEN
+            tonTestStep(IN := FALSE);
+
+            bAllOk := TRUE;
+            FOR i := 1 TO 3 DO
+                bModeOk[i] := Axis[i].stDS402Drive.nModeOfOperationDisplay = E_DS402OpMode.CSP;
+                IF NOT bModeOk[i] THEN
+                    sErrorMsg[i] := CONCAT('CSP test failed for Axis ', CONCAT(TO_STRING(i), ': Mode did not match.'));
+                    fbLogger[i](sMsg := sErrorMsg[i], eSevr := eSevr);
+                    bAllOk := FALSE;
+                END_IF
+                Axis[i].bMoveCmd := FALSE;
+            END_FOR
+
+            IF NOT bAllOk THEN
+                nTestState := 100;
+            ELSE
+                tonTimeoutStep(IN := TRUE);
+                nTestState := 20;
+            END_IF
+        END_IF
+
+    20: // Wait for flag, check on timeout for ALL axes
+        IF tonTimeoutStep.Q THEN
+            tonTimeoutStep(IN := FALSE);
+            bAllOk := TRUE;
+            FOR i := 1 TO 3 DO
+                bFlagOk[i] := fbDriveManager[i].bCSPModeEnabled;
+                IF NOT bFlagOk[i] THEN
+                    sErrorMsg[i] := CONCAT('CSP test failed for Axis ', CONCAT(TO_STRING(i), ': bCSPModeEnabled not TRUE.'));
+                    fbLogger[i](sMsg := sErrorMsg[i], eSevr := eSevr);
+                    bAllOk := FALSE;
+                END_IF
+            END_FOR
+
+            IF NOT bAllOk THEN
+                nTestState := 100;
+            ELSE
+                nTestState := 30;
+            END_IF
+        END_IF
+
+
+    // --- HOME TEST ---
+    30:
+        FOR i := 1 TO 3 DO Axis[i].bHomeCmd := TRUE; END_FOR
+        tonTestStep(IN := TRUE);
+        nTestState := 40;
+    40:
+        IF tonTestStep.Q THEN
+            tonTestStep(IN := FALSE);
+
+            bAllOk := TRUE;
+            FOR i := 1 TO 3 DO
+                bModeOk[i] := Axis[i].stDS402Drive.nModeOfOperationDisplay = E_DS402OpMode.HOME;
+                IF NOT bModeOk[i] THEN
+                    sErrorMsg[i] := CONCAT('HOME test failed for Axis ', CONCAT(TO_STRING(i), ': Mode did not match.'));
+                    fbLogger[i](sMsg := sErrorMsg[i], eSevr := eSevr);
+                    bAllOk := FALSE;
+                END_IF
+                Axis[i].bHomeCmd := FALSE;
+            END_FOR
+
+            IF NOT bAllOk THEN
+                nTestState := 100;
+            ELSE
+                tonTimeoutStep(IN := TRUE);
+                nTestState := 50;
+            END_IF
+        END_IF
+    50:
+        IF tonTimeoutStep.Q THEN
+            tonTimeoutStep(IN := FALSE);
+
+            bAllOk := TRUE;
+            FOR i := 1 TO 3 DO
+                bFlagOk[i] := fbDriveManager[i].bHomeModeEnabled;
+                IF NOT bFlagOk[i] THEN
+                    sErrorMsg[i] := CONCAT('HOME test failed for Axis ', CONCAT(TO_STRING(i), ': bHomeModeEnabled not TRUE.'));
+                    fbLogger[i](sMsg := sErrorMsg[i], eSevr := eSevr);
+                    bAllOk := FALSE;
+                END_IF
+            END_FOR
+
+            IF NOT bAllOk THEN
+                nTestState := 100;
+            ELSE
+                nTestState := 60;
+            END_IF
+        END_IF
+
+    // --- STEP TEST ---
+    60:
+        FOR i := 1 TO 3 DO Axis[i].stMCS2ChanParams.bStepMoveCmd := TRUE; END_FOR
+        tonTestStep(IN := TRUE);
+        nTestState := 70;
+    70:
+        IF tonTestStep.Q THEN
+            tonTestStep(IN := FALSE);
+            bAllOk := TRUE;
+            FOR i := 1 TO 3 DO
+                bModeOk[i] := Axis[i].stDS402Drive.nModeOfOperationDisplay = E_DS402OpMode.MCS2_OL_STEP_MODE;
+                IF NOT bModeOk[i] THEN
+                    sErrorMsg[i] := CONCAT('STEP test failed for Axis ', CONCAT(TO_STRING(i), ': Mode did not match.'));
+                    fbLogger[i](sMsg := sErrorMsg[i], eSevr := eSevr);
+                    bAllOk := FALSE;
+                END_IF
+                Axis[i].stMCS2ChanParams.bStepMoveCmd := FALSE;
+            END_FOR
+
+            IF NOT bAllOk THEN
+                nTestState := 100;
+            ELSE
+                tonTimeoutStep(IN := TRUE);
+                nTestState := 80;
+            END_IF
+        END_IF
+    80:
+        IF tonTimeoutStep.Q THEN
+            tonTimeoutStep(IN := FALSE);
+            bAllOk := TRUE;
+            FOR i := 1 TO 3 DO
+                bFlagOk[i] := fbDriveManager[i].bStepModeEnabled;
+                IF NOT bFlagOk[i] THEN
+                    sErrorMsg[i] := CONCAT('STEP test failed for Axis ', CONCAT(TO_STRING(i), ': bStepModeEnabled not TRUE.'));
+                    fbLogger[i](sMsg := sErrorMsg[i], eSevr := eSevr);
+                    bAllOk := FALSE;
+                END_IF
+            END_FOR
+
+            IF NOT bAllOk THEN
+                nTestState := 100;
+            ELSE
+                nTestState := 90;
+            END_IF
+        END_IF
+
+    // --- CALIBRATION TEST ---
+    90:
+        FOR i := 1 TO 3 DO Axis[i].stMCS2ChanParams.bCalibrationCmd := TRUE; END_FOR
+        tonTestStep(IN := TRUE);
+        nTestState := 91;
+    91:
+        IF tonTestStep.Q THEN
+            tonTestStep(IN := FALSE);
+            bAllOk := TRUE;
+            FOR i := 1 TO 3 DO
+                bModeOk[i] := Axis[i].stDS402Drive.nModeOfOperationDisplay = E_DS402OpMode.MCS2_CALIBRATION;
+                IF NOT bModeOk[i] THEN
+                    sErrorMsg[i] := CONCAT('CALIBRATION test failed for Axis ', CONCAT(TO_STRING(i), ': Mode did not match.'));
+                    fbLogger[i](sMsg := sErrorMsg[i], eSevr := eSevr);
+                    bAllOk := FALSE;
+                END_IF
+                Axis[i].stMCS2ChanParams.bCalibrationCmd := FALSE;
+            END_FOR
+
+            IF NOT bAllOk THEN
+                nTestState := 100;
+            ELSE
+                tonTimeoutStep(IN := TRUE);
+                nTestState := 92;
+            END_IF
+        END_IF
+    92:
+        IF tonTimeoutStep.Q THEN
+            tonTimeoutStep(IN := FALSE);
+            bAllOk := TRUE;
+            FOR i := 1 TO 3 DO
+                bFlagOk[i] := fbDriveManager[i].bCalibrationModeEnabled;
+                IF NOT bFlagOk[i] THEN
+                    sErrorMsg[i] := CONCAT('CALIBRATION test failed for Axis ', CONCAT(TO_STRING(i), ': bCalibrationModeEnabled not TRUE.'));
+                    fbLogger[i](sMsg := sErrorMsg[i], eSevr := eSevr);
+                    bAllOk := FALSE;
+                END_IF
+            END_FOR
+
+            IF NOT bAllOk THEN
+                nTestState := 100;
+            ELSE
+                nTestState := 99;
+            END_IF
+        END_IF
+
+    // --- SUCCESS & ERROR ---
+    99:
+        FOR i := 1 TO 3 DO
+            sErrorMsg[i] := CONCAT('All mode enable flag tests passed for Axis ', TO_STRING(i));
+			fbLogger[i](sMsg := sErrorMsg[i], eSevr := eSevr);
+        END_FOR
+
+    100:
+        // Error state, stay here for inspection
+
+END_CASE
+
+// Safety: clear .bExecute after actions if needed
+FOR i := 1 TO 3 DO Axis[i].bExecute := FALSE; END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="singleAxis" Id="{49e24d92-8654-4880-aed9-918c004eb3a6}">
+      <Declaration><![CDATA[METHOD singleAxis
+VAR_INST
+    fbDriveManager        : FB_DriveDS402Manager;
+    nTestState            : INT := 0;
+    tonTestStep           : TON;            // delay before sending next command
+    tonTimeoutStep        : TON;            // timeout waiting for enable
+    bSystemInit           : BOOL := TRUE;
+    bExecParamsRead       : BOOL := FALSE;
+    nCommandLocal         : E_EpicsMotorCmd := 0;
+
+    rtMoveCmdShortcut     : R_TRIG;
+    rtHomeCmdShortcut     : R_TRIG;
+    rtStepCmdShortcut     : R_TRIG;
+    rtCalibrateCmdShortcut: R_TRIG;
+    rtUserExec            : R_TRIG;
+
+    fbLogger              : FB_LogMessage := (eSubsystem:=E_SubSystem.MOTION);
+    sErrorMsg             : STRING[128] := '';
+	eSevr                : LCLS_General.TcEventSeverity;
+	bFlagOk: BOOL;
+	bModeOk: BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// --- Simulate boot sequence ---
+IF bSystemInit THEN
+    IF MAIN.M12.Axis.NcToPlc.AxisId <> 0 THEN
+        fbDriveManager.bStartupActive := nCommandLocal <> E_EpicsMotorCmd.MOVE_ABSOLUTE; 
+        bExecParamsRead := TRUE;
+        bSystemInit := FALSE;
+    END_IF
+END_IF
+
+// --- Command shortcuts ---
+rtMoveCmdShortcut(CLK := MAIN.M12.bMoveCmd);
+rtHomeCmdShortcut(CLK := MAIN.M12.bHomeCmd);
+rtStepCmdShortcut(CLK := MAIN.M12.stMCS2ChanParams.bStepMoveCmd);
+rtCalibrateCmdShortcut(CLK := MAIN.M12.stMCS2ChanParams.bCalibrationCmd);
+
+MAIN.M12.bExecute := rtMoveCmdShortcut.Q
+                     OR rtHomeCmdShortcut.Q
+                     OR rtStepCmdShortcut.Q
+                     OR rtCalibrateCmdShortcut.Q;
+
+rtUserExec(CLK := MAIN.M12.bExecute);
+
+// --- Call FB under test ---
+fbDriveManager(
+    stMCS2Stage := MAIN.M12,
+    bUserExec  := rtUserExec.Q
+);
+
+// --- Test state machine ---
+CASE nTestState OF
+	0:
+		MAIN.M12.stDS402Drive.nDriveControl:=128;
+		tonTimeoutStep(IN := TRUE);
+		nTestState := 110;
+    // --- CSP TEST ---
+    110: // Issue CSP command
+		IF tonTimeoutStep.Q THEN
+			MAIN.M12.bMoveCmd := TRUE;
+			tonTimeoutStep(IN:=FALSE);
+        	tonTestStep(IN := TRUE);
+        	nTestState := 10;
+		END_IF
+
+    10: // Check mode match
+        IF tonTestStep.Q THEN
+            tonTestStep(IN := FALSE);
+            bModeOk := MAIN.M12.stDS402Drive.nModeOfOperationDisplay = E_DS402OpMode.CSP;
+            IF NOT bModeOk THEN
+                sErrorMsg := 'CSP test failed: Mode did not match.';
+                fbLogger(sMsg := sErrorMsg, eSevr := eSevr);
+                nTestState := 100;
+            ELSE
+                tonTimeoutStep(IN := TRUE);
+                nTestState := 20;
+            END_IF
+            MAIN.M12.bMoveCmd := FALSE;
+        END_IF
+    20: // Check enable flag
+        IF tonTimeoutStep.Q THEN
+            tonTimeoutStep(IN := FALSE);
+            bFlagOk := NOT fbDriveManager.bCSPModeEnabled;
+            IF bFlagOk THEN
+                sErrorMsg := 'CSP test failed: bCSPModeEnabled not TRUE.';
+                fbLogger(sMsg := sErrorMsg, eSevr := eSevr);
+                nTestState := 100;
+            ELSE
+                nTestState := 30;
+            END_IF
+        END_IF
+
+    // --- HOME TEST ---
+    30: // Issue HOME command
+        MAIN.M12.bHomeCmd := TRUE;
+        tonTestStep(IN := TRUE);
+        nTestState := 40;
+    40: // Check mode match
+        IF tonTestStep.Q THEN
+            tonTestStep(IN := FALSE);
+            bModeOk := MAIN.M12.stDS402Drive.nModeOfOperationDisplay = E_DS402OpMode.HOME;
+            IF NOT bModeOk THEN
+                sErrorMsg := 'HOME test failed: Mode did not match.';
+                fbLogger(sMsg := sErrorMsg, eSevr := eSevr);
+                nTestState := 100;
+            ELSE
+                tonTimeoutStep(IN := TRUE);
+                nTestState := 50;
+            END_IF
+            MAIN.M12.bHomeCmd := FALSE;
+        END_IF
+    50: // Check enable flag
+        IF tonTimeoutStep.Q THEN
+            tonTimeoutStep(IN := FALSE);
+            bFlagOk := fbDriveManager.bHomeModeEnabled;
+            IF NOT bFlagOk THEN
+                sErrorMsg := 'HOME test failed: bHomeModeEnabled not TRUE.';
+                fbLogger(sMsg := sErrorMsg, eSevr := eSevr);
+                nTestState := 100;
+            ELSE
+                nTestState := 60;
+            END_IF
+        END_IF
+
+    // --- STEP TEST ---
+    60: // Issue STEP command
+        MAIN.M12.stMCS2ChanParams.bStepMoveCmd := TRUE;
+        tonTestStep(IN := TRUE);
+        nTestState := 70;
+    70: // Check mode match
+        IF tonTestStep.Q THEN
+            tonTestStep(IN := FALSE);
+            bModeOk := MAIN.M12.stDS402Drive.nModeOfOperationDisplay = E_DS402OpMode.MCS2_OL_STEP_MODE;
+            IF NOT bModeOk THEN
+                sErrorMsg := 'STEP test failed: Mode did not match.';
+                fbLogger(sMsg := sErrorMsg, eSevr := eSevr);
+                nTestState := 100;
+            ELSE
+                tonTimeoutStep(IN := TRUE);
+                nTestState := 80;
+            END_IF
+            MAIN.M12.stMCS2ChanParams.bStepMoveCmd := FALSE;
+        END_IF
+    80: // Check enable flag
+        IF tonTimeoutStep.Q THEN
+            tonTimeoutStep(IN := FALSE);
+            bFlagOk := fbDriveManager.bStepModeEnabled;
+            IF NOT bFlagOk THEN
+                sErrorMsg := 'STEP test failed: bStepModeEnabled not TRUE.';
+                fbLogger(sMsg := sErrorMsg, eSevr := eSevr);
+                nTestState := 100;
+            ELSE
+                nTestState := 90;
+            END_IF
+        END_IF
+
+    // --- CALIBRATION TEST ---
+    90: // Issue CALIBRATION command
+        MAIN.M12.stMCS2ChanParams.bCalibrationCmd := TRUE;
+        tonTestStep(IN := TRUE);
+        nTestState := 91;
+    91: // Check mode match
+        IF tonTestStep.Q THEN
+            tonTestStep(IN := FALSE);
+            bModeOk := MAIN.M12.stDS402Drive.nModeOfOperationDisplay = E_DS402OpMode.MCS2_CALIBRATION;
+            IF NOT bModeOk THEN
+                sErrorMsg := 'CALIBRATION test failed: Mode did not match.';
+                fbLogger(sMsg := sErrorMsg, eSevr := eSevr);
+                nTestState := 100;
+            ELSE
+                tonTimeoutStep(IN := TRUE);
+                nTestState := 92;
+            END_IF
+            MAIN.M12.stMCS2ChanParams.bCalibrationCmd := FALSE;
+        END_IF
+    92: // Check enable flag
+        IF tonTimeoutStep.Q THEN
+            tonTimeoutStep(IN := FALSE);
+            bFlagOk := fbDriveManager.bCalibrationModeEnabled;
+            IF NOT bFlagOk THEN
+                sErrorMsg := 'CALIBRATION test failed: bCalibrationModeEnabled not TRUE.';
+                fbLogger(sMsg := sErrorMsg, eSevr := eSevr);
+                nTestState := 100;
+            ELSE
+                nTestState := 99;
+            END_IF
+        END_IF
+
+    // --- SUCCESS & ERROR ---
+    99: // All tests passed
+        sErrorMsg := 'All mode enable flag tests passed.';
+        fbLogger(sMsg := sErrorMsg, eSevr := eSevr);
+
+    100: // ERROR state, halt for inspection
+
+END_CASE
+
+// --- INIT: setup tonTestStep and tonTimeoutStep ---
+tonTestStep(PT := T#10S); // delay between commands
+tonTimeoutStep(PT := T#10S);
+MAIN.M12.bExecute := FALSE;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

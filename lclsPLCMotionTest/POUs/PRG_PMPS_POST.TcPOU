@@ -3,19 +3,34 @@
   <POU Name="PRG_PMPS_POST" Id="{bc0e6ef0-5f0b-43ff-b35e-1caeb1aba08b}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM PRG_PMPS_POST
 VAR
-//     fbArbiterIO: FB_SubSysToArbiter_IO;
-//     fb_Arbiter: FB_Arbiter(1);
-// 	fbDreamScatterSlitPMPS : FB_SL3K4(
-// 		stRefX1:=Main.M13, 
-// 		stRefX2:=Main.M14,
-// 		stRefY1:=Main.M15, 
-// 		stRefY2:=Main.M16, 
-// 		fbRefArbiter:= GVL_PMPS.fbArbiter,
-// 		fbRefFFHWO:= GVL_PMPS.fbFastFaultOutput1
-// 	);
+	fbArbiterIO: FB_SubSysToArbiter_IO;
+    fbvetoArbiter: FB_VetoArbiter;
+
+    bST3K4_Veto	: BOOL;
+    bST1K4_Veto	: BOOL;
+    bM1K1Veto	: BOOL;
+    bM1K3Veto: BOOL;
+    bST4K4_Veto:BOOL;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[bST3K4_Veto := PMPS_GVL.stCurrentBeamParameters.aVetoDevices[PMPS.K_Stopper.ST3K4];
+bST1K4_Veto := PMPS_GVL.stCurrentBeamParameters.aVetoDevices[PMPS.K_Stopper.ST1K4];
+bST4K4_Veto := PMPS_GVL.stCurrentBeamParameters.aVetoDevices[PMPS.K_Stopper.ST4K4];
+bM1K1Veto 	:= NOT PMPS_GVL.stCurrentBeamParameters.aVetoDevices[PMPS.K_Stopper.MR1K1_OUT] AND PMPS_GVL.stCurrentBeamParameters.aVetoDevices[PMPS.K_Stopper.MR1K1_IN];
+bM1K3Veto 	:= NOT PMPS_GVL.stCurrentBeamParameters.aVetoDevices[PMPS.K_Stopper.MR1K3_OUT] AND PMPS_GVL.stCurrentBeamParameters.aVetoDevices[PMPS.K_Stopper.MR1K3_IN];
+
+fbArbiterIO(
+    i_bVeto:=bST3K4_Veto OR bM1K1Veto OR bST1K4_Veto,
+    Arbiter:=GVL_PMPS.fbArbiter,
+    fbFFHWO:=GVL_PMPS.fbFastFaultOutput1);
+
+fb_vetoArbiter(bVeto:=bST4K4_Veto OR bST3K4_Veto OR bST1K4_Veto OR bM1K1Veto OR bM1K3Veto,
+                HigherAuthority := GVL_PMPS.fbArbiter,
+                LowerAuthority := GVL_PMPS.fbArbiter2,
+                FFO := GVL_PMPS.fbFastFaultOutput2);
+
+GVL_PMPS.fbFastFaultOutput1.Execute(i_xVeto:=bST3K4_Veto OR bST1K4_Veto OR bM1K1Veto OR bM1K3Veto);
+GVL_PMPS.fbFastFaultOutput2.Execute(i_xVeto:=bST3K4_Veto OR bST1K4_Veto OR bM1K1Veto OR bST4K4_Veto OR bM1K3Veto); // Adding TXI MR1K3 veto in]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

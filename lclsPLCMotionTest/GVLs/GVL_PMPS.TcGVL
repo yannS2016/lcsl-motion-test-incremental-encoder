@@ -6,10 +6,15 @@ VAR_GLOBAL
     // Arbiter linked to the FFO and the MPS
     {attribute 'pytmc' := 'pv: PLC:DREAM:MOTION:ARB:01'}
     fbArbiter: FB_Arbiter(1);
+    {attribute 'pytmc' := 'pv: PLC:DREAM:MOTION:ARB:02'}
+    fbArbiter2: FB_Arbiter(2);
 
     {attribute 'pytmc' := 'pv: PLC:DREAM:MOTION:FFO:01'}
-    {attribute 'TcLinkTo' := '.q_xFastFaultOut:=TIIB[PMPS_FFO]^Channel 2^Output'}
+    {attribute 'TcLinkTo' := '.q_xFastFaultOut:=TIIB[PMPS_FFO]^Channel 1^Output'}
     fbFastFaultOutput1: FB_HardwareFFOutput := (bAutoReset := TRUE, i_sNetID:='172.21.92.73.1.1');
+    {attribute 'pytmc' := 'pv: PLC:DREAM:MOTION:FFO:02'}
+    {attribute 'TcLinkTo' := '.q_xFastFaultOut:=TIIB[PMPS_FFO]^Channel 2^Output'}
+    fbFastFaultOutput2: FB_HardwareFFOutput := (bAutoReset := TRUE, i_sNetID:='172.21.92.73.1.1');
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

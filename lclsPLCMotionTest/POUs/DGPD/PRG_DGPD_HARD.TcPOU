@@ -83,12 +83,6 @@ MAIN.M11.stMCS2ChanParams.stChannelState.bIsReferenced   := TRUE;
 MAIN.M11.stMCS2ChanParams.stChannelState.bSensorPresent   := TRUE;
 bHVActive := FALSE;
 
-
-
-// we want to use simulated beam parameters
-// fbDGPD.BeamParamSim(
-// 	bSimMode := TRUE,
-// );
 IF NOT MOTION_GVL.fbPmpsFileReader.bBusy THEN
 fbDGPD(
 	eSetTarget            := eSetTarget,

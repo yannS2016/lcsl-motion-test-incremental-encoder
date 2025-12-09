@@ -24,8 +24,8 @@ VAR
 	fbStateSetupY : FB_StateSetupHelper;
 	fbStateSetupZ : FB_StateSetupHelper;
 	stDefault : ST_PositionState := (
-		fDelta := 0.003,
-		fVelocity := 0.5,
+		fDelta := 0.004,
+		fVelocity := 0.8,
 		bMoveOk := TRUE,
 		bValid := TRUE
 	);

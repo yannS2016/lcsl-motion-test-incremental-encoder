@@ -71,9 +71,9 @@ stMCS2StageZ.stMCS2ChanParams.stChannelState.bIsCalibrated   := TRUE; stMCS2Stag
 bHVActive := FALSE;
 // 
 // we want to use simulated beam parameters
-fbDGPD.BeamParamSim(
-	bSimMode := TRUE,
-);
+// fbDGPD.BeamParamSim(
+// 	bSimMode := TRUE,
+// );
 
 fbDGPD(
 	eSetTarget            := eSetTarget,

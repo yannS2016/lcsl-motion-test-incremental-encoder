@@ -1085,7 +1085,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{E31ADAA4-9B77-495F-982E-6D67EFCA2359}" Name="lclsPLCMotionTest" PrjFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.plcproj" TmcFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{5E76D783-7D85-66B0-BD13-C7E9BE8E3905}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{083F9186-3C1E-378F-37BB-CE1904821783}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
 			<Name>lclsPLCMotionTest Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="8" AreaNo="4">
@@ -1113,6 +1113,206 @@ External Setpoint Generation:
 				<Var>
 					<Name>PRG_DGPD_HARD.fbMotionZ.fbDriveVirtual.MasterAxis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>GVL_PMPS.fbFastFaultOutput1.q_xFastFaultOut</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.Axis.PlcToNc</Name>
+					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.bBrakeRelease</Name>
+					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.stDS402Drive.nDriveControl</Name>
+					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
+ connected to I/O Task 'Control Word']]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.stDS402Drive.nTargetPosition</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.stDS402Drive.nModeOfOperation</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.stDS402Drive.nProfilVelocity</Name>
+					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.stDS402Drive.nProfilAcceleration</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.stDS402Drive.nProfilDecceleration</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.stDS402Drive.nVelocityActualValue</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.stDS402Drive.nScantargetPosition</Name>
+					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.stDS402Drive.uScantargetVelocity</Name>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.Axis.PlcToNc</Name>
+					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.bBrakeRelease</Name>
+					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.stDS402Drive.nDriveControl</Name>
+					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
+ connected to I/O Task 'Control Word']]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.stDS402Drive.nTargetPosition</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.stDS402Drive.nModeOfOperation</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.stDS402Drive.nProfilVelocity</Name>
+					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.stDS402Drive.nProfilAcceleration</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.stDS402Drive.nProfilDecceleration</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.stDS402Drive.nVelocityActualValue</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.stDS402Drive.nScantargetPosition</Name>
+					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.stDS402Drive.uScantargetVelocity</Name>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.Axis.PlcToNc</Name>
+					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.bBrakeRelease</Name>
+					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.stDS402Drive.nDriveControl</Name>
+					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
+ connected to I/O Task 'Control Word']]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.stDS402Drive.nTargetPosition</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.stDS402Drive.nModeOfOperation</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.stDS402Drive.nProfilVelocity</Name>
+					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.stDS402Drive.nProfilAcceleration</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.stDS402Drive.nProfilDecceleration</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.stDS402Drive.nVelocityActualValue</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.stDS402Drive.nScantargetPosition</Name>
+					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.stDS402Drive.uScantargetVelocity</Name>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.Axis.PlcToNc</Name>
+					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.bBrakeRelease</Name>
+					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.stDS402Drive.nDriveControl</Name>
+					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
+ connected to I/O Task 'Control Word']]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.stDS402Drive.nTargetPosition</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.stDS402Drive.nModeOfOperation</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.stDS402Drive.nProfilVelocity</Name>
+					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.stDS402Drive.nProfilAcceleration</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.stDS402Drive.nProfilDecceleration</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.stDS402Drive.nVelocityActualValue</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.stDS402Drive.nScantargetPosition</Name>
+					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.stDS402Drive.uScantargetVelocity</Name>
+					<Type>ULINT</Type>
 				</Var>
 				<Var>
 					<Name>PRG_DGPD_HARD.fbDGPD.fbPositionStateRET.astMotionStageMax[1].Axis.PlcToNc</Name>
@@ -1474,212 +1674,304 @@ External Setpoint Generation:
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
-				<Var>
-					<Name>GVL_PMPS.fbFastFaultOutput1.q_xFastFaultOut</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nDriveControl</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
- connected to I/O Task 'Control Word']]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nTargetPosition</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nModeOfOperation</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nProfilVelocity</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nProfilAcceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nProfilDecceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nVelocityActualValue</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nScantargetPosition</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.uScantargetVelocity</Name>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nDriveControl</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
- connected to I/O Task 'Control Word']]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nTargetPosition</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nModeOfOperation</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nProfilVelocity</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nProfilAcceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nProfilDecceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nVelocityActualValue</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nScantargetPosition</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.uScantargetVelocity</Name>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nDriveControl</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
- connected to I/O Task 'Control Word']]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nTargetPosition</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nModeOfOperation</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nProfilVelocity</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nProfilAcceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nProfilDecceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nVelocityActualValue</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nScantargetPosition</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.uScantargetVelocity</Name>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nDriveControl</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
- connected to I/O Task 'Control Word']]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nTargetPosition</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nModeOfOperation</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nProfilVelocity</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nProfilAcceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nProfilDecceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nVelocityActualValue</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nScantargetPosition</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.uScantargetVelocity</Name>
-					<Type>ULINT</Type>
-				</Var>
 			</Vars>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
 				<Var>
 					<Name>PRG_DGPD_HARD.fbMotionZ.fbDriveVirtual.MasterAxis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.Axis.NcToPlc</Name>
+					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.bLimitForwardEnable</Name>
+					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.bLimitBackwardEnable</Name>
+					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.bHome</Name>
+					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.bHardwareEnable</Name>
+					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.nRawEncoderULINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.nRawEncoderUINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.nRawEncoderINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.nRawEncoderDINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.stDS402Drive.stDriveStatus</Name>
+					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
+					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.stDS402Drive.nModeOfOperationDisplay</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.stDS402Drive.nFollowingError</Name>
+					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
+CSP drive mode]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.stDS402Drive.nDriveControlNC</Name>
+					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.stDS402Drive.nModeOfOperationNC</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.stDS402Drive.nSlaveAddr</Name>
+					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.Axis.NcToPlc</Name>
+					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.bLimitForwardEnable</Name>
+					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.bLimitBackwardEnable</Name>
+					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.bHome</Name>
+					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.bHardwareEnable</Name>
+					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.nRawEncoderULINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.nRawEncoderUINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.nRawEncoderINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.nRawEncoderDINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.stDS402Drive.stDriveStatus</Name>
+					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
+					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.stDS402Drive.nModeOfOperationDisplay</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.stDS402Drive.nFollowingError</Name>
+					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
+CSP drive mode]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.stDS402Drive.nDriveControlNC</Name>
+					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.stDS402Drive.nModeOfOperationNC</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.stDS402Drive.nSlaveAddr</Name>
+					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.Axis.NcToPlc</Name>
+					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.bLimitForwardEnable</Name>
+					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.bLimitBackwardEnable</Name>
+					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.bHome</Name>
+					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.bHardwareEnable</Name>
+					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.nRawEncoderULINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.nRawEncoderUINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.nRawEncoderINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.nRawEncoderDINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.stDS402Drive.stDriveStatus</Name>
+					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
+					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.stDS402Drive.nModeOfOperationDisplay</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.stDS402Drive.nFollowingError</Name>
+					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
+CSP drive mode]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.stDS402Drive.nDriveControlNC</Name>
+					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.stDS402Drive.nModeOfOperationNC</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.stDS402Drive.nSlaveAddr</Name>
+					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.Axis.NcToPlc</Name>
+					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.bLimitForwardEnable</Name>
+					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.bLimitBackwardEnable</Name>
+					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.bHome</Name>
+					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.bHardwareEnable</Name>
+					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.nRawEncoderULINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.nRawEncoderUINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.nRawEncoderINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.nRawEncoderDINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.stDS402Drive.stDriveStatus</Name>
+					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
+					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.stDS402Drive.nModeOfOperationDisplay</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.stDS402Drive.nFollowingError</Name>
+					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
+CSP drive mode]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.stDS402Drive.nDriveControlNC</Name>
+					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.stDS402Drive.nModeOfOperationNC</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.stDS402Drive.nSlaveAddr</Name>
+					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
+					<Type>UINT</Type>
 				</Var>
 				<Var>
 					<Name>PRG_DGPD_HARD.fbDGPD.fbPositionStateRET.astMotionStageMax[1].Axis.NcToPlc</Name>
@@ -3440,298 +3732,6 @@ External Setpoint Generation:
 					<Name>PRG_DGPD_HARD.fbDGPD.fbPositionStateZ.astMotionStageMax[10].nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.stDriveStatus</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nModeOfOperationDisplay</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nFollowingError</Name>
-					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
-CSP drive mode]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nDriveControlNC</Name>
-					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nModeOfOperationNC</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nSlaveAddr</Name>
-					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.stDriveStatus</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nModeOfOperationDisplay</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nFollowingError</Name>
-					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
-CSP drive mode]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nDriveControlNC</Name>
-					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nModeOfOperationNC</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nSlaveAddr</Name>
-					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.stDriveStatus</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nModeOfOperationDisplay</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nFollowingError</Name>
-					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
-CSP drive mode]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nDriveControlNC</Name>
-					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nModeOfOperationNC</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nSlaveAddr</Name>
-					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.stDriveStatus</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nModeOfOperationDisplay</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nFollowingError</Name>
-					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
-CSP drive mode]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nDriveControlNC</Name>
-					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nModeOfOperationNC</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nSlaveAddr</Name>
-					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
-					<Type>UINT</Type>
 				</Var>
 			</Vars>
 			<UnrestoredVarLinks ImportTime="2025-10-19T16:02:30">

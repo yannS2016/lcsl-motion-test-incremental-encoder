@@ -22,6 +22,8 @@ VAR_INPUT
     stPlcToEpicsY   : ST_StatePlcToEpics;
     stPlcToEpicsZ   : ST_StatePlcToEpics;
     eDGPDStateSet : E_DGPDState;
+	bSequenceEnable : BOOL;
+	bReset          : BOOL;
 END_VAR
 
 VAR_OUTPUT
@@ -43,13 +45,24 @@ VAR_OUTPUT
 END_VAR
 
 VAR
-    bReset          : BOOL;
+
     previousTarget : E_DGPDState := E_DGPDState.UNKNOWN;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// Default: no moves, no state active
-bMoveRET := FALSE; bMoveX := FALSE; bMoveY := FALSE; bMoveZ := FALSE;
+      <ST><![CDATA[IF NOT bSequenceEnable THEN
+	// Default: Sequence is disable (No collision avoidance)
+	bMoveRET := TRUE; 
+	bMoveX := TRUE;
+	bMoveY := TRUE;
+	bMoveZ := TRUE;
+	RETURN;
+END_IF
+// Default: no moves, no state active
+bMoveRET := FALSE; 
+bMoveX := FALSE; 
+bMoveY := FALSE; 
+bMoveZ := FALSE;
 bEnteredInit := FALSE; bEnteredCheckOut := FALSE;
 bEnteredMoveRETToTarget := FALSE;
 bEnteredMoveXToTarget   := FALSE;
@@ -59,6 +72,10 @@ bEnteredDone := FALSE;
 bEnteredError := FALSE;
 bSequenceComplete := FALSE;
 
+        IF bReset THEN
+            axisSequenceStep := E_DGPDSequence.INIT;
+        END_IF
+		
 CASE axisSequenceStep OF
 
     E_DGPDSequence.INIT:
@@ -147,9 +164,6 @@ CASE axisSequenceStep OF
         bEnteredError := TRUE;
         bMoveRET := FALSE; bMoveX := FALSE; bMoveY := FALSE; bMoveZ := FALSE;
         bSequenceComplete := FALSE;
-        IF bReset THEN
-            axisSequenceStep := E_DGPDSequence.INIT;
-        END_IF
 END_CASE]]></ST>
     </Implementation>
   </POU>

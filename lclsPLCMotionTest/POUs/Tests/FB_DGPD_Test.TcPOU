@@ -176,9 +176,9 @@ END_CASE
 
 //------------------------------------------------------------------
 // Simulated beam param mode enabled (if applicable)
-fbDGPD.BeamParamSim(
-    bSimMode := TRUE,
-);
+// fbDGPD.BeamParamSim(
+//     bSimMode := TRUE,
+// );
 
 // Call main FB
 fbDGPD(

@@ -32,8 +32,8 @@ VAR
     bEnableBeamParams    : BOOL := TRUE;
     bEnableMotion        : BOOL := TRUE;
     // Device/transition key names
-    sDeviceName    : STRING := 'test';
-    sTransitionKey : STRING := 'trans';
+    sDeviceName    : STRING := 'DREAM:PF';
+    sTransitionKey : STRING := 'DREAM:PF-TRANSITION';
 	fbArbiterIO: FB_DummyArbIO;
 
 	bInit: BOOL := TRUE;
@@ -71,6 +71,13 @@ END_VAR
     bInit := FALSE;
 END_IF
 
+MOTION_GVL.fbStandardPMPSDB(
+    io_fbFFHWO:=GVL_PMPS.fbFastFaultOutput1,
+    bEnable:=TRUE,
+    sPLCName:='plc-tst-bsd2',
+    sDirectory:='/home/ecs-user/pmpsdb/'
+);
+
 MAIN.M11.stMCS2ChanParams.stChannelState.bIsCalibrated   := TRUE; 
 MAIN.M11.stMCS2ChanParams.stChannelState.bIsReferenced   := TRUE; 
 MAIN.M11.stMCS2ChanParams.stChannelState.bSensorPresent   := TRUE;
@@ -79,10 +86,10 @@ bHVActive := FALSE;
 
 
 // we want to use simulated beam parameters
-fbDGPD.BeamParamSim(
-	bSimMode := TRUE,
-);
-
+// fbDGPD.BeamParamSim(
+// 	bSimMode := TRUE,
+// );
+IF NOT MOTION_GVL.fbPmpsFileReader.bBusy THEN
 fbDGPD(
 	eSetTarget            := eSetTarget,
     stMCS2StageRET        := MAIN.M12,
@@ -96,12 +103,13 @@ fbDGPD(
     sDeviceName           := sDeviceName,
     sTransitionKey        := sTransitionKey,
     bReadDBNow            := NOT bInit,
-    bReset                := bReset,
 	bEPSEnable            := TRUE,
     bEnableBeamParams     := bEnableBeamParams,
     bEnableMotion         := bEnableMotion,
 	fDelta				  := 0.003
-);
+);	
+END_IF
+
 
 // --- RET axis ---
 fbDGPDRET();

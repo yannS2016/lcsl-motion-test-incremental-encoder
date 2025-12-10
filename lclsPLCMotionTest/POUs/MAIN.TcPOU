@@ -40,12 +40,12 @@ VAR
     bLimitBackwardEnable1 : BOOL;
     bLimitForwardEnable1  : BOOL;
      {attribute 'pytmc' := '
-      pv: TST:MOTION:test32INT
+      pv: TST:MOTION:test32DINT
       io: io
     '}
 	ntest32DINT  : DINT;
      {attribute 'pytmc' := '
-      pv: TST:MOTION:test32UINT
+      pv: TST:MOTION:test32UDINT
       io: io
     '}
 	ntest32UDINT  : UDINT;

@@ -43,12 +43,12 @@ VAR
       pv: TST:MOTION:test32INT
       io: io
     '}
-	ntest32INT  : INT;
+	ntest32DINT  : DINT;
      {attribute 'pytmc' := '
       pv: TST:MOTION:test32UINT
       io: io
     '}
-	ntest32UINT  : UINT;
+	ntest32UDINT  : UDINT;
 	
      {attribute 'pytmc' := '
       pv: TST:MOTION:test64LINT

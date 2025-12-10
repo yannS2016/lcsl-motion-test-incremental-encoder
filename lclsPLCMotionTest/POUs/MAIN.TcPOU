@@ -3,12 +3,14 @@
   <POU Name="MAIN" Id="{7ddf7142-3738-4120-8059-c5d2220b5135}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-(* Axis 1 *)
     {attribute 'pytmc' := 'pv: TST:MOTION:M1'}
+    {attribute 'TcLinkTo' := '
+        .nRawEncoderDINT :=TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL7062)^FB Position Channel 2^Position
+    '}
     M1 : ST_MotionStage := (
         sName := 'TST:MOTION1',
         bPowerSelf := TRUE,
-        nEnableMode := ENUM_StageEnableMode.DURING_MOTION,
+        nEnableMode := ENUM_StageEnableMode.ALWAYS,
         fHomePosition := 0.0,
         nHomingMode := ENUM_EpicsHomeCmd.NONE
     );
@@ -28,69 +30,16 @@ VAR
     '}
     eStateGet1          : ENUM_AxisStates;
 
-    (* Axis 2 *)
-    {attribute 'pytmc' := 'pv: TST:MOTION:M2'}
-    M2 : ST_MotionStage := (
-        sName := 'TST:MOTION2',
-        bPowerSelf := TRUE,
-        nEnableMode := ENUM_StageEnableMode.DURING_MOTION,
-        fHomePosition := 0.0,
-        nHomingMode := ENUM_EpicsHomeCmd.NONE
-    );
-    fbMotionStage2      : FB_MotionStage;
-    fbStateSetup2       : FB_StateSetupHelper;
-    {attribute 'pytmc' := 'pv: TST:MOTION:M2'}
-    fbPositionState1D_2 : FB_PositionState1D;
-    astStates2          : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-    {attribute 'pytmc' := '
-      pv: TST:MOTION:M2:STATES:SET
-      io: io
-    '}
-    eStateSet2          : ENUM_AxisStates;
-    {attribute 'pytmc' := '
-      pv: TST:MOTION:M2:STATES:GET
-      io: i
-    '}
-    eStateGet2          : ENUM_AxisStates;
-
-    (* Axis 3 *)
-    {attribute 'pytmc' := 'pv: TST:MOTION:M3'}
-    M3 : ST_MotionStage := (
-        sName := 'TST:MOTION3',
-        bPowerSelf := TRUE,
-        nEnableMode := ENUM_StageEnableMode.DURING_MOTION,
-        fHomePosition := 0.0,
-        nHomingMode := ENUM_EpicsHomeCmd.NONE
-    );
-    fbMotionStage3      : FB_MotionStage;
-    fbStateSetup3       : FB_StateSetupHelper;
-    {attribute 'pytmc' := 'pv: TST:MOTION:M3'}
-    fbPositionState1D_3 : FB_PositionState1D;
-    astStates3          : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-    {attribute 'pytmc' := '
-      pv: TST:MOTION:M3:STATES:SET
-      io: io
-    '}
-    eStateSet3          : ENUM_AxisStates;
-    {attribute 'pytmc' := '
-      pv: TST:MOTION:M3:STATES:GET
-      io: i
-    '}
-    eStateGet3          : ENUM_AxisStates;
-
     stDefault : ST_PositionState := (
         fDelta := 0.5,
-        fVelocity := 1,
+        fVelocity := 500,
         bMoveOk := TRUE,
         bValid := TRUE
     );
 
     bLimitBackwardEnable1 : BOOL;
-    bLimitBackwardEnable2 : BOOL;
-    bLimitBackwardEnable3 : BOOL;
     bLimitForwardEnable1  : BOOL;
-    bLimitForwardEnable2  : BOOL;
-    bLimitForwardEnable3  : BOOL;
+
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[// --- MAIN PROGRAM LOGIC ---
@@ -99,9 +48,9 @@ M1.bLimitForwardEnable     := bLimitForwardEnable1;
 M1.bLimitBackwardEnable    := bLimitBackwardEnable1;
 M1.bHardwareEnable         := TRUE;
 fbStateSetup1(stPositionState := stDefault, bSetDefault := TRUE);
-fbStateSetup1(stPositionState := astStates1[1], sName := 'OUT', fPosition := 10.0);
-fbStateSetup1(stPositionState := astStates1[2], sName := 'YAG', fPosition := 20.0);
-fbStateSetup1(stPositionState := astStates1[3], sName := 'TT',  fPosition := 30.0);
+fbStateSetup1(stPositionState := astStates1[1], sName := 'OUT', fPosition := 1000.0);
+fbStateSetup1(stPositionState := astStates1[2], sName := 'YAG', fPosition := 2000.0);
+fbStateSetup1(stPositionState := astStates1[3], sName := 'TT',  fPosition := 3000.0);
 fbPositionState1D_1(
     stMotionStage := M1,
     astPositionState := astStates1,
@@ -111,39 +60,7 @@ fbPositionState1D_1(
 );
 fbMotionStage1(stMotionStage := M1);
 
-(* Axis 2 *)
-M2.bLimitForwardEnable     := bLimitForwardEnable2;
-M2.bLimitBackwardEnable    := bLimitBackwardEnable2;
-M2.bHardwareEnable         := TRUE;
-fbStateSetup2(stPositionState := stDefault, bSetDefault := TRUE);
-fbStateSetup2(stPositionState := astStates2[1], sName := 'OUT', fPosition := 10.0);
-fbStateSetup2(stPositionState := astStates2[2], sName := 'YAG', fPosition := 20.0);
-fbStateSetup2(stPositionState := astStates2[3], sName := 'TT',  fPosition := 30.0);
-fbPositionState1D_2(
-    stMotionStage := M2,
-    astPositionState := astStates2,
-    eEnumSet := eStateSet2,
-    eEnumGet := eStateGet2,
-    bEnable := TRUE
-);
-fbMotionStage2(stMotionStage := M2);
-
-(* Axis 3 *)
-M3.bLimitForwardEnable     := bLimitForwardEnable3;
-M3.bLimitBackwardEnable    := bLimitBackwardEnable3;
-M3.bHardwareEnable         := TRUE;
-fbStateSetup3(stPositionState := stDefault, bSetDefault := TRUE);
-fbStateSetup3(stPositionState := astStates3[1], sName := 'OUT', fPosition := 10.0);
-fbStateSetup3(stPositionState := astStates3[2], sName := 'YAG', fPosition := 20.0);
-fbStateSetup3(stPositionState := astStates3[3], sName := 'TT',  fPosition := 30.0);
-fbPositionState1D_3(
-    stMotionStage := M3,
-    astPositionState := astStates3,
-    eEnumSet := eStateSet3,
-    eEnumGet := eStateGet3,
-    bEnable := TRUE
-);
-fbMotionStage3(stMotionStage := M3);]]></ST>
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

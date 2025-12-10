@@ -79,7 +79,7 @@ cd "$(ADS_IOC_TOP)/db"
 
 epicsEnvSet("MOTOR_PORT",     "PLC_ADS")
 epicsEnvSet("PREFIX",         "PLC:lclsPLCMotionTest:")
-epicsEnvSet("NUMAXES",        "2")
+epicsEnvSet("NUMAXES",        "1")
 epicsEnvSet("MOVE_POLL_RATE", "200")
 epicsEnvSet("IDLE_POLL_RATE", "1000")
 
@@ -110,7 +110,7 @@ asynSetTraceInfoMask("$(ASYN_PORT)", -1, 5)
 #define AMPLIFIER_ON_FLAG_WHEN_HOMING  2
 #define AMPLIFIER_ON_FLAG_USING_CNEN   4
 
-epicsEnvSet("AXIS_NO",         "2")
+epicsEnvSet("AXIS_NO",         "1")
 epicsEnvSet("MOTOR_PREFIX",    "TST:MOTION:")
 epicsEnvSet("MOTOR_NAME",      "M1")
 epicsEnvSet("DESC",            "MAIN.M1 / OrientalMotor")

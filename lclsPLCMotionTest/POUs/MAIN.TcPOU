@@ -40,30 +40,42 @@ VAR
     bLimitBackwardEnable1 : BOOL;
     bLimitForwardEnable1  : BOOL;
      {attribute 'pytmc' := '
-      pv: TST:MOTION:test64Int
+      pv: TST:MOTION:test32INT
       io: io
     '}
-	ntest64Int  : LINT;
+	ntest32INT  : INT;
      {attribute 'pytmc' := '
-      pv: TST:MOTION:test64UInt
+      pv: TST:MOTION:test32UINT
       io: io
     '}
-    ntest64UInt  : ULINT;
+	ntest32UINT  : UINT;
+	
+     {attribute 'pytmc' := '
+      pv: TST:MOTION:test64LINT
+      io: io
+    '}
+	ntest64LINT  : LINT;
+     {attribute 'pytmc' := '
+      pv: TST:MOTION:test64ULINT
+      io: io
+    '}
+    ntest64ULINT  : ULINT;
      {attribute 'pytmc' := '
       pv: TST:MOTION:ntest64LWORD
       io: io
     '}
 	ntest64LWORD  : LWORD;
+	
      {attribute 'pytmc' := '
-      pv: TST:MOTION:artest64Int
+      pv: TST:MOTION:artest64LINT
       io: io
     '}
-    artest64Int  : ARRAY[1..3] OF LINT;
+    artest64LINT  : ARRAY[1..3] OF LINT;
      {attribute 'pytmc' := '
-      pv: TST:MOTION:artest64UInt
+      pv: TST:MOTION:artest64ULINT
       io: io
     '}
-    artest64UInt  : ARRAY[1..3] OF ULINT;
+    artest64ULINT  : ARRAY[1..3] OF ULINT;
      {attribute 'pytmc' := '
       pv: TST:MOTION:artest64LWORD
       io: io

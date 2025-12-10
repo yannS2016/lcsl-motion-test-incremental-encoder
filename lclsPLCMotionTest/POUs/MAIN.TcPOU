@@ -39,7 +39,13 @@ VAR
 
     bLimitBackwardEnable1 : BOOL;
     bLimitForwardEnable1  : BOOL;
-
+    
+	ntest64Int  : LINT;
+    ntest64UInt  : ULINT;
+	ntest64LWORD  : LWORD;
+    artest64Int  : ARRAY[1..5] OF LINT;
+    artest64UInt  : ARRAY[1..5] OF ULINT;
+    artest64LWORD  : ARRAY[1..5] OF LWORD;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[// --- MAIN PROGRAM LOGIC ---

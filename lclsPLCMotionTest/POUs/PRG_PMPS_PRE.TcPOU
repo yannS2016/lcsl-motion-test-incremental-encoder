@@ -4,39 +4,6 @@
     <Declaration><![CDATA[PROGRAM PRG_PMPS_PRE
 VAR
 
-    testStage1    : ST_MCS2Stage :=  (	
-			sName:='test1',
-			nHomingMode:=E_EpicsHomeCmd.AUTOZERO,
-            nEnableMode:= ENUM_StageEnableMode.DURING_MOTION,
-            bPowerSelf:=FALSE,
-            bHardwareEnable:=TRUE 
-	);
-	
-    testStage2    : ST_MCS2Stage :=  (	
-			sName:='test2',
-			nHomingMode:=E_EpicsHomeCmd.AUTOZERO,
-            nEnableMode:= ENUM_StageEnableMode.DURING_MOTION,
-            bPowerSelf:=FALSE,
-            bHardwareEnable:=TRUE 
-	);
-    testStage3    : ST_MCS2Stage :=  (	
-			sName:='test3',
-			nHomingMode:=E_EpicsHomeCmd.AUTOZERO,
-            nEnableMode:= ENUM_StageEnableMode.DURING_MOTION,
-			bPowerSelf:=FALSE,
-            bHardwareEnable:=TRUE 
-	);
-    testStage4    : ST_MCS2Stage :=  (	
-			sName:='test4',
-			nHomingMode:=E_EpicsHomeCmd.AUTOZERO,
-            nEnableMode:= ENUM_StageEnableMode.DURING_MOTION,
-            bPowerSelf:=FALSE,
-            bHardwareEnable:=TRUE 
-	);
-
-
-    fbArbiterIO    : FB_DummyArbIO;
-    testFB        : FB_SL3K4;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[MOTION_GVL.fbStandardPMPSDB(
@@ -46,22 +13,6 @@ END_VAR]]></Declaration>
     sDirectory:='/home/ecs-user/pmpsdb/'
 );
 
-testFB(
-   	stTopBlade    := testStage1,
-   	stBottomBlade := testStage2,
-   	stNorthBlade  := testStage3,
-   	stSouthBlade  := testStage4,
-   	bFileReaderBusy := MOTION_GVL.fbPmpsFileReader.bBusy,
-   	bFileReaderError := MOTION_GVL.fbPmpsFileReader.bError,
-   	sTransitionKey   := 'TRANSITION',
-	fbFFHWO 		:= GVL_PMPS.fbFastFaultOutput1,
-    fbArbiter		:= GVL_PMPS.fbArbiter
-);
-// needed for prod with actual hardware
-//GVL_PMPS.fbFastFaultOutput1.Execute();
-fbArbiterIO(
-    LA:=GVL_PMPS.fbArbiter,
-    FFO:=GVL_PMPS.fbFastFaultOutput1);
 ]]></ST>
     </Implementation>
   </POU>

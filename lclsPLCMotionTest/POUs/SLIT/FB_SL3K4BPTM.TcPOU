@@ -30,6 +30,7 @@ VAR_INPUT
     bMoveOnArbiterTimeout  : BOOL := TRUE;  // TRUE: allow transition if timeout reached; FALSE: fault/wait
     bResetBPTMTimeout      : BOOL;          // TRUE: externally reset the timeout fault (manual override)
     bRetry                 : BOOL;          // TRUE: force transition manager to retry (re-request parameters)
+	bBladeError            : BOOL;
 END_VAR
 
 VAR_OUTPUT
@@ -90,6 +91,7 @@ IF bEnable THEN
 END_IF
 
 // Beam Parameter Transition Manager busy timer
+// BPTM 
 tonArbiter(
     IN := fbBPTM.bBusy,
     PT := tArbiterTimeout,
@@ -127,7 +129,10 @@ END_IF
 
 // Timer completion logic
 IF tonDoneSim.Q THEN
-    bDoneMoving := TRUE;
+	// axis errors check here as well. m,ore logic to recovere from erros and reset the timer
+	// so if an error occurs while transitioning to the requested state, dont set done, waiting for error cleared and reset timer.
+	// perhaps request maintenance state to to retrigger BPTM.
+    bDoneMoving := NOT bBladeError;
     tonDoneSim(IN := FALSE);
 END_IF
 

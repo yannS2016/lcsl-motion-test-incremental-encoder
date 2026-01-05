@@ -4,7 +4,6 @@
     <Declaration><![CDATA[PROGRAM PRG_PMPS_POST
 VAR
 	fbArbiterIO: FB_SubSysToArbiter_IO;
-    fbvetoArbiter: FB_VetoArbiter;
 
     bST3K4_Veto	: BOOL;
     bST1K4_Veto	: BOOL;
@@ -20,17 +19,12 @@ bM1K1Veto 	:= NOT PMPS_GVL.stCurrentBeamParameters.aVetoDevices[PMPS.K_Stopper.M
 bM1K3Veto 	:= NOT PMPS_GVL.stCurrentBeamParameters.aVetoDevices[PMPS.K_Stopper.MR1K3_OUT] AND PMPS_GVL.stCurrentBeamParameters.aVetoDevices[PMPS.K_Stopper.MR1K3_IN];
 
 fbArbiterIO(
-    i_bVeto:=bST3K4_Veto OR bM1K1Veto OR bST1K4_Veto,
+    i_bVeto:=bST4K4_Veto OR bST3K4_Veto OR bST1K4_Veto OR bM1K1Veto OR bM1K3Veto,
     Arbiter:=GVL_PMPS.fbArbiter,
     fbFFHWO:=GVL_PMPS.fbFastFaultOutput1);
 
-fb_vetoArbiter(bVeto:=bST4K4_Veto OR bST3K4_Veto OR bST1K4_Veto OR bM1K1Veto OR bM1K3Veto,
-                HigherAuthority := GVL_PMPS.fbArbiter,
-                LowerAuthority := GVL_PMPS.fbArbiter2,
-                FFO := GVL_PMPS.fbFastFaultOutput2);
-
-GVL_PMPS.fbFastFaultOutput1.Execute(i_xVeto:=bST3K4_Veto OR bST1K4_Veto OR bM1K1Veto OR bM1K3Veto);
-GVL_PMPS.fbFastFaultOutput2.Execute(i_xVeto:=bST3K4_Veto OR bST1K4_Veto OR bM1K1Veto OR bST4K4_Veto OR bM1K3Veto); // Adding TXI MR1K3 veto in]]></ST>
+GVL_PMPS.fbFastFaultOutput1.Execute(i_xVeto:=bST4K4_Veto OR bST3K4_Veto OR bST1K4_Veto OR bM1K1Veto OR bM1K3Veto);
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

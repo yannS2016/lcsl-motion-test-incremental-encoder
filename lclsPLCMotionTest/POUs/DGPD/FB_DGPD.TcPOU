@@ -262,6 +262,8 @@ IF bMaintenanceMode THEN
         fDelta            := fDelta
     );
     fbDGPDEPS.epsMaintenanceMode(bRETSafeToMove := fbDGPDManual.bSafeToMoveRET);
+	fbSequencer.bReset:=TRUE;
+	// reset sequence back to idle.
 	// override any attemps from user to set target state in manual mode
 	// we dont want an immediate move when sewitching back to sequence move.
 	eSetTarget := E_DGPDState.UNKNOWN;

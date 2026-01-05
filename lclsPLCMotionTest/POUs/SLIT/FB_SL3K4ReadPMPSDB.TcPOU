@@ -8,6 +8,8 @@ VAR_INPUT
     bFileReaderError : BOOL;
     sTransitionKey   : STRING;
     jsonDoc          : SJsonValue;
+    // For debug: set this to TRUE in online mode to read the database immediately.
+    bReadDBNow		 : BOOL;
 END_VAR
 
 VAR_IN_OUT
@@ -40,16 +42,17 @@ IF NOT __ISVALIDREF(fbFFHWO) THEN
     RETURN;
 END_IF
 
-// Map state strings for DB lookup (indexing strictly controlled/setup by config/tool)
+// Map state strings for DB lookup 
 astDbStateParams[0].sPmpsState := sTransitionKey; // Transition state
-astDbStateParams[1].sPmpsState := 'NORMAL';
-astDbStateParams[2].sPmpsState := 'MAINTENANCE';
+astDbStateParams[1].sPmpsState := 'SL3K4-NORMAL';
+astDbStateParams[2].sPmpsState := 'SL3K4-MAINTENANCE';
 
-// --- Edge-trigger: Only reload DB when reader finishes (Busy->not busy)
+// --- Edge-trigger: Only reload DB when reader finishes
 ftDbBusy(CLK := bFileReaderBusy);
-IF ftDbBusy.Q THEN
-    bReadPmpsDb := NOT bFileReaderError; // One-shot trigger: only reload if successful parse
-END_IF
+
+bReadPmpsDb S= ftDbBusy.Q AND NOT bFileReaderError; 
+bReadPmpsDb S=  bReadDBNow;
+bReadDBNow := FALSE;
 
 // Call JSON loader to parse PMPS parameters
 fbJsonLoader(
@@ -59,16 +62,15 @@ fbJsonLoader(
     arrStates   := astDbStateParams,
     io_fbFFHWO  := fbFFHWO
 );
+
 // Reset reload request when JSON loader is done (not busy)
-IF NOT fbJsonLoader.bBusy THEN
-    bReadPmpsDb := FALSE;
-END_IF
+bReadPmpsDb R= NOT fbJsonLoader.bBusy;
+
 
 // Track first DB read completion
 ftRead(CLK := fbJsonLoader.bBusy);
-IF ftRead.Q AND NOT fbJsonLoader.bError THEN
-    bFirstReadDone := TRUE;
-END_IF
+bFirstReadDone S= ftRead.Q AND NOT fbJsonLoader.bError;
+
 
 // Error outputs and reporting
 bError  := fbJsonLoader.bError;

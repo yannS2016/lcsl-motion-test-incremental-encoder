@@ -36,11 +36,14 @@ VAR
     fbMotionClearAsserts : FB_MotionClearAsserts;
 	
     {attribute 'pytmc' := '
-        'pv: DREAM:SLIT:STATE'
+        pv: STATE
         io: io
         field: DESC SL3K4 state
     '}
-    eSL3K4State	: UINT := E_SL3K4State.NORMAL;// use as default.
+    eSL3K4State	: UINT := E_SL3K4State.NORMAL;
+	
+    {attribute 'pytmc' := 'pv: STATE'}
+    stPMPSEpicsToPlc     : ST_StatePMPSEpicsToPlc;
 	
     {attribute 'hide'}
     ePrevState            : E_SL3K4State := E_SL3K4State.NORMAL;
@@ -146,16 +149,19 @@ VAR
     bFoundNormal         : BOOL;
     {attribute 'hide'}
     bFoundMaintenance    : BOOL;
-    {attribute 'pytmc' := 'pv: STATE'}
-    stPMPSEpicsToPlc     : ST_StatePMPSEpicsToPlc;
+	
     {attribute 'hide'}
     stDbStateParams      : ST_DbStateParams;
+    {attribute 'hide'}
     bIsNormal: BOOL;
     rtTransAuth          : R_TRIG;
+    {attribute 'hide'}
     rtTransDone          : R_TRIG;
-
+    {attribute 'hide'}
     bModeTransitionStarted : BOOL;
+    {attribute 'hide'}
     bModeTransitionDone : BOOL;
+    {attribute 'hide'}
     bTransitionCompleted   : BOOL;
 END_VAR]]></Declaration>
     <Implementation>
@@ -323,7 +329,7 @@ FOR nBlades := 1 TO nActiveMotorCount DO
             // beam parameters asserted?
             IF bTransitionCompleted THEN
                 IF bEnableDriftCheck THEN
-                    fDrift := ABS(astMotionStage[nBlades].axis.NcToPlc.ActPos - astMotionStage[nBlades].fPosition);
+                    fDrift := ABS(astMotionStage[nBlades].axis.NcToPlc.ActPos - astMotionStage[nBlades].fPreviousPosition);
                     IF fDrift > fDriftTolerance THEN
                         bDriftFF := TRUE;
                         // use  the drifttolerance in the error message.
@@ -408,10 +414,10 @@ IF (sStatusMsg <> sLastStatusMsg) THEN
 END_IF
 
 // --- Return blade refs to top-level outputs/workaround ---
-stX1    := astMotionStage[1];
+stX1 := astMotionStage[1];
 stX2 := astMotionStage[2];
-stY1  := astMotionStage[3];
-stY2  := astMotionStage[4];]]></ST>
+stY1 := astMotionStage[3];
+stY2 := astMotionStage[4];]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

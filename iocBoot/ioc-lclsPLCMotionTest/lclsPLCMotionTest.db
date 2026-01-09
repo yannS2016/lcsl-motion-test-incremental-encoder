@@ -34775,3 +34775,78 @@ record(bi, "$(PREFIX)RequestedBP:Valid_RBV") {
   info(archive, "monitor 1: VAL")
   field(ASG, "NO_WRITE")
 }
+
+record(longin, "DREAM:SLIT:STATE_RBV") {
+  field(DESC, "SL3K4 state")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/PRG_SL3K4.fbSL3K4.eSL3K4State?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(longout, "DREAM:SLIT:STATE") {
+  field(DESC, "SL3K4 state")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/PRG_SL3K4.fbSL3K4.eSL3K4State=")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(bi, "DREAM:SLIT:STATE:PMPS:ARB:ENABLE_RBV") {
+  # PRG_SL3K4.fbSL3K4.stPMPSEpicsToPlc.bArbiterEnabled
+  field(DESC, "PRG_SL3K4.fbSL3K4.st...c.bArbiterEnabled")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/PRG_SL3K4.fbSL3K4.stPMPSEpicsToPlc.bArbiterEnabled?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bo, "DREAM:SLIT:STATE:PMPS:ARB:ENABLE") {
+  # PRG_SL3K4.fbSL3K4.stPMPSEpicsToPlc.bArbiterEnabled
+  field(DESC, "PRG_SL3K4.fbSL3K4.st...c.bArbiterEnabled")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/PRG_SL3K4.fbSL3K4.stPMPSEpicsToPlc.bArbiterEnabled=")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
+  info(archive, "VAL")
+}
+
+record(bi, "DREAM:SLIT:STATE:PMPS:MAINT_RBV") {
+  # PRG_SL3K4.fbSL3K4.stPMPSEpicsToPlc.bMaintMode
+  field(DESC, "PRG_SL3K4.fbSL3K4.st...sToPlc.bMaintMode")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/PRG_SL3K4.fbSL3K4.stPMPSEpicsToPlc.bMaintMode?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bo, "DREAM:SLIT:STATE:PMPS:MAINT") {
+  # PRG_SL3K4.fbSL3K4.stPMPSEpicsToPlc.bMaintMode
+  field(DESC, "PRG_SL3K4.fbSL3K4.st...sToPlc.bMaintMode")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/PRG_SL3K4.fbSL3K4.stPMPSEpicsToPlc.bMaintMode=")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
+  info(archive, "VAL")
+}

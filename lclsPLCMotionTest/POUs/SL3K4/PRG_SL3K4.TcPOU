@@ -132,7 +132,9 @@ VAR
         .stDS402Drive.nDriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:Y2^ctl/mode/pos RxPDO^Control Word;
     '}
     fb_SLIT_Y2 : FB_MotionStageMCS2(stMCS2Stage:=Main.M16, eModule:=E_Module.CHAN1);
-
+    {attribute 'pytmc' := '
+        pv: DREAM:SLIT
+    '}
     fbSL3K4        : FB_SL3K4;
 END_VAR
 ]]></Declaration>

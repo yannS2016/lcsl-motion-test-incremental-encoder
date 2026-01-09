@@ -8,7 +8,10 @@
       <Name>PRG_PMPS_PRE</Name>
     </PouCall>
     <PouCall>
-      <Name>SLIT_HARD</Name>
+      <Name>PRG_PMPS_POST_SIM</Name>
+    </PouCall>
+    <PouCall>
+      <Name>PRG_IN_VACUUM</Name>
     </PouCall>
     <TaskFBGuid>{cf0fe61c-2f89-4bd6-ba45-b22623520a12}</TaskFBGuid>
     <Fb_init>{23944dbe-d665-4215-9785-3340c855e2d0}</Fb_init>

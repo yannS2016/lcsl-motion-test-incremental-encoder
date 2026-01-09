@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_SL3K4BPTM" Id="{fcefb98c-9079-4225-9f6c-c8fac484238e}" SpecialFunc="None">
+    <Declaration><![CDATA[(*
+    FB_SL3K4BPTM - Beam Parameter Transition Manager
+    ------------------------------------------------
+    Coordinates a group of motors to move together to a new destination
+    with shared beam parameters, synchronizing motion and safety interlocks
+    for both transition and goal states. Integrates parameter arbitration,
+    transition authorization, error handling, and timeout safety logic.
+
+    NOTE: For use within lcls-twincat-motion only.
+*)
+
+FUNCTION_BLOCK FB_SL3K4BPTM
+
+VAR_IN_OUT
+    fbArbiter      : FB_Arbiter;            // Beam parameter arbiter for transition/goals
+    fbFFHWO        : FB_HardwareFFOutput;   // Output object for fast fault/safety integration
+    stGoalParams   : ST_DbStateParams;      // Goal (destination) DB parameters (unique assertion ID)
+    stTransParams  : ST_DbStateParams;      // Transition ("move in progress") DB parameters (unique assertion ID)
+END_VAR
+
+VAR_INPUT
+    nActiveMotorCount      : UINT;          // Number of motors in motion group (for config check)
+    bEnable                : BOOL;          // TRUE: enable transition manager; FALSE: hold/idle
+    bAtState               : BOOL;          // TRUE: all motors are at the goal/parameter state
+    sDeviceName            : STRING;        // For diagnostics/GUI identification
+    tArbiterTimeout        : TIME := T#1s;  // Timeout for arbiter to respond with ready parameters
+    bMoveOnArbiterTimeout  : BOOL := TRUE;  // TRUE: allow transition if timeout reached; FALSE: fault/wait
+    bResetBPTMTimeout      : BOOL;          // TRUE: externally reset the timeout fault (manual override)
+    bRetry                 : BOOL;          // TRUE: force transition manager to retry (re-request parameters)
+    bBladeError            : BOOL;
+END_VAR
+
+VAR_OUTPUT
+    bTransitionAuthorized  : BOOL;
+    bBusy				   : BOOL;
+    bDone                  : BOOL;
+    bError : BOOL;
+    bMotorCountError       : BOOL;
+END_VAR
+
+VAR
+    // Internal transition manager, timers, and state tracking
+    fbBPTM                 : BeamParameterTransitionManager;
+    tonDoneSim             : TON;           // Simulates "move done" for manual transition/testing
+    bDoneMoving            : BOOL;          // TRUE when simulated/completed move is finished
+    nPrevGoalID            : UDINT;         // Last goal assertion ID (for edge detection)
+    bNewGoal               : BOOL;          // TRUE when a new goal is requested
+    bInternalAuth          : BOOL;          // TRUE if arbiter grants transition authorization
+    bDoneResetQueued       : BOOL;          // Internal reset queue flag
+    tonArbiter             : TON;           // Tracks arbiter busy/timeout for transition
+    bArbiterTimeout        : BOOL;          // TRUE when arbiter has timed out
+    ffBPTMTimeoutAndMove   : FB_FastFault;  // Fast fault for BPTM timeouts
+    ffBPTMError            : FB_FastFault;  // Fast fault for transition errors
+    bProgrammerError       : BOOL;          // TRUE on detected programming/motion logic error
+    bTransitionPending: BOOL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Main logic only if enabled
+IF bEnable THEN
+
+    fbBPTM(
+        fbArbiter := fbArbiter,
+        i_sDeviceName := sDeviceName,
+        i_TransitionAssertionID := stTransParams.nRequestAssertionID,
+        i_stTransitionAssertion := stTransParams.stBeamParams,
+        i_nRequestedAssertionID := stGoalParams.nRequestAssertionID,
+        i_stRequestedAssertion := stGoalParams.stBeamParams,
+        i_xDoneMoving := bDoneMoving,
+        stCurrentBeamParameters := PMPS_GVL.stCurrentBeamParameters,
+        bRetry := bRetry,
+        q_xTransitionAuthorized => bInternalAuth,
+        bDone => bDone,
+        bBusy=>bBusy,
+        bError => bError
+    );
+
+    // Fast Fault for BPTM error
+    ffBPTMError.i_xOK := NOT fbBPTM.bError;
+    // Reset Fault when done & no error
+    ffBPTMError.i_xReset S= fbBPTM.bDone AND ffBPTMError.i_xOK;
+    ffBPTMError.i_xReset R= NOT ffBPTMError.i_xOK;
+    ffBPTMError(
+        i_DevName := sDeviceName,
+        i_Desc := 'BPTM error, state transition failed',
+        i_TypeCode := E_MotionFFType.BPTM_ERROR,
+        io_fbFFHWO := fbFFHWO
+    );
+END_IF
+
+// Beam Parameter Transition Manager busy timer
+// BPTM
+tonArbiter(
+    IN := fbBPTM.bBusy,
+    PT := tArbiterTimeout,
+    Q => bArbiterTimeout
+);
+
+// Transition authorization logic: genuine or forced on timeout if allowed
+//bTransitionAuthorized := bInternalAuth OR (bArbiterTimeout AND bMoveOnArbiterTimeout);
+bTransitionAuthorized := bInternalAuth;
+// Trip the beam for BPTM timeouts if we want to move
+// Only reset at safe beam OR at no bptm errors (some other FF should catch additional issues)
+ffBPTMTimeoutAndMove.i_xOK := NOT (bArbiterTimeout AND bMoveOnArbiterTimeout AND bEnable);
+ffBPTMTimeoutAndMove.i_xReset S= bResetBPTMTimeout OR (fbBPTM.bDone AND NOT fbBPTM.bError);
+ffBPTMTimeoutAndMove.i_xReset R= NOT ffBPTMTimeoutAndMove.i_xOK;
+ffBPTMTimeoutAndMove.i_xReset := ffBPTMTimeoutAndMove.i_xReset OR NOT bEnable;
+ffBPTMTimeoutAndMove(
+    i_DevName := sDeviceName,
+    i_Desc := 'BPTM Timeout',
+    i_TypeCode := E_MotionFFType.BPTM_TIMEOUT,
+    io_fbFFHWO := fbFFHWO,
+);
+
+// Edge detection for change in goal ID (new motion command)
+// Detect new goal edge (same as before)
+bNewGoal := stGoalParams.nRequestAssertionID <> nPrevGoalID;
+nPrevGoalID := stGoalParams.nRequestAssertionID;
+// Latch: remember that a new transition is pending
+bTransitionPending S= bNewGoal;
+// Clear the pending latch when authorized & the timer is not already running
+IF bTransitionPending AND bTransitionAuthorized THEN
+    tonDoneSim(IN := TRUE);        // Start simulated timer
+    bDoneMoving := FALSE;
+    bTransitionPending := FALSE;   // Latch cleared: will not restart
+END_IF
+
+// Timer completion logic
+IF tonDoneSim.Q THEN
+    // axis errors check here as well. m,ore logic to recovere from erros and reset the timer
+    // so if an error occurs while transitioning to the requested state, dont set done, waiting for error cleared and reset timer.
+    // perhaps request maintenance state to to retrigger BPTM.
+    bDoneMoving := NOT bBladeError;
+    tonDoneSim(IN := FALSE);
+END_IF
+
+// Abort timer immediately on lost authorization or programming error
+IF NOT bTransitionAuthorized OR bProgrammerError THEN
+    tonDoneSim(IN := FALSE);
+    bDoneMoving := FALSE;
+END_IF
+// even lower.
+tonDoneSim(PT := T#250ms);      // Set timer duration (simulate 250ms move done)
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

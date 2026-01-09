@@ -3,7 +3,7 @@
   <POU Name="FB_DGPDPMPSStateConfigHelper" Id="{b09c0a9c-11cd-4ec3-948c-a6410efa38ba}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_DGPDPMPSStateConfigHelper
 // VAR_IN_OUT
-// 
+//
 // 	astPositionStateRET : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
 // 	astPositionStateX : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
 // 	astPositionStateY : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
@@ -11,24 +11,24 @@
 // END_VAR
 
 VAR_INPUT
- bSimMode : BOOL;	
+ bSimMode : BOOL;
 END_VAR
 VAR
 
-	astPositionStateRET : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-	astPositionStateX : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-	astPositionStateY : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-	astPositionStateZ : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-	fbStateSetupRET : FB_StateSetupHelper;
-	fbStateSetupX : FB_StateSetupHelper;
-	fbStateSetupY : FB_StateSetupHelper;
-	fbStateSetupZ : FB_StateSetupHelper;
-	stDefault : ST_PositionState := (
-		fDelta := 0.004,
-		fVelocity := 0.8,
-		bMoveOk := TRUE,
-		bValid := TRUE
-	);
+    astPositionStateRET : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    astPositionStateX : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    astPositionStateY : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    astPositionStateZ : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    fbStateSetupRET : FB_StateSetupHelper;
+    fbStateSetupX : FB_StateSetupHelper;
+    fbStateSetupY : FB_StateSetupHelper;
+    fbStateSetupZ : FB_StateSetupHelper;
+    stDefault : ST_PositionState := (
+        fDelta := 0.004,
+        fVelocity := 0.8,
+        bMoveOk := TRUE,
+        bValid := TRUE
+    );
     iState: E_DGPDState;
 END_VAR]]></Declaration>
     <Implementation>
@@ -42,12 +42,12 @@ END_VAR]]></Declaration>
 METHOD FB_Init: BOOL
 VAR_INPUT
     bInitRetains: BOOL; // TRUE: the retain variables are initialized (reset warm / reset cold)
-    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)  
+    bInCopyCode: BOOL;  // TRUE: the instance will be copied to the copy code afterward (online change)
 
-	astPositionStateRET : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-	astPositionStateX : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-	astPositionStateY : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-	astPositionStateZ : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    astPositionStateRET : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    astPositionStateX : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    astPositionStateY : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+    astPositionStateZ : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[THIS^.astPositionStateRET REF= astPositionStateRET;
@@ -150,8 +150,8 @@ astPositionStateZ[E_DGPDState.TARGET5].stPMPS.sPmpsState := 'DREAM:PF-TARGET5';
 VAR
     sDeviceName    : STRING := 'test';
     sTransitionKey : STRING := 'trans';
-	jsonHelper: FB_PMPSJsonTestHelper;
-	astBeam: ARRAY[0..GeneralConstants.MAX_STATES] OF ST_DbStateParams;
+    jsonHelper: FB_PMPSJsonTestHelper;
+    astBeam: ARRAY[0..GeneralConstants.MAX_STATES] OF ST_DbStateParams;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[// Create all beam parameter sets for all states in E_DGPDStates

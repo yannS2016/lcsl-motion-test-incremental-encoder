@@ -2,6 +2,108 @@
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.17" ClassName="CNestedPlcProjDef" TcProjectVariant="slits">
 	<DataTypes>
 		<DataType>
+			<Name GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion" AutoDeleteType="true">ST_DS402DriveStatus</Name>
+			<BitSize>16</BitSize>
+			<SubItem>
+				<Name>ReadyToSwitchOn</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[ Bit 0 ]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>SwitchedOn</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[ Bit 1 ]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>OperationEnabled</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[ Bit 2 ]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>2</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Fault</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[ Bit 3 ]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>3</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>VoltageEnabled</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[ Bit 4 ]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>4</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>QuickStopActive</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[ Bit 5 ]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>5</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>SwitchOnDisabled</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[ Bit 6 ]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>6</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>WarningCondition</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[ Bit 7 ]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>7</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>TrajectoryAborted</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[ Bit 8 ]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>RemoteCANopenControl</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[ Bit 9 ]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>9</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>TargetReached</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[ Bit 10 ]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>10</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>InternalLimitActive</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[ Bit 11 ]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>11</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Bit12_OpModeSpecific</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[ Bit 12 ]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>12</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Bit13_OpModeSpecific</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[ Bit 13 ]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>13</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
 			<Name GUID="{CBC83B73-B816-4597-A9E5-2B03263CA131}" Namespace="MC" TcBaseType="true" HideType="true" IecDeclaration="DWORD;">NCTOPLC_AXIS_REF_STATE</Name>
 			<BitSize>32</BitSize>
 			<SubItem>
@@ -795,108 +897,6 @@ External Setpoint Generation:
 			</Relations>
 		</DataType>
 		<DataType>
-			<Name GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion" AutoDeleteType="true">ST_DS402DriveStatus</Name>
-			<BitSize>16</BitSize>
-			<SubItem>
-				<Name>ReadyToSwitchOn</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 0 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>SwitchedOn</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 1 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>1</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>OperationEnabled</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 2 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>2</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Fault</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 3 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>3</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>VoltageEnabled</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 4 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>4</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>QuickStopActive</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 5 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>5</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>SwitchOnDisabled</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 6 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>6</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>WarningCondition</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 7 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>7</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>TrajectoryAborted</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 8 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>8</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>RemoteCANopenControl</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 9 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>9</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>TargetReached</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 10 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>10</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>InternalLimitActive</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 11 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>11</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Bit12_OpModeSpecific</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 12 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>12</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Bit13_OpModeSpecific</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
-				<Comment><![CDATA[ Bit 13 ]]></Comment>
-				<BitSize>1</BitSize>
-				<BitOffs>13</BitOffs>
-			</SubItem>
-		</DataType>
-		<DataType>
 			<Name GUID="{875D2B22-B7EB-497E-B933-0C004593CCF3}" Namespace="MC" TcBaseType="true" HideType="true" IecDeclaration="DWORD;">PLCTONC_AXIS_REF_CTRL</Name>
 			<BitSize>32</BitSize>
 			<SubItem>
@@ -1085,7 +1085,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{E31ADAA4-9B77-495F-982E-6D67EFCA2359}" Name="lclsPLCMotionTest" PrjFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.plcproj" TmcFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{D71CCCA9-F70B-3A98-65F6-885B06DAE4E0}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{9E28D7F3-CBA1-B64B-74C5-DB23C66D7CD1}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
 			<Name>lclsPLCMotionTest Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="8" AreaNo="4">
@@ -1111,7 +1111,194 @@ External Setpoint Generation:
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
 				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nDriveControl</Name>
+					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
+ connected to I/O Task 'Control Word']]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nTargetPosition</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nModeOfOperation</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nProfilVelocity</Name>
+					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nProfilAcceleration</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nProfilDecceleration</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nVelocityActualValue</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nScantargetPosition</Name>
+					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.uScantargetVelocity</Name>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nDriveControl</Name>
+					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
+ connected to I/O Task 'Control Word']]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nTargetPosition</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nModeOfOperation</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nProfilVelocity</Name>
+					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nProfilAcceleration</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nProfilDecceleration</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nVelocityActualValue</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nScantargetPosition</Name>
+					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.uScantargetVelocity</Name>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nDriveControl</Name>
+					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
+ connected to I/O Task 'Control Word']]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nTargetPosition</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nModeOfOperation</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nProfilVelocity</Name>
+					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nProfilAcceleration</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nProfilDecceleration</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nVelocityActualValue</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nScantargetPosition</Name>
+					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.uScantargetVelocity</Name>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nDriveControl</Name>
+					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
+ connected to I/O Task 'Control Word']]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nTargetPosition</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nModeOfOperation</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nProfilVelocity</Name>
+					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nProfilAcceleration</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nProfilDecceleration</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nVelocityActualValue</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nScantargetPosition</Name>
+					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.uScantargetVelocity</Name>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
 					<Name>GVL_PMPS.fbFastFaultOutput1.q_xFastFaultOut</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.Axis.PlcToNc</Name>
+					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.bBrakeRelease</Name>
+					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.Axis.PlcToNc</Name>
+					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.bBrakeRelease</Name>
+					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.Axis.PlcToNc</Name>
+					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.bBrakeRelease</Name>
+					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
@@ -1124,318 +1311,157 @@ External Setpoint Generation:
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Main.M12.stDS402Drive.nDriveControl</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
- connected to I/O Task 'Control Word']]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nTargetPosition</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nModeOfOperation</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nProfilVelocity</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nProfilAcceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nProfilDecceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nVelocityActualValue</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.nScantargetPosition</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.uScantargetVelocity</Name>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.Axis.PlcToNc</Name>
+					<Name>Main.M13.Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>Main.M9.bBrakeRelease</Name>
+					<Name>Main.M13.bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Main.M9.stDS402Drive.nDriveControl</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
- connected to I/O Task 'Control Word']]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nTargetPosition</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nModeOfOperation</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nProfilVelocity</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nProfilAcceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nProfilDecceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nVelocityActualValue</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nScantargetPosition</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.uScantargetVelocity</Name>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.Axis.PlcToNc</Name>
+					<Name>Main.M14.Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>Main.M10.bBrakeRelease</Name>
+					<Name>Main.M14.bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Main.M10.stDS402Drive.nDriveControl</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
- connected to I/O Task 'Control Word']]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nTargetPosition</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nModeOfOperation</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nProfilVelocity</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nProfilAcceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nProfilDecceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nVelocityActualValue</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nScantargetPosition</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.uScantargetVelocity</Name>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.Axis.PlcToNc</Name>
+					<Name>Main.M15.Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>Main.M11.bBrakeRelease</Name>
+					<Name>Main.M15.bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Main.M11.stDS402Drive.nDriveControl</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
- connected to I/O Task 'Control Word']]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nTargetPosition</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nModeOfOperation</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nProfilVelocity</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nProfilAcceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nProfilDecceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nVelocityActualValue</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nScantargetPosition</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.uScantargetVelocity</Name>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>SLIT_HARD.fbtSouthBlade.fbDriveVirtual.MasterAxis.PlcToNc</Name>
+					<Name>Main.M16.Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.bBrakeRelease</Name>
+					<Name>Main.M16.bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.stDS402Drive.nDriveControl</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
- connected to I/O Task 'Control Word']]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.stDS402Drive.nTargetPosition</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.stDS402Drive.nModeOfOperation</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.stDS402Drive.nProfilVelocity</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.stDS402Drive.nProfilAcceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.stDS402Drive.nProfilDecceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.stDS402Drive.nVelocityActualValue</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.stDS402Drive.nScantargetPosition</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.stDS402Drive.uScantargetVelocity</Name>
-					<Type>ULINT</Type>
 				</Var>
 			</Vars>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
 				<Var>
-					<Name>Main.M12.Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.stDS402Drive.stDriveStatus</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.stDriveStatus</Name>
 					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
 					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
 				</Var>
 				<Var>
-					<Name>Main.M12.stDS402Drive.nModeOfOperationDisplay</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nModeOfOperationDisplay</Name>
 					<Type>SINT</Type>
 				</Var>
 				<Var>
-					<Name>Main.M12.stDS402Drive.nFollowingError</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nFollowingError</Name>
 					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
 CSP drive mode]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>Main.M12.stDS402Drive.nDriveControlNC</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nDriveControlNC</Name>
 					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>Main.M12.stDS402Drive.nModeOfOperationNC</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nModeOfOperationNC</Name>
 					<Type>SINT</Type>
 				</Var>
 				<Var>
-					<Name>Main.M12.stDS402Drive.nSlaveAddr</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nSlaveAddr</Name>
+					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.stDriveStatus</Name>
+					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
+					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nModeOfOperationDisplay</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nFollowingError</Name>
+					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
+CSP drive mode]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nDriveControlNC</Name>
+					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nModeOfOperationNC</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nSlaveAddr</Name>
+					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.stDriveStatus</Name>
+					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
+					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nModeOfOperationDisplay</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nFollowingError</Name>
+					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
+CSP drive mode]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nDriveControlNC</Name>
+					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nModeOfOperationNC</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nSlaveAddr</Name>
+					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.stDriveStatus</Name>
+					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
+					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nModeOfOperationDisplay</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nFollowingError</Name>
+					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
+CSP drive mode]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nDriveControlNC</Name>
+					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nModeOfOperationNC</Name>
+					<Type>SINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nSlaveAddr</Name>
 					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
 					<Type>UINT</Type>
 				</Var>
@@ -1484,35 +1510,6 @@ CSP drive mode]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>Main.M9.stDS402Drive.stDriveStatus</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nModeOfOperationDisplay</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nFollowingError</Name>
-					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
-CSP drive mode]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nDriveControlNC</Name>
-					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nModeOfOperationNC</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.stDS402Drive.nSlaveAddr</Name>
-					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
 					<Name>Main.M10.Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
@@ -1555,35 +1552,6 @@ CSP drive mode]]></Comment>
 					<Name>Main.M10.nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.stDriveStatus</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nModeOfOperationDisplay</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nFollowingError</Name>
-					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
-CSP drive mode]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nDriveControlNC</Name>
-					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nModeOfOperationNC</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.stDS402Drive.nSlaveAddr</Name>
-					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
-					<Type>UINT</Type>
 				</Var>
 				<Var>
 					<Name>Main.M11.Axis.NcToPlc</Name>
@@ -1630,110 +1598,224 @@ CSP drive mode]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>Main.M11.stDS402Drive.stDriveStatus</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nModeOfOperationDisplay</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nFollowingError</Name>
-					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
-CSP drive mode]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nDriveControlNC</Name>
-					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nModeOfOperationNC</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.stDS402Drive.nSlaveAddr</Name>
-					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>SLIT_HARD.fbtSouthBlade.fbDriveVirtual.MasterAxis.NcToPlc</Name>
+					<Name>Main.M12.Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.bLimitForwardEnable</Name>
+					<Name>Main.M12.bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.bLimitBackwardEnable</Name>
+					<Name>Main.M12.bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.bHome</Name>
+					<Name>Main.M12.bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.bHardwareEnable</Name>
+					<Name>Main.M12.bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.nRawEncoderULINT</Name>
+					<Name>Main.M12.nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.nRawEncoderUINT</Name>
+					<Name>Main.M12.nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.nRawEncoderINT</Name>
+					<Name>Main.M12.nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.nRawEncoderDINT</Name>
+					<Name>Main.M12.nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.stDS402Drive.stDriveStatus</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
+					<Name>Main.M13.Axis.NcToPlc</Name>
+					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.stDS402Drive.nModeOfOperationDisplay</Name>
-					<Type>SINT</Type>
+					<Name>Main.M13.bLimitForwardEnable</Name>
+					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.stDS402Drive.nFollowingError</Name>
-					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
-CSP drive mode]]></Comment>
+					<Name>Main.M13.bLimitBackwardEnable</Name>
+					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M13.bHome</Name>
+					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M13.bHardwareEnable</Name>
+					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M13.nRawEncoderULINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M13.nRawEncoderUINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M13.nRawEncoderINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M13.nRawEncoderDINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.stDS402Drive.nDriveControlNC</Name>
-					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
+					<Name>Main.M14.Axis.NcToPlc</Name>
+					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M14.bLimitForwardEnable</Name>
+					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M14.bLimitBackwardEnable</Name>
+					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M14.bHome</Name>
+					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M14.bHardwareEnable</Name>
+					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M14.nRawEncoderULINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M14.nRawEncoderUINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.stDS402Drive.nModeOfOperationNC</Name>
-					<Type>SINT</Type>
+					<Name>Main.M14.nRawEncoderINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
+					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>SLIT_HARD.fbSL3K4.test.stDS402Drive.nSlaveAddr</Name>
-					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
+					<Name>Main.M14.nRawEncoderDINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M15.Axis.NcToPlc</Name>
+					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M15.bLimitForwardEnable</Name>
+					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M15.bLimitBackwardEnable</Name>
+					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M15.bHome</Name>
+					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M15.bHardwareEnable</Name>
+					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M15.nRawEncoderULINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M15.nRawEncoderUINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M15.nRawEncoderINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M15.nRawEncoderDINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M16.Axis.NcToPlc</Name>
+					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M16.bLimitForwardEnable</Name>
+					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M16.bLimitBackwardEnable</Name>
+					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M16.bHome</Name>
+					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M16.bHardwareEnable</Name>
+					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M16.nRawEncoderULINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M16.nRawEncoderUINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M16.nRawEncoderINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M16.nRawEncoderDINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
+					<Type>DINT</Type>
 				</Var>
 			</Vars>
 			<UnrestoredVarLinks ImportTime="2025-10-19T16:02:30">
@@ -1931,6 +2013,47 @@ CSP drive mode]]></Comment>
 					</OwnerB>
 				</OwnerA>
 			</UnrestoredVarLinks>
+			<UnrestoredVarLinks ImportTime="2026-01-07T20:23:22">
+				<OwnerA Name="InputDst" Prefix="TIPC^lclsPLCMotionTest^lclsPLCMotionTest Instance" Type="1">
+					<OwnerB Name="TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03">
+						<Link VarA="Main.M12.nRawEncoderDINT" TypeA="DINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000009}" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Position Actual Value" IdB="-106" AutoLink="true" RestoreInfo="BNotFound"/>
+						<Link VarA="Main.M9.nRawEncoderDINT" TypeA="DINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000009}" VarB="DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Position Actual Value" IdB="-113" AutoLink="true" RestoreInfo="BNotFound"/>
+						<Link VarA="SLIT_HARD.fbBottomBlade.stDS402Drive.nFollowingError" TypeA="DINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000009}" VarB="DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Following Error Actual Value" IdB="-114" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbBottomBlade.stDS402Drive.nModeOfOperationDisplay" TypeA="SINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Modes of Operation Display" IdB="-111" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbBottomBlade.stDS402Drive.nSlaveAddr" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="InfoData^AdsAddr^port" IdB="5830" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbBottomBlade.stDS402Drive.stDriveStatus" TypeA="lcls_twincat_motion.ST_DS402DriveStatus" InOutA="0" GuidA="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" VarB="DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Status Word" IdB="-112" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbNorthBlade.stDS402Drive.nFollowingError" TypeA="DINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000009}" VarB="DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Following Error Actual Value" IdB="-121" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbNorthBlade.stDS402Drive.nModeOfOperationDisplay" TypeA="SINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Modes of Operation Display" IdB="-118" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbNorthBlade.stDS402Drive.nSlaveAddr" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="InfoData^AdsAddr^port" IdB="5830" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbNorthBlade.stDS402Drive.stDriveStatus" TypeA="lcls_twincat_motion.ST_DS402DriveStatus" InOutA="0" GuidA="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" VarB="DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Status Word" IdB="-119" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbTopBlade.stDS402Drive.nFollowingError" TypeA="DINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000009}" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Following Error Actual Value" IdB="-107" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbTopBlade.stDS402Drive.nModeOfOperationDisplay" TypeA="SINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Modes of Operation Display" IdB="-104" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbTopBlade.stDS402Drive.nSlaveAddr" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="InfoData^AdsAddr^port" IdB="5830" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbTopBlade.stDS402Drive.stDriveStatus" TypeA="lcls_twincat_motion.ST_DS402DriveStatus" InOutA="0" GuidA="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Status Word" IdB="-105" AutoLink="true" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^M10_DREAM_DGPD_MMT_Y">
+						<Link VarA="SLIT_HARD.fbNorthBlade.stDS402Drive.nDriveControlNC" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="Drive^Outputs^Out^nCtrl2" IdB="3956" AutoLink="true" Size="8" OffsA="8" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbNorthBlade.stDS402Drive.nModeOfOperationNC" TypeA="SINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="Drive^Outputs^Out^nCtrl5" IdB="3971" AutoLink="true" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^M12_DREAM_DGPD_MMT_RET">
+						<Link VarA="SLIT_HARD.fbTopBlade.stDS402Drive.nDriveControlNC" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="Drive^Outputs^Out^nCtrl2" IdB="4253" AutoLink="true" Size="8" OffsA="8" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbTopBlade.stDS402Drive.nModeOfOperationNC" TypeA="SINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="Drive^Outputs^Out^nCtrl5" IdB="4268" AutoLink="true" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^M9_DREAM_DGPD_MMT_X">
+						<Link VarA="SLIT_HARD.fbBottomBlade.stDS402Drive.nDriveControlNC" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="Drive^Outputs^Out^nCtrl2" IdB="4550" AutoLink="true" Size="8" OffsA="8" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbBottomBlade.stDS402Drive.nModeOfOperationNC" TypeA="SINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="Drive^Outputs^Out^nCtrl5" IdB="4565" AutoLink="true" RestoreInfo="ANotFound"/>
+					</OwnerB>
+				</OwnerA>
+				<OwnerA Name="OutputSrc" Prefix="TIPC^lclsPLCMotionTest^lclsPLCMotionTest Instance" Type="2">
+					<OwnerB Name="TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03">
+						<Link VarA="SLIT_HARD.fbBottomBlade.stDS402Drive.nModeOfOperation" TypeA="SINT" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="DREAM:DGPD:MMT:X^ctl/mode/pos RxPDO^Modes of Operation" IdB="-116" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbNorthBlade.stDS402Drive.nDriveControl" TypeA="UINT" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="DREAM:DGPD:MMT:Y^ctl/mode/pos RxPDO^Control Word" IdB="-122" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbNorthBlade.stDS402Drive.nModeOfOperation" TypeA="SINT" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="DREAM:DGPD:MMT:Y^ctl/mode/pos RxPDO^Modes of Operation" IdB="-123" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbTopBlade.stDS402Drive.nDriveControl" TypeA="UINT" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="DREAM:DGPD:MMT:RET^ctl/mode/pos RxPDO^Control Word" IdB="-108" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="SLIT_HARD.fbTopBlade.stDS402Drive.nModeOfOperation" TypeA="SINT" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="DREAM:DGPD:MMT:RET^ctl/mode/pos RxPDO^Modes of Operation" IdB="-109" AutoLink="true" RestoreInfo="ANotFound"/>
+					</OwnerB>
+				</OwnerA>
+			</UnrestoredVarLinks>
 			<Contexts>
 				<Context>
 					<Id>0</Id>
@@ -1950,52 +2073,60 @@ CSP drive mode]]></Comment>
 	<Mappings>
 		<OwnerA Name="lclsPLCMotionTest Instance">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03">
-				<Link VarA="PlcTask Inputs^Main.M10.nRawEncoderDINT" VarB="DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main.M10.stDS402Drive.nFollowingError" VarB="DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main.M10.stDS402Drive.nModeOfOperationDisplay" VarB="DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main.M10.stDS402Drive.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main.M10.stDS402Drive.stDriveStatus" VarB="DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Status Word" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main.M12.nRawEncoderDINT" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main.M12.stDS402Drive.nFollowingError" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main.M12.stDS402Drive.nModeOfOperationDisplay" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main.M12.stDS402Drive.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main.M12.stDS402Drive.stDriveStatus" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Status Word" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main.M9.nRawEncoderDINT" VarB="DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main.M9.stDS402Drive.nFollowingError" VarB="DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main.M9.stDS402Drive.nModeOfOperationDisplay" VarB="DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main.M9.stDS402Drive.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main.M9.stDS402Drive.stDriveStatus" VarB="DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Status Word" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^Main.M10.stDS402Drive.nDriveControl" VarB="DREAM:DGPD:MMT:Y^ctl/mode/pos RxPDO^Control Word" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^Main.M10.stDS402Drive.nModeOfOperation" VarB="DREAM:DGPD:MMT:Y^ctl/mode/pos RxPDO^Modes of Operation" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^Main.M12.stDS402Drive.nDriveControl" VarB="DREAM:DGPD:MMT:RET^ctl/mode/pos RxPDO^Control Word" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^Main.M12.stDS402Drive.nModeOfOperation" VarB="DREAM:DGPD:MMT:RET^ctl/mode/pos RxPDO^Modes of Operation" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^Main.M9.stDS402Drive.nDriveControl" VarB="DREAM:DGPD:MMT:X^ctl/mode/pos RxPDO^Control Word" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^Main.M9.stDS402Drive.nModeOfOperation" VarB="DREAM:DGPD:MMT:X^ctl/mode/pos RxPDO^Modes of Operation" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nFollowingError" VarB="DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nModeOfOperationDisplay" VarB="DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.stDriveStatus" VarB="DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Status Word" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nFollowingError" VarB="DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nModeOfOperationDisplay" VarB="DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.stDriveStatus" VarB="DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Status Word" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nFollowingError" VarB="DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nModeOfOperationDisplay" VarB="DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.stDriveStatus" VarB="DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Status Word" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nDriveControl" VarB="DREAM:SLIT:MMT:X1^ctl/mode/pos RxPDO^Control Word" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nModeOfOperation" VarB="DREAM:SLIT:MMT:X1^ctl/mode/pos RxPDO^Modes of Operation" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nDriveControl" VarB="DREAM:SLIT:MMT:X2^ctl/mode/pos RxPDO^Control Word" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nModeOfOperation" VarB="DREAM:SLIT:MMT:X2^ctl/mode/pos RxPDO^Modes of Operation" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nDriveControl" VarB="DREAM:SLIT:MMT:Y1^ctl/mode/pos RxPDO^Control Word" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nModeOfOperation" VarB="DREAM:SLIT:MMT:Y1^ctl/mode/pos RxPDO^Modes of Operation" AutoLink="true"/>
 			</OwnerB>
-			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^M10_DREAM_DGPD_MMT_Y">
-				<Link VarA="PlcTask Inputs^Main.M10.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Inputs^Main.M10.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
-				<Link VarA="PlcTask Inputs^Main.M10.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
-				<Link VarA="PlcTask Inputs^Main.M10.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^Main.M10.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
-			</OwnerB>
-			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^M11_DREAM_DGPD_MMT_Z">
+			<OwnerB Name="TINC^NC-Task 1^Axes^M11_DREAM_DGPD_MMT_Z">
 				<Link VarA="PlcTask Inputs^Main.M11.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
 				<Link VarA="PlcTask Outputs^Main.M11.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
-			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^M12_DREAM_DGPD_MMT_RET">
+			<OwnerB Name="TINC^NC-Task 1^Axes^M12_DREAM_DGPD_MMT_RET">
 				<Link VarA="PlcTask Inputs^Main.M12.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Inputs^Main.M12.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
-				<Link VarA="PlcTask Inputs^Main.M12.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
-				<Link VarA="PlcTask Inputs^Main.M12.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
 				<Link VarA="PlcTask Outputs^Main.M12.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
-			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^M9_DREAM_DGPD_MMT_X">
-				<Link VarA="PlcTask Inputs^Main.M9.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Inputs^Main.M9.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
-				<Link VarA="PlcTask Inputs^Main.M9.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
-				<Link VarA="PlcTask Inputs^Main.M9.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^Main.M9.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+			<OwnerB Name="TINC^NC-Task 1^Axes^M13_DREAM_SLIT_MMT_X1">
+				<Link VarA="PlcTask Inputs^Main.M13.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^Main.M13.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1^Axes^M14_DREAM_SLIT_MMT_X2">
+				<Link VarA="PlcTask Inputs^Main.M14.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^Main.M14.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1^Axes^M15_DREAM_SLIT_MMT_Y1">
+				<Link VarA="PlcTask Inputs^Main.M15.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^Main.M15.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1^Axes^M16_DREAM_SLIT_MMT_Y2">
+				<Link VarA="PlcTask Inputs^Main.M16.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^Main.M16.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="PRG_PMPS_POST_SIM" Id="{8a78dcaa-1c8b-4d12-a48c-9f4c8577c0c8}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PRG_PMPS_POST_SIM
+VAR
+    fbArbiterIO    : FB_DummyArbIO;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//GVL_PMPS.fbFastFaultOutput1.Execute();
+fbArbiterIO(
+    LA:=GVL_PMPS.fbArbiter,
+    FFO:=GVL_PMPS.fbFastFaultOutput1);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

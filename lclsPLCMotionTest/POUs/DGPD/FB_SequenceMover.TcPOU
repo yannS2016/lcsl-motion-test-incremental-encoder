@@ -2,12 +2,12 @@
 <TcPlcObject Version="1.1.0.1">
   <POU Name="FB_SequenceMover" Id="{90305f7f-1044-4803-85fc-e91002b8b4ce}" SpecialFunc="None">
     <Declaration><![CDATA[(*
-	DGPD 4 Axis Sequence Mover, Sequential Logic, HV EPS
-	RET, X, Y, Z axes. Modes: Sequence & Maintenance.
-	EPS: HV, Calibration, Reference, SensorPresent
-	Axis state mover FBs (RET, X, Y, Z) are called inside.
-	RET moves first, then X, Y, Z, one at a time. Custom error message per axis.
-	All interlock logic and diagnostics included.
+    DGPD 4 Axis Sequence Mover, Sequential Logic, HV EPS
+    RET, X, Y, Z axes. Modes: Sequence & Maintenance.
+    EPS: HV, Calibration, Reference, SensorPresent
+    Axis state mover FBs (RET, X, Y, Z) are called inside.
+    RET moves first, then X, Y, Z, one at a time. Custom error message per axis.
+    All interlock logic and diagnostics included.
 *)
 FUNCTION_BLOCK FB_SequenceMover
 VAR_IN_OUT
@@ -22,8 +22,8 @@ VAR_INPUT
     stPlcToEpicsY   : ST_StatePlcToEpics;
     stPlcToEpicsZ   : ST_StatePlcToEpics;
     eDGPDStateSet : E_DGPDState;
-	bSequenceEnable : BOOL;
-	bReset          : BOOL;
+    bSequenceEnable : BOOL;
+    bReset          : BOOL;
 END_VAR
 
 VAR_OUTPUT
@@ -41,7 +41,7 @@ VAR_OUTPUT
     bEnteredMoveYToTarget   : BOOL;
     bEnteredMoveZToTarget   : BOOL;
     bEnteredDone            : BOOL;
-    bEnteredError           : BOOL; 
+    bEnteredError           : BOOL;
 END_VAR
 
 VAR
@@ -51,23 +51,23 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF NOT bSequenceEnable THEN
-	// Default: Sequence is disable (No collision avoidance)
-	bMoveRET := TRUE; 
-	bMoveX := TRUE;
-	bMoveY := TRUE;
-	bMoveZ := TRUE;
-	RETURN;
+    // Default: Sequence is disable (No collision avoidance)
+    bMoveRET := TRUE;
+    bMoveX := TRUE;
+    bMoveY := TRUE;
+    bMoveZ := TRUE;
+    RETURN;
 END_IF
 // Default: no moves, no state active
-bMoveRET := FALSE; 
-bMoveX := FALSE; 
-bMoveY := FALSE; 
+bMoveRET := FALSE;
+bMoveX := FALSE;
+bMoveY := FALSE;
 bMoveZ := FALSE;
 bEnteredInit := FALSE; bEnteredCheckOut := FALSE;
 bEnteredMoveRETToTarget := FALSE;
 bEnteredMoveXToTarget   := FALSE;
 bEnteredMoveYToTarget   := FALSE;
-bEnteredMoveZToTarget   := FALSE; 
+bEnteredMoveZToTarget   := FALSE;
 bEnteredDone := FALSE;
 bEnteredError := FALSE;
 bSequenceComplete := FALSE;
@@ -75,7 +75,7 @@ bSequenceComplete := FALSE;
         IF bReset THEN
             axisSequenceStep := E_DGPDSequence.INIT;
         END_IF
-		
+
 CASE axisSequenceStep OF
 
     E_DGPDSequence.INIT:

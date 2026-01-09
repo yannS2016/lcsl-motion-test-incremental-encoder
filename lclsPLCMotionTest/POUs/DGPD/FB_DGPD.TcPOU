@@ -3,7 +3,7 @@
   <POU Name="FB_DGPD" Id="{7187c3a0-0612-433c-9b7d-d930a75224ae}" SpecialFunc="None">
     <Declaration><![CDATA[(*
     FB_DGPD – Four-Axis DREAM DGPD Sequence and Maintenance Axis Interlock Controller
-    
+
     This function block implements the complete interlock, sequencing, and maintenance/manual mode logic
     for the DREAM Sample Paddle's 4 axis (RET, X, Y, Z). It supports:
     - Automatic sequence mode: RET, X, Y, Z move in a defined interlocked order toward user-selected targets with overall safety interlock.
@@ -34,80 +34,85 @@ VAR_INPUT
         io: io
     '}
     bReset               : BOOL;
+
     {attribute 'pytmc' := '
         pv: DREAM:DGPD:bMaintMode
         io: io
     '}
     bMaintenanceMode     : BOOL;
+
     {attribute 'pytmc' := '
         pv: DREAM:DGPD:bSeqEnable
         io: io
     '}
-	bSequenceEnable : BOOL := TRUE;
+    bSequenceEnable : BOOL := TRUE;
+
     bEnableBeamParams: BOOL;
     // use this to block state request activation on top of eps.
     bEnableMotion        : BOOL;
     bEPSEnable           : BOOL := TRUE;
     ePrevSetTarget: UINT;
+
     // in Target deadband
     fDelta : LREAL := 0.003;
-	fbDGPDPMPSStateConfigHelper : FB_DGPDPMPSStateConfigHelper(	
-		astPositionStateRET := astPositionStateRET,
-		astPositionStateX := astPositionStateX,
-		astPositionStateY := astPositionStateY,
-		astPositionStateZ := astPositionStateZ
-	);
+    fbDGPDPMPSStateConfigHelper : FB_DGPDPMPSStateConfigHelper(
+        astPositionStateRET := astPositionStateRET,
+        astPositionStateX := astPositionStateX,
+        astPositionStateY := astPositionStateY,
+        astPositionStateZ := astPositionStateZ
+    );
 END_VAR
 VAR_OUTPUT
-	{attribute 'hide'}
+    {attribute 'hide'}
     bSafeToMoveRET : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bSafeToMoveX   : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bSafeToMoveY   : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bSafeToMoveZ   : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bSafeToMove    : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bMoveRET          : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bMoveX            : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bMoveY            : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bMoveZ            : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bSequenceComplete : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     axisSequenceStep  : E_DGPDSequence;
-	{attribute 'hide'}
+    {attribute 'hide'}
     nRETCurrState     : E_DGPDState;
-	{attribute 'hide'}
+    {attribute 'hide'}
     nXCurrState     : E_DGPDState;
-	{attribute 'hide'}
+    {attribute 'hide'}
     nYCurrState     : E_DGPDState;
-	{attribute 'hide'}
+    {attribute 'hide'}
     nZCurrState     : E_DGPDState;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bEnteredInit            : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bEnteredCheckOut        : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bEnteredMoveRETToTarget : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bEnteredMoveXToTarget   : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bEnteredMoveYToTarget   : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bEnteredMoveZToTarget   : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bEnteredDone            : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bEnteredError           : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bError_RETCollision : BOOL;
 END_VAR
+
 VAR
     bGlobalReset            : BOOL;
     fbDGPDEPS               : FB_DGPDEPS;
@@ -136,40 +141,34 @@ VAR
     fbPositionStateZ : FB_PositionStatePMPS1D;
     eGetZTarget   : UINT;
     eSetZTarget   : UINT;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bInit: BOOL := TRUE;
-	{attribute 'hide'}
+    {attribute 'hide'}
     bSimMode : BOOL;
-	{attribute 'hide'}
+    {attribute 'hide'}
     rtReset  : R_TRIG;
-	{attribute 'hide'}
+    {attribute 'hide'}
     ftMaintModeRET : F_TRIG;
-	{attribute 'hide'}
+    {attribute 'hide'}
     ftMaintModeX   : F_TRIG;
-	{attribute 'hide'}
+    {attribute 'hide'}
     ftMaintModeY   : F_TRIG;
-	{attribute 'hide'}
+    {attribute 'hide'}
     ftMaintModeZ   : F_TRIG;
-	{attribute 'hide'}
+    {attribute 'hide'}
     ftGlobalMaint  : F_TRIG;
-	{attribute 'hide'}
+    {attribute 'hide'}
     rtMaintenanceMode : R_TRIG;
-	bTestBeamParam : BOOL;
-	bTestBeamParam1: BOOL;
-	bTestBeamParamX: BOOL;
-	bTestBeamParamRET: BOOL;
-	bTestBeamParamY: BOOL;
-	bTestBeamParamZ: BOOL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF NOT __ISVALIDREF(fbFFHWO)
-	OR NOT __ISVALIDREF(fbArbiter)
-	OR NOT __ISVALIDREF(stMCS2StageRET)
-	OR NOT __ISVALIDREF(stMCS2StageY) 
-	OR NOT __ISVALIDREF(stMCS2StageZ)
-	OR NOT __ISVALIDREF(stMCS2StageX )
+    OR NOT __ISVALIDREF(fbArbiter)
+    OR NOT __ISVALIDREF(stMCS2StageRET)
+    OR NOT __ISVALIDREF(stMCS2StageY)
+    OR NOT __ISVALIDREF(stMCS2StageZ)
+    OR NOT __ISVALIDREF(stMCS2StageX )
 THEN
-	RETURN;
+    RETURN;
 END_IF
 
 IF bInit THEN
@@ -200,34 +199,31 @@ END_IF
 (* Initialization / Setup (typically called once at startup) *)
 fbDGPDPMPSStateConfigHelper.OpMode();
 
-// ========================EPS Checks (per axis)========================
+// EPS Checks (per axis)
 fbDGPDEPS(
      stMCS2StageRET := stMCS2StageRET,
      stMCS2StageX   := stMCS2StageX,
      stMCS2StageY   := stMCS2StageY,
      stMCS2StageZ   := stMCS2StageZ,
-	 bEnable 		:= bEPSEnable,
+     bEnable 		:= bEPSEnable,
      bHVActive      := bHVActive
  );
 
-// Step 1: Fan-in - detect if *any* axis or global flag is set, latch
-//bMaintenanceMode := bMaintenanceMode OR stPMPSEpicsToPlcRET.bMaintMode OR stPMPSEpicsToPlcX.bMaintMode OR stPMPSEpicsToPlcY.bMaintMode OR stPMPSEpicsToPlcZ.bMaintMode;
-// Step 2: Fan-out, latching
-rtMaintenanceMode(CLK:=bMaintenanceMode 
-		OR fbPositionStateRET.stPMPSEpicsToPlc.bMaintMode 
-		OR fbPositionStateX.stPMPSEpicsToPlc.bMaintMode 
-		OR fbPositionStateY.stPMPSEpicsToPlc.bMaintMode 
-		OR fbPositionStateZ.stPMPSEpicsToPlc.bMaintMode);
+rtMaintenanceMode(CLK:=bMaintenanceMode
+        OR fbPositionStateRET.stPMPSEpicsToPlc.bMaintMode
+        OR fbPositionStateX.stPMPSEpicsToPlc.bMaintMode
+        OR fbPositionStateY.stPMPSEpicsToPlc.bMaintMode
+        OR fbPositionStateZ.stPMPSEpicsToPlc.bMaintMode);
 
 IF rtMaintenanceMode.Q THEN
-	bMaintenanceMode := TRUE;
+    bMaintenanceMode := TRUE;
     fbPositionStateRET.stPMPSEpicsToPlc.bMaintMode := TRUE;
     fbPositionStateX.stPMPSEpicsToPlc.bMaintMode   := TRUE;
     fbPositionStateY.stPMPSEpicsToPlc.bMaintMode   := TRUE;
     fbPositionStateZ.stPMPSEpicsToPlc.bMaintMode   := TRUE;
 END_IF
 
-// Step 3: Edge detection (reset if any falling edge on maintenance or global)
+//  Edge detection (reset if any falling edge on maintenance or global)
 ftMaintModeRET(CLK := fbPositionStateRET.stPMPSEpicsToPlc.bMaintMode);
 ftMaintModeX(CLK   := fbPositionStateX.stPMPSEpicsToPlc.bMaintMode);
 ftMaintModeY(CLK   := fbPositionStateY.stPMPSEpicsToPlc.bMaintMode);
@@ -239,17 +235,17 @@ IF ftMaintModeRET.Q OR ftMaintModeX.Q OR ftMaintModeY.Q OR ftMaintModeZ.Q OR ftG
     fbPositionStateX.stPMPSEpicsToPlc.bMaintMode   := FALSE;
     fbPositionStateY.stPMPSEpicsToPlc.bMaintMode   := FALSE;
     fbPositionStateZ.stPMPSEpicsToPlc.bMaintMode   := FALSE;
-    bMaintenanceMode               := FALSE;
+    bMaintenanceMode  := FALSE;
 END_IF
 
 IF bReset THEN
-	fbPositionStateRET.stEpicsToPlc.bReset := bReset;
-	fbPositionStateX.stEpicsToPlc.bReset := bReset;
-	fbPositionStateY.stEpicsToPlc.bReset := bReset;
-	fbPositionStateZ.stEpicsToPlc.bReset := bReset;
+    fbPositionStateRET.stEpicsToPlc.bReset := bReset;
+    fbPositionStateX.stEpicsToPlc.bReset := bReset;
+    fbPositionStateY.stEpicsToPlc.bReset := bReset;
+    fbPositionStateZ.stEpicsToPlc.bReset := bReset;
 END_IF
 
-// Step 4: Maintenance or sequence operation
+// Maintenance or sequence operation
 IF bMaintenanceMode THEN
 
     fbDGPDManual(
@@ -262,11 +258,11 @@ IF bMaintenanceMode THEN
         fDelta            := fDelta
     );
     fbDGPDEPS.epsMaintenanceMode(bRETSafeToMove := fbDGPDManual.bSafeToMoveRET);
-	fbSequencer.bReset:=TRUE;
-	// reset sequence back to idle.
-	// override any attemps from user to set target state in manual mode
-	// we dont want an immediate move when sewitching back to sequence move.
-	eSetTarget := E_DGPDState.UNKNOWN;
+    fbSequencer.bReset:=TRUE;
+    // reset sequence back to idle.
+    // override any attemps from user to set target state in manual mode
+    // we dont want an immediate move when sewitching back to sequence move.
+    eSetTarget := E_DGPDState.UNKNOWN;
 ELSE
     fbSequencer(
         eDGPDStateSet := eSetTarget,
@@ -278,12 +274,12 @@ ELSE
         eXTarget   := eSetXTarget,
         eYTarget   := eSetYTarget,
         eZTarget   := eSetZTarget,
-		bSequenceEnable:=bSequenceEnable,
-		bReset:=bReset
+        bSequenceEnable:=bSequenceEnable,
+        bReset:=bReset
     );
 END_IF
 
-bReset := FALSE;	
+bReset := FALSE;
 //--- RET axis ---
 fbPositionStateRET(
     sDeviceName:=sDeviceName,
@@ -351,7 +347,7 @@ fbPositionStateZ(
     fbArbiter            := fbArbiter,
     bReadDBNow           := fbPositionStateY.stDbStateParams.bBeamParamsLoaded,
     bEnableMotion        := fbSequencer.bMoveZ AND bEnableMotion,
-    bEnableBeamParams    := bEnableBeamParams AND fbPositionStateY.stDbStateParams.bBeamParamsLoaded, 
+    bEnableBeamParams    := bEnableBeamParams AND fbPositionStateY.stDbStateParams.bBeamParamsLoaded,
     bEnablePositionLimits:= bEnablePositionLimits
 );
 stMCS2StageZ.bPowerSelf := FALSE;
@@ -366,6 +362,7 @@ bMoveRET         :=	fbSequencer.bMoveRET;
 bMoveX           :=	fbSequencer.bMoveX;
 bMoveY           :=	fbSequencer.bMoveY;
 bMoveZ           :=	fbSequencer.bMoveZ;
+
 bSequenceComplete:=	fbSequencer.bSequenceComplete;
 axisSequenceStep :=	fbSequencer.axisSequenceStep ;
 bEnteredInit           :=	fbSequencer.bEnteredInit;

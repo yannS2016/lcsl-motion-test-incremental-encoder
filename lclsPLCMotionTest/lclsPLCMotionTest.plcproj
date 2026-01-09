@@ -33,13 +33,20 @@
     <Compile Include="DUTs\ST_SL3K4State.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\GVL_EPS.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\GVL_PLC_Interfaces.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\GVL_PLC_Interfances.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GVLs\GVL_PMPS.TcGVL">
       <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="GVLs\Main.TcGVL">
       <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
@@ -56,46 +63,38 @@
     <Compile Include="POUs\DGPD\FB_DGPDPMPSStateConfigHelper.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\DGPD\FB_DGPD_BULK.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\DGPD\FB_SequenceMover.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\DGPD\PRG_DGPD_SIM.TcPOU">
+    <Compile Include="POUs\DGPD\PRG_DGPD.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\DGPD\PRG_DGPD_HARD.TcPOU">
+    <Compile Include="POUs\PRG_IN_VACUUM.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\PRG_IN_VACUUM_MOTION.TcPOU">
+    <Compile Include="POUs\PRG_PMPS_POST_SIM.TcPOU">
       <SubType>Code</SubType>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="POUs\PRG_PMPS_PRE.TcPOU">
-      <SubType>Code</SubType>
-      <ExcludeFromBuild>false</ExcludeFromBuild>
-    </Compile>
-    <Compile Include="POUs\PRG_PMPS_POST.TcPOU">
       <SubType>Code</SubType>
       <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
     <Compile Include="POUs\PRG_TEST.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\SLIT\FB_PerMCS2MotorFFOND.TcPOU">
+    <Compile Include="POUs\SL3K4\FB_PerMCS2MotorFFOND.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\SLIT\FB_SL3K4.TcPOU">
+    <Compile Include="POUs\SL3K4\FB_SL3K4.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\SLIT\FB_SL3K4BPTM.TcPOU">
+    <Compile Include="POUs\SL3K4\FB_SL3K4BPTM.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\SLIT\FB_SL3K4ReadPMPSDB.TcPOU">
+    <Compile Include="POUs\SL3K4\FB_SL3K4ReadPMPSDB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\SLIT\SLIT_HARD.TcPOU">
+    <Compile Include="POUs\SL3K4\PRG_SL3K4.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Tests\FB_DGPDEPS_Test.TcPOU">
@@ -127,7 +126,7 @@
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="POUs\DGPD" />
-    <Folder Include="POUs\SLIT" />
+    <Folder Include="POUs\SL3K4" />
     <Folder Include="POUs\Tests" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
@@ -181,7 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <PlaceholderResolution Include="lcls-twincat-motion">
-      <Resolution>lcls-twincat-motion, 0.0.0 (SLAC)</Resolution>
+      <Resolution>lcls-twincat-motion, 1.0.0 (SLAC)</Resolution>
     </PlaceholderResolution>
     <PlaceholderResolution Include="Tc2_Standard">
       <Resolution>Tc2_Standard, 3.4.5.0 (Beckhoff Automation GmbH)</Resolution>

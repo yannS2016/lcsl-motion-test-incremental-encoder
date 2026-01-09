@@ -1,131 +1,75 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <GVL Name="Main" Id="{91092ac1-148d-4b6b-ba5f-227336fb9434}">
+  <GVL Name="Main" Id="{18d82037-8457-400f-b1ad-ea349db133b4}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
-    // In-Vacuum Motion
-    {attribute 'pytmc':='pv: DREAM:DGPD:MMT:RET'}
-	{attribute 'TcLinkToOSO' := '
-		.stDS402Drive.nModeOfOperationNC    := <0,8,0>TINC^NC-Task 1 SAF^Axes^M12_DREAM_DGPD_MMT_RET^Drive^Outputs^Out^nCtrl5;
-		.stDS402Drive.nDriveControlNC  := <0,8,0>TINC^NC-Task 1 SAF^Axes^M12_DREAM_DGPD_MMT_RET^Drive^Outputs^Out^nCtrl1;
-		.stDS402Drive.nDriveControlNC  := <8,8,0>TINC^NC-Task 1 SAF^Axes^M12_DREAM_DGPD_MMT_RET^Drive^Outputs^Out^nCtrl2
-	'}
-	{attribute 'TcLinkTo' := '
-	    .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Position Actual Value;
-		.stDS402Drive.nSlaveAddr              := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^InfoData^AdsAddr^port;
-		.stDS402Drive.stDriveStatus      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Status Word;
-		.stDS402Drive.nFollowingError         := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Following Error Actual Value;
-		.stDS402Drive.nModeOfOperation        := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^ctl/mode/pos RxPDO^Modes of Operation;
-		.stDS402Drive.nModeOfOperationDisplay := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Modes of Operation Display;
-		.stDS402Drive.nDriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^ctl/mode/pos RxPDO^Control Word;
-	'}
-    M12 : ST_MCS2Stage := (
-    	sName:='DREAM:DGPD:MMT:RET',
-    	nHomingMode:=E_EpicsHomeCmd.AUTOZERO,
-    	nEnableMode:= ENUM_StageEnableMode.DURING_MOTION,
-    	bPowerSelf:=FALSE,
-    	bHardwareEnable:=TRUE,
-		nReadTime := T#2S
-	); 
-	
+// In-Vacuum Motion
+
     {attribute 'pytmc':='pv: DREAM:DGPD:MMT:X'}
-	{attribute 'TcLinkToOSO' := '
-		.stDS402Drive.nModeOfOperationNC      := <0,8,0>TINC^NC-Task 1 SAF^Axes^M9_DREAM_DGPD_MMT_X^Drive^Outputs^Out^nCtrl5;
-		.stDS402Drive.nDriveControlNC  := <0,8,0>TINC^NC-Task 1 SAF^Axes^M9_DREAM_DGPD_MMT_X^Drive^Outputs^Out^nCtrl1;
-		.stDS402Drive.nDriveControlNC  := <8,8,0>TINC^NC-Task 1 SAF^Axes^M9_DREAM_DGPD_MMT_X^Drive^Outputs^Out^nCtrl2
-	'}
-	{attribute 'TcLinkTo' := '
-	    .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Position Actual Value;
-		.stDS402Drive.nSlaveAddr              := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^InfoData^AdsAddr^port;
-		.stDS402Drive.stDriveStatus      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Status Word;
-		.stDS402Drive.nFollowingError         := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Following Error Actual Value;
-		.stDS402Drive.nModeOfOperation        := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:X^ctl/mode/pos RxPDO^Modes of Operation;
-		.stDS402Drive.nModeOfOperationDisplay := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Modes of Operation Display;
-		.stDS402Drive.nDriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:X^ctl/mode/pos RxPDO^Control Word;
-	'}
+    {attribute 'TcLinkTo' := '
+        .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Position Actual Value;
+    '}
     M9 : ST_MCS2Stage := (
-            sName:='DREAM:DGPD:MMT:X',
-            nHomingMode:=E_EpicsHomeCmd.AUTOZERO,
-            nEnableMode:= ENUM_StageEnableMode.DURING_MOTION,
-    	    bPowerSelf:=FALSE,
-            bHardwareEnable:=TRUE,
-			nReadTime := T#2100MS
-	);
-	
+            sName:='DREAM:DGPD:MMT:X'
+    );
+
     {attribute 'pytmc':='pv: DREAM:DGPD:MMT:Y'}
-	{attribute 'TcLinkToOSO' := '
-		.stDS402Drive.nModeOfOperationNC	:= <0,8,0>TINC^NC-Task 1 SAF^Axes^M10_DREAM_DGPD_MMT_Y^Drive^Outputs^Out^nCtrl5;
-		.stDS402Drive.nDriveControlNC  := <0,8,0>TINC^NC-Task 1 SAF^Axes^M10_DREAM_DGPD_MMT_Y^Drive^Outputs^Out^nCtrl1;
-		.stDS402Drive.nDriveControlNC  := <8,8,0>TINC^NC-Task 1 SAF^Axes^M10_DREAM_DGPD_MMT_Y^Drive^Outputs^Out^nCtrl2
-	'}
-	{attribute 'TcLinkTo' := '
-	    .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Position Actual Value;
-		.stDS402Drive.nSlaveAddr              := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^InfoData^AdsAddr^port;
-		.stDS402Drive.stDriveStatus      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Status Word;
-		.stDS402Drive.nFollowingError         := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Following Error Actual Value;
-		.stDS402Drive.nModeOfOperation        := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Y^ctl/mode/pos RxPDO^Modes of Operation;
-		.stDS402Drive.nModeOfOperationDisplay := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Modes of Operation Display;
-		.stDS402Drive.nDriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Y^ctl/mode/pos RxPDO^Control Word;
-	'}
+    {attribute 'TcLinkTo' := '
+        .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Position Actual Value;
+    '}
     M10 : ST_MCS2Stage := (
-                sName:='DREAM:DGPD:MMT:Y',
-                nHomingMode:=E_EpicsHomeCmd.AUTOZERO,
-                nEnableMode:= ENUM_StageEnableMode.DURING_MOTION,
-    	        bPowerSelf:=FALSE,
-                bHardwareEnable:=TRUE,
-				nReadTime := T#2200MS
-	);
+		sName:='DREAM:DGPD:MMT:Y'
+    );
 
-	// simulated FOR now
-	// 	{attribute 'TcLinkToOSO' := '
-	// 		.stDS402Drive.nModeOfOperationNC      := <0,8,0>TINC^NC-Task 1 SAF^Axes^M11_DREAM_DGPD_MMT_Z^Drive^Outputs^Out^nCtrl5;
-	// 		.stDS402Drive.nDriveControlNC  := <0,8,0>TINC^NC-Task 1 SAF^Axes^M11_DREAM_DGPD_MMT_Z^Drive^Outputs^Out^nCtrl1;
-	// 		.stDS402Drive.nDriveControlNC  := <8,8,0>TINC^NC-Task 1 SAF^Axes^M11_DREAM_DGPD_MMT_Z^Drive^Outputs^Out^nCtrl2;
-	// 	'}
-	// 	{attribute 'TcLinkTo' := '
-	//      .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^mode/status/pos/fError TxPDO^Position Actual Value;
-	// 		.stDS402Drive.nSlaveAddr              := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^InfoData^AdsAddr^port;
-	// 		.stDS402Drive.stDriveStatus      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^mode/status/pos/fError TxPDO^Status Word;
-	// 		.stDS402Drive.nFollowingError         := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^mode/status/pos/fError TxPDO^Following Error Actual Value;
-	// 		.stDS402Drive.nModeOfOperation        := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^ctl/mode/pos RxPDO^Modes of Operation;
-	// 		.stDS402Drive.nModeOfOperationDisplay := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^mode/status/pos/fError TxPDO^Modes of Operation Display;
-	// 		.stDS402Drive.nDriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^ctl/mode/pos RxPDO^Control Word;
-	// 	'}
-	{attribute 'pytmc':='pv: DREAM:DGPD:MMT:Z'}
+    {attribute 'pytmc':='pv: DREAM:DGPD:MMT:Z'}
+    {attribute 'TcLinkTo' := '
+     .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^mode/status/pos/fError TxPDO^Position Actual Value;
+    '}
     M11 : ST_MCS2Stage := (
-                sName:='DREAM:DGPD:MMT:Z',
-                nHomingMode:=E_EpicsHomeCmd.AUTOZERO,
-                nEnableMode:= ENUM_StageEnableMode.DURING_MOTION,
-    	        bPowerSelf:=FALSE,
-                bHardwareEnable:=TRUE
-	);
-            
+                sName:='DREAM:DGPD:MMT:Z'
+    );
 
+    {attribute 'pytmc':='pv: DREAM:DGPD:MMT:RET'}
+    {attribute 'TcLinkTo' := '
+        .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Position Actual Value;
+    '}
+    M12 : ST_MCS2Stage := (
+        sName:='DREAM:DGPD:MMT:RET'
+    );
 
     // SL1K4-SCATTER: 4 Axes
-//     {attribute 'pytmc' := 'pv: SL1K4:SCATTER:MMS:X1'}
-//     {attribute 'TcLinkTo' := '
-//         .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Position Actual Value
-//     '}
-//     M13: ST_MCS2Stage := (sName := 'SL3K4:SCATTER:MMT:X1');
-//     
-//     {attribute 'pytmc' := 'pv: SL1K4:SCATTER:MMS:X2'}
-//     {attribute 'TcLinkTo' := '
-//         .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Position Actual Value
-//     '}
-//     M14: ST_MCS2Stage := (sName := 'SL3K4:SCATTER:MMT:X2');
-//     
-//     {attribute 'pytmc' := 'pv: SL1K4:SCATTER:MMS:Y1'}
-//     {attribute 'TcLinkTo' := '
-//         .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Position Actual Value
-//     '}
-//     M15: ST_MCS2Stage := (sName := 'SL3K4:SCATTER:MMT:Y1');
-// 
-//     {attribute 'pytmc' := 'pv: SL1K4:SCATTER:MMS:Y2'}
-//     {attribute 'TcLinkTo' := '
-//         .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y2^mode/status/pos/fError TxPDO^Position Actual Value
-//     '}
-//     M16: ST_MCS2Stage := (sName := 'SL3K4:SCATTER:MMT:Y2');
-END_VAR]]></Declaration>
+    {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:X1'}
+    {attribute 'TcLinkTo' := '
+        .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Position Actual Value
+    '}
+    M13: ST_MCS2Stage := (
+        sName:='SL3K4:SCATTER:MMT:X1'
+    );
+
+    {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:X2'}
+    {attribute 'TcLinkTo' := '
+        .nRawEncoderDINT :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Position Actual Value
+    '}
+    M14: ST_MCS2Stage := (
+        sName:='SL3K4:SCATTER:MMT:X2'
+    );
+
+    {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:Y1'}
+    {attribute 'TcLinkTo' := '
+        .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Position Actual Value
+    '}
+    M15: ST_MCS2Stage := (
+        sName:='SL3K4:SCATTER:MMT:Y1'
+    );
+
+    {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:Y2'}
+    {attribute 'TcLinkTo' := '
+        .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y2^mode/status/pos/fError TxPDO^Position Actual Value
+    '}
+    M16: ST_MCS2Stage := (
+        sName:='SL3K4:SCATTER:MMT:Y1'
+    );
+
+END_VAR ]]></Declaration>
   </GVL>
 </TcPlcObject>

@@ -69,6 +69,7 @@ VAR
 //     fb_SLIT_Y2 : FB_MotionStageMCS2(stMCS2Stage:=Main.M16, eModule:=E_Module.CHAN2);
 
  //   fbSL3K4        : FB_SL3K4;
+
      (* Axis X1 *)
     {attribute 'TcLinkToOSO' := '
         .stDS402Drive.nModeOfOperationNC      := <0,8,0>TINC^NC-Task 1^Axes^M13_DREAM_SLIT_MMT_X1^Drive^Outputs^Out^nCtrl5;
@@ -83,7 +84,11 @@ VAR
         .stDS402Drive.nModeOfOperationDisplay := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Modes of Operation Display;
         .stDS402Drive.nDriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:X1^ctl/mode/pos RxPDO^Control Word;
     '}
-    fb_SLIT_X1 : FB_MotionStageMCS2(stMCS2Stage:=Main.M13 , eModule:=E_Module.CHAN1);
+    fb_SLIT_X1 : FB_MotionStageMCS2(
+			stMotionStage:=Main.M13,
+			stMCS2ChanParameter:=GVL_MCS2.stSL3K4X1Parameter,
+			eModule:=E_Module.CHAN1
+	);
 
     (* Axis X2 *)
     {attribute 'TcLinkToOSO' := '
@@ -99,7 +104,11 @@ VAR
         .stDS402Drive.nModeOfOperationDisplay := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Modes of Operation Display;
         .stDS402Drive.nDriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:X2^ctl/mode/pos RxPDO^Control Word;
     '}
-    fb_SLIT_X2 : FB_MotionStageMCS2(stMCS2Stage:=Main.M14, eModule:=E_Module.CHAN2);
+    fb_SLIT_X2 : FB_MotionStageMCS2(
+			stMotionStage:=Main.M14,
+			stMCS2ChanParameter:=GVL_MCS2.stSL3K4X2Parameter, 
+			eModule:=E_Module.CHAN2
+	);
 
     (* Axis Y1 *)
     {attribute 'TcLinkToOSO' := '
@@ -115,7 +124,11 @@ VAR
         .stDS402Drive.nModeOfOperationDisplay := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Modes of Operation Display;
         .stDS402Drive.nDriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:Y1^ctl/mode/pos RxPDO^Control Word;
     '}
-    fb_SLIT_Y1 : FB_MotionStageMCS2(stMCS2Stage:=Main.M15, eModule:=E_Module.CHAN3);
+    fb_SLIT_Y1 : FB_MotionStageMCS2(
+		stMotionStage:=Main.M15, 
+		stMCS2ChanParameter:=GVL_MCS2.stSL3K4Y1Parameter, 
+		eModule:=E_Module.CHAN3
+	);
 
     (* Axis Y2 *)
     {attribute 'TcLinkToOSO' := '
@@ -131,23 +144,35 @@ VAR
         .stDS402Drive.nModeOfOperationDisplay := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:Y2^mode/status/pos/fError TxPDO^Modes of Operation Display;
         .stDS402Drive.nDriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:Y2^ctl/mode/pos RxPDO^Control Word;
     '}
-    fb_SLIT_Y2 : FB_MotionStageMCS2(stMCS2Stage:=Main.M16, eModule:=E_Module.CHAN1);
-    {attribute 'pytmc' := '
-        pv: DREAM:SLIT
-    '}
+    fb_SLIT_Y2 : FB_MotionStageMCS2(
+		stMotionStage:=Main.M16, 
+		stMCS2ChanParameter:=GVL_MCS2.stSL3K4Y2Parameter, 
+		eModule:=E_Module.CHAN1
+	);
+	astMotionStage   : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF ST_MotionStage;
+	astChanParam     : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF ST_MCS2ChanParameter;
+    {attribute 'pytmc' := 'pv: DREAM:SLIT'}
     fbSL3K4        : FB_SL3K4;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
+      <ST><![CDATA[// --- Assign 4-blade references, every scan ---
+astMotionStage[1] := MAIN.M13;
+astMotionStage[2] := MAIN.M14;
+astMotionStage[3] := MAIN.M15;
+astMotionStage[4] := MAIN.M16;
+
+astChanParam[1] := GVL_MCS2.stSL3K4X1Parameter;
+astChanParam[2] := GVL_MCS2.stSL3K4X2Parameter;
+astChanParam[3] := GVL_MCS2.stSL3K4Y1Parameter;
+astChanParam[4] := GVL_MCS2.stSL3K4Y2Parameter;
+
 fbSL3K4(
-       stX1 := Main.M13,
-       stX2 := Main.M14,
-       stY1 := Main.M15,
-       stY2 := Main.M16,
-       bFileReaderBusy := MOTION_GVL.fbPmpsFileReader.bBusy,
-       bFileReaderError := MOTION_GVL.fbPmpsFileReader.bError,
-       sTransitionKey   := 'SL3K4-TRANSITION',
+	astMotionStage   := astMotionStage,
+    astChanParam     :=astChanParam,
+	bFileReaderBusy := MOTION_GVL.fbPmpsFileReader.bBusy,
+	bFileReaderError := MOTION_GVL.fbPmpsFileReader.bError,
+	sTransitionKey   := 'SL3K4-TRANSITION',
     fbFFHWO 		:= GVL_PMPS.fbFastFaultOutput1,
     fbArbiter		:= GVL_PMPS.fbArbiter
 );
@@ -157,6 +182,16 @@ fb_SLIT_X2();
 fb_SLIT_Y1();
 fb_SLIT_Y2();
 
+// --- Return blade refs to top-level outputs/workaround ---
+MAIN.M13 := astMotionStage[1];
+MAIN.M14 := astMotionStage[2];
+MAIN.M15 := astMotionStage[3];
+MAIN.M16 := astMotionStage[4];
+
+GVL_MCS2.stSL3K4X1Parameter := astChanParam[1];
+GVL_MCS2.stSL3K4X2Parameter := astChanParam[2];
+GVL_MCS2.stSL3K4X1Parameter := astChanParam[3];
+GVL_MCS2.stSL3K4Y2Parameter := astChanParam[4];
 ]]></ST>
     </Implementation>
   </POU>

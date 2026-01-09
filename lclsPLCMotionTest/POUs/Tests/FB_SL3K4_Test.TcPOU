@@ -69,10 +69,10 @@ fbTestHelper(
 );
 
 testFB(
-   stX1    := testStage1,
-   stX2 := testStage2,
-   stY1  := testStage3,
-   stY2  := testStage4,
+   stStageX1    := testStage1,
+   stStageX2 := testStage2,
+   stStageY1  := testStage3,
+   stStageY2  := testStage4,
    bFileReaderError := FALSE,
    sTransitionKey   := 'TRANSITION',
    fbFFHWO       := fbFFHWO,

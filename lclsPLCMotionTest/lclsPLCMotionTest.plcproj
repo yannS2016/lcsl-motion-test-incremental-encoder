@@ -36,6 +36,10 @@
     <Compile Include="GVLs\GVL_EPS.TcGVL">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\GVL_MCS2.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\GVL_PLC_Interfaces.TcGVL">
       <SubType>Code</SubType>
     </Compile>

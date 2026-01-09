@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL_MCS2" Id="{a2d917a6-20d4-4532-b130-f79c02ff8dee}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+    {attribute 'pytmc':='pv: DREAM:DGPD:MMT:X'}
+	stDGPDXParameter : ST_MCS2ChanParameter;
+
+    {attribute 'pytmc':='pv: DREAM:DGPD:MMT:Y'}
+	stDGPDYParameter : ST_MCS2ChanParameter;
+
+    {attribute 'pytmc':='pv: DREAM:DGPD:MMT:Z'}
+	stDGPDZParameter : ST_MCS2ChanParameter;
+
+    {attribute 'pytmc':='pv: DREAM:DGPD:MMT:RET'}
+	stDGPDRETParameter : ST_MCS2ChanParameter;
+
+    // SL1K4-SCATTER: 4 Axes
+    {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:X1'}
+	stSL3K4X1Parameter : ST_MCS2ChanParameter;
+
+    {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:X2'}
+	stSL3K4X2Parameter : ST_MCS2ChanParameter;
+
+    {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:Y1'}
+	stSL3K4Y1Parameter : ST_MCS2ChanParameter;
+
+    {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:Y2'}
+	stSL3K4Y2Parameter : ST_MCS2ChanParameter;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

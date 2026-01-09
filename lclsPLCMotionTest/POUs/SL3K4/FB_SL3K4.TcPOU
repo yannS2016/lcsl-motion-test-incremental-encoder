@@ -3,10 +3,8 @@
   <POU Name="FB_SL3K4" Id="{dec1d628-e499-461c-bd3b-fc39c76517dd}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_SL3K4
 VAR_IN_OUT
-    stX1       : ST_MCS2Stage;
-    stX2    : ST_MCS2Stage;
-    stY1     : ST_MCS2Stage;
-    stY2     : ST_MCS2Stage;
+	astMotionStage   : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF ST_MotionStage;
+    astChanParam     : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF ST_MCS2ChanParameter;
     fbArbiter        : FB_Arbiter;
     fbFFHWO          : FB_HardwareFFOutput;
 END_VAR
@@ -23,7 +21,7 @@ END_VAR
 VAR
 
     {attribute 'hide'}
-    fbPerMotorFFO        : FB_PerMCS2MotorFFOND;
+    fbPerMotorFFO        : FB_PerMotorFFOND;
     {attribute 'hide'}
     fbMiscStatesErrorFFO : FB_MiscStatesErrorFFO;
     {attribute 'hide'}
@@ -47,8 +45,7 @@ VAR
 	
     {attribute 'hide'}
     ePrevState            : E_SL3K4State := E_SL3K4State.NORMAL;
-    {attribute 'hide'}
-    astMotionStage       : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF ST_MCS2Stage;
+
     {attribute 'hide'}
     abBladeEnable        : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF BOOL;
     {attribute 'hide'}
@@ -165,11 +162,7 @@ VAR
     bTransitionCompleted   : BOOL;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// --- Assign 4-blade references, every scan ---
-astMotionStage[1] := stX1;
-astMotionStage[2] := stX2;
-astMotionStage[3] := stY1;
-astMotionStage[4] := stY2;
+      <ST><![CDATA[
 
 // --- PMPS DB Read / safety check (with reload logic) ---
 fbSL3K4ReadPMPSDB(
@@ -186,7 +179,7 @@ fbSL3K4ReadPMPSDB(
 IF NOT fbSL3K4ReadPMPSDB.bStatesReady THEN
     FOR nBlades := 1 TO nActiveMotorCount DO
         astMotionStage[nBlades].bSafetyReady := FALSE;
-        astMotionStage[nBlades].bOverrideDirEnable := FALSE;
+        astChanParam[nBlades].bOverrideDirEnable := FALSE;
         abBladeEnable[nBlades] := FALSE;
     END_FOR
     bSafeToMove   := FALSE;
@@ -325,11 +318,11 @@ FOR nBlades := 1 TO nActiveMotorCount DO
             // disabled all blades
             abBladeEnable[nBlades] := FALSE;
             astMotionStage[nBlades].bSafetyReady := FALSE;
-              astMotionStage[nBlades].bOverrideDirEnable := FALSE;
+              astChanParam[nBlades].bOverrideDirEnable := FALSE;
             // beam parameters asserted?
             IF bTransitionCompleted THEN
                 IF bEnableDriftCheck THEN
-                    fDrift := ABS(astMotionStage[nBlades].axis.NcToPlc.ActPos - astMotionStage[nBlades].fPreviousPosition);
+                    fDrift := ABS(astMotionStage[nBlades].axis.NcToPlc.ActPos - astChanParam[nBlades].fPreviousPosition);
                     IF fDrift > fDriftTolerance THEN
                         bDriftFF := TRUE;
                         // use  the drifttolerance in the error message.
@@ -340,16 +333,16 @@ FOR nBlades := 1 TO nActiveMotorCount DO
             END_IF
         E_SL3K4State.MAINTENANCE:
                astMotionStage[nBlades].bSafetyReady := FALSE;
-            astMotionStage[nBlades].bOverrideDirEnable := FALSE;
+            astChanParam[nBlades].bOverrideDirEnable := FALSE;
              abBladeEnable[nBlades] := FALSE;
             IF bSafeToMove THEN
                 astMotionStage[nBlades].bSafetyReady := TRUE;
-                astMotionStage[nBlades].bOverrideDirEnable := TRUE;
+                astChanParam[nBlades].bOverrideDirEnable := TRUE;
                 abBladeEnable[nBlades] := TRUE;
             END_IF
         ELSE
             astMotionStage[nBlades].bSafetyReady := FALSE;
-            astMotionStage[nBlades].bOverrideDirEnable := FALSE;
+            astChanParam[nBlades].bOverrideDirEnable := FALSE;
             abBladeEnable[nBlades] := FALSE;
     END_CASE
 END_FOR
@@ -412,12 +405,7 @@ IF (sStatusMsg <> sLastStatusMsg) THEN
     sLastStatusMsg := sStatusMsg;
     eLastSevr := eSevr;
 END_IF
-
-// --- Return blade refs to top-level outputs/workaround ---
-stX1 := astMotionStage[1];
-stX2 := astMotionStage[2];
-stY1 := astMotionStage[3];
-stY2 := astMotionStage[4];]]></ST>
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

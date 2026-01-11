@@ -40,34 +40,34 @@ VAR_GLOBAL
     // SL1K4-SCATTER: 4 Axes
     {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:X1'}
     {attribute 'TcLinkTo' := '
-        .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Position Actual Value
+        .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Position Actual Value
     '}
     M13: ST_MotionStage:= (
-        sName:='SL3K4:SCATTER:MMT:X1'
+        sName:='DREAM:SLIT:MMT:X1'
     );
 
     {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:X2'}
     {attribute 'TcLinkTo' := '
-        .nRawEncoderDINT :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Position Actual Value
+        .nRawEncoderDINT :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Position Actual Value
     '}
     M14: ST_MotionStage:= (
-        sName:='SL3K4:SCATTER:MMT:X2'
+        sName:='DREAM:SLIT:MMT:X2'
     );
 
     {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:Y1'}
     {attribute 'TcLinkTo' := '
-        .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Position Actual Value
+        .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Position Actual Value
     '}
     M15: ST_MotionStage:= (
-        sName:='SL3K4:SCATTER:MMT:Y1'
+        sName:='DREAM:SLIT:MMT:Y1'
     );
 
     {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:Y2'}
-    {attribute 'TcLinkTo' := '
-        .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y2^mode/status/pos/fError TxPDO^Position Actual Value
-    '}
+//     {attribute 'TcLinkTo' := '
+//         .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y2^mode/status/pos/fError TxPDO^Position Actual Value
+//     '}
     M16: ST_MotionStage:= (
-        sName:='SL3K4:SCATTER:MMT:Y1'
+        sName:='DREAM:SLIT:MMT:Y2'
     );
 
 END_VAR ]]></Declaration>

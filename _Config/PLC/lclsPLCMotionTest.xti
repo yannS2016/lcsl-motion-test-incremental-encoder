@@ -1085,7 +1085,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{E31ADAA4-9B77-495F-982E-6D67EFCA2359}" Name="lclsPLCMotionTest" PrjFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.plcproj" TmcFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{8FD76755-1850-029E-A741-8BA7814393D8}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{2BB318A0-6532-ECA4-DC00-83F8CDD5C5EE}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
 			<Name>lclsPLCMotionTest Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="8" AreaNo="4">
@@ -1231,44 +1231,8 @@ External Setpoint Generation:
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nDriveControl</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
- connected to I/O Task 'Control Word']]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nTargetPosition</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nModeOfOperation</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nProfilVelocity</Name>
-					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nProfilAcceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nProfilDecceleration</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nVelocityActualValue</Name>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nScantargetPosition</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.uScantargetVelocity</Name>
-					<Type>ULINT</Type>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.fbDriveVirtual.MasterAxis.PlcToNc</Name>
+					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>PRG_SL3K4.astMotionStage[1].Axis.PlcToNc</Name>
@@ -1491,33 +1455,8 @@ CSP drive mode]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.stDriveStatus</Name>
-					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
-					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
-				</Var>
-				<Var>
-					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nModeOfOperationDisplay</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nFollowingError</Name>
-					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
-CSP drive mode]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nDriveControlNC</Name>
-					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nModeOfOperationNC</Name>
-					<Type>SINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nSlaveAddr</Name>
-					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
-					<Type>UINT</Type>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.fbDriveVirtual.MasterAxis.NcToPlc</Name>
+					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>PRG_SL3K4.astMotionStage[1].Axis.NcToPlc</Name>
@@ -2398,7 +2337,7 @@ CSP drive mode]]></Comment>
 						<OTCID>#x02010050</OTCID>
 					</ManualConfig>
 					<Priority>20</Priority>
-					<CycleTime>10000000</CycleTime>
+					<CycleTime>1000000</CycleTime>
 				</Context>
 			</Contexts>
 			<TaskPouOids>
@@ -2409,6 +2348,9 @@ CSP drive mode]]></Comment>
 	<Mappings>
 		<OwnerA Name="lclsPLCMotionTest Instance">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03">
+				<Link VarA="PlcTask Inputs^Main.M13.nRawEncoderDINT" VarB="DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^Main.M14.nRawEncoderDINT" VarB="DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^Main.M15.nRawEncoderDINT" VarB="DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
 				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nFollowingError" VarB="DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
 				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nModeOfOperationDisplay" VarB="DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
 				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
@@ -2451,9 +2393,6 @@ CSP drive mode]]></Comment>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1^Axes^M16_DREAM_SLIT_MMT_Y2">
 				<Link VarA="PlcTask Inputs^Main.M16.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
-				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
-				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y2.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
 				<Link VarA="PlcTask Outputs^Main.M16.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 		</OwnerA>

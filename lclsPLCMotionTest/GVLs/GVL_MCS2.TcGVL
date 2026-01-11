@@ -4,17 +4,17 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	
-    {attribute 'pytmc':='pv: DREAM:DGPD:MMT:X'}
-	stDGPDXParameter : ST_MCS2ChanParameter;
-
-    {attribute 'pytmc':='pv: DREAM:DGPD:MMT:Y'}
-	stDGPDYParameter : ST_MCS2ChanParameter;
-
-    {attribute 'pytmc':='pv: DREAM:DGPD:MMT:Z'}
-	stDGPDZParameter : ST_MCS2ChanParameter;
-
-    {attribute 'pytmc':='pv: DREAM:DGPD:MMT:RET'}
-	stDGPDRETParameter : ST_MCS2ChanParameter;
+//     {attribute 'pytmc':='pv: DREAM:DGPD:MMT:X'}
+// 	stDGPDXParameter : ST_MCS2ChanParameter;
+// 
+//     {attribute 'pytmc':='pv: DREAM:DGPD:MMT:Y'}
+// 	stDGPDYParameter : ST_MCS2ChanParameter;
+// 
+//     {attribute 'pytmc':='pv: DREAM:DGPD:MMT:Z'}
+// 	stDGPDZParameter : ST_MCS2ChanParameter;
+// 
+//     {attribute 'pytmc':='pv: DREAM:DGPD:MMT:RET'}
+// 	stDGPDRETParameter : ST_MCS2ChanParameter;
 
     // SL1K4-SCATTER: 4 Axes
     {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:X1'}

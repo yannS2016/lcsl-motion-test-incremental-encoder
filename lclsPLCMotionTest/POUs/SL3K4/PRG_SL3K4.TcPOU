@@ -168,15 +168,15 @@ astChanParam[2] := GVL_MCS2.stSL3K4X2Parameter;
 astChanParam[3] := GVL_MCS2.stSL3K4Y1Parameter;
 astChanParam[4] := GVL_MCS2.stSL3K4Y2Parameter;
 
-fbSL3K4(
-	astMotionStage := astMotionStage,
-    astChanParam :=astChanParam,
-	bFileReaderBusy := MOTION_GVL.fbPmpsFileReader.bBusy,
-	bFileReaderError := MOTION_GVL.fbPmpsFileReader.bError,
-	sTransitionKey := 'SL3K4-TRANSITION',
-    fbFFHWO := GVL_PMPS.fbFastFaultOutput1,
-    fbArbiter := GVL_PMPS.fbArbiter
-);
+// fbSL3K4(
+// 	astMotionStage := astMotionStage,
+//     astChanParam :=astChanParam,
+// 	bFileReaderBusy := MOTION_GVL.fbPmpsFileReader.bBusy,
+// 	bFileReaderError := MOTION_GVL.fbPmpsFileReader.bError,
+// 	sTransitionKey := 'SL3K4-TRANSITION',
+//     fbFFHWO := GVL_PMPS.fbFastFaultOutput1,
+//     fbArbiter := GVL_PMPS.fbArbiter
+// );
 
 // --- Return blade refs to top-level outputs/workaround ---
 MAIN.M13 := astMotionStage[1];

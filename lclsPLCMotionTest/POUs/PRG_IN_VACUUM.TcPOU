@@ -49,21 +49,20 @@ END_VAR
     MAIN.M14.nEnableMode := ENUM_StageEnableMode.DURING_MOTION;
     MAIN.M14.bPowerSelf := FALSE;
     GVL_MCS2.stSL3K4X2Parameter.nReadTime := T#3000MS;
-
+	
     // --- M15 axis ---
     MAIN.M15.bHardwareEnable := TRUE;
     MAIN.M15.nHomingMode := E_EpicsHomeCmd.AUTOZERO;
     MAIN.M15.nEnableMode := ENUM_StageEnableMode.DURING_MOTION;
     MAIN.M15.bPowerSelf := FALSE;
     GVL_MCS2.stSL3K4Y1Parameter.nReadTime := T#3200MS;
-
+	GVL_MCS2.stSL3K4Y1Parameter.fPosition := MAIN.M15.fPosition;
     // --- M16 axis ---
     MAIN.M16.bHardwareEnable := TRUE;
     MAIN.M16.nHomingMode := E_EpicsHomeCmd.AUTOZERO;
     MAIN.M16.nEnableMode := ENUM_StageEnableMode.DURING_MOTION;
     MAIN.M16.bPowerSelf := FALSE;
     GVL_MCS2.stSL3K4Y2Parameter.nReadTime := T#3400MS;
-
     // Only do this block once
     bInit := FALSE;
 END_IF

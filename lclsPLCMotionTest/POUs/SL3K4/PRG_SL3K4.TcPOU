@@ -154,6 +154,7 @@ fb_SLIT_Y2 : FB_MotionStage();
 	astChanParam     : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF ST_MCS2ChanParameter;
     {attribute 'pytmc' := 'pv: DREAM:SLIT'}
     fbSL3K4        : FB_SL3K4;
+	bStageReady : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -167,16 +168,21 @@ astChanParam[1] := GVL_MCS2.stSL3K4X1Parameter;
 astChanParam[2] := GVL_MCS2.stSL3K4X2Parameter;
 astChanParam[3] := GVL_MCS2.stSL3K4Y1Parameter;
 astChanParam[4] := GVL_MCS2.stSL3K4Y2Parameter;
-
-// fbSL3K4(
-// 	astMotionStage := astMotionStage,
-//     astChanParam :=astChanParam,
-// 	bFileReaderBusy := MOTION_GVL.fbPmpsFileReader.bBusy,
-// 	bFileReaderError := MOTION_GVL.fbPmpsFileReader.bError,
-// 	sTransitionKey := 'SL3K4-TRANSITION',
-//     fbFFHWO := GVL_PMPS.fbFastFaultOutput1,
-//     fbArbiter := GVL_PMPS.fbArbiter
-// );
+// wait for all stages to be ready (this state is latched)
+IF GVL_MCS2.stSL3K4X1Parameter.bStageReady 
+AND GVL_MCS2.stSL3K4X2Parameter.bStageReady
+AND GVL_MCS2.stSL3K4Y1Parameter.bStageReady
+AND GVL_MCS2.stSL3K4X2Parameter.bStageReady THEN
+	fbSL3K4(
+		astMotionStage := astMotionStage,
+		astChanParam :=astChanParam,
+		bFileReaderBusy := MOTION_GVL.fbPmpsFileReader.bBusy,
+		bFileReaderError := MOTION_GVL.fbPmpsFileReader.bError,
+		sTransitionKey := 'SL3K4-TRANSITION',
+		fbFFHWO := GVL_PMPS.fbFastFaultOutput1,
+		fbArbiter := GVL_PMPS.fbArbiter
+	);
+END_IF
 
 // --- Return blade refs to top-level outputs/workaround ---
 MAIN.M13 := astMotionStage[1];
@@ -186,7 +192,7 @@ MAIN.M16 := astMotionStage[4];
 
 GVL_MCS2.stSL3K4X1Parameter := astChanParam[1];
 GVL_MCS2.stSL3K4X2Parameter := astChanParam[2];
-GVL_MCS2.stSL3K4X1Parameter := astChanParam[3];
+GVL_MCS2.stSL3K4Y1Parameter := astChanParam[3];
 GVL_MCS2.stSL3K4Y2Parameter := astChanParam[4];
 
 fb_SLIT_X1();
@@ -194,6 +200,7 @@ fb_SLIT_X2();
 fb_SLIT_Y1();
 //fb_SLIT_Y2();
 fb_SLIT_Y2(stMotionStage:=Main.M16);
+
 ]]></ST>
     </Implementation>
   </POU>

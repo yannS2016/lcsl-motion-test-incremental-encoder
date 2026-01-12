@@ -2,24 +2,32 @@
 <TcPlcObject Version="1.1.0.1">
   <POU Name="FB_SL3K4" Id="{dec1d628-e499-461c-bd3b-fc39c76517dd}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_SL3K4
+VAR CONSTANT
+    nActiveMotorCount    : UINT := 4;
+END_VAR
 VAR_IN_OUT
 	astMotionStage   : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF ST_MotionStage;
-    astChanParam     : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF ST_MCS2ChanParameter;
+	astChanParam     : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF ST_MCS2ChanParameter;
     fbArbiter        : FB_Arbiter;
     fbFFHWO          : FB_HardwareFFOutput;
 END_VAR
 VAR_INPUT
+	{attribute 'hide'}
     bFileReaderBusy      : BOOL;
+	{attribute 'hide'}
     bFileReaderError     : BOOL;
+	{attribute 'hide'}
     sTransitionKey       : STRING;
+	{attribute 'hide'}
     bEnableDriftCheck    : BOOL := TRUE;
+	{attribute 'hide'}
     fDriftTolerance      : LREAL := 0.003;
+	{attribute 'hide'}
     bEnableBeamParams    : BOOL := TRUE;
     bReadDBNow           : BOOL;
 
 END_VAR
 VAR
-
     {attribute 'hide'}
     fbPerMotorFFO        : FB_PerMotorFFOND;
     {attribute 'hide'}
@@ -73,8 +81,6 @@ VAR
     {attribute 'hide'}
     nBlades              : UINT;
     {attribute 'hide'}
-    nActiveMotorCount    : UINT := 4;
-    {attribute 'hide'}
     fbSL3K4ReadPMPSDB    : FB_SL3K4ReadPMPSDB;
     {attribute 'hide'}
     sDeviceName          : STRING := 'SL3K4';
@@ -110,8 +116,7 @@ VAR
     bInternalAuth        : BOOL;
     {attribute 'hide'}
     bArbiterTimeout      : BOOL;
-    {attribute 'hide'}
-    fDrift               : LREAL;
+    arfDrift               : ARRAY[1..nActiveMotorCount] OF LREAL;
     {attribute 'hide'}
     allAxesIdle          : BOOL;
     {attribute 'hide'}
@@ -151,6 +156,7 @@ VAR
     stDbStateParams      : ST_DbStateParams;
     {attribute 'hide'}
     bIsNormal: BOOL;
+	{attribute 'hide'}
     rtTransAuth          : R_TRIG;
     {attribute 'hide'}
     rtTransDone          : R_TRIG;
@@ -216,7 +222,7 @@ IF rtUpdateDBState.Q THEN
         bDBStatesLoaded := TRUE;
     END_IF
 END_IF
-
+// 
 IF bDBStatesLoaded THEN
     CASE eSL3K4State OF
         E_SL3K4State.MAINTENANCE: stGoalParams := stMaintenanceGoal;
@@ -243,7 +249,6 @@ bEnable := ((eSL3K4State = E_SL3K4State.MAINTENANCE) OR (eSL3K4State = E_SL3K4St
               AND bEnableBeamParams;
 rtEnable(CLK := bEnable);
 
-
 // --- Aggregate blade errors ---
 bAnybladeError := FALSE;
 FOR nBlades := 1 TO nActiveMotorCount DO
@@ -255,14 +260,14 @@ END_FOR
 
 // --- BPTM function block call ---
 fbSL3K4BPTM(
-    fbArbiter             := fbArbiter,
-    fbFFHWO               := fbFFHWO,
-    sDeviceName           := sDeviceName,
-    stGoalParams          := stGoalParams,
-    stTransParams         := stTransParams,
-    bEnable               := bEnable,
-    bRetry                := rtEnable.Q AND nGoalAtClear = eSL3K4State,
-    bBladeError           := bAnybladeError,
+    fbArbiter     := fbArbiter,
+    fbFFHWO       := fbFFHWO,
+    sDeviceName   := sDeviceName,
+    stGoalParams  := stGoalParams,
+    stTransParams := stTransParams,
+    bEnable       := bEnable,
+    bRetry        := rtEnable.Q AND nGoalAtClear = eSL3K4State,
+    bBladeError   := bAnybladeError,
     bTransitionAuthorized => bTransitionAuthorized
 );
 
@@ -318,15 +323,15 @@ FOR nBlades := 1 TO nActiveMotorCount DO
             // disabled all blades
             abBladeEnable[nBlades] := FALSE;
             astMotionStage[nBlades].bSafetyReady := FALSE;
-              astChanParam[nBlades].bOverrideDirEnable := FALSE;
-            // beam parameters asserted?
+            astChanParam[nBlades].bOverrideDirEnable := FALSE;
+			//beam parameters asserted?
             IF bTransitionCompleted THEN
                 IF bEnableDriftCheck THEN
-                    fDrift := ABS(astMotionStage[nBlades].axis.NcToPlc.ActPos - astChanParam[nBlades].fPreviousPosition);
-                    IF fDrift > fDriftTolerance THEN
+                    arfDrift[nBlades] := ABS(astMotionStage[nBlades].axis.NcToPlc.ActPos - astChanParam[nBlades].fPosition);
+                    IF arfDrift[nBlades] > fDriftTolerance THEN
                         bDriftFF := TRUE;
                         // use  the drifttolerance in the error message.
-                        sStatusMsg := CONCAT(astMotionStage[nBlades].sName, CONCAT('drifted out by', LREAL_TO_FMTSTR(fDrift,5,TRUE)));
+                        sStatusMsg := CONCAT(astMotionStage[nBlades].sName, CONCAT('drifted out by', LREAL_TO_FMTSTR(arfDrift[nBlades],5,TRUE)));
                         astMotionStage[nBlades].sCustomErrorMessage := sStatusMsg;
                     END_IF
                 END_IF

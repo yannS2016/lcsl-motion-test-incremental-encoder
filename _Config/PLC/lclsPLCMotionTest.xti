@@ -1085,7 +1085,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{E31ADAA4-9B77-495F-982E-6D67EFCA2359}" Name="lclsPLCMotionTest" PrjFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.plcproj" TmcFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{876BB880-5FB4-1C9F-8268-3CDC143E4EC5}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{7FC175CC-41CE-7107-AB6C-46D0EE76D935}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
 			<Name>lclsPLCMotionTest Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="8" AreaNo="4">
@@ -1111,486 +1111,216 @@ External Setpoint Generation:
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDX.stDS402Drive.nDriveControl</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nDriveControl</Name>
 					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
  connected to I/O Task 'Control Word']]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDX.stDS402Drive.nTargetPosition</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nTargetPosition</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDX.stDS402Drive.nModeOfOperation</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nModeOfOperation</Name>
 					<Type>SINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDX.stDS402Drive.nProfilVelocity</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nProfilVelocity</Name>
 					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDX.stDS402Drive.nProfilAcceleration</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nProfilAcceleration</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDX.stDS402Drive.nProfilDecceleration</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nProfilDecceleration</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDX.stDS402Drive.nVelocityActualValue</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nVelocityActualValue</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDX.stDS402Drive.nScantargetPosition</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nScantargetPosition</Name>
 					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDX.stDS402Drive.uScantargetVelocity</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.uScantargetVelocity</Name>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDY.stDS402Drive.nDriveControl</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nDriveControl</Name>
 					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
  connected to I/O Task 'Control Word']]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDY.stDS402Drive.nTargetPosition</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nTargetPosition</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDY.stDS402Drive.nModeOfOperation</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nModeOfOperation</Name>
 					<Type>SINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDY.stDS402Drive.nProfilVelocity</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nProfilVelocity</Name>
 					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDY.stDS402Drive.nProfilAcceleration</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nProfilAcceleration</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDY.stDS402Drive.nProfilDecceleration</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nProfilDecceleration</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDY.stDS402Drive.nVelocityActualValue</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nVelocityActualValue</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDY.stDS402Drive.nScantargetPosition</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nScantargetPosition</Name>
 					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDY.stDS402Drive.uScantargetVelocity</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.uScantargetVelocity</Name>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDZ.fbDriveVirtual.MasterAxis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPDRET.stDS402Drive.nDriveControl</Name>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nDriveControl</Name>
 					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. 
  connected to I/O Task 'Control Word']]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDRET.stDS402Drive.nTargetPosition</Name>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nTargetPosition</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDRET.stDS402Drive.nModeOfOperation</Name>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nModeOfOperation</Name>
 					<Type>SINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDRET.stDS402Drive.nProfilVelocity</Name>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nProfilVelocity</Name>
 					<Comment><![CDATA[ Global variables for the RPDO data to the drive. Each one is linked to the respective RPDO channel. ]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDRET.stDS402Drive.nProfilAcceleration</Name>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nProfilAcceleration</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDRET.stDS402Drive.nProfilDecceleration</Name>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nProfilDecceleration</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDRET.stDS402Drive.nVelocityActualValue</Name>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nVelocityActualValue</Name>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDRET.stDS402Drive.nScantargetPosition</Name>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nScantargetPosition</Name>
 					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDRET.stDS402Drive.uScantargetVelocity</Name>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.uScantargetVelocity</Name>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[1].Axis.PlcToNc</Name>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.fbDriveVirtual.MasterAxis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[1].bBrakeRelease</Name>
+					<Name>PRG_SL3K4.astMotionStage[1].Axis.PlcToNc</Name>
+					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.astMotionStage[1].bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[2].Axis.PlcToNc</Name>
+					<Name>PRG_SL3K4.astMotionStage[2].Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[2].bBrakeRelease</Name>
+					<Name>PRG_SL3K4.astMotionStage[2].bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[3].Axis.PlcToNc</Name>
+					<Name>PRG_SL3K4.astMotionStage[3].Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[3].bBrakeRelease</Name>
+					<Name>PRG_SL3K4.astMotionStage[3].bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[4].Axis.PlcToNc</Name>
+					<Name>PRG_SL3K4.astMotionStage[4].Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[4].bBrakeRelease</Name>
+					<Name>PRG_SL3K4.astMotionStage[4].bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[5].Axis.PlcToNc</Name>
+					<Name>PRG_SL3K4.astMotionStage[5].Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[5].bBrakeRelease</Name>
+					<Name>PRG_SL3K4.astMotionStage[5].bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[6].Axis.PlcToNc</Name>
+					<Name>PRG_SL3K4.astMotionStage[6].Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[6].bBrakeRelease</Name>
+					<Name>PRG_SL3K4.astMotionStage[6].bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[7].Axis.PlcToNc</Name>
+					<Name>PRG_SL3K4.astMotionStage[7].Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[7].bBrakeRelease</Name>
+					<Name>PRG_SL3K4.astMotionStage[7].bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[8].Axis.PlcToNc</Name>
+					<Name>PRG_SL3K4.astMotionStage[8].Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[8].bBrakeRelease</Name>
+					<Name>PRG_SL3K4.astMotionStage[8].bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[9].Axis.PlcToNc</Name>
+					<Name>PRG_SL3K4.astMotionStage[9].Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[9].bBrakeRelease</Name>
+					<Name>PRG_SL3K4.astMotionStage[9].bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[10].Axis.PlcToNc</Name>
+					<Name>PRG_SL3K4.astMotionStage[10].Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[10].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[1].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[1].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[2].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[2].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[3].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[3].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[4].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[4].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[5].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[5].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[6].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[6].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[7].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[7].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[8].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[8].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[9].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[9].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[10].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[10].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[1].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[1].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[2].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[2].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[3].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[3].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[4].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[4].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[5].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[5].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[6].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[6].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[7].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[7].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[8].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[8].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[9].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[9].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[10].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[10].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[1].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[1].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[2].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[2].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[3].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[3].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[4].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[4].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[5].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[5].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[6].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[6].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[7].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[7].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[8].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[8].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[9].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[9].bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[10].Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[10].bBrakeRelease</Name>
+					<Name>PRG_SL3K4.astMotionStage[10].bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
@@ -1599,38 +1329,38 @@ External Setpoint Generation:
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Main.M9.Axis.PlcToNc</Name>
+					<Name>Main.M13.Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>Main.M9.bBrakeRelease</Name>
+					<Name>Main.M13.bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Main.M10.Axis.PlcToNc</Name>
+					<Name>Main.M14.Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>Main.M10.bBrakeRelease</Name>
+					<Name>Main.M14.bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Main.M11.Axis.PlcToNc</Name>
+					<Name>Main.M15.Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>Main.M11.bBrakeRelease</Name>
+					<Name>Main.M15.bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Main.M12.Axis.PlcToNc</Name>
+					<Name>Main.M16.Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>Main.M12.bBrakeRelease</Name>
+					<Name>Main.M16.bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
@@ -1638,2029 +1368,709 @@ External Setpoint Generation:
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDX.stDS402Drive.stDriveStatus</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.stDriveStatus</Name>
 					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
 					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDX.stDS402Drive.nModeOfOperationDisplay</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nModeOfOperationDisplay</Name>
 					<Type>SINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDX.stDS402Drive.nFollowingError</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nFollowingError</Name>
 					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
 CSP drive mode]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDX.stDS402Drive.nDriveControlNC</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nDriveControlNC</Name>
 					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDX.stDS402Drive.nModeOfOperationNC</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nModeOfOperationNC</Name>
 					<Type>SINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDX.stDS402Drive.nSlaveAddr</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nSlaveAddr</Name>
 					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDY.stDS402Drive.stDriveStatus</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.stDriveStatus</Name>
 					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
 					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDY.stDS402Drive.nModeOfOperationDisplay</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nModeOfOperationDisplay</Name>
 					<Type>SINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDY.stDS402Drive.nFollowingError</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nFollowingError</Name>
 					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
 CSP drive mode]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDY.stDS402Drive.nDriveControlNC</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nDriveControlNC</Name>
 					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDY.stDS402Drive.nModeOfOperationNC</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nModeOfOperationNC</Name>
 					<Type>SINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDY.stDS402Drive.nSlaveAddr</Name>
+					<Name>PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nSlaveAddr</Name>
 					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDZ.fbDriveVirtual.MasterAxis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPDRET.stDS402Drive.stDriveStatus</Name>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.stDriveStatus</Name>
 					<Comment><![CDATA[ Global variables for the TPDO data from the drive. Each one is linked to the respective TPDO channel. ]]></Comment>
 					<Type GUID="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" Namespace="lcls_twincat_motion">ST_DS402DriveStatus</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDRET.stDS402Drive.nModeOfOperationDisplay</Name>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nModeOfOperationDisplay</Name>
 					<Type>SINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDRET.stDS402Drive.nFollowingError</Name>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nFollowingError</Name>
 					<Comment><![CDATA[nActualPosition 		AT %I*	: 	DINT;
 CSP drive mode]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDRET.stDS402Drive.nDriveControlNC</Name>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nDriveControlNC</Name>
 					<Comment><![CDATA[ Connected to NC task Ctrl 1 and Ctrl 2]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDRET.stDS402Drive.nModeOfOperationNC</Name>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nModeOfOperationNC</Name>
 					<Type>SINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPDRET.stDS402Drive.nSlaveAddr</Name>
+					<Name>PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nSlaveAddr</Name>
 					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[1].Axis.NcToPlc</Name>
+					<Name>PRG_SL3K4.fb_SLIT_Y2.fbDriveVirtual.MasterAxis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[1].bLimitForwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[1].Axis.NcToPlc</Name>
+					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SL3K4.astMotionStage[1].bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[1].bLimitBackwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[1].bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[1].bHome</Name>
+					<Name>PRG_SL3K4.astMotionStage[1].bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[1].bHardwareEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[1].bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[1].nRawEncoderULINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[1].nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[1].nRawEncoderUINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[1].nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[1].nRawEncoderINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[1].nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[1].nRawEncoderDINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[1].nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[2].Axis.NcToPlc</Name>
+					<Name>PRG_SL3K4.astMotionStage[2].Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[2].bLimitForwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[2].bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[2].bLimitBackwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[2].bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[2].bHome</Name>
+					<Name>PRG_SL3K4.astMotionStage[2].bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[2].bHardwareEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[2].bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[2].nRawEncoderULINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[2].nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[2].nRawEncoderUINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[2].nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[2].nRawEncoderINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[2].nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[2].nRawEncoderDINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[2].nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[3].Axis.NcToPlc</Name>
+					<Name>PRG_SL3K4.astMotionStage[3].Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[3].bLimitForwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[3].bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[3].bLimitBackwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[3].bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[3].bHome</Name>
+					<Name>PRG_SL3K4.astMotionStage[3].bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[3].bHardwareEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[3].bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[3].nRawEncoderULINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[3].nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[3].nRawEncoderUINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[3].nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[3].nRawEncoderINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[3].nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[3].nRawEncoderDINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[3].nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[4].Axis.NcToPlc</Name>
+					<Name>PRG_SL3K4.astMotionStage[4].Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[4].bLimitForwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[4].bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[4].bLimitBackwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[4].bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[4].bHome</Name>
+					<Name>PRG_SL3K4.astMotionStage[4].bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[4].bHardwareEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[4].bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[4].nRawEncoderULINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[4].nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[4].nRawEncoderUINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[4].nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[4].nRawEncoderINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[4].nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[4].nRawEncoderDINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[4].nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[5].Axis.NcToPlc</Name>
+					<Name>PRG_SL3K4.astMotionStage[5].Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[5].bLimitForwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[5].bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[5].bLimitBackwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[5].bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[5].bHome</Name>
+					<Name>PRG_SL3K4.astMotionStage[5].bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[5].bHardwareEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[5].bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[5].nRawEncoderULINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[5].nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[5].nRawEncoderUINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[5].nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[5].nRawEncoderINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[5].nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[5].nRawEncoderDINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[5].nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[6].Axis.NcToPlc</Name>
+					<Name>PRG_SL3K4.astMotionStage[6].Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[6].bLimitForwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[6].bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[6].bLimitBackwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[6].bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[6].bHome</Name>
+					<Name>PRG_SL3K4.astMotionStage[6].bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[6].bHardwareEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[6].bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[6].nRawEncoderULINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[6].nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[6].nRawEncoderUINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[6].nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[6].nRawEncoderINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[6].nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[6].nRawEncoderDINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[6].nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[7].Axis.NcToPlc</Name>
+					<Name>PRG_SL3K4.astMotionStage[7].Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[7].bLimitForwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[7].bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[7].bLimitBackwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[7].bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[7].bHome</Name>
+					<Name>PRG_SL3K4.astMotionStage[7].bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[7].bHardwareEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[7].bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[7].nRawEncoderULINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[7].nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[7].nRawEncoderUINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[7].nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[7].nRawEncoderINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[7].nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[7].nRawEncoderDINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[7].nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[8].Axis.NcToPlc</Name>
+					<Name>PRG_SL3K4.astMotionStage[8].Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[8].bLimitForwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[8].bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[8].bLimitBackwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[8].bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[8].bHome</Name>
+					<Name>PRG_SL3K4.astMotionStage[8].bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[8].bHardwareEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[8].bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[8].nRawEncoderULINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[8].nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[8].nRawEncoderUINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[8].nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[8].nRawEncoderINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[8].nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[8].nRawEncoderDINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[8].nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[9].Axis.NcToPlc</Name>
+					<Name>PRG_SL3K4.astMotionStage[9].Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[9].bLimitForwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[9].bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[9].bLimitBackwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[9].bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[9].bHome</Name>
+					<Name>PRG_SL3K4.astMotionStage[9].bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[9].bHardwareEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[9].bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[9].nRawEncoderULINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[9].nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[9].nRawEncoderUINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[9].nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[9].nRawEncoderINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[9].nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[9].nRawEncoderDINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[9].nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[10].Axis.NcToPlc</Name>
+					<Name>PRG_SL3K4.astMotionStage[10].Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[10].bLimitForwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[10].bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[10].bLimitBackwardEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[10].bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[10].bHome</Name>
+					<Name>PRG_SL3K4.astMotionStage[10].bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[10].bHardwareEnable</Name>
+					<Name>PRG_SL3K4.astMotionStage[10].bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[10].nRawEncoderULINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[10].nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[10].nRawEncoderUINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[10].nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[10].nRawEncoderINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[10].nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateRET.astMotionStageMax[10].nRawEncoderDINT</Name>
+					<Name>PRG_SL3K4.astMotionStage[10].nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[1].Axis.NcToPlc</Name>
+					<Name>Main.M13.Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[1].bLimitForwardEnable</Name>
+					<Name>Main.M13.bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[1].bLimitBackwardEnable</Name>
+					<Name>Main.M13.bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[1].bHome</Name>
+					<Name>Main.M13.bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[1].bHardwareEnable</Name>
+					<Name>Main.M13.bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[1].nRawEncoderULINT</Name>
+					<Name>Main.M13.nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[1].nRawEncoderUINT</Name>
+					<Name>Main.M13.nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[1].nRawEncoderINT</Name>
+					<Name>Main.M13.nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[1].nRawEncoderDINT</Name>
+					<Name>Main.M13.nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[2].Axis.NcToPlc</Name>
+					<Name>Main.M14.Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[2].bLimitForwardEnable</Name>
+					<Name>Main.M14.bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[2].bLimitBackwardEnable</Name>
+					<Name>Main.M14.bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[2].bHome</Name>
+					<Name>Main.M14.bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[2].bHardwareEnable</Name>
+					<Name>Main.M14.bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[2].nRawEncoderULINT</Name>
+					<Name>Main.M14.nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[2].nRawEncoderUINT</Name>
+					<Name>Main.M14.nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[2].nRawEncoderINT</Name>
+					<Name>Main.M14.nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[2].nRawEncoderDINT</Name>
+					<Name>Main.M14.nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[3].Axis.NcToPlc</Name>
+					<Name>Main.M15.Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[3].bLimitForwardEnable</Name>
+					<Name>Main.M15.bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[3].bLimitBackwardEnable</Name>
+					<Name>Main.M15.bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[3].bHome</Name>
+					<Name>Main.M15.bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[3].bHardwareEnable</Name>
+					<Name>Main.M15.bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[3].nRawEncoderULINT</Name>
+					<Name>Main.M15.nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[3].nRawEncoderUINT</Name>
+					<Name>Main.M15.nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[3].nRawEncoderINT</Name>
+					<Name>Main.M15.nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[3].nRawEncoderDINT</Name>
+					<Name>Main.M15.nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[4].Axis.NcToPlc</Name>
+					<Name>Main.M16.Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[4].bLimitForwardEnable</Name>
+					<Name>Main.M16.bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[4].bLimitBackwardEnable</Name>
+					<Name>Main.M16.bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[4].bHome</Name>
+					<Name>Main.M16.bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[4].bHardwareEnable</Name>
+					<Name>Main.M16.bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[4].nRawEncoderULINT</Name>
+					<Name>Main.M16.nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[4].nRawEncoderUINT</Name>
+					<Name>Main.M16.nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[4].nRawEncoderINT</Name>
+					<Name>Main.M16.nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[4].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[5].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[5].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[5].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[5].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[5].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[5].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[5].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[5].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[5].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[6].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[6].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[6].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[6].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[6].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[6].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[6].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[6].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[6].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[7].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[7].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[7].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[7].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[7].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[7].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[7].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[7].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[7].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[8].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[8].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[8].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[8].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[8].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[8].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[8].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[8].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[8].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[9].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[9].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[9].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[9].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[9].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[9].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[9].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[9].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[9].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[10].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[10].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[10].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[10].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[10].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[10].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[10].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[10].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateX.astMotionStageMax[10].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[1].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[1].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[1].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[1].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[1].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[1].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[1].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[1].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[1].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[2].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[2].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[2].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[2].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[2].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[2].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[2].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[2].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[2].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[3].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[3].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[3].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[3].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[3].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[3].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[3].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[3].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[3].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[4].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[4].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[4].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[4].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[4].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[4].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[4].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[4].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[4].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[5].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[5].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[5].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[5].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[5].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[5].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[5].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[5].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[5].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[6].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[6].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[6].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[6].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[6].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[6].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[6].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[6].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[6].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[7].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[7].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[7].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[7].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[7].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[7].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[7].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[7].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[7].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[8].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[8].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[8].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[8].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[8].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[8].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[8].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[8].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[8].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[9].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[9].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[9].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[9].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[9].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[9].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[9].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[9].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[9].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[10].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[10].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[10].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[10].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[10].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[10].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[10].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[10].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateY.astMotionStageMax[10].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[1].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[1].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[1].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[1].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[1].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[1].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[1].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[1].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[1].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[2].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[2].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[2].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[2].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[2].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[2].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[2].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[2].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[2].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[3].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[3].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[3].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[3].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[3].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[3].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[3].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[3].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[3].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[4].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[4].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[4].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[4].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[4].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[4].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[4].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[4].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[4].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[5].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[5].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[5].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[5].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[5].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[5].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[5].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[5].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[5].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[6].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[6].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[6].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[6].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[6].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[6].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[6].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[6].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[6].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[7].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[7].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[7].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[7].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[7].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[7].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[7].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[7].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[7].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[8].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[8].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[8].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[8].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[8].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[8].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[8].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[8].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[8].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[9].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[9].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[9].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[9].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[9].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[9].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[9].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[9].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[9].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[10].Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[10].bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[10].bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[10].bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[10].bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[10].nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[10].nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[10].nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>PRG_DGPD.fbDGPD.fbPositionStateZ.astMotionStageMax[10].nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M9.nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M10.nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M11.nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>Main.M12.nRawEncoderDINT</Name>
+					<Name>Main.M16.nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
@@ -3901,6 +2311,65 @@ CSP drive mode]]></Comment>
 					</OwnerB>
 				</OwnerA>
 			</UnrestoredVarLinks>
+			<UnrestoredVarLinks ImportTime="2026-01-13T18:30:55">
+				<OwnerA Name="InputDst" Prefix="TIPC^lclsPLCMotionTest^lclsPLCMotionTest Instance" Type="1">
+					<OwnerB Name="TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03">
+						<Link VarA="Main.M12.nRawEncoderDINT" TypeA="DINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000009}" VarB="DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Position Actual Value" IdB="-58" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="Main.M9.nRawEncoderDINT" TypeA="DINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000009}" VarB="DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Position Actual Value" IdB="-65" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDRET.stDS402Drive.nFollowingError" TypeA="DINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000009}" VarB="DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Following Error Actual Value" IdB="-59" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDRET.stDS402Drive.nModeOfOperationDisplay" TypeA="SINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Modes of Operation Display" IdB="-56" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDRET.stDS402Drive.nSlaveAddr" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="InfoData^AdsAddr^port" IdB="11145" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDRET.stDS402Drive.stDriveStatus" TypeA="lcls_twincat_motion.ST_DS402DriveStatus" InOutA="0" GuidA="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" VarB="DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Status Word" IdB="-57" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDX.stDS402Drive.nFollowingError" TypeA="DINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000009}" VarB="DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Following Error Actual Value" IdB="-66" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDX.stDS402Drive.nModeOfOperationDisplay" TypeA="SINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Modes of Operation Display" IdB="-63" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDX.stDS402Drive.nSlaveAddr" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="InfoData^AdsAddr^port" IdB="11145" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDX.stDS402Drive.stDriveStatus" TypeA="lcls_twincat_motion.ST_DS402DriveStatus" InOutA="0" GuidA="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" VarB="DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Status Word" IdB="-64" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDY.stDS402Drive.nFollowingError" TypeA="DINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000009}" VarB="DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Following Error Actual Value" IdB="-73" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDY.stDS402Drive.nModeOfOperationDisplay" TypeA="SINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Modes of Operation Display" IdB="-70" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDY.stDS402Drive.nSlaveAddr" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="InfoData^AdsAddr^port" IdB="11145" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDY.stDS402Drive.stDriveStatus" TypeA="lcls_twincat_motion.ST_DS402DriveStatus" InOutA="0" GuidA="{AAB9E5F2-8B02-C218-9F86-7EC5B70A5417}" VarB="DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Status Word" IdB="-71" AutoLink="true" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1^Axes^M10_DREAM_DGPD_MMT_Y">
+						<Link VarA="Main.M10.Axis.NcToPlc" TypeA="MC.NCTOPLC_AXIS_REF" InOutA="0" GuidA="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" VarB="Outputs^ToPlc" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDY.stDS402Drive.nDriveControlNC" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="Drive^Outputs^Out^nCtrl2" IdB="689" AutoLink="true" Size="8" OffsA="8" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDY.stDS402Drive.nModeOfOperationNC" TypeA="SINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="Drive^Outputs^Out^nCtrl5" IdB="704" AutoLink="true" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1^Axes^M11_DREAM_DGPD_MMT_Z">
+						<Link VarA="Main.M11.Axis.NcToPlc" TypeA="MC.NCTOPLC_AXIS_REF" InOutA="0" GuidA="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" VarB="Outputs^ToPlc" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1^Axes^M12_DREAM_DGPD_MMT_RET">
+						<Link VarA="Main.M12.Axis.NcToPlc" TypeA="MC.NCTOPLC_AXIS_REF" InOutA="0" GuidA="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" VarB="Outputs^ToPlc" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDRET.stDS402Drive.nDriveControlNC" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="Drive^Outputs^Out^nCtrl2" IdB="95" AutoLink="true" Size="8" OffsA="8" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDRET.stDS402Drive.nModeOfOperationNC" TypeA="SINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="Drive^Outputs^Out^nCtrl5" IdB="110" AutoLink="true" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1^Axes^M9_DREAM_DGPD_MMT_X">
+						<Link VarA="Main.M9.Axis.NcToPlc" TypeA="MC.NCTOPLC_AXIS_REF" InOutA="0" GuidA="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" VarB="Outputs^ToPlc" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDX.stDS402Drive.nDriveControlNC" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="Drive^Outputs^Out^nCtrl2" IdB="392" AutoLink="true" Size="8" OffsA="8" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDX.stDS402Drive.nModeOfOperationNC" TypeA="SINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="Drive^Outputs^Out^nCtrl5" IdB="407" AutoLink="true" RestoreInfo="ANotFound"/>
+					</OwnerB>
+				</OwnerA>
+				<OwnerA Name="OutputSrc" Prefix="TIPC^lclsPLCMotionTest^lclsPLCMotionTest Instance" Type="2">
+					<OwnerB Name="TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03">
+						<Link VarA="PRG_DGPD.fbDGPDRET.stDS402Drive.nModeOfOperation" TypeA="SINT" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="DREAM:SLIT:MMT:X1^ctl/mode/pos RxPDO^Modes of Operation" IdB="-61" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDX.stDS402Drive.nDriveControl" TypeA="UINT" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="DREAM:SLIT:MMT:X2^ctl/mode/pos RxPDO^Control Word" IdB="-67" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDX.stDS402Drive.nModeOfOperation" TypeA="SINT" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="DREAM:SLIT:MMT:X2^ctl/mode/pos RxPDO^Modes of Operation" IdB="-68" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDY.stDS402Drive.nDriveControl" TypeA="UINT" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="DREAM:SLIT:MMT:Y1^ctl/mode/pos RxPDO^Control Word" IdB="-74" AutoLink="true" RestoreInfo="ANotFound"/>
+						<Link VarA="PRG_DGPD.fbDGPDY.stDS402Drive.nModeOfOperation" TypeA="SINT" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000003}" VarB="DREAM:SLIT:MMT:Y1^ctl/mode/pos RxPDO^Modes of Operation" IdB="-75" AutoLink="true" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1^Axes^M10_DREAM_DGPD_MMT_Y">
+						<Link VarA="Main.M10.Axis.PlcToNc" TypeA="MC.PLCTONC_AXIS_REF" InOutA="1" GuidA="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" VarB="Inputs^FromPlc" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1^Axes^M11_DREAM_DGPD_MMT_Z">
+						<Link VarA="Main.M11.Axis.PlcToNc" TypeA="MC.PLCTONC_AXIS_REF" InOutA="1" GuidA="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" VarB="Inputs^FromPlc" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1^Axes^M12_DREAM_DGPD_MMT_RET">
+						<Link VarA="Main.M12.Axis.PlcToNc" TypeA="MC.PLCTONC_AXIS_REF" InOutA="1" GuidA="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" VarB="Inputs^FromPlc" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TINC^NC-Task 1^Axes^M9_DREAM_DGPD_MMT_X">
+						<Link VarA="Main.M9.Axis.PlcToNc" TypeA="MC.PLCTONC_AXIS_REF" InOutA="1" GuidA="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" VarB="Inputs^FromPlc" RestoreInfo="ANotFound"/>
+					</OwnerB>
+				</OwnerA>
+			</UnrestoredVarLinks>
 			<Contexts>
 				<Context>
 					<Id>0</Id>
@@ -3920,52 +2389,52 @@ CSP drive mode]]></Comment>
 	<Mappings>
 		<OwnerA Name="lclsPLCMotionTest Instance">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03">
-				<Link VarA="PlcTask Inputs^Main.M10.nRawEncoderDINT" VarB="DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main.M12.nRawEncoderDINT" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main.M9.nRawEncoderDINT" VarB="DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDRET.stDS402Drive.nFollowingError" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDRET.stDS402Drive.nModeOfOperationDisplay" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDRET.stDS402Drive.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDRET.stDS402Drive.stDriveStatus" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Status Word" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDX.stDS402Drive.nFollowingError" VarB="DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDX.stDS402Drive.nModeOfOperationDisplay" VarB="DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDX.stDS402Drive.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDX.stDS402Drive.stDriveStatus" VarB="DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Status Word" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDY.stDS402Drive.nFollowingError" VarB="DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDY.stDS402Drive.nModeOfOperationDisplay" VarB="DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDY.stDS402Drive.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDY.stDS402Drive.stDriveStatus" VarB="DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Status Word" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^PRG_DGPD.fbDGPDRET.stDS402Drive.nDriveControl" VarB="DREAM:DGPD:MMT:RET^ctl/mode/pos RxPDO^Control Word" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^PRG_DGPD.fbDGPDRET.stDS402Drive.nModeOfOperation" VarB="DREAM:DGPD:MMT:RET^ctl/mode/pos RxPDO^Modes of Operation" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^PRG_DGPD.fbDGPDX.stDS402Drive.nDriveControl" VarB="DREAM:DGPD:MMT:X^ctl/mode/pos RxPDO^Control Word" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^PRG_DGPD.fbDGPDX.stDS402Drive.nModeOfOperation" VarB="DREAM:DGPD:MMT:X^ctl/mode/pos RxPDO^Modes of Operation" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^PRG_DGPD.fbDGPDY.stDS402Drive.nDriveControl" VarB="DREAM:DGPD:MMT:Y^ctl/mode/pos RxPDO^Control Word" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^PRG_DGPD.fbDGPDY.stDS402Drive.nModeOfOperation" VarB="DREAM:DGPD:MMT:Y^ctl/mode/pos RxPDO^Modes of Operation" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^Main.M13.nRawEncoderDINT" VarB="DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^Main.M14.nRawEncoderDINT" VarB="DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^Main.M15.nRawEncoderDINT" VarB="DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nFollowingError" VarB="DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nModeOfOperationDisplay" VarB="DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.stDriveStatus" VarB="DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Status Word" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nFollowingError" VarB="DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nModeOfOperationDisplay" VarB="DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.stDriveStatus" VarB="DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Status Word" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nFollowingError" VarB="DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nModeOfOperationDisplay" VarB="DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.stDriveStatus" VarB="DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Status Word" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nDriveControl" VarB="DREAM:SLIT:MMT:X1^ctl/mode/pos RxPDO^Control Word" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nModeOfOperation" VarB="DREAM:SLIT:MMT:X1^ctl/mode/pos RxPDO^Modes of Operation" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nDriveControl" VarB="DREAM:SLIT:MMT:X2^ctl/mode/pos RxPDO^Control Word" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nModeOfOperation" VarB="DREAM:SLIT:MMT:X2^ctl/mode/pos RxPDO^Modes of Operation" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nDriveControl" VarB="DREAM:SLIT:MMT:Y1^ctl/mode/pos RxPDO^Control Word" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nModeOfOperation" VarB="DREAM:SLIT:MMT:Y1^ctl/mode/pos RxPDO^Modes of Operation" AutoLink="true"/>
 			</OwnerB>
-			<OwnerB Name="TINC^NC-Task 1^Axes^M10_DREAM_DGPD_MMT_Y">
-				<Link VarA="PlcTask Inputs^Main.M10.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDY.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDY.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDY.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^Main.M10.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+			<OwnerB Name="TINC^NC-Task 1^Axes^M13_DREAM_SLIT_MMT_X1">
+				<Link VarA="PlcTask Inputs^Main.M13.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X1.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^Main.M13.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
-			<OwnerB Name="TINC^NC-Task 1^Axes^M11_DREAM_DGPD_MMT_Z">
-				<Link VarA="PlcTask Inputs^Main.M11.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^Main.M11.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+			<OwnerB Name="TINC^NC-Task 1^Axes^M14_DREAM_SLIT_MMT_X2">
+				<Link VarA="PlcTask Inputs^Main.M14.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_X2.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^Main.M14.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
-			<OwnerB Name="TINC^NC-Task 1^Axes^M12_DREAM_DGPD_MMT_RET">
-				<Link VarA="PlcTask Inputs^Main.M12.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDRET.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDRET.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDRET.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^Main.M12.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+			<OwnerB Name="TINC^NC-Task 1^Axes^M15_DREAM_SLIT_MMT_Y1">
+				<Link VarA="PlcTask Inputs^Main.M15.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
+				<Link VarA="PlcTask Inputs^PRG_SL3K4.fb_SLIT_Y1.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
+				<Link VarA="PlcTask Outputs^Main.M15.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
-			<OwnerB Name="TINC^NC-Task 1^Axes^M9_DREAM_DGPD_MMT_X">
-				<Link VarA="PlcTask Inputs^Main.M9.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDX.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDX.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
-				<Link VarA="PlcTask Inputs^PRG_DGPD.fbDGPDX.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^Main.M9.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+			<OwnerB Name="TINC^NC-Task 1^Axes^M16_DREAM_SLIT_MMT_Y2">
+				<Link VarA="PlcTask Inputs^Main.M16.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^Main.M16.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>

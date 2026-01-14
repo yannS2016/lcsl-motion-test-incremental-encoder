@@ -1424,7 +1424,7 @@ External Setpoint Generation:
 			</Relations>
 		</DataType>
 	</DataTypes>
-	<Axis Id="16" Disabled="true" CreateSymbols="true" AxisType="1" AxisFolder="In Vacuum" GroupId="8">
+	<Axis Id="16" CreateSymbols="true" AxisType="1" AxisFolder="In Vacuum" GroupId="8">
 		<Name>__FILENAME__</Name>
 		<AxisPara>
 			<Dynamic AccelerationMaximum="10" DecelerationMaximum="10" Acceleration="2.51748" Deceleration="2.51748" Jerk="9.32019"/>

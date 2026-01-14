@@ -13,48 +13,33 @@
 *)
 FUNCTION_BLOCK FB_DGPD
 VAR_IN_OUT
-    stMCS2StageRET : ST_MCS2Stage;
-    stMCS2StageX   : ST_MCS2Stage;
-    stMCS2StageY   : ST_MCS2Stage;
-    stMCS2StageZ   : ST_MCS2Stage;
+    stMotionStageRET : ST_MotionStage;
+    stMotionStageX   : ST_MotionStage;
+    stMotionStageY   : ST_MotionStage;
+    stMotionStageZ   : ST_MotionStage;
+    stMCS2ChanParameterRET : ST_MCS2ChanParameter;
+    stMCS2ChanParameterX   : ST_MCS2ChanParameter;
+    stMCS2ChanParameterY   : ST_MCS2ChanParameter;
+    stMCS2ChanParameterZ   : ST_MCS2ChanParameter;
     // The fast fault output to fault to.
     fbFFHWO: FB_HardwareFFOutput;
     // The arbiter to request beam conditions from.
     fbArbiter: FB_Arbiter;
-    eSetTarget: UINT;
+	stDGPD : ST_DGPD;
 END_VAR
 VAR_INPUT
+	bEnable : BOOL;
     bHVActive            : BOOL;
     bEnablePositionLimits: BOOL;
-    sDeviceName          : STRING := 'test';
-    sTransitionKey       : STRING := 'trans';
+    sDeviceName          : STRING;
+    sTransitionKey       : STRING;
     bReadDBNow           : BOOL;
-    {attribute 'pytmc' := '
-        pv: DREAM:DGPD:RESET
-        io: io
-    '}
-    bReset               : BOOL;
-
-    {attribute 'pytmc' := '
-        pv: DREAM:DGPD:bMaintMode
-        io: io
-    '}
-    bMaintenanceMode     : BOOL;
-
-    {attribute 'pytmc' := '
-        pv: DREAM:DGPD:bSeqEnable
-        io: io
-    '}
-    bSequenceEnable : BOOL := TRUE;
-
     bEnableBeamParams: BOOL;
     // use this to block state request activation on top of eps.
     bEnableMotion        : BOOL;
     bEPSEnable           : BOOL := TRUE;
     ePrevSetTarget: UINT;
-
-    // in Target deadband
-    fDelta : LREAL := 0.003;
+	
     fbDGPDPMPSStateConfigHelper : FB_DGPDPMPSStateConfigHelper(
         astPositionStateRET := astPositionStateRET,
         astPositionStateX := astPositionStateX,
@@ -63,15 +48,10 @@ VAR_INPUT
     );
 END_VAR
 VAR_OUTPUT
-    {attribute 'hide'}
     bSafeToMoveRET : BOOL;
-    {attribute 'hide'}
     bSafeToMoveX   : BOOL;
-    {attribute 'hide'}
     bSafeToMoveY   : BOOL;
-    {attribute 'hide'}
     bSafeToMoveZ   : BOOL;
-    {attribute 'hide'}
     bSafeToMove    : BOOL;
     {attribute 'hide'}
     bMoveRET          : BOOL;
@@ -81,72 +61,60 @@ VAR_OUTPUT
     bMoveY            : BOOL;
     {attribute 'hide'}
     bMoveZ            : BOOL;
-    {attribute 'hide'}
     bSequenceComplete : BOOL;
-    {attribute 'hide'}
     axisSequenceStep  : E_DGPDSequence;
-    {attribute 'hide'}
     nRETCurrState     : E_DGPDState;
-    {attribute 'hide'}
     nXCurrState     : E_DGPDState;
-    {attribute 'hide'}
     nYCurrState     : E_DGPDState;
-    {attribute 'hide'}
     nZCurrState     : E_DGPDState;
-    {attribute 'hide'}
     bEnteredInit            : BOOL;
-    {attribute 'hide'}
     bEnteredCheckOut        : BOOL;
-    {attribute 'hide'}
     bEnteredMoveRETToTarget : BOOL;
-    {attribute 'hide'}
     bEnteredMoveXToTarget   : BOOL;
-    {attribute 'hide'}
     bEnteredMoveYToTarget   : BOOL;
-    {attribute 'hide'}
     bEnteredMoveZToTarget   : BOOL;
-    {attribute 'hide'}
     bEnteredDone            : BOOL;
-    {attribute 'hide'}
     bEnteredError           : BOOL;
-    {attribute 'hide'}
-    bError_RETCollision : BOOL;
 END_VAR
 
 VAR
-    bGlobalReset            : BOOL;
     fbDGPDEPS               : FB_DGPDEPS;
     fbSequencer             : FB_SequenceMover;
     fbDGPDManual            : FB_DGPDManual;
     // --- RET axis ---
     astPositionStateRET : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+	{attribute 'pytmc' := 'pv: DGPD:RET'}
     fbPositionStateRET : FB_PositionStatePMPS1D;
-    fbStateSetupRET : FB_StateSetupHelper;
+
+	{attribute 'hide'}
     eGetRETTarget : UINT;
+	{attribute 'hide'}
     eSetRETTarget : UINT;
     // --- X axis ---
     astPositionStateX : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+	{attribute 'pytmc' := 'pv: DGPD:X'}
     fbPositionStateX : FB_PositionStatePMPS1D;
-    fbStateSetupX : FB_StateSetupHelper;
+	{attribute 'hide'}
     eSetXTarget   : UINT;
+	{attribute 'hide'}
     eGetXTarget   : UINT;
     // --- Y axis ---
     astPositionStateY : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+	{attribute 'pytmc' := 'pv: DGPD:Y'}
     fbPositionStateY : FB_PositionStatePMPS1D;
-    fbStateSetupY : FB_StateSetupHelper;
+	{attribute 'hide'}	
     eSetYTarget   : UINT;
+	{attribute 'hide'}
     eGetYTarget   : UINT;
     // --- Z axis ---
     astPositionStateZ : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+	{attribute 'pytmc' := 'pv: DGPD:Z'}
     fbPositionStateZ : FB_PositionStatePMPS1D;
+	{attribute 'hide'}
     eGetZTarget   : UINT;
+	{attribute 'hide'}
     eSetZTarget   : UINT;
-    {attribute 'hide'}
-    bInit: BOOL := TRUE;
-    {attribute 'hide'}
-    bSimMode : BOOL;
-    {attribute 'hide'}
-    rtReset  : R_TRIG;
+
     {attribute 'hide'}
     ftMaintModeRET : F_TRIG;
     {attribute 'hide'}
@@ -161,223 +129,212 @@ VAR
     rtMaintenanceMode : R_TRIG;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF NOT __ISVALIDREF(fbFFHWO)
-    OR NOT __ISVALIDREF(fbArbiter)
-    OR NOT __ISVALIDREF(stMCS2StageRET)
-    OR NOT __ISVALIDREF(stMCS2StageY)
-    OR NOT __ISVALIDREF(stMCS2StageZ)
-    OR NOT __ISVALIDREF(stMCS2StageX )
-THEN
-    RETURN;
-END_IF
-
-IF bInit THEN
-    // --- RET axis ---
-    stMCS2StageRET.bHardwareEnable := TRUE;
-    stMCS2StageRET.nHomingMode     := E_EpicsHomeCmd.AUTOZERO;
-    stMCS2StageRET.nEnableMode     := ENUM_StageEnableMode.DURING_MOTION;
-
-    // --- X axis ---
-    stMCS2StageX.bHardwareEnable := TRUE;
-    stMCS2StageX.nHomingMode     := E_EpicsHomeCmd.AUTOZERO;
-    stMCS2StageX.nEnableMode     := ENUM_StageEnableMode.DURING_MOTION;
-
-    // --- Y axis ---
-    stMCS2StageY.bHardwareEnable := TRUE;
-    stMCS2StageY.nHomingMode     := E_EpicsHomeCmd.AUTOZERO;
-    stMCS2StageY.nEnableMode     := ENUM_StageEnableMode.DURING_MOTION;
-
-    // --- Z axis ---
-    stMCS2StageZ.bHardwareEnable := TRUE;
-    stMCS2StageZ.nHomingMode     := E_EpicsHomeCmd.AUTOZERO;
-    stMCS2StageZ.nEnableMode     := ENUM_StageEnableMode.DURING_MOTION;
-
-    // Only do this block once
-    bInit := FALSE;
-END_IF
-
-(* Initialization / Setup (typically called once at startup) *)
-fbDGPDPMPSStateConfigHelper.OpMode();
-
-// EPS Checks (per axis)
-fbDGPDEPS(
-     stMCS2StageRET := stMCS2StageRET,
-     stMCS2StageX   := stMCS2StageX,
-     stMCS2StageY   := stMCS2StageY,
-     stMCS2StageZ   := stMCS2StageZ,
-     bEnable 		:= bEPSEnable,
-     bHVActive      := bHVActive
- );
-
-rtMaintenanceMode(CLK:=bMaintenanceMode
-        OR fbPositionStateRET.stPMPSEpicsToPlc.bMaintMode
-        OR fbPositionStateX.stPMPSEpicsToPlc.bMaintMode
-        OR fbPositionStateY.stPMPSEpicsToPlc.bMaintMode
-        OR fbPositionStateZ.stPMPSEpicsToPlc.bMaintMode);
-
-IF rtMaintenanceMode.Q THEN
-    bMaintenanceMode := TRUE;
-    fbPositionStateRET.stPMPSEpicsToPlc.bMaintMode := TRUE;
-    fbPositionStateX.stPMPSEpicsToPlc.bMaintMode   := TRUE;
-    fbPositionStateY.stPMPSEpicsToPlc.bMaintMode   := TRUE;
-    fbPositionStateZ.stPMPSEpicsToPlc.bMaintMode   := TRUE;
-END_IF
-
-//  Edge detection (reset if any falling edge on maintenance or global)
-ftMaintModeRET(CLK := fbPositionStateRET.stPMPSEpicsToPlc.bMaintMode);
-ftMaintModeX(CLK   := fbPositionStateX.stPMPSEpicsToPlc.bMaintMode);
-ftMaintModeY(CLK   := fbPositionStateY.stPMPSEpicsToPlc.bMaintMode);
-ftMaintModeZ(CLK   := fbPositionStateZ.stPMPSEpicsToPlc.bMaintMode);
-ftGlobalMaint(CLK  := bMaintenanceMode);
-
-IF ftMaintModeRET.Q OR ftMaintModeX.Q OR ftMaintModeY.Q OR ftMaintModeZ.Q OR ftGlobalMaint.Q THEN
-    fbPositionStateRET.stPMPSEpicsToPlc.bMaintMode := FALSE;
-    fbPositionStateX.stPMPSEpicsToPlc.bMaintMode   := FALSE;
-    fbPositionStateY.stPMPSEpicsToPlc.bMaintMode   := FALSE;
-    fbPositionStateZ.stPMPSEpicsToPlc.bMaintMode   := FALSE;
-    bMaintenanceMode  := FALSE;
-END_IF
-
-IF bReset THEN
-    fbPositionStateRET.stEpicsToPlc.bReset := bReset;
-    fbPositionStateX.stEpicsToPlc.bReset := bReset;
-    fbPositionStateY.stEpicsToPlc.bReset := bReset;
-    fbPositionStateZ.stEpicsToPlc.bReset := bReset;
-END_IF
-
-// Maintenance or sequence operation
-IF bMaintenanceMode THEN
-
-    fbDGPDManual(
-        astPositionStateX := astPositionStateX,
-        astPositionStateY := astPositionStateY,
-        astPositionStateZ := astPositionStateZ,
-        stMCS2StageX      := stMCS2StageX,
-        stMCS2StageY      := stMCS2StageY,
-        stMCS2StageZ      := stMCS2StageZ,
-        fDelta            := fDelta
-    );
-    fbDGPDEPS.epsMaintenanceMode(bRETSafeToMove := fbDGPDManual.bSafeToMoveRET);
-    fbSequencer.bReset:=TRUE;
-    // reset sequence back to idle.
-    // override any attemps from user to set target state in manual mode
-    // we dont want an immediate move when sewitching back to sequence move.
-    eSetTarget := E_DGPDState.UNKNOWN;
-ELSE
-    fbSequencer(
-        eDGPDStateSet := eSetTarget,
-        stPlcToEpicsRET := fbPositionStateRET.stPlcToEpics,
-        stPlcToEpicsX   := fbPositionStateX.stPlcToEpics,
-        stPlcToEpicsY   := fbPositionStateY.stPlcToEpics,
-        stPlcToEpicsZ   := fbPositionStateZ.stPlcToEpics,
-        eRETTarget := eSetRETTarget,
-        eXTarget   := eSetXTarget,
-        eYTarget   := eSetYTarget,
-        eZTarget   := eSetZTarget,
-        bSequenceEnable:=bSequenceEnable,
-        bReset:=bReset
-    );
-END_IF
-
-bReset := FALSE;
-//--- RET axis ---
-fbPositionStateRET(
-    sDeviceName:=sDeviceName,
-    sTransitionKey:=sTransitionKey,
-    stMotionStage        := stMCS2StageRET,
-    astPositionState     := astPositionStateRET,
-    eEnumSet             := eSetRETTarget,
-    eEnumGet             := eGetRETTarget,
-    fbFFHWO              := fbFFHWO,
-    fbArbiter            := fbArbiter,
-    bReadDBNow           := NOT bInit,
-    bEnableMotion        := fbSequencer.bMoveRET AND bEnableMotion,
-    bEnableBeamParams    := bEnableBeamParams,
-    bEnablePositionLimits:= bEnablePositionLimits
-);
-
-stMCS2StageRET.bPowerSelf := FALSE;
-
-//--- X axis ---
-fbPositionStateX(
-    sDeviceName:=sDeviceName,
-    sTransitionKey:=sTransitionKey,
-    stMotionStage        := stMCS2StageX,
-    astPositionState     := astPositionStateX,
-    eEnumSet             := eSetXTarget,
-    eEnumGet             := eGetXTarget,
-    fbFFHWO              := fbFFHWO,
-    fbArbiter            := fbArbiter,
-    bReadDBNow           := fbPositionStateRET.stDbStateParams.bBeamParamsLoaded,
-    bEnableMotion        := fbSequencer.bMoveX AND bEnableMotion,
-    bEnableBeamParams    := bEnableBeamParams ,
-    bEnablePositionLimits:= bEnablePositionLimits
-);
-//--- X axis ---
-stMCS2StageX.bPowerSelf := FALSE;
-
-
-//--- Y axis ---
-fbPositionStateY(
-    sDeviceName:=sDeviceName,
-    sTransitionKey:=sTransitionKey,
-    stMotionStage        := stMCS2StageY,
-    astPositionState     := astPositionStateY,
-    eEnumSet             := eSetYTarget,
-    eEnumGet             := eGetYTarget,
-    fbFFHWO              := fbFFHWO,
-    fbArbiter            := fbArbiter,
-    bReadDBNow           := fbPositionStateX.stDbStateParams.bBeamParamsLoaded,
-    bEnableMotion        := fbSequencer.bMoveY AND bEnableMotion,
-    bEnableBeamParams    := bEnableBeamParams,
-    bEnablePositionLimits:= bEnablePositionLimits
-);
-//--- Y axis ---
-stMCS2StageY.bPowerSelf := FALSE;
-
-
-fbPositionStateZ(
-    sDeviceName:=sDeviceName,
-    sTransitionKey:=sTransitionKey,
-    stMotionStage        := stMCS2StageZ,
-    astPositionState     := astPositionStateZ,
-    eEnumSet             := eSetZTarget,
-    eEnumGet             := eGetZTarget,
-    fbFFHWO              := fbFFHWO,
-    fbArbiter            := fbArbiter,
-    bReadDBNow           := fbPositionStateY.stDbStateParams.bBeamParamsLoaded,
-    bEnableMotion        := fbSequencer.bMoveZ AND bEnableMotion,
-    bEnableBeamParams    := bEnableBeamParams AND fbPositionStateY.stDbStateParams.bBeamParamsLoaded,
-    bEnablePositionLimits:= bEnablePositionLimits
-);
-stMCS2StageZ.bPowerSelf := FALSE;
-
-bSafeToMoveRET := fbDGPDEPS.bSafeToMoveRET;
-bSafeToMoveX   := fbDGPDEPS.bSafeToMoveX;
-bSafeToMoveY   := fbDGPDEPS.bSafeToMoveY;
-bSafeToMoveZ   := fbDGPDEPS.bSafeToMoveZ;
-bSafeToMove    := fbDGPDEPS.bSafeToMove;
-
-bMoveRET         :=	fbSequencer.bMoveRET;
-bMoveX           :=	fbSequencer.bMoveX;
-bMoveY           :=	fbSequencer.bMoveY;
-bMoveZ           :=	fbSequencer.bMoveZ;
-
-bSequenceComplete:=	fbSequencer.bSequenceComplete;
-axisSequenceStep :=	fbSequencer.axisSequenceStep ;
-bEnteredInit           :=	fbSequencer.bEnteredInit;
-bEnteredCheckOut       :=	fbSequencer.bEnteredCheckOut;
-bEnteredMoveRETToTarget:=	fbSequencer.bEnteredMoveRETToTarget;
-bEnteredMoveXToTarget  :=	fbSequencer.bEnteredMoveXToTarget;
-bEnteredMoveYToTarget  :=	fbSequencer.bEnteredMoveYToTarget;
-bEnteredMoveZToTarget  :=	fbSequencer.bEnteredMoveZToTarget;
-bEnteredDone           :=	fbSequencer.bEnteredDone;
-bEnteredError          :=	fbSequencer.bEnteredError;
-
-nRETCurrState   := fbPositionStateRET.stPlcToEpics.nGetValue;
-nXCurrState     := fbPositionStateX.stPlcToEpics.nGetValue;
-nYCurrState     := fbPositionStateY.stPlcToEpics.nGetValue;
-nZCurrState     := fbPositionStateZ.stPlcToEpics.nGetValue;]]></ST>
+      <ST><![CDATA[IF bEnable THEN
+	IF NOT __ISVALIDREF(fbFFHWO)
+		OR NOT __ISVALIDREF(fbArbiter)
+		OR NOT __ISVALIDREF(stMotionStageRET)
+		OR NOT __ISVALIDREF(stMotionStageY)
+		OR NOT __ISVALIDREF(stMotionStageZ)
+		OR NOT __ISVALIDREF(stMotionStageX )
+		OR NOT __ISVALIDREF(stMCS2ChanParameterRET)
+		OR NOT __ISVALIDREF(stMCS2ChanParameterX)
+		OR NOT __ISVALIDREF(stMCS2ChanParameterY)
+		OR NOT __ISVALIDREF(stMCS2ChanParameterZ)
+	THEN
+		RETURN;
+	END_IF
+	
+	(* Initialization / Setup (typically called once at startup) *)
+	fbDGPDPMPSStateConfigHelper.OpMode();
+	
+	// EPS Checks (per axis)
+	fbDGPDEPS(
+		stMotionStageRET :=stMotionStageRET,
+		stMotionStageX   := stMotionStageX,
+		stMotionStageY   := stMotionStageY,
+		stMotionStageZ   := stMotionStageZ,
+		stMCS2ChanParameterX := stMCS2ChanParameterX,
+		stMCS2ChanParameterY   := stMCS2ChanParameterY,
+		stMCS2ChanParameterZ   := stMCS2ChanParameterZ,
+		stMCS2ChanParameterRET   := stMCS2ChanParameterRET,
+		bEnable	:= bEPSEnable,
+		bHVActive	:= bHVActive
+	 );
+	
+	rtMaintenanceMode(CLK:=stDGPD.bMaintMode
+			OR fbPositionStateRET.stPMPSEpicsToPlc.bMaintMode
+			OR fbPositionStateX.stPMPSEpicsToPlc.bMaintMode
+			OR fbPositionStateY.stPMPSEpicsToPlc.bMaintMode
+			OR fbPositionStateZ.stPMPSEpicsToPlc.bMaintMode);
+	
+	IF rtMaintenanceMode.Q THEN
+		stDGPD.bMaintMode := TRUE;
+		fbPositionStateRET.stPMPSEpicsToPlc.bMaintMode := TRUE;
+		fbPositionStateX.stPMPSEpicsToPlc.bMaintMode   := TRUE;
+		fbPositionStateY.stPMPSEpicsToPlc.bMaintMode   := TRUE;
+		fbPositionStateZ.stPMPSEpicsToPlc.bMaintMode   := TRUE;
+	END_IF
+	
+	//  Edge detection (reset if any falling edge on maintenance or global)
+	ftMaintModeRET(CLK := fbPositionStateRET.stPMPSEpicsToPlc.bMaintMode);
+	ftMaintModeX(CLK   := fbPositionStateX.stPMPSEpicsToPlc.bMaintMode);
+	ftMaintModeY(CLK   := fbPositionStateY.stPMPSEpicsToPlc.bMaintMode);
+	ftMaintModeZ(CLK   := fbPositionStateZ.stPMPSEpicsToPlc.bMaintMode);
+	ftGlobalMaint(CLK  := stDGPD.bMaintMode);
+	
+	IF ftMaintModeRET.Q OR ftMaintModeX.Q OR ftMaintModeY.Q OR ftMaintModeZ.Q OR ftGlobalMaint.Q THEN
+		fbPositionStateRET.stPMPSEpicsToPlc.bMaintMode := FALSE;
+		fbPositionStateX.stPMPSEpicsToPlc.bMaintMode   := FALSE;
+		fbPositionStateY.stPMPSEpicsToPlc.bMaintMode   := FALSE;
+		fbPositionStateZ.stPMPSEpicsToPlc.bMaintMode   := FALSE;
+		stDGPD.bMaintMode  := FALSE;
+	END_IF
+	
+	IF stDGPD.bReset THEN
+		fbPositionStateRET.stEpicsToPlc.bReset := stDGPD.bReset;
+		fbPositionStateX.stEpicsToPlc.bReset := stDGPD.bReset;
+		fbPositionStateY.stEpicsToPlc.bReset := stDGPD.bReset;
+		fbPositionStateZ.stEpicsToPlc.bReset := stDGPD.bReset;
+		stMotionStageRET.bReset :=stDGPD.bReset;
+		stMotionStageX.bReset :=stDGPD.bReset;
+		stMotionStageY.bReset :=stDGPD.bReset;
+		stMotionStageZ.bReset :=stDGPD.bReset;
+		fbSequencer.bReset := stDGPD.bReset;
+	END_IF
+	
+	// Maintenance or sequence operation
+	IF stDGPD.bMaintMode THEN
+	
+		fbDGPDManual(
+			astPositionStateX := astPositionStateX,
+			astPositionStateY := astPositionStateY,
+			astPositionStateZ := astPositionStateZ,
+			stMotionStageX      := stMotionStageX,
+			stMotionStageY      := stMotionStageY,
+			stMotionStageZ      := stMotionStageZ,
+		);
+		fbDGPDEPS.epsMaintenanceMode(bRETSafeToMove := fbDGPDManual.bSafeToMoveRET);
+		fbSequencer.bReset:=TRUE;
+		// reset sequence back to idle.
+		// override any attemps from user to set target state in manual mode
+		// we dont want an immediate move when sewitching back to sequence move.
+		stDGPD.eSetTarget := E_DGPDState.UNKNOWN;
+	ELSE
+		fbSequencer(
+			bEnable:= stDGPD.bSeqEnable,
+			eDGPDStateSet := stDGPD.eSetTarget,
+			stPlcToEpicsRET := fbPositionStateRET.stPlcToEpics,
+			stPlcToEpicsX   := fbPositionStateX.stPlcToEpics,
+			stPlcToEpicsY   := fbPositionStateY.stPlcToEpics,
+			stPlcToEpicsZ   := fbPositionStateZ.stPlcToEpics,
+			eRETTarget := eSetRETTarget,
+			eXTarget   := eSetXTarget,
+			eYTarget   := eSetYTarget,
+			eZTarget   := eSetZTarget,
+			bReset:=stDGPD.bReset
+		);
+	END_IF
+	
+	stDGPD.bReset := FALSE;
+	//--- RET axis ---
+	fbPositionStateRET(
+		sDeviceName:=sDeviceName,
+		sTransitionKey:=sTransitionKey,
+		stMotionStage        := stMotionStageRET,
+		astPositionState     := astPositionStateRET,
+		eEnumSet             := eSetRETTarget,
+		eEnumGet             := eGetRETTarget,
+		fbFFHWO              := fbFFHWO,
+		fbArbiter            := fbArbiter,
+		bReadDBNow           := bReadDBNow,
+		bEnableMotion        := (fbSequencer.bMoveRET AND bEnableMotion) OR NOT stDGPD.bSeqEnable,
+		bEnableBeamParams    := bEnableBeamParams,
+		bEnablePositionLimits:= bEnablePositionLimits
+	);
+	
+	stMotionStageRET.bPowerSelf := FALSE;
+	
+	//--- X axis ---
+	fbPositionStateX(
+		sDeviceName:=sDeviceName,
+		sTransitionKey:=sTransitionKey,
+		stMotionStage        := stMotionStageX,
+		astPositionState     := astPositionStateX,
+		eEnumSet             := eSetXTarget,
+		eEnumGet             := eGetXTarget,
+		fbFFHWO              := fbFFHWO,
+		fbArbiter            := fbArbiter,
+		bReadDBNow           := fbPositionStateRET.stDbStateParams.bBeamParamsLoaded,
+		bEnableMotion        := (fbSequencer.bMoveX AND bEnableMotion) OR NOT stDGPD.bSeqEnable,
+		bEnableBeamParams    := bEnableBeamParams ,
+		bEnablePositionLimits:= bEnablePositionLimits
+	);
+	//--- X axis ---
+	stMotionStageX.bPowerSelf := FALSE;
+	
+	
+	//--- Y axis ---
+	fbPositionStateY(
+		sDeviceName:=sDeviceName,
+		sTransitionKey:=sTransitionKey,
+		stMotionStage        := stMotionStageY,
+		astPositionState     := astPositionStateY,
+		eEnumSet             := eSetYTarget,
+		eEnumGet             := eGetYTarget,
+		fbFFHWO              := fbFFHWO,
+		fbArbiter            := fbArbiter,
+		bReadDBNow           := fbPositionStateX.stDbStateParams.bBeamParamsLoaded,
+		bEnableMotion        := (fbSequencer.bMoveY AND bEnableMotion) OR NOT stDGPD.bSeqEnable,
+		bEnableBeamParams    := bEnableBeamParams,
+		bEnablePositionLimits:= bEnablePositionLimits
+	);
+	//--- Y axis ---
+	stMotionStageY.bPowerSelf := FALSE;
+	
+	
+	fbPositionStateZ(
+		sDeviceName:=sDeviceName,
+		sTransitionKey:=sTransitionKey,
+		stMotionStage        := stMotionStageZ,
+		astPositionState     := astPositionStateZ,
+		eEnumSet             := eSetZTarget,
+		eEnumGet             := eGetZTarget,
+		fbFFHWO              := fbFFHWO,
+		fbArbiter            := fbArbiter,
+		bReadDBNow           := fbPositionStateY.stDbStateParams.bBeamParamsLoaded,
+		bEnableMotion        := (fbSequencer.bMoveZ AND bEnableMotion) OR NOT stDGPD.bSeqEnable,
+		bEnableBeamParams    := bEnableBeamParams AND fbPositionStateY.stDbStateParams.bBeamParamsLoaded,
+		bEnablePositionLimits:= bEnablePositionLimits
+	);
+	stMotionStageZ.bPowerSelf := FALSE;
+	
+	bSafeToMoveRET := fbDGPDEPS.bSafeToMoveRET;
+	bSafeToMoveX   := fbDGPDEPS.bSafeToMoveX;
+	bSafeToMoveY   := fbDGPDEPS.bSafeToMoveY;
+	bSafeToMoveZ   := fbDGPDEPS.bSafeToMoveZ;
+	bSafeToMove    := fbDGPDEPS.bSafeToMove;
+	
+	bMoveRET         :=	fbSequencer.bMoveRET;
+	bMoveX           :=	fbSequencer.bMoveX;
+	bMoveY           :=	fbSequencer.bMoveY;
+	bMoveZ           :=	fbSequencer.bMoveZ;
+	
+	bSequenceComplete:=	fbSequencer.bSequenceComplete;
+	axisSequenceStep :=	fbSequencer.axisSequenceStep ;
+	bEnteredInit           :=	fbSequencer.bEnteredInit;
+	bEnteredCheckOut       :=	fbSequencer.bEnteredCheckOut;
+	bEnteredMoveRETToTarget:=	fbSequencer.bEnteredMoveRETToTarget;
+	bEnteredMoveXToTarget  :=	fbSequencer.bEnteredMoveXToTarget;
+	bEnteredMoveYToTarget  :=	fbSequencer.bEnteredMoveYToTarget;
+	bEnteredMoveZToTarget  :=	fbSequencer.bEnteredMoveZToTarget;
+	bEnteredDone           :=	fbSequencer.bEnteredDone;
+	bEnteredError          :=	fbSequencer.bEnteredError;
+	
+	nRETCurrState   := fbPositionStateRET.stPlcToEpics.nGetValue;
+	nXCurrState     := fbPositionStateX.stPlcToEpics.nGetValue;
+	nYCurrState     := fbPositionStateY.stPlcToEpics.nGetValue;
+	nZCurrState     := fbPositionStateZ.stPlcToEpics.nGetValue;	
+END_IF]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

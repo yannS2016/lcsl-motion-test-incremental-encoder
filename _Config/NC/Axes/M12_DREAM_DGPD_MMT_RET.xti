@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.17" ClassName="CNcAxisDef" SubType="1" TcProjectVariant="slits">
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.17" ClassName="CNcAxisDef" SubType="1" TcProjectVariant="dgpd">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-000000000035}" TcBaseType="true" HideType="true">UINTARR2</Name>
@@ -1552,7 +1552,7 @@ External Setpoint Generation:
 		</Drive>
 		<Controller Name="Ctrl" CtrType="1">
 			<CtrPara PriorControlFactor="1">
-				<PosDiffControl Range="0.08"/>
+				<PosDiffControl Range="0.05"/>
 				<Observer BandWidth="20"/>
 			</CtrPara>
 		</Controller>
@@ -1571,4 +1571,20 @@ External Setpoint Generation:
 			</Var>
 		</Vars>
 	</Axis>
+	<Mappings>
+		<OwnerA>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03">
+				<Link VarA="Drive^Inputs^In^nDataIn1" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Following Error Actual Value"/>
+				<Link VarA="Drive^Inputs^In^nState1" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Status Word" Size="8"/>
+				<Link VarA="Drive^Inputs^In^nState2" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Status Word" Size="8" OffsB="8"/>
+				<Link VarA="Drive^Inputs^In^nState4" VarB="WcState^InputToggle" Size="1" OffsA="1"/>
+				<Link VarA="Drive^Inputs^In^nState4" VarB="WcState^WcState" Size="1"/>
+				<Link VarA="Drive^Inputs^In^nState5" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Modes of Operation Display"/>
+				<Link VarA="Drive^Outputs^Out^nDataOut1" VarB="DREAM:DGPD:MMT:RET^ctl/mode/pos RxPDO^Target Position"/>
+				<Link VarA="Enc^Inputs^In^nDataIn1" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Position Actual Value"/>
+				<Link VarA="Enc^Inputs^In^nState4" VarB="WcState^InputToggle" Size="1" OffsA="1"/>
+				<Link VarA="Enc^Inputs^In^nState4" VarB="WcState^WcState" Size="1"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
 </TcSmItem>

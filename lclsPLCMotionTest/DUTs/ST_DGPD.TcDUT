@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_DGPD" Id="{c4c81621-d2fd-4f66-bab9-769636119a8e}">
+    <Declaration><![CDATA[TYPE ST_DGPD :
+STRUCT
+    {attribute 'pytmc' := '
+        pv: RESET
+        io: io
+    '}
+    bReset               : BOOL;
+
+    {attribute 'pytmc' := '
+        pv: bMAINTMODE
+        io: io
+    '}
+    bMaintMode     : BOOL;
+
+    {attribute 'pytmc' := '
+        pv: SEQENABLE
+        io: io
+    '}
+    bSeqEnable : BOOL := TRUE;
+	
+    {attribute 'pytmc' := '
+        pv: STATE
+        io: io
+    '}
+    eSetTarget    : E_DGPDState := E_DGPDState.UNKNOWN; // Current target
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

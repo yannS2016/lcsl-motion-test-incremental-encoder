@@ -30,6 +30,9 @@
     <Compile Include="DUTs\E_SL3K4State.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\ST_DGPD.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ST_SL3K4State.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -130,8 +133,12 @@
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
     <Folder Include="POUs\DGPD" />
-    <Folder Include="POUs\SL3K4" />
-    <Folder Include="POUs\Tests" />
+    <Folder Include="POUs\SL3K4">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </Folder>
+    <Folder Include="POUs\Tests">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </Folder>
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>

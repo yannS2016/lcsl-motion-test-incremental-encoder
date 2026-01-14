@@ -183,10 +183,10 @@ END_CASE
 // Call main FB
 fbDGPD(
 	eSetTarget            := eSetTarget,
-    stMCS2StageRET        := stMCS2StageRET,
-    stMCS2StageX          := stMCS2StageX,
-    stMCS2StageY          := stMCS2StageY,
-    stMCS2StageZ          := stMCS2StageZ,
+    stMotionStageRET        := stMCS2StageRET,
+    stMotionStageX          := stMCS2StageX,
+    stMotionStageY          := stMCS2StageY,
+    stMotionStageZ          := stMCS2StageZ,
     fbFFHWO               := GVL_PMPS.fbFastFaultOutput1,
     fbArbiter             := GVL_PMPS.fbArbiter,
     bHVActive             := bHVActive,

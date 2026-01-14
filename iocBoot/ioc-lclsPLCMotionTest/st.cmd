@@ -43,7 +43,7 @@ epicsEnvSet("ASYN_PORT",        "ASYN_PLC")
 epicsEnvSet("IPADDR",           "172.21.148.154")
 epicsEnvSet("AMSID",            "172.21.148.154.1.1")
 epicsEnvSet("AMS_PORT",         "851")
-epicsEnvSet("ADS_MAX_PARAMS",   "3188")
+epicsEnvSet("ADS_MAX_PARAMS",   "3622")
 epicsEnvSet("ADS_SAMPLE_MS",    "50")
 epicsEnvSet("ADS_MAX_DELAY_MS", "100")
 epicsEnvSet("ADS_TIMEOUT_MS",   "1000")
@@ -113,10 +113,10 @@ asynSetTraceInfoMask("$(ASYN_PORT)", -1, 5)
 #define AMPLIFIER_ON_FLAG_WHEN_HOMING  2
 #define AMPLIFIER_ON_FLAG_USING_CNEN   4
 
-epicsEnvSet("AXIS_NO",         "13")
-epicsEnvSet("MOTOR_PREFIX",    "DREAM:SLIT:MMS:")
-epicsEnvSet("MOTOR_NAME",      "X1")
-epicsEnvSet("DESC",            "Main.M13 / M13_DREAM_SLIT_MMT_X1")
+epicsEnvSet("AXIS_NO",         "9")
+epicsEnvSet("MOTOR_PREFIX",    "DREAM:DGPD:MMT:")
+epicsEnvSet("MOTOR_NAME",      "X")
+epicsEnvSet("DESC",            "Main.M9 / M9_DREAM_DGPD_MMT_X")
 epicsEnvSet("EGU",             "mm")
 epicsEnvSet("PREC",            "3")
 epicsEnvSet("AXISCONFIG",      "")
@@ -128,10 +128,10 @@ dbLoadRecords("EthercatMC.template", "PREFIX=$(MOTOR_PREFIX), MOTOR_NAME=$(MOTOR
 dbLoadRecords("EthercatMCreadback.template", "PREFIX=$(MOTOR_PREFIX), MOTOR_NAME=$(MOTOR_NAME), R=$(MOTOR_NAME)-, MOTOR_PORT=$(MOTOR_PORT), ASYN_PORT=$(ASYN_PORT), AXIS_NO=$(AXIS_NO), DESC=$(DESC), PREC=$(PREC) ")
 dbLoadRecords("EthercatMCdebug.template", "PREFIX=$(MOTOR_PREFIX), MOTOR_NAME=$(MOTOR_NAME), MOTOR_PORT=$(MOTOR_PORT), AXIS_NO=$(AXIS_NO), PREC=3")
 
-epicsEnvSet("AXIS_NO",         "14")
-epicsEnvSet("MOTOR_PREFIX",    "DREAM:SLIT:MMS:")
-epicsEnvSet("MOTOR_NAME",      "X2")
-epicsEnvSet("DESC",            "Main.M14 / M14_DREAM_SLIT_MMT_X2")
+epicsEnvSet("AXIS_NO",         "10")
+epicsEnvSet("MOTOR_PREFIX",    "DREAM:DGPD:MMT:")
+epicsEnvSet("MOTOR_NAME",      "Y")
+epicsEnvSet("DESC",            "Main.M10 / M10_DREAM_DGPD_MMT_Y")
 epicsEnvSet("EGU",             "mm")
 epicsEnvSet("PREC",            "3")
 epicsEnvSet("AXISCONFIG",      "")
@@ -143,10 +143,10 @@ dbLoadRecords("EthercatMC.template", "PREFIX=$(MOTOR_PREFIX), MOTOR_NAME=$(MOTOR
 dbLoadRecords("EthercatMCreadback.template", "PREFIX=$(MOTOR_PREFIX), MOTOR_NAME=$(MOTOR_NAME), R=$(MOTOR_NAME)-, MOTOR_PORT=$(MOTOR_PORT), ASYN_PORT=$(ASYN_PORT), AXIS_NO=$(AXIS_NO), DESC=$(DESC), PREC=$(PREC) ")
 dbLoadRecords("EthercatMCdebug.template", "PREFIX=$(MOTOR_PREFIX), MOTOR_NAME=$(MOTOR_NAME), MOTOR_PORT=$(MOTOR_PORT), AXIS_NO=$(AXIS_NO), PREC=3")
 
-epicsEnvSet("AXIS_NO",         "15")
-epicsEnvSet("MOTOR_PREFIX",    "DREAM:SLIT:MMS:")
-epicsEnvSet("MOTOR_NAME",      "Y1")
-epicsEnvSet("DESC",            "Main.M15 / M15_DREAM_SLIT_MMT_Y1")
+epicsEnvSet("AXIS_NO",         "11")
+epicsEnvSet("MOTOR_PREFIX",    "DREAM:DGPD:MMT:")
+epicsEnvSet("MOTOR_NAME",      "Z")
+epicsEnvSet("DESC",            "Main.M11 / M11_DREAM_DGPD_MMT_Z")
 epicsEnvSet("EGU",             "mm")
 epicsEnvSet("PREC",            "3")
 epicsEnvSet("AXISCONFIG",      "")
@@ -158,10 +158,10 @@ dbLoadRecords("EthercatMC.template", "PREFIX=$(MOTOR_PREFIX), MOTOR_NAME=$(MOTOR
 dbLoadRecords("EthercatMCreadback.template", "PREFIX=$(MOTOR_PREFIX), MOTOR_NAME=$(MOTOR_NAME), R=$(MOTOR_NAME)-, MOTOR_PORT=$(MOTOR_PORT), ASYN_PORT=$(ASYN_PORT), AXIS_NO=$(AXIS_NO), DESC=$(DESC), PREC=$(PREC) ")
 dbLoadRecords("EthercatMCdebug.template", "PREFIX=$(MOTOR_PREFIX), MOTOR_NAME=$(MOTOR_NAME), MOTOR_PORT=$(MOTOR_PORT), AXIS_NO=$(AXIS_NO), PREC=3")
 
-epicsEnvSet("AXIS_NO",         "16")
-epicsEnvSet("MOTOR_PREFIX",    "DREAM:SLIT:MMS:")
-epicsEnvSet("MOTOR_NAME",      "Y2")
-epicsEnvSet("DESC",            "Main.M16 / M16_DREAM_SLIT_MMT_Y2")
+epicsEnvSet("AXIS_NO",         "12")
+epicsEnvSet("MOTOR_PREFIX",    "DREAM:DGPD:MMT:")
+epicsEnvSet("MOTOR_NAME",      "RET")
+epicsEnvSet("DESC",            "Main.M12 / M12_DREAM_DGPD_MMT_RET")
 epicsEnvSet("EGU",             "mm")
 epicsEnvSet("PREC",            "3")
 epicsEnvSet("AXISCONFIG",      "")
@@ -206,8 +206,8 @@ cd "$(IOC_TOP)"
 ## PLC Project Database files ##
 dbLoadRecords("lclsPLCMotionTest.db", "PORT=$(ASYN_PORT),PREFIX=PLC:lclsPLCMotionTest:,IOCNAME=$(IOC),IOC=$(IOC)")
 
-# Total records: 2188
-callbackSetQueueSize(6376)
+# Total records: 2622
+callbackSetQueueSize(7244)
 
 # Autosave and archive settings:
 save_restoreSet_status_prefix("PLC:lclsPLCMotionTest:")

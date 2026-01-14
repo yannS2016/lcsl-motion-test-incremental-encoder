@@ -7,10 +7,15 @@
 *)
 FUNCTION_BLOCK  FB_DGPDEPS
 VAR_IN_OUT
-    stMCS2StageRET : ST_MCS2Stage;
-    stMCS2StageX   : ST_MCS2Stage;
-    stMCS2StageY   : ST_MCS2Stage;
-    stMCS2StageZ   : ST_MCS2Stage;
+    stMotionStageRET : ST_MotionStage;
+    stMotionStageX	 : ST_MotionStage;
+    stMotionStageY   : ST_MotionStage;
+    stMotionStageZ   : ST_MotionStage;
+	
+    stMCS2ChanParameterRET : ST_MCS2ChanParameter;
+    stMCS2ChanParameterX   : ST_MCS2ChanParameter;
+    stMCS2ChanParameterY   : ST_MCS2ChanParameter;
+    stMCS2ChanParameterZ   : ST_MCS2ChanParameter;
 END_VAR
 
 VAR_INPUT
@@ -50,106 +55,110 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF NOT __ISVALIDREF(stMCS2StageRET)
-    OR NOT __ISVALIDREF(stMCS2StageX)
-    OR NOT __ISVALIDREF(stMCS2StageY)
-    OR NOT __ISVALIDREF(stMCS2StageZ)
+      <ST><![CDATA[IF NOT __ISVALIDREF(stMotionStageRET)
+    OR NOT __ISVALIDREF(stMotionStageX)
+    OR NOT __ISVALIDREF(stMotionStageY)
+    OR NOT __ISVALIDREF(stMotionStageZ)
+	OR NOT __ISVALIDREF(stMCS2ChanParameterRET)
+    OR NOT __ISVALIDREF(stMCS2ChanParameterX)
+    OR NOT __ISVALIDREF(stMCS2ChanParameterY)
+    OR NOT __ISVALIDREF(stMCS2ChanParameterZ)
 THEN
     RETURN;
 END_IF
 
 IF bEnable THEN
     // =========== RET EPS Directional Checks ===========
-    epsHVRETPositive(eps := stMCS2StageRET.stEPSForwardEnable);
+    epsHVRETPositive(eps := stMotionStageRET.stEPSForwardEnable);
     epsHVRETPositive.setBit(nBits := 0, bValue := NOT bHVActive);
-    epsCalRETPositive(eps := stMCS2StageRET.stEPSForwardEnable);
-    epsCalRETPositive.setBit(nBits := 1, bValue := stMCS2StageRET.stChannelState.bIsCalibrated);
-    epsRefRETPositive(eps := stMCS2StageRET.stEPSForwardEnable);
-    epsRefRETPositive.setBit(nBits := 2, bValue := stMCS2StageRET.stChannelState.bIsReferenced);
-    epsSensRETPositive(eps := stMCS2StageRET.stEPSForwardEnable);
-    epsSensRETPositive.setBit(nBits := 3, bValue := stMCS2StageRET.stChannelState.bSensorPresent);
+    epsCalRETPositive(eps := stMotionStageRET.stEPSForwardEnable);
+    epsCalRETPositive.setBit(nBits := 1, bValue := stMCS2ChanParameterRET.stChannelState.bIsCalibrated);
+    epsRefRETPositive(eps := stMotionStageRET.stEPSForwardEnable);
+    epsRefRETPositive.setBit(nBits := 2, bValue := stMCS2ChanParameterRET.stChannelState.bIsReferenced);
+    epsSensRETPositive(eps := stMotionStageRET.stEPSForwardEnable);
+    epsSensRETPositive.setBit(nBits := 3, bValue := stMCS2ChanParameterRET.stChannelState.bSensorPresent);
 
-    epsHVRETNegative(eps := stMCS2StageRET.stEPSBackwardEnable);
+    epsHVRETNegative(eps := stMotionStageRET.stEPSBackwardEnable);
     epsHVRETNegative.setBit(nBits := 0, bValue := NOT bHVActive);
-    epsCalRETNegative(eps := stMCS2StageRET.stEPSBackwardEnable);
-    epsCalRETNegative.setBit(nBits := 1, bValue := stMCS2StageRET.stChannelState.bIsCalibrated);
-    epsRefRETNegative(eps := stMCS2StageRET.stEPSBackwardEnable);
-    epsRefRETNegative.setBit(nBits := 2, bValue := stMCS2StageRET.stChannelState.bIsReferenced);
-    epsSensRETNegative(eps := stMCS2StageRET.stEPSBackwardEnable);
-    epsSensRETNegative.setBit(nBits := 3, bValue := stMCS2StageRET.stChannelState.bSensorPresent);
+    epsCalRETNegative(eps := stMotionStageRET.stEPSBackwardEnable);
+    epsCalRETNegative.setBit(nBits := 1, bValue := stMCS2ChanParameterRET.stChannelState.bIsCalibrated);
+    epsRefRETNegative(eps := stMotionStageRET.stEPSBackwardEnable);
+    epsRefRETNegative.setBit(nBits := 2, bValue := stMCS2ChanParameterRET.stChannelState.bIsReferenced);
+    epsSensRETNegative(eps := stMotionStageRET.stEPSBackwardEnable);
+    epsSensRETNegative.setBit(nBits := 3, bValue := stMCS2ChanParameterRET.stChannelState.bSensorPresent);
 
     bSafeToMoveRET :=
-        stMCS2StageRET.stEPSForwardEnable.bEPS_OK
-        AND stMCS2StageRET.stEPSBackwardEnable.bEPS_OK;
+        stMotionStageRET.stEPSForwardEnable.bEPS_OK
+        AND stMotionStageRET.stEPSBackwardEnable.bEPS_OK;
 
     // =========== X Axis EPS Directional Checks ===========
-    epsHVXPositive(eps := stMCS2StageX.stEPSForwardEnable);
+    epsHVXPositive(eps := stMotionStageX.stEPSForwardEnable);
     epsHVXPositive.setBit(nBits := 0, bValue := NOT bHVActive);
-    epsCalXPositive(eps := stMCS2StageX.stEPSForwardEnable);
-    epsCalXPositive.setBit(nBits := 1, bValue := stMCS2StageX.stChannelState.bIsCalibrated);
-    epsRefXPositive(eps := stMCS2StageX.stEPSForwardEnable);
-    epsRefXPositive.setBit(nBits := 2, bValue := stMCS2StageX.stChannelState.bIsReferenced);
-    epsSensXPositive(eps := stMCS2StageX.stEPSForwardEnable);
-    epsSensXPositive.setBit(nBits := 3, bValue := stMCS2StageX.stChannelState.bSensorPresent);
+    epsCalXPositive(eps := stMotionStageX.stEPSForwardEnable);
+    epsCalXPositive.setBit(nBits := 1, bValue := stMCS2ChanParameterX.stChannelState.bIsCalibrated);
+    epsRefXPositive(eps := stMotionStageX.stEPSForwardEnable);
+    epsRefXPositive.setBit(nBits := 2, bValue := stMCS2ChanParameterX.stChannelState.bIsReferenced);
+    epsSensXPositive(eps := stMotionStageX.stEPSForwardEnable);
+    epsSensXPositive.setBit(nBits := 3, bValue := stMCS2ChanParameterX.stChannelState.bSensorPresent);
 
-    epsHVXNegative(eps := stMCS2StageX.stEPSBackwardEnable);
+    epsHVXNegative(eps := stMotionStageX.stEPSBackwardEnable);
     epsHVXNegative.setBit(nBits := 0, bValue := NOT bHVActive);
-    epsCalXNegative(eps := stMCS2StageX.stEPSBackwardEnable);
-    epsCalXNegative.setBit(nBits := 1, bValue := stMCS2StageX.stChannelState.bIsCalibrated);
-    epsRefXNegative(eps := stMCS2StageX.stEPSBackwardEnable);
-    epsRefXNegative.setBit(nBits := 2, bValue := stMCS2StageX.stChannelState.bIsReferenced);
-    epsSensXNegative(eps := stMCS2StageX.stEPSBackwardEnable);
-    epsSensXNegative.setBit(nBits := 3, bValue := stMCS2StageX.stChannelState.bSensorPresent);
+    epsCalXNegative(eps := stMotionStageX.stEPSBackwardEnable);
+    epsCalXNegative.setBit(nBits := 1, bValue := stMCS2ChanParameterX.stChannelState.bIsCalibrated);
+    epsRefXNegative(eps := stMotionStageX.stEPSBackwardEnable);
+    epsRefXNegative.setBit(nBits := 2, bValue := stMCS2ChanParameterX.stChannelState.bIsReferenced);
+    epsSensXNegative(eps := stMotionStageX.stEPSBackwardEnable);
+    epsSensXNegative.setBit(nBits := 3, bValue := stMCS2ChanParameterX.stChannelState.bSensorPresent);
 
     bSafeToMoveX :=
-        stMCS2StageX.stEPSForwardEnable.bEPS_OK
-        AND stMCS2StageX.stEPSBackwardEnable.bEPS_OK;
+        stMotionStageX.stEPSForwardEnable.bEPS_OK
+        AND stMotionStageX.stEPSBackwardEnable.bEPS_OK;
 
     // =========== Y Axis EPS Directional Checks ===========
-    epsHVYPositive(eps := stMCS2StageY.stEPSForwardEnable);
+    epsHVYPositive(eps := stMotionStageY.stEPSForwardEnable);
     epsHVYPositive.setBit(nBits := 0, bValue := NOT bHVActive);
-    epsCalYPositive(eps := stMCS2StageY.stEPSForwardEnable);
-    epsCalYPositive.setBit(nBits := 1, bValue := stMCS2StageY.stChannelState.bIsCalibrated);
-    epsRefYPositive(eps := stMCS2StageY.stEPSForwardEnable);
-    epsRefYPositive.setBit(nBits := 2, bValue := stMCS2StageY.stChannelState.bIsReferenced);
-    epsSensYPositive(eps := stMCS2StageY.stEPSForwardEnable);
-    epsSensYPositive.setBit(nBits := 3, bValue := stMCS2StageY.stChannelState.bSensorPresent);
+    epsCalYPositive(eps := stMotionStageY.stEPSForwardEnable);
+    epsCalYPositive.setBit(nBits := 1, bValue := stMCS2ChanParameterY.stChannelState.bIsCalibrated);
+    epsRefYPositive(eps := stMotionStageY.stEPSForwardEnable);
+    epsRefYPositive.setBit(nBits := 2, bValue := stMCS2ChanParameterY.stChannelState.bIsReferenced);
+    epsSensYPositive(eps := stMotionStageY.stEPSForwardEnable);
+    epsSensYPositive.setBit(nBits := 3, bValue := stMCS2ChanParameterY.stChannelState.bSensorPresent);
 
-    epsHVYNegative(eps := stMCS2StageY.stEPSBackwardEnable);
+    epsHVYNegative(eps := stMotionStageY.stEPSBackwardEnable);
     epsHVYNegative.setBit(nBits := 0, bValue := NOT bHVActive);
-    epsCalYNegative(eps := stMCS2StageY.stEPSBackwardEnable);
-    epsCalYNegative.setBit(nBits := 1, bValue := stMCS2StageY.stChannelState.bIsCalibrated);
-    epsRefYNegative(eps := stMCS2StageY.stEPSBackwardEnable);
-    epsRefYNegative.setBit(nBits := 2, bValue := stMCS2StageY.stChannelState.bIsReferenced);
-    epsSensYNegative(eps := stMCS2StageY.stEPSBackwardEnable);
-    epsSensYNegative.setBit(nBits := 3, bValue := stMCS2StageY.stChannelState.bSensorPresent);
+    epsCalYNegative(eps := stMotionStageY.stEPSBackwardEnable);
+    epsCalYNegative.setBit(nBits := 1, bValue := stMCS2ChanParameterY.stChannelState.bIsCalibrated);
+    epsRefYNegative(eps := stMotionStageY.stEPSBackwardEnable);
+    epsRefYNegative.setBit(nBits := 2, bValue := stMCS2ChanParameterY.stChannelState.bIsReferenced);
+    epsSensYNegative(eps := stMotionStageY.stEPSBackwardEnable);
+    epsSensYNegative.setBit(nBits := 3, bValue := stMCS2ChanParameterY.stChannelState.bSensorPresent);
 
     bSafeToMoveY :=
-        stMCS2StageY.stEPSForwardEnable.bEPS_OK
-        AND stMCS2StageY.stEPSBackwardEnable.bEPS_OK;
+        stMotionStageY.stEPSForwardEnable.bEPS_OK
+        AND stMotionStageY.stEPSBackwardEnable.bEPS_OK;
 
     // =========== Z Axis EPS Directional Checks ===========
-    epsHVZPositive(eps := stMCS2StageZ.stEPSForwardEnable);
+    epsHVZPositive(eps := stMotionStageZ.stEPSForwardEnable);
     epsHVZPositive.setBit(nBits := 0, bValue := NOT bHVActive);
-    epsCalZPositive(eps := stMCS2StageZ.stEPSForwardEnable);
-    epsCalZPositive.setBit(nBits := 1, bValue := stMCS2StageZ.stChannelState.bIsCalibrated);
-    epsRefZPositive(eps := stMCS2StageZ.stEPSForwardEnable);
-    epsRefZPositive.setBit(nBits := 2, bValue := stMCS2StageZ.stChannelState.bIsReferenced);
-    epsSensZPositive(eps := stMCS2StageZ.stEPSForwardEnable);
-    epsSensZPositive.setBit(nBits := 3, bValue :=stMCS2StageZ.stChannelState.bSensorPresent);
+    epsCalZPositive(eps := stMotionStageZ.stEPSForwardEnable);
+    epsCalZPositive.setBit(nBits := 1, bValue := stMCS2ChanParameterZ.stChannelState.bIsCalibrated);
+    epsRefZPositive(eps := stMotionStageZ.stEPSForwardEnable);
+    epsRefZPositive.setBit(nBits := 2, bValue := stMCS2ChanParameterZ.stChannelState.bIsReferenced);
+    epsSensZPositive(eps := stMotionStageZ.stEPSForwardEnable);
+    epsSensZPositive.setBit(nBits := 3, bValue :=stMCS2ChanParameterZ.stChannelState.bSensorPresent);
 
-    epsHVZNegative(eps := stMCS2StageZ.stEPSBackwardEnable);
+    epsHVZNegative(eps := stMotionStageZ.stEPSBackwardEnable);
     epsHVZNegative.setBit(nBits := 0, bValue := NOT bHVActive);
-    epsCalZNegative(eps := stMCS2StageZ.stEPSBackwardEnable);
-    epsCalZNegative.setBit(nBits := 1, bValue := stMCS2StageZ.stChannelState.bIsCalibrated);
-    epsRefZNegative(eps := stMCS2StageZ.stEPSBackwardEnable);
-    epsRefZNegative.setBit(nBits := 2, bValue := stMCS2StageZ.stChannelState.bIsReferenced);
-    epsSensZNegative(eps := stMCS2StageZ.stEPSBackwardEnable);
-    epsSensZNegative.setBit(nBits := 3, bValue := stMCS2StageZ.stChannelState.bSensorPresent);
+    epsCalZNegative(eps := stMotionStageZ.stEPSBackwardEnable);
+    epsCalZNegative.setBit(nBits := 1, bValue := stMCS2ChanParameterZ.stChannelState.bIsCalibrated);
+    epsRefZNegative(eps := stMotionStageZ.stEPSBackwardEnable);
+    epsRefZNegative.setBit(nBits := 2, bValue := stMCS2ChanParameterZ.stChannelState.bIsReferenced);
+    epsSensZNegative(eps := stMotionStageZ.stEPSBackwardEnable);
+    epsSensZNegative.setBit(nBits := 3, bValue := stMCS2ChanParameterZ.stChannelState.bSensorPresent);
 
     bSafeToMoveZ :=
-        stMCS2StageZ.stEPSForwardEnable.bEPS_OK
-        AND stMCS2StageZ.stEPSBackwardEnable.bEPS_OK;
+        stMotionStageZ.stEPSForwardEnable.bEPS_OK
+        AND stMotionStageZ.stEPSBackwardEnable.bEPS_OK;
 
     // --- Global output ---
     bSafeToMove := bSafeToMoveRET AND bSafeToMoveX AND bSafeToMoveY AND bSafeToMoveZ;
@@ -164,8 +173,9 @@ END_IF
 *)
 METHOD epsMaintenanceMode : BOOL
 VAR_INST
-    epsSafetToMoveRETPositive  : FB_EPS;
-    epsSafetToMoveRETNegative  : FB_EPS;
+//     epsSafetToMoveRETPositive  : FB_EPS;
+//     epsSafetToMoveRETNegative  : FB_EPS;
+	epsSafetToMoveRET  : FB_EPS;
 END_VAR
 
 VAR_INPUT
@@ -173,10 +183,11 @@ VAR_INPUT
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF bEnable THEN
-    epsSafetToMoveRETPositive(eps := stMCS2StageRET.stEPSForwardEnable);
-    epsSafetToMoveRETPositive.setBit(nBits := 4, bValue := bRETSafeToMove);
-    epsSafetToMoveRETNegative(eps := stMCS2StageRET.stEPSBackwardEnable);
-    epsSafetToMoveRETNegative.setBit(nBits := 4, bValue := bRETSafeToMove);
+    epsSafetToMoveRET(eps := stMotionStageRET.stEPSPowerEnable);
+    epsSafetToMoveRET.setBit(nBits := 1, bValue := bRETSafeToMove);
+	IF NOT bRETSafeToMove THEN
+		stMotionStageRET.sCustomErrorMessage := 'RET Locked out: Address collision avoidance hazard';
+	END_IF
 END_IF
 ]]></ST>
       </Implementation>

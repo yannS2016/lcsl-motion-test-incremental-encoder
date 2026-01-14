@@ -20,8 +20,10 @@ VAR_INPUT
     sTransitionKey       : STRING;
 	{attribute 'hide'}
     bEnableDriftCheck    : BOOL := TRUE;
-	{attribute 'hide'}
-    fDriftTolerance      : LREAL := 0.003;
+	
+	{attribute 'pytmc' := 'pv: DRIFT'}
+    fDriftTol      : LREAL := 0.003; // 3um
+
 	{attribute 'hide'}
     bEnableBeamParams    : BOOL := TRUE;
     bReadDBNow           : BOOL;
@@ -328,7 +330,7 @@ FOR nBlades := 1 TO nActiveMotorCount DO
             IF bTransitionCompleted THEN
                 IF bEnableDriftCheck THEN
                     arfDrift[nBlades] := ABS(astMotionStage[nBlades].axis.NcToPlc.ActPos - astChanParam[nBlades].fPosition);
-                    IF arfDrift[nBlades] > fDriftTolerance THEN
+                    IF arfDrift[nBlades] > fDriftTol THEN
                         bDriftFF := TRUE;
                         // use  the drifttolerance in the error message.
                         sStatusMsg := CONCAT(astMotionStage[nBlades].sName, CONCAT('drifted out by', LREAL_TO_FMTSTR(arfDrift[nBlades],5,TRUE)));

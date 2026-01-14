@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.17" ClassName="CNcSafTaskDef" SubType="0" TcProjectVariant="slits">
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.17" ClassName="CNcSafTaskDef" SubType="0" TcProjectVariant="dgpd">
 	<NC>
 		<SafTask Priority="4" CycleTime="10000" AmsPort="501" IoAtBegin="true" SafTaskInfo="256" HighPrioAds="true">
 			<Name>NC-Task 1</Name>
@@ -17,10 +17,10 @@
 			<Name>NC-Task 1 SVB</Name>
 		</SvbTask>
 		<AxisFolder Name="In Vacuum"/>
+		<Axis File="M12_DREAM_DGPD_MMT_RET.xti" Id="12"/>
 		<Axis File="M9_DREAM_DGPD_MMT_X.xti" Id="9"/>
 		<Axis File="M10_DREAM_DGPD_MMT_Y.xti" Id="10"/>
 		<Axis File="M11_DREAM_DGPD_MMT_Z.xti" Id="11"/>
-		<Axis File="M12_DREAM_DGPD_MMT_RET.xti" Id="12"/>
 		<Axis File="M13_DREAM_SLIT_MMT_X1.xti" Id="13"/>
 		<Axis File="M14_DREAM_SLIT_MMT_X2.xti" Id="14"/>
 		<Axis File="M15_DREAM_SLIT_MMT_Y1.xti" Id="15"/>

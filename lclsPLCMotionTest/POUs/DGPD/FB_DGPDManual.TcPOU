@@ -13,13 +13,9 @@ VAR_IN_OUT
     astPositionStateX: ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
     astPositionStateY: ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
     astPositionStateZ: ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-    stMCS2StageX: ST_MCS2Stage;
-    stMCS2StageY: ST_MCS2Stage;
-    stMCS2StageZ: ST_MCS2Stage;
-END_VAR
-
-VAR_INPUT
-    fDelta : LREAL; // allowed tolerance
+    stMotionStageX: ST_MotionStage;
+    stMotionStageY: ST_MotionStage;
+    stMotionStageZ: ST_MotionStage;
 END_VAR
 
 VAR_OUTPUT
@@ -30,9 +26,9 @@ END_VAR
       <ST><![CDATA[IF NOT __ISVALIDREF(astPositionStateX)
     OR NOT __ISVALIDREF(astPositionStateY)
     OR NOT __ISVALIDREF(astPositionStateZ)
-    OR NOT __ISVALIDREF(stMCS2StageY)
-    OR NOT __ISVALIDREF(stMCS2StageZ)
-    OR NOT __ISVALIDREF(stMCS2StageX )
+    OR NOT __ISVALIDREF(stMotionStageY)
+    OR NOT __ISVALIDREF(stMotionStageZ)
+    OR NOT __ISVALIDREF(stMotionStageX )
 THEN
     RETURN;
 END_IF
@@ -41,9 +37,10 @@ END_IF
 bSafeToMoveRET := TRUE;
 
 // Only when all are within tolerance, RET is safe to move
-bSafeToMoveRET := ABS(stMCS2StageX.Axis.NcToPlc.ActPos - astPositionStateX[E_DGPDState.OUT].fPosition) <= fDelta
-                  AND  ABS(stMCS2StageY.Axis.NcToPlc.ActPos - astPositionStateY[E_DGPDState.OUT].fPosition) <= fDelta
-                  AND  ABS(stMCS2StageZ.Axis.NcToPlc.ActPos - astPositionStateZ[E_DGPDState.OUT].fPosition) <= fDelta;]]></ST>
+bSafeToMoveRET := ABS(stMotionStageX.Axis.NcToPlc.ActPos - astPositionStateX[E_DGPDState.OUT].fPosition) <= astPositionStateX[E_DGPDState.OUT].fDelta
+                  AND  ABS(stMotionStageY.Axis.NcToPlc.ActPos - astPositionStateY[E_DGPDState.OUT].fPosition) <= astPositionStateY[E_DGPDState.OUT].fDelta
+                  AND  ABS(stMotionStageZ.Axis.NcToPlc.ActPos - astPositionStateZ[E_DGPDState.OUT].fPosition) <= astPositionStateZ[E_DGPDState.OUT].fDelta;
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

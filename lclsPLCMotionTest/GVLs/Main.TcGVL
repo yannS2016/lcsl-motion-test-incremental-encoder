@@ -5,70 +5,70 @@
 VAR_GLOBAL
 // In-Vacuum Motion
 
-//     {attribute 'pytmc':='pv: DREAM:DGPD:MMT:X'}
-//     {attribute 'TcLinkTo' := '
-//         .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Position Actual Value;
-//     '}
-//     M9 : ST_MotionStage:= (
-//             sName:='DREAM:DGPD:MMT:X'
-//     );
-// 
-//     {attribute 'pytmc':='pv: DREAM:DGPD:MMT:Y'}
-//     {attribute 'TcLinkTo' := '
-//         .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Position Actual Value;
-//     '}
-//     M10 : ST_MotionStage:= (
-// 		sName:='DREAM:DGPD:MMT:Y'
-//     );
-// 
-//     {attribute 'pytmc':='pv: DREAM:DGPD:MMT:Z'}
+    {attribute 'pytmc':='pv: DREAM:DGPD:MMT:X'}
+    {attribute 'TcLinkTo' := '
+        .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Position Actual Value;
+    '}
+    M9 : ST_MotionStage:= (
+            sName:='DREAM:DGPD:MMT:X'
+    );
+
+    {attribute 'pytmc':='pv: DREAM:DGPD:MMT:Y'}
+    {attribute 'TcLinkTo' := '
+        .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Position Actual Value;
+    '}
+    M10 : ST_MotionStage:= (
+		sName:='DREAM:DGPD:MMT:Y'
+    );
+
+    {attribute 'pytmc':='pv: DREAM:DGPD:MMT:Z'}
 //     {attribute 'TcLinkTo' := '
 //      .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^mode/status/pos/fError TxPDO^Position Actual Value;
 //     '}
-//     M11 : ST_MotionStage:= (
-//                 sName:='DREAM:DGPD:MMT:Z'
-//     );
-// 
-//     {attribute 'pytmc':='pv: DREAM:DGPD:MMT:RET'}
-//     {attribute 'TcLinkTo' := '
-//         .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-04^DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Position Actual Value;
-//     '}
-//     M12 : ST_MotionStage:= (
-//         sName:='DREAM:DGPD:MMT:RET'
-//     );
+    M11 : ST_MotionStage:= (
+                sName:='DREAM:DGPD:MMT:Z'
+    );
+
+    {attribute 'pytmc':='pv: DREAM:DGPD:MMT:RET'}
+    {attribute 'TcLinkTo' := '
+        .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Position Actual Value;
+    '}
+    M12 : ST_MotionStage:= (
+        sName:='DREAM:DGPD:MMT:RET'
+    );
 
     // SL1K4-SCATTER: 4 Axes
-    {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:X1'}
-    {attribute 'TcLinkTo' := '
-        .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Position Actual Value
-    '}
-    M13: ST_MotionStage:= (
-        sName:='DREAM:SLIT:MMT:X1'
-    );
+//     {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:X1'}
+//     {attribute 'TcLinkTo' := '
+//         .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Position Actual Value
+//     '}
+//     M13: ST_MotionStage:= (
+//         sName:='DREAM:SLIT:MMT:X1'
+//     );
+// 
+//     {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:X2'}
+//     {attribute 'TcLinkTo' := '
+//         .nRawEncoderDINT :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Position Actual Value
+//     '}
+//     M14: ST_MotionStage:= (
+//         sName:='DREAM:SLIT:MMT:X2'
+//     );
+// 
+//     {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:Y1'}
+//     {attribute 'TcLinkTo' := '
+//         .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Position Actual Value
+//     '}
+//     M15: ST_MotionStage:= (
+//         sName:='DREAM:SLIT:MMT:Y1'
+//     );
 
-    {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:X2'}
-    {attribute 'TcLinkTo' := '
-        .nRawEncoderDINT :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:X2^mode/status/pos/fError TxPDO^Position Actual Value
-    '}
-    M14: ST_MotionStage:= (
-        sName:='DREAM:SLIT:MMT:X2'
-    );
-
-    {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:Y1'}
-    {attribute 'TcLinkTo' := '
-        .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:Y1^mode/status/pos/fError TxPDO^Position Actual Value
-    '}
-    M15: ST_MotionStage:= (
-        sName:='DREAM:SLIT:MMT:Y1'
-    );
-
-    {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:Y2'}
+//    {attribute 'pytmc' := 'pv: DREAM:SLIT:MMS:Y2'}
 //     {attribute 'TcLinkTo' := '
 //         .nRawEncoderDINT        :=TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-05^DREAM:SLIT:MMT:Y2^mode/status/pos/fError TxPDO^Position Actual Value
 //     '}
-    M16: ST_MotionStage:= (
-        sName:='DREAM:SLIT:MMT:Y2'
-    );
+//     M16: ST_MotionStage:= (
+//         sName:='DREAM:SLIT:MMT:Y2'
+//     );
 
 END_VAR ]]></Declaration>
   </GVL>

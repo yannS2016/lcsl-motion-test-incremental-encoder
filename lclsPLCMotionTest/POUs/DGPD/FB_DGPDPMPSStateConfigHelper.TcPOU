@@ -81,6 +81,8 @@ fbStateSetupRET(stPositionState := astPositionStateRET[E_DGPDState.TARGET4],    
 astPositionStateRET[E_DGPDState.TARGET4].stPMPS.sPmpsState := 'DREAM:PF-TARGET4';
 fbStateSetupRET(stPositionState := astPositionStateRET[E_DGPDState.TARGET5],    fDelta := 0.1, sName := 'TARGET5',     fPosition := 22.79);
 astPositionStateRET[E_DGPDState.TARGET5].stPMPS.sPmpsState := 'DREAM:PF-TARGET5';
+fbStateSetupRET(stPositionState := astPositionStateRET[E_DGPDState.TARGET6],    fDelta := 0.1, sName := 'TARGET6',     fPosition := 22.79);
+astPositionStateRET[E_DGPDState.TARGET6].stPMPS.sPmpsState := 'DREAM:PF-TARGET6';
 
 fbStateSetupX(stPositionState := stDefault, bSetDefault := TRUE);
 fbStateSetupX(stPositionState := astPositionStateX[E_DGPDState.OUT],        fDelta := 0.1, sName := 'OUT',         fPosition := 2.5);
@@ -101,6 +103,8 @@ fbStateSetupX(stPositionState := astPositionStateX[E_DGPDState.TARGET4],    fDel
 astPositionStateX[E_DGPDState.TARGET4].stPMPS.sPmpsState := 'DREAM:PF-TARGET4';
 fbStateSetupX(stPositionState := astPositionStateX[E_DGPDState.TARGET5],    fDelta := 0.1, sName := 'TARGET5',     fPosition := 22.79);
 astPositionStateX[E_DGPDState.TARGET5].stPMPS.sPmpsState := 'DREAM:PF-TARGET5';
+fbStateSetupX(stPositionState := astPositionStateX[E_DGPDState.TARGET6],    fDelta := 0.1, sName := 'TARGET6',     fPosition := 22.79);
+astPositionStateX[E_DGPDState.TARGET6].stPMPS.sPmpsState := 'DREAM:PF-TARGET6';
 
 fbStateSetupY(stPositionState := stDefault, bSetDefault := TRUE);
 fbStateSetupY(stPositionState := astPositionStateY[E_DGPDState.OUT],        fDelta := 0.1, sName := 'OUT',         fPosition := 2.5);
@@ -121,6 +125,8 @@ fbStateSetupY(stPositionState := astPositionStateY[E_DGPDState.TARGET4],    fDel
 astPositionStateY[E_DGPDState.TARGET4].stPMPS.sPmpsState := 'DREAM:PF-TARGET4';
 fbStateSetupY(stPositionState := astPositionStateY[E_DGPDState.TARGET5],    fDelta := 0.1, sName := 'TARGET5',     fPosition := 22.79);
 astPositionStateY[E_DGPDState.TARGET5].stPMPS.sPmpsState := 'DREAM:PF-TARGET5';
+fbStateSetupY(stPositionState := astPositionStateY[E_DGPDState.TARGET6],    fDelta := 0.1, sName := 'TARGET6',     fPosition := 22.79);
+astPositionStateY[E_DGPDState.TARGET6].stPMPS.sPmpsState := 'DREAM:PF-TARGET6';
 
 fbStateSetupZ(stPositionState := stDefault, bSetDefault := TRUE);
 fbStateSetupZ(stPositionState := astPositionStateZ[E_DGPDState.OUT],        fDelta := 0.1, sName := 'OUT',         fPosition := 2.5);
@@ -141,7 +147,8 @@ fbStateSetupZ(stPositionState := astPositionStateZ[E_DGPDState.TARGET4],    fDel
 astPositionStateZ[E_DGPDState.TARGET4].stPMPS.sPmpsState := 'DREAM:PF-TARGET4';
 fbStateSetupZ(stPositionState := astPositionStateZ[E_DGPDState.TARGET5],    fDelta := 0.1, sName := 'TARGET5',     fPosition := 22.79);
 astPositionStateZ[E_DGPDState.TARGET5].stPMPS.sPmpsState := 'DREAM:PF-TARGET5';
-
+fbStateSetupZ(stPositionState := astPositionStateZ[E_DGPDState.TARGET6],    fDelta := 0.1, sName := 'TARGET6',     fPosition := 22.79);
+astPositionStateZ[E_DGPDState.TARGET6].stPMPS.sPmpsState := 'DREAM:PF-TARGET6';
 ]]></ST>
       </Implementation>
     </Method>

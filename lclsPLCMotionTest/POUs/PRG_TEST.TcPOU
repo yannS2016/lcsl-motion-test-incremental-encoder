@@ -6,7 +6,7 @@ VAR
 	//fb_SL3K4ReadPMPSDB_Test : FB_SL3K4ReadPMPSDB_Test;
 	//fb_SL3K4_Test : FB_SL3K4_Test;
 	//fb_SL3K4BPTM_Test : FB_SL3K4BPTM_Test;
-	fb_DGPD_Test : FB_DGPD_Test;
+	//fb_DGPD_Test : FB_DGPD_Test;
 	//fb_SequenceMover_Test : FB_SequenceMover_Test;
 	//fb_DGPDEPS_Test :  FB_DGPDEPS_Test;
 END_VAR

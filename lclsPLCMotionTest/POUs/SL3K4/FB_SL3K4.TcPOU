@@ -12,6 +12,7 @@ VAR_IN_OUT
     fbFFHWO          : FB_HardwareFFOutput;
 END_VAR
 VAR_INPUT
+	bEnable : BOOL;
 	{attribute 'hide'}
     bFileReaderBusy      : BOOL;
 	{attribute 'hide'}
@@ -26,22 +27,23 @@ VAR_INPUT
 
 	{attribute 'hide'}
     bEnableBeamParams    : BOOL := TRUE;
-    bReadDBNow           : BOOL;
-
+	
+    {attribute 'pytmc' := '
+        pv: RESET
+        io: io
+    '}
+    bReset               : BOOL;
+	iMotor : UINT;
 END_VAR
 VAR
-    {attribute 'hide'}
+
     fbPerMotorFFO        : FB_PerMotorFFOND;
-    {attribute 'hide'}
     fbMiscStatesErrorFFO : FB_MiscStatesErrorFFO;
-    {attribute 'hide'}
     ffDriftFFO           : FB_FastFault;
-    {attribute 'hide'}
     ffProgrammerError    : FB_FastFault;
-    {attribute 'hide'}
     fbSL3K4BPTM          : FB_SL3K4BPTM;
-    {attribute 'hide'}
     fbMotionClearAsserts : FB_MotionClearAsserts;
+    fbSL3K4ReadPMPSDB    : FB_SL3K4ReadPMPSDB;
 	
     {attribute 'pytmc' := '
         pv: STATE
@@ -55,7 +57,7 @@ VAR
 	
     {attribute 'hide'}
     ePrevState            : E_SL3K4State := E_SL3K4State.NORMAL;
-
+	bBPTMEnable : BOOL;
     {attribute 'hide'}
     abBladeEnable        : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF BOOL;
     {attribute 'hide'}
@@ -82,8 +84,7 @@ VAR
     bArbiterError        : BOOL;
     {attribute 'hide'}
     nBlades              : UINT;
-    {attribute 'hide'}
-    fbSL3K4ReadPMPSDB    : FB_SL3K4ReadPMPSDB;
+
     {attribute 'hide'}
     sDeviceName          : STRING := 'SL3K4';
     {attribute 'hide'}
@@ -102,8 +103,7 @@ VAR
     bDriftFF             : BOOL;
     {attribute 'hide'}
     bLastTransAuth       : BOOL;
-    {attribute 'hide'}
-    bEnable              : BOOL;
+
     {attribute 'hide'}
     tArbiterTimeout      : TIME := T#3s;
     {attribute 'hide'}
@@ -171,117 +171,123 @@ VAR
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[
+IF bReset THEN
+	FOR iMotor := 1 TO  nActiveMotorCount DO
+		astMotionStage[iMotor].bReset := TRUE;
+	END_FOR
+	bReset := FALSE;
+END_IF
 
 // --- PMPS DB Read / safety check (with reload logic) ---
 fbSL3K4ReadPMPSDB(
-    fbFFHWO := fbFFHWO,
-    bFileReaderError := bFileReaderError,
-    bFileReaderBusy  := bFileReaderBusy,
-    sDeviceName      := sDeviceName,
-    sTransitionKey   := sTransitionKey,
-    jsonDoc          := PMPS_GVL.BP_jsonDoc,
-    bReadDBNow :=bReadDBNow
+	fbFFHWO := fbFFHWO,
+	bFileReaderError := bFileReaderError,
+	bFileReaderBusy  := bFileReaderBusy,
+	sDeviceName      := sDeviceName,
+	sTransitionKey   := sTransitionKey,
+	jsonDoc          := PMPS_GVL.BP_jsonDoc,
+	bReadDBNow :=bEnable
 );
-
+    
 // --- Early lock and fail-safe if DB not loaded ---
 IF NOT fbSL3K4ReadPMPSDB.bStatesReady THEN
-    FOR nBlades := 1 TO nActiveMotorCount DO
-        astMotionStage[nBlades].bSafetyReady := FALSE;
-        astChanParam[nBlades].bOverrideDirEnable := FALSE;
-        abBladeEnable[nBlades] := FALSE;
-    END_FOR
-    bSafeToMove   := FALSE;
-    bLocked       := TRUE;
-    sStatusMsg    := 'PMPS parameter DB not loaded. Axes locked!';
-    RETURN;
+	FOR nBlades := 1 TO nActiveMotorCount DO
+		astMotionStage[nBlades].bSafetyReady := FALSE;
+		astChanParam[nBlades].bOverrideDirEnable := FALSE;
+		abBladeEnable[nBlades] := FALSE;
+	END_FOR
+	bSafeToMove   := FALSE;
+	bLocked       := TRUE;
+	sStatusMsg    := 'PMPS parameter DB not loaded. Axes locked!';
+	RETURN;
 END_IF
 
 // --- One-time extraction of DB states on rising edge ---
 rtUpdateDBState(CLK := fbSL3K4ReadPMPSDB.bStatesReady);
 
 IF rtUpdateDBState.Q THEN
-    bFoundTransition := FALSE;
-    bFoundNormal := FALSE;
-    bFoundMaintenance := FALSE;
+	bFoundTransition := FALSE;
+	bFoundNormal := FALSE;
+	bFoundMaintenance := FALSE;
 
-    FOR i := 0 TO UPPER_BOUND(fbSL3K4ReadPMPSDB.astDbStateParams, 1) DO
-        IF fbSL3K4ReadPMPSDB.astDbStateParams[i].sPmpsState = sTransitionKey THEN
-            stTransitionGoal := fbSL3K4ReadPMPSDB.astDbStateParams[i];
-            bFoundTransition := TRUE;
-        ELSIF fbSL3K4ReadPMPSDB.astDbStateParams[i].sPmpsState = 'SL3K4-MAINTENANCE' THEN
-            stMaintenanceGoal := fbSL3K4ReadPMPSDB.astDbStateParams[i];
-            bFoundMaintenance := TRUE;
-        ELSIF fbSL3K4ReadPMPSDB.astDbStateParams[i].sPmpsState = 'SL3K4-NORMAL' THEN
-                stNormalGoal := fbSL3K4ReadPMPSDB.astDbStateParams[i];
-                bFoundNormal := TRUE;
-        END_IF
-    END_FOR
+	FOR i := 0 TO UPPER_BOUND(fbSL3K4ReadPMPSDB.astDbStateParams, 1) DO
+		IF fbSL3K4ReadPMPSDB.astDbStateParams[i].sPmpsState = sTransitionKey THEN
+			stTransitionGoal := fbSL3K4ReadPMPSDB.astDbStateParams[i];
+			bFoundTransition := TRUE;
+		ELSIF fbSL3K4ReadPMPSDB.astDbStateParams[i].sPmpsState = 'SL3K4-MAINTENANCE' THEN
+			stMaintenanceGoal := fbSL3K4ReadPMPSDB.astDbStateParams[i];
+			bFoundMaintenance := TRUE;
+		ELSIF fbSL3K4ReadPMPSDB.astDbStateParams[i].sPmpsState = 'SL3K4-NORMAL' THEN
+				stNormalGoal := fbSL3K4ReadPMPSDB.astDbStateParams[i];
+				bFoundNormal := TRUE;
+		END_IF
+	END_FOR
 
-    IF NOT (bFoundTransition AND bFoundNormal AND bFoundMaintenance) THEN
-        sStatusMsg := 'Error: Required PMPS state not found in DB!';
-        bProgrammerError := TRUE;
-    ELSE
-        bDBStatesLoaded := TRUE;
-    END_IF
+	IF NOT (bFoundTransition AND bFoundNormal AND bFoundMaintenance) THEN
+		sStatusMsg := 'Error: Required PMPS state not found in DB!';
+		bProgrammerError := TRUE;
+	ELSE
+		bDBStatesLoaded := TRUE;
+	END_IF
 END_IF
 // 
 IF bDBStatesLoaded THEN
-    CASE eSL3K4State OF
-        E_SL3K4State.MAINTENANCE: stGoalParams := stMaintenanceGoal;
-        E_SL3K4State.NORMAL:      stGoalParams := stNormalGoal;
-        ELSE                     stGoalParams := stNormalGoal; // Default fallback
-    END_CASE
-    stTransParams := stTransitionGoal;
+	CASE eSL3K4State OF
+		E_SL3K4State.MAINTENANCE: stGoalParams := stMaintenanceGoal;
+		E_SL3K4State.NORMAL:      stGoalParams := stNormalGoal;
+		ELSE                     stGoalParams := stNormalGoal; // Default fallback
+	END_CASE
+	stTransParams := stTransitionGoal;
 END_IF
 
 // --- Programmer error faulting ---
 ffProgrammerError(
-    i_xOK := NOT bProgrammerError,
-    i_xAutoReset := TRUE,
-    i_DevName := sDeviceName,
-    i_Desc := 'Required PMPS state not found in DB or config error',
-    i_TypeCode := E_MotionFFType.INTERNAL_ERROR,
-    io_fbFFHWO := fbFFHWO
+	i_xOK := NOT bProgrammerError,
+	i_xAutoReset := TRUE,
+	i_DevName := sDeviceName,
+	i_Desc := 'Required PMPS state not found in DB or config error',
+	i_TypeCode := E_MotionFFType.INTERNAL_ERROR,
+	io_fbFFHWO := fbFFHWO
 );
 
 // --- Enable only if valid state/request, no errors ---
-bEnable := ((eSL3K4State = E_SL3K4State.MAINTENANCE) OR (eSL3K4State = E_SL3K4State.NORMAL))
-              AND NOT bProgrammerError
-              AND stPMPSEpicsToPlc.bArbiterEnabled
-              AND bEnableBeamParams;
-rtEnable(CLK := bEnable);
+bBPTMEnable := ((eSL3K4State = E_SL3K4State.MAINTENANCE) OR (eSL3K4State = E_SL3K4State.NORMAL))
+			  AND NOT bProgrammerError
+			  AND stPMPSEpicsToPlc.bArbiterEnabled
+			  AND bEnableBeamParams;
+rtEnable(CLK := bBPTMEnable);
 
 // --- Aggregate blade errors ---
 bAnybladeError := FALSE;
 FOR nBlades := 1 TO nActiveMotorCount DO
-    IF astMotionStage[nBlades].bError THEN
-        bAnybladeError := TRUE;
-    END_IF
+	IF astMotionStage[nBlades].bError THEN
+		bAnybladeError := TRUE;
+	END_IF
 END_FOR
 
 
 // --- BPTM function block call ---
 fbSL3K4BPTM(
-    fbArbiter     := fbArbiter,
-    fbFFHWO       := fbFFHWO,
-    sDeviceName   := sDeviceName,
-    stGoalParams  := stGoalParams,
-    stTransParams := stTransParams,
-    bEnable       := bEnable,
-    bRetry        := rtEnable.Q AND nGoalAtClear = eSL3K4State,
-    bBladeError   := bAnybladeError,
-    bTransitionAuthorized => bTransitionAuthorized
+	fbArbiter     := fbArbiter,
+	fbFFHWO       := fbFFHWO,
+	sDeviceName   := sDeviceName,
+	stGoalParams  := stGoalParams,
+	stTransParams := stTransParams,
+	bEnable       := bBPTMEnable,
+	bRetry        := rtEnable.Q AND nGoalAtClear = eSL3K4State,
+	bBladeError   := bAnybladeError,
+	bTransitionAuthorized => bTransitionAuthorized
 );
 
 // --- Clear asserts if BPTM not enabled ---
 fbMotionClearAsserts(
-    astDbStateParams := fbSL3K4ReadPMPSDB.astDbStateParams,
-    fbArbiter        := fbArbiter,
-    bExecute         := NOT fbSL3K4BPTM.bEnable
+	astDbStateParams := fbSL3K4ReadPMPSDB.astDbStateParams,
+	fbArbiter        := fbArbiter,
+	bExecute         := NOT fbSL3K4BPTM.bEnable
 );
 
 IF fbMotionClearAsserts.bExecute THEN
-    nGoalAtClear := eSL3K4State;
+	nGoalAtClear := eSL3K4State;
 END_IF
 
 // Rising edge detection
@@ -290,128 +296,130 @@ rtTransDone(CLK := fbSL3K4BPTM.bDone);
 
 // (reset only on mode change or BPTM error/busy)
 IF rtTransAuth.Q THEN
-    bModeTransitionStarted := TRUE;
+	bModeTransitionStarted := TRUE;
 END_IF
 IF rtTransDone.Q THEN
-    bModeTransitionDone := TRUE;
+	bModeTransitionDone := TRUE;
 END_IF
 bTransitionCompleted := bModeTransitionStarted AND bModeTransitionDone;
 
 // Clear all transition flags & safe-to-move if a request starts or error/busy encountered
 IF (eSL3K4State <> nGoalAtClear) OR fbSL3K4BPTM.bBusy OR fbSL3K4BPTM.bError THEN
-    bSafeToMove := FALSE;
-    bModeTransitionStarted := fbSL3K4BPTM.bBusy;
-    bModeTransitionDone := FALSE;
-    bTransitionCompleted := FALSE;
-    nGoalAtClear := eSL3K4State;
+	bSafeToMove := FALSE;
+	bModeTransitionStarted := fbSL3K4BPTM.bBusy;
+	bModeTransitionDone := FALSE;
+	bTransitionCompleted := FALSE;
+	nGoalAtClear := eSL3K4State;
 END_IF
 
 // --- Safe-to-Move calculation ---
 CASE eSL3K4State OF
-    E_SL3K4State.MAINTENANCE:
-        bSafeToMove := bTransitionCompleted AND NOT bAnybladeError;
-    E_SL3K4State.NORMAL:
-        bSafeToMove := FALSE; // No motion in normal, just protection
-    ELSE
-        bSafeToMove := FALSE;
+	E_SL3K4State.MAINTENANCE:
+		bSafeToMove := bTransitionCompleted AND NOT bAnybladeError;
+	E_SL3K4State.NORMAL:
+		bSafeToMove := FALSE; // No motion in normal, just protection
+	ELSE
+		bSafeToMove := FALSE;
 END_CASE
 bLocked := NOT bSafeToMove;
 
 // --- Per-blade enable/disable and drift detection ---
 bDriftFF := FALSE;
 FOR nBlades := 1 TO nActiveMotorCount DO
-    CASE eSL3K4State OF
-        E_SL3K4State.NORMAL:
-            // disabled all blades
-            abBladeEnable[nBlades] := FALSE;
-            astMotionStage[nBlades].bSafetyReady := FALSE;
-            astChanParam[nBlades].bOverrideDirEnable := FALSE;
+	CASE eSL3K4State OF
+		E_SL3K4State.NORMAL:
+			// disabled all blades
+			abBladeEnable[nBlades] := FALSE;
+			astMotionStage[nBlades].bSafetyReady := FALSE;
+			astChanParam[nBlades].bOverrideDirEnable := FALSE;
 			//beam parameters asserted?
-            IF bTransitionCompleted THEN
-                IF bEnableDriftCheck THEN
-                    arfDrift[nBlades] := ABS(astMotionStage[nBlades].axis.NcToPlc.ActPos - astChanParam[nBlades].fPosition);
-                    IF arfDrift[nBlades] > fDriftTol THEN
-                        bDriftFF := TRUE;
-                        // use  the drifttolerance in the error message.
-                        sStatusMsg := CONCAT(astMotionStage[nBlades].sName, CONCAT('drifted out by', LREAL_TO_FMTSTR(arfDrift[nBlades],5,TRUE)));
-                        astMotionStage[nBlades].sCustomErrorMessage := sStatusMsg;
-                    END_IF
-                END_IF
-            END_IF
-        E_SL3K4State.MAINTENANCE:
-               astMotionStage[nBlades].bSafetyReady := FALSE;
-            astChanParam[nBlades].bOverrideDirEnable := FALSE;
-             abBladeEnable[nBlades] := FALSE;
-            IF bSafeToMove THEN
-                astMotionStage[nBlades].bSafetyReady := TRUE;
-                astChanParam[nBlades].bOverrideDirEnable := TRUE;
-                abBladeEnable[nBlades] := TRUE;
-            END_IF
-        ELSE
-            astMotionStage[nBlades].bSafetyReady := FALSE;
-            astChanParam[nBlades].bOverrideDirEnable := FALSE;
-            abBladeEnable[nBlades] := FALSE;
-    END_CASE
+			IF bTransitionCompleted THEN
+				IF bEnableDriftCheck THEN
+					arfDrift[nBlades] := ABS(astMotionStage[nBlades].axis.NcToPlc.ActPos - astChanParam[nBlades].fPosition);
+					IF arfDrift[nBlades] > fDriftTol THEN
+						bDriftFF := TRUE;
+						// use  the drifttolerance in the error message.
+						sStatusMsg := CONCAT(astMotionStage[nBlades].sName, CONCAT('drifted out by', LREAL_TO_FMTSTR(arfDrift[nBlades],5,TRUE)));
+						astMotionStage[nBlades].sCustomErrorMessage := sStatusMsg;
+					END_IF
+				END_IF
+			END_IF
+		E_SL3K4State.MAINTENANCE:
+			   astMotionStage[nBlades].bSafetyReady := FALSE;
+			astChanParam[nBlades].bOverrideDirEnable := FALSE;
+			 abBladeEnable[nBlades] := FALSE;
+			IF bSafeToMove THEN
+				astMotionStage[nBlades].bSafetyReady := TRUE;
+				astChanParam[nBlades].bOverrideDirEnable := TRUE;
+				abBladeEnable[nBlades] := TRUE;
+			END_IF
+		ELSE
+			astMotionStage[nBlades].bSafetyReady := FALSE;
+			astChanParam[nBlades].bOverrideDirEnable := FALSE;
+			abBladeEnable[nBlades] := FALSE;
+	END_CASE
 END_FOR
 
 // --- Beam parameter feedback to error FB ---
 IF bEnableBeamParams AND bDBStatesLoaded THEN
-    fbMiscStatesErrorFFO.stCurrentBeamReq := stGoalParams.stBeamParams;
+	fbMiscStatesErrorFFO.stCurrentBeamReq := stGoalParams.stBeamParams;
 ELSE
-    fbMiscStatesErrorFFO.stCurrentBeamReq := PMPS_GVL.cstFullBeam;
+	fbMiscStatesErrorFFO.stCurrentBeamReq := PMPS_GVL.cstFullBeam;
 END_IF
 
 fbMiscStatesErrorFFO(
-    fbArbiter    := fbArbiter,
-    fbFFHWO      := fbFFHWO,
-    sDeviceName  := sDeviceName,
-    bKnownState  := eSL3K4State > 0,
-    nTransitionID:= stTransParams.nRequestAssertionID
+	fbArbiter    := fbArbiter,
+	fbFFHWO      := fbFFHWO,
+	sDeviceName  := sDeviceName,
+	bKnownState  := eSL3K4State > 0,
+	nTransitionID:= stTransParams.nRequestAssertionID
 );
 
 // --- Per-motor fast fault & drift fault FBs ---
 fbPerMotorFFO(
-    astMotionStage     := astMotionStage,
-    fbFFHWO            := fbFFHWO,
-    nActiveMotorCount  := nActiveMotorCount,
-    sDeviceName        := sDeviceName
+	astMotionStage     := astMotionStage,
+	fbFFHWO            := fbFFHWO,
+	nActiveMotorCount  := nActiveMotorCount,
+	sDeviceName        := sDeviceName
 );
 
 ffDriftFFO(
-    i_xOK        := NOT bDriftFF,
-    i_xAutoReset := TRUE,
-    i_DevName    := sDeviceName,
-    i_Desc       := 'Blades drifted beyond allowable delta',
-    i_TypeCode   := E_MotionFFType.INTERNAL_ERROR,
-    io_fbFFHWO   := fbFFHWO
+	i_xOK        := NOT bDriftFF,
+	i_xAutoReset := TRUE,
+	i_DevName    := sDeviceName,
+	i_Desc       := 'Blades drifted beyond allowable delta',
+	i_TypeCode   := E_MotionFFType.INTERNAL_ERROR,
+	io_fbFFHWO   := fbFFHWO
 );
 
 // --- Status message and logging ---
 IF bDriftFF OR bProgrammerError THEN
-    sStatusMsg := 'Device fast faulted (blades, encoder, or config error)';
-    eSevr := TcEventSeverity.Critical;
+	sStatusMsg := 'Device fast faulted (blades, encoder, or config error)';
+	eSevr := TcEventSeverity.Critical;
 ELSIF bSafeToMove THEN
-    sStatusMsg := 'Maintenance: PMPS safe, axes enabled for manual scatter/homing.';
-    eSevr := TcEventSeverity.Info;
+	sStatusMsg := 'Maintenance: PMPS safe, axes enabled for manual scatter/homing.';
+	eSevr := TcEventSeverity.Info;
 ELSE
-    IF (eSL3K4State = E_SL3K4State.NORMAL) THEN
-        sStatusMsg := 'Normal: Axes locked for PMPS protection.';
-        eSevr := TcEventSeverity.Info;
-    ELSE
-        sStatusMsg := 'Axes locked in undefined or error state.';
-        eSevr := TcEventSeverity.Warning;
-    END_IF
+	IF (eSL3K4State = E_SL3K4State.NORMAL) THEN
+		sStatusMsg := 'Normal: Axes locked for PMPS protection.';
+		eSevr := TcEventSeverity.Info;
+	ELSE
+		sStatusMsg := 'Axes locked in undefined or error state.';
+		eSevr := TcEventSeverity.Warning;
+	END_IF
 END_IF
 
 // --- Log only on change ---
 IF (sStatusMsg <> sLastStatusMsg) THEN
-    fbLogger(
-        sMsg  := sStatusMsg,
-        eSevr := eSevr
-    );
-    sLastStatusMsg := sStatusMsg;
-    eLastSevr := eSevr;
+	fbLogger(
+		sMsg  := sStatusMsg,
+		eSevr := eSevr
+	);
+	sLastStatusMsg := sStatusMsg;
+	eLastSevr := eSevr;
 END_IF
+	
+
 ]]></ST>
     </Implementation>
   </POU>

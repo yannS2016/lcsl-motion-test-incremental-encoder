@@ -70,11 +70,11 @@
 			</Variant>
 		</Variants>
 		<SymbolWatch>
-			<Variable>TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Status Word</Variable>
-			<Variable>TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^ctl/mode/pos RxPDO^Modes of Operation</Variable>
-			<Variable>TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Modes of Operation Display</Variable>
-			<Variable>TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Position Actual Value</Variable>
-			<Variable>TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^ctl/mode/pos RxPDO^Control Word</Variable>
+			<Variable>TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Status Word</Variable>
+			<Variable>TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:X1^ctl/mode/pos RxPDO^Modes of Operation</Variable>
+			<Variable>TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Modes of Operation Display</Variable>
+			<Variable>TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:X1^mode/status/pos/fError TxPDO^Position Actual Value</Variable>
+			<Variable>TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:SLIT:MMT:X1^ctl/mode/pos RxPDO^Control Word</Variable>
 		</SymbolWatch>
 	</Project>
 	<Mappings>

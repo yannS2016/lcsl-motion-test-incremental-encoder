@@ -149,12 +149,17 @@ VAR
 // 		stMCS2ChanParameter:=GVL_MCS2.stSL3K4Y2Parameter, 
 // 		eModule:=E_Module.CHAN1
 // 	);
-fb_SLIT_Y2 : FB_MotionStage();
+	fb_SLIT_Y2 : FB_MotionStage();
 	astMotionStage   : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF ST_MotionStage;
 	astChanParam     : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF ST_MCS2ChanParameter;
     {attribute 'pytmc' := 'pv: DREAM:SLIT'}
     fbSL3K4        : FB_SL3K4;
 	bStageReady : BOOL;
+    bEnable: BOOL ;
+    {attribute 'hide'}
+	ftpmpDbReadDone : F_TRIG;
+	bPmpsDbReady : BOOL;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -163,26 +168,33 @@ astMotionStage[1] := MAIN.M13;
 astMotionStage[2] := MAIN.M14;
 astMotionStage[3] := MAIN.M15;
 astMotionStage[4] := MAIN.M16;
-
 astChanParam[1] := GVL_MCS2.stSL3K4X1Parameter;
 astChanParam[2] := GVL_MCS2.stSL3K4X2Parameter;
 astChanParam[3] := GVL_MCS2.stSL3K4Y1Parameter;
 astChanParam[4] := GVL_MCS2.stSL3K4Y2Parameter;
+
+ftpmpDbReadDone(CLK:=MOTION_GVL.fbPmpsFileReader.bBusy);
+bPmpsDbReady S= ftpmpDbReadDone.Q;
+bPmpsDbReady R= MOTION_GVL.fbPmpsFileReader.bBusy;
+
+bStageReady S= GVL_MCS2.stSL3K4X1Parameter.bStageReady 
+				AND GVL_MCS2.stSL3K4X2Parameter.bStageReady
+				AND GVL_MCS2.stSL3K4Y1Parameter.bStageReady
+				AND GVL_MCS2.stSL3K4X2Parameter.bStageReady;
+
 // wait for all stages to be ready (this state is latched)
-IF GVL_MCS2.stSL3K4X1Parameter.bStageReady 
-AND GVL_MCS2.stSL3K4X2Parameter.bStageReady
-AND GVL_MCS2.stSL3K4Y1Parameter.bStageReady
-AND GVL_MCS2.stSL3K4X2Parameter.bStageReady THEN
-	fbSL3K4(
-		astMotionStage := astMotionStage,
-		astChanParam :=astChanParam,
-		bFileReaderBusy := MOTION_GVL.fbPmpsFileReader.bBusy,
-		bFileReaderError := MOTION_GVL.fbPmpsFileReader.bError,
-		sTransitionKey := 'SL3K4-TRANSITION',
-		fbFFHWO := GVL_PMPS.fbFastFaultOutput1,
-		fbArbiter := GVL_PMPS.fbArbiter
-	);
-END_IF
+
+fbSL3K4(
+	bEnable := bPmpsDbReady AND bStageReady,
+	astMotionStage := astMotionStage,
+	astChanParam :=astChanParam,
+	bFileReaderBusy := MOTION_GVL.fbPmpsFileReader.bBusy,
+	bFileReaderError := MOTION_GVL.fbPmpsFileReader.bError,
+	sTransitionKey := 'SL3K4-TRANSITION',
+	fbFFHWO := GVL_PMPS.fbFastFaultOutput1,
+	fbArbiter := GVL_PMPS.fbArbiter
+);
+
 
 // --- Return blade refs to top-level outputs/workaround ---
 MAIN.M13 := astMotionStage[1];

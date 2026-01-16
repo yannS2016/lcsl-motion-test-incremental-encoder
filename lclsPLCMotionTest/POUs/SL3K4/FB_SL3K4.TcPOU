@@ -118,6 +118,7 @@ VAR
     bInternalAuth        : BOOL;
     {attribute 'hide'}
     bArbiterTimeout      : BOOL;
+	{attribute 'pytmc' := 'pv: DRIFT'}
     arfDrift               : ARRAY[1..nActiveMotorCount] OF LREAL;
     {attribute 'hide'}
     allAxesIdle          : BOOL;

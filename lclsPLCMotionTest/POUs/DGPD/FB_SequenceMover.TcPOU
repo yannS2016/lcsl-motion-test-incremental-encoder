@@ -15,13 +15,13 @@ VAR_IN_OUT
     eXTarget   : E_DGPDState;
     eYTarget   : E_DGPDState;
     eZTarget   : E_DGPDState;
+	eDGPDStateSet : E_DGPDState;
 END_VAR
 VAR_INPUT
     stPlcToEpicsRET : ST_StatePlcToEpics;
     stPlcToEpicsX   : ST_StatePlcToEpics;
     stPlcToEpicsY   : ST_StatePlcToEpics;
     stPlcToEpicsZ   : ST_StatePlcToEpics;
-    eDGPDStateSet : E_DGPDState;
     bReset          : BOOL;
 	bEnable : BOOL;
 	eCollisionAvoidanceMode : E_CollisionAvoidanceMode := E_CollisionAvoidanceMode.SINGLE;
@@ -50,14 +50,8 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// CASE eCollisionAvoidanceMode OF
-// 	E_CollisionAvoidanceMode.SINGLE:
-// 		THIS^.OneAxisCollisionAvoidance();
-// 	E_CollisionAvoidanceMode.MULTI:
-// 		THIS^.MultiAxisCollisionAvoidance();
-// END_CASE
-OneAxisCollisionAvoidance();
-//MultiAxisCollisionAvoidance();]]></ST>
+      <ST><![CDATA[OneAxisCollisionAvoidance();
+]]></ST>
     </Implementation>
     <Method Name="MultiAxisCollisionAvoidance" Id="{e7bd207a-7e11-48fc-9233-af2ad770deb8}">
       <Declaration><![CDATA[METHOD MultiAxisCollisionAvoidance

@@ -2,19 +2,10 @@
 <TcPlcObject Version="1.1.0.1">
   <POU Name="FB_DGPDPMPSStateConfigHelper" Id="{b09c0a9c-11cd-4ec3-948c-a6410efa38ba}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_DGPDPMPSStateConfigHelper
-// VAR_IN_OUT
-//
-// 	astPositionStateRET : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-// 	astPositionStateX : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-// 	astPositionStateY : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-// 	astPositionStateZ : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-// END_VAR
-
 VAR_INPUT
  bSimMode : BOOL;
 END_VAR
 VAR
-
     astPositionStateRET : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
     astPositionStateX : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
     astPositionStateY : REFERENCE TO ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
@@ -24,8 +15,8 @@ VAR
     fbStateSetupY : FB_StateSetupHelper;
     fbStateSetupZ : FB_StateSetupHelper;
     stDefault : ST_PositionState := (
-        fDelta := 0.004,
-        fVelocity := 0.8,
+        fDelta := 0.003,
+        fVelocity := 0.5,
         bMoveOk := TRUE,
         bValid := TRUE
     );
@@ -81,6 +72,8 @@ fbStateSetupRET(stPositionState := astPositionStateRET[E_DGPDState.TARGET4],    
 astPositionStateRET[E_DGPDState.TARGET4].stPMPS.sPmpsState := 'DREAM:PF-TARGET4';
 fbStateSetupRET(stPositionState := astPositionStateRET[E_DGPDState.TARGET5],    fDelta := 0.1, sName := 'TARGET5',     fPosition := 22.79);
 astPositionStateRET[E_DGPDState.TARGET5].stPMPS.sPmpsState := 'DREAM:PF-TARGET5';
+fbStateSetupRET(stPositionState := astPositionStateRET[E_DGPDState.TARGET6],    fDelta := 0.1, sName := 'TARGET6',     fPosition := 22.79);
+astPositionStateRET[E_DGPDState.TARGET6].stPMPS.sPmpsState := 'DREAM:PF-TARGET6';
 
 fbStateSetupX(stPositionState := stDefault, bSetDefault := TRUE);
 fbStateSetupX(stPositionState := astPositionStateX[E_DGPDState.OUT],        fDelta := 0.1, sName := 'OUT',         fPosition := 2.5);
@@ -101,6 +94,8 @@ fbStateSetupX(stPositionState := astPositionStateX[E_DGPDState.TARGET4],    fDel
 astPositionStateX[E_DGPDState.TARGET4].stPMPS.sPmpsState := 'DREAM:PF-TARGET4';
 fbStateSetupX(stPositionState := astPositionStateX[E_DGPDState.TARGET5],    fDelta := 0.1, sName := 'TARGET5',     fPosition := 22.79);
 astPositionStateX[E_DGPDState.TARGET5].stPMPS.sPmpsState := 'DREAM:PF-TARGET5';
+fbStateSetupX(stPositionState := astPositionStateX[E_DGPDState.TARGET6],    fDelta := 0.1, sName := 'TARGET6',     fPosition := 22.79);
+astPositionStateX[E_DGPDState.TARGET6].stPMPS.sPmpsState := 'DREAM:PF-TARGET6';
 
 fbStateSetupY(stPositionState := stDefault, bSetDefault := TRUE);
 fbStateSetupY(stPositionState := astPositionStateY[E_DGPDState.OUT],        fDelta := 0.1, sName := 'OUT',         fPosition := 2.5);
@@ -121,6 +116,8 @@ fbStateSetupY(stPositionState := astPositionStateY[E_DGPDState.TARGET4],    fDel
 astPositionStateY[E_DGPDState.TARGET4].stPMPS.sPmpsState := 'DREAM:PF-TARGET4';
 fbStateSetupY(stPositionState := astPositionStateY[E_DGPDState.TARGET5],    fDelta := 0.1, sName := 'TARGET5',     fPosition := 22.79);
 astPositionStateY[E_DGPDState.TARGET5].stPMPS.sPmpsState := 'DREAM:PF-TARGET5';
+fbStateSetupY(stPositionState := astPositionStateY[E_DGPDState.TARGET6],    fDelta := 0.1, sName := 'TARGET6',     fPosition := 22.79);
+astPositionStateY[E_DGPDState.TARGET6].stPMPS.sPmpsState := 'DREAM:PF-TARGET6';
 
 fbStateSetupZ(stPositionState := stDefault, bSetDefault := TRUE);
 fbStateSetupZ(stPositionState := astPositionStateZ[E_DGPDState.OUT],        fDelta := 0.1, sName := 'OUT',         fPosition := 2.5);
@@ -141,7 +138,8 @@ fbStateSetupZ(stPositionState := astPositionStateZ[E_DGPDState.TARGET4],    fDel
 astPositionStateZ[E_DGPDState.TARGET4].stPMPS.sPmpsState := 'DREAM:PF-TARGET4';
 fbStateSetupZ(stPositionState := astPositionStateZ[E_DGPDState.TARGET5],    fDelta := 0.1, sName := 'TARGET5',     fPosition := 22.79);
 astPositionStateZ[E_DGPDState.TARGET5].stPMPS.sPmpsState := 'DREAM:PF-TARGET5';
-
+fbStateSetupZ(stPositionState := astPositionStateZ[E_DGPDState.TARGET6],    fDelta := 0.1, sName := 'TARGET6',     fPosition := 22.79);
+astPositionStateZ[E_DGPDState.TARGET6].stPMPS.sPmpsState := 'DREAM:PF-TARGET6';
 ]]></ST>
       </Implementation>
     </Method>

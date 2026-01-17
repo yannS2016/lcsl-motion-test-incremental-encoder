@@ -8,64 +8,33 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF bInit THEN
-    // --- X axis ---
-//     MAIN.M9.bHardwareEnable := TRUE;
-//     MAIN.M9.nHomingMode := E_EpicsHomeCmd.AUTOZERO;
-//     MAIN.M9.nEnableMode := ENUM_StageEnableMode.DURING_MOTION;
-//     MAIN.M9.bPowerSelf := FALSE;
-//     GVL_MCS2.stDGPDXParameter.nReadTime := T#2000MS;
-// 
-//     // --- Y axis ---
-//     MAIN.M10.bHardwareEnable := TRUE;
-//     MAIN.M10.nHomingMode := E_EpicsHomeCmd.AUTOZERO;
-//     MAIN.M10.nEnableMode := ENUM_StageEnableMode.DURING_MOTION;
-//     MAIN.M10.bPowerSelf := FALSE;
-//     GVL_MCS2.stDGPDYParameter.nReadTime := T#2200MS;
-// 
-//     // --- Z axis ---
-//     MAIN.M11.bHardwareEnable := TRUE;
-//     MAIN.M11.nHomingMode := E_EpicsHomeCmd.AUTOZERO;
-//     MAIN.M11.nEnableMode := ENUM_StageEnableMode.DURING_MOTION;
-//     MAIN.M11.bPowerSelf := FALSE;
-//     GVL_MCS2.stDGPDZParameter.nReadTime := T#2400MS;
-// 	// Temporary (Z is simulated)
-// 	MAIN.M11.bLimitBackwardEnable := TRUE;
-// 	MAIN.M11.bLimitForwardEnable := TRUE;
-// 	MAIN.M11.nEnableMode := ENUM_StageEnableMode.ALWAYS;
-//     // --- RET axis ---
-//     MAIN.M12.bHardwareEnable := TRUE;
-//     MAIN.M12.nHomingMode := E_EpicsHomeCmd.AUTOZERO;
-//     MAIN.M12.nEnableMode := ENUM_StageEnableMode.DURING_MOTION;
-//     MAIN.M12.bPowerSelf := FALSE;
-//     GVL_MCS2.stDGPDRETParameter.nReadTime := T#2600MS;
-
     // --- X1 axis ---
     MAIN.M13.bHardwareEnable := TRUE;
     MAIN.M13.nHomingMode := E_EpicsHomeCmd.AUTOZERO;
     MAIN.M13.nEnableMode := ENUM_StageEnableMode.DURING_MOTION;
     MAIN.M13.bPowerSelf := FALSE;
-    GVL_MCS2.stSL3K4X1Parameter.nReadTime := T#2800MS;
+    GVL_MCS2.stSL3K4X1Parameter.nReadTime := T#2000MS;
 
     // --- M14 axis ---
     MAIN.M14.bHardwareEnable := TRUE;
     MAIN.M14.nHomingMode := E_EpicsHomeCmd.AUTOZERO;
     MAIN.M14.nEnableMode := ENUM_StageEnableMode.DURING_MOTION;
     MAIN.M14.bPowerSelf := FALSE;
-    GVL_MCS2.stSL3K4X2Parameter.nReadTime := T#3000MS;
+    GVL_MCS2.stSL3K4X2Parameter.nReadTime := T#2000MS;
 	
     // --- M15 axis ---
     MAIN.M15.bHardwareEnable := TRUE;
     MAIN.M15.nHomingMode := E_EpicsHomeCmd.AUTOZERO;
     MAIN.M15.nEnableMode := ENUM_StageEnableMode.DURING_MOTION;
     MAIN.M15.bPowerSelf := FALSE;
-    GVL_MCS2.stSL3K4Y1Parameter.nReadTime := T#3200MS;
+    GVL_MCS2.stSL3K4Y1Parameter.nReadTime := T#2000MS;
 	GVL_MCS2.stSL3K4Y1Parameter.fPosition := MAIN.M15.fPosition;
     // --- M16 axis ---
     MAIN.M16.bHardwareEnable := TRUE;
     MAIN.M16.nHomingMode := E_EpicsHomeCmd.AUTOZERO;
     MAIN.M16.nEnableMode := ENUM_StageEnableMode.DURING_MOTION;
     MAIN.M16.bPowerSelf := FALSE;
-    GVL_MCS2.stSL3K4Y2Parameter.nReadTime := T#3400MS;
+    GVL_MCS2.stSL3K4Y2Parameter.nReadTime := T#2000MS;
 	// Temporary (Z is simulated)
 	MAIN.M16.bLimitBackwardEnable := TRUE;
 	MAIN.M16.bLimitForwardEnable := TRUE;
@@ -74,7 +43,6 @@ END_VAR
     bInit := FALSE;
 END_IF
 
-//PRG_DGPD();
 PRG_SL3K4();]]></ST>
     </Implementation>
   </POU>

@@ -29660,6 +29660,60 @@ record(bi, "$(PREFIX)RequestedBP:Valid_RBV") {
   field(ASG, "NO_WRITE")
 }
 
+record(waveform, "DREAM:SLIT:aBladesfDrift_RBV") {
+  field(DESC, "SL3K4 blades drift")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/PRG_SL3K4.fbSL3K4.aBladesfDrift?")
+  field(FTVL, "DOUBLE")
+  field(NELM, "4")
+  field(MPST, "On Change")
+  field(APST, "On Change")
+  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(waveform, "DREAM:SLIT:aBladesfDrift") {
+  field(DESC, "SL3K4 blades drift")
+  field(DTYP, "asynFloat64ArrayOut")
+  field(UDFS, "0")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/PRG_SL3K4.fbSL3K4.aBladesfDrift=")
+  field(FTVL, "DOUBLE")
+  field(NELM, "4")
+  field(MPST, "On Change")
+  field(APST, "On Change")
+  info(autosaveFields_pass0, "DESC DISS SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(bi, "DREAM:SLIT:RESET_RBV") {
+  field(DESC, "PRG_SL3K4.fbSL3K4.bReset")
+  field(SCAN, "I/O Intr")
+  field(PINI, "1")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/PRG_SL3K4.fbSL3K4.bReset?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bo, "DREAM:SLIT:RESET") {
+  field(DESC, "PRG_SL3K4.fbSL3K4.bReset")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/PRG_SL3K4.fbSL3K4.bReset=")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
+  info(archive, "VAL")
+}
+
 record(longin, "DREAM:SLIT:STATE_RBV") {
   field(DESC, "SL3K4 state")
   field(SCAN, "I/O Intr")
@@ -29681,7 +29735,7 @@ record(longout, "DREAM:SLIT:STATE") {
   info(archive, "VAL")
 }
 
-record(ai, "DREAM:SLIT:DRIFT_RBV") {
+record(ai, "DREAM:SLIT:fDriftTol_RBV") {
   field(DESC, "PRG_SL3K4.fbSL3K4.fDriftTol")
   field(SCAN, "I/O Intr")
   field(PINI, "1")
@@ -29694,7 +29748,7 @@ record(ai, "DREAM:SLIT:DRIFT_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(ao, "DREAM:SLIT:DRIFT") {
+record(ao, "DREAM:SLIT:fDriftTol") {
   field(DESC, "PRG_SL3K4.fbSL3K4.fDriftTol")
   field(DTYP, "asynFloat64")
   field(UDFS, "0")

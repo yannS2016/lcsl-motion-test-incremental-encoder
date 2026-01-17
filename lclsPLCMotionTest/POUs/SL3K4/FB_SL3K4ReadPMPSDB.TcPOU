@@ -37,17 +37,15 @@ VAR_OUTPUT
     sErrMsg            : STRING;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// Only reload and assert if external fast fault output is valid
-IF NOT __ISVALIDREF(fbFFHWO) THEN
+      <ST><![CDATA[IF NOT __ISVALIDREF(fbFFHWO) THEN
     RETURN;
 END_IF
 
 // Map state strings for DB lookup
-astDbStateParams[0].sPmpsState := sTransitionKey; // Transition state
-astDbStateParams[1].sPmpsState := 'SL3K4-NORMAL';
-astDbStateParams[2].sPmpsState := 'SL3K4-MAINTENANCE';
+astDbStateParams[0].sPmpsState := sTransitionKey;
+astDbStateParams[1].sPmpsState := 'SL3K4:DREAM:NORMAL';
+astDbStateParams[2].sPmpsState := 'SL3K4:DREAM:MAINTENANCE';
 
-// --- Edge-trigger: Only reload DB when reader finishes
 ftDbBusy(CLK := bFileReaderBusy);
 
 bReadPmpsDb S= ftDbBusy.Q AND NOT bFileReaderError;
@@ -66,18 +64,15 @@ fbJsonLoader(
 // Reset reload request when JSON loader is done (not busy)
 bReadPmpsDb R= NOT fbJsonLoader.bBusy;
 
-
 // Track first DB read completion
 ftRead(CLK := fbJsonLoader.bBusy);
 bFirstReadDone S= ftRead.Q AND NOT fbJsonLoader.bError;
 
-
-// Error outputs and reporting
 bError  := fbJsonLoader.bError;
 nErrId  := fbJsonLoader.nErrId;
 sErrMsg := fbJsonLoader.sErrMsg;
 
-// --- Check if all state params are loaded (including transition, normal, maintenance) ---
+// Check if all state params are loaded
 bAllStatesLoaded := TRUE;
 FOR i := 0 TO 2 DO
     bAllStatesLoaded := bAllStatesLoaded AND astDbStateParams[i].bBeamParamsLoaded;
@@ -89,7 +84,6 @@ bLoadedMaintenance := astDbStateParams[2].bBeamParamsLoaded;
 // Final readiness: device is ready only when DB load finished successfully and all states loaded
 bStatesReady := (fbJsonLoader.bBusy = FALSE) AND (NOT bError) AND bAllStatesLoaded;
 
-// Fast fault handling for loader or DB error
 ffError(
     i_xOK        := NOT bError,
     i_xAutoReset := TRUE,

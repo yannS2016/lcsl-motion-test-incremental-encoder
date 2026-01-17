@@ -36,9 +36,6 @@
     <Compile Include="DUTs\ST_SL3K4State.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GVLs\GVL_EPS.TcGVL">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="GVLs\GVL_MCS2.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -64,7 +61,7 @@
     <Compile Include="POUs\DGPD\FB_DGPDEPS.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\DGPD\FB_DGPDManual.TcPOU">
+    <Compile Include="POUs\DGPD\FB_DGPDEpsManual.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\DGPD\FB_DGPDPMPSStateConfigHelper.TcPOU">

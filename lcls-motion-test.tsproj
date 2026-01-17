@@ -69,13 +69,6 @@
 				<Name>dgpd</Name>
 			</Variant>
 		</Variants>
-		<SymbolWatch>
-			<Variable>TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Status Word</Variable>
-			<Variable>TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^ctl/mode/pos RxPDO^Modes of Operation</Variable>
-			<Variable>TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Modes of Operation Display</Variable>
-			<Variable>TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Position Actual Value</Variable>
-			<Variable>TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^ctl/mode/pos RxPDO^Control Word</Variable>
-		</SymbolWatch>
 	</Project>
 	<Mappings>
 		<MappingInfo Identifier="{00000000-2001-0850-0020-500861000403}" Id="#x02030030"/>

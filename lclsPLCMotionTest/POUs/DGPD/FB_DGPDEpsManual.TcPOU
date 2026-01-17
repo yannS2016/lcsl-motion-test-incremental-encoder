@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="FB_DGPDManual" Id="{39ae7374-d9aa-4e7c-96db-2f110a50d3fa}" SpecialFunc="None">
+  <POU Name="FB_DGPDEpsManual" Id="{39ae7374-d9aa-4e7c-96db-2f110a50d3fa}" SpecialFunc="None">
     <Declaration><![CDATA[(*
     Manual-mode interlock helper for maintenance positioning of DREAM DGPD.
 
@@ -8,14 +8,10 @@
     tolerance (fDelta) of their defined 'OUT' position. If so, bSafeToMoveRET is set TRUE,
     allowing safe movement of the RET axis (e.g., during maintenance or manual mode).
 *)
-FUNCTION_BLOCK FB_DGPDManual
+FUNCTION_BLOCK FB_DGPDEpsManual
 VAR_IN_OUT
     astPositionStateX: ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-    astPositionStateY: ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-    astPositionStateZ: ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
     stMotionStageX: ST_MotionStage;
-    stMotionStageY: ST_MotionStage;
-    stMotionStageZ: ST_MotionStage;
 END_VAR
 
 VAR_OUTPUT
@@ -24,10 +20,6 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF NOT __ISVALIDREF(astPositionStateX)
-    OR NOT __ISVALIDREF(astPositionStateY)
-    OR NOT __ISVALIDREF(astPositionStateZ)
-    OR NOT __ISVALIDREF(stMotionStageY)
-    OR NOT __ISVALIDREF(stMotionStageZ)
     OR NOT __ISVALIDREF(stMotionStageX )
 THEN
     RETURN;
@@ -37,9 +29,8 @@ END_IF
 bSafeToMoveRET := TRUE;
 
 // Only when all are within tolerance, RET is safe to move
-bSafeToMoveRET := ABS(stMotionStageX.Axis.NcToPlc.ActPos - astPositionStateX[E_DGPDState.OUT].fPosition) <= astPositionStateX[E_DGPDState.OUT].fDelta
-                  AND  ABS(stMotionStageY.Axis.NcToPlc.ActPos - astPositionStateY[E_DGPDState.OUT].fPosition) <= astPositionStateY[E_DGPDState.OUT].fDelta
-                  AND  ABS(stMotionStageZ.Axis.NcToPlc.ActPos - astPositionStateZ[E_DGPDState.OUT].fPosition) <= astPositionStateZ[E_DGPDState.OUT].fDelta;
+bSafeToMoveRET := (stMotionStageX.Axis.NcToPlc.ActPos >= MIN(stMotionStageX.fHomePosition, astPositionStateX[E_DGPDState.OUT].fPosition))
+					AND (stMotionStageX.Axis.NcToPlc.ActPos <= MAX(stMotionStageX.fHomePosition, astPositionStateX[E_DGPDState.OUT].fPosition));
 ]]></ST>
     </Implementation>
   </POU>

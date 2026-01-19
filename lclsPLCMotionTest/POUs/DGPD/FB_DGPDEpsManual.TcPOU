@@ -30,7 +30,7 @@ bSafeToMoveRET := TRUE;
 
 // Only when all are within tolerance, RET is safe to move
 bSafeToMoveRET := (stMotionStageX.Axis.NcToPlc.ActPos >= MIN(stMotionStageX.fHomePosition, astPositionStateX[E_DGPDState.OUT].fPosition))
-					AND (stMotionStageX.Axis.NcToPlc.ActPos <= MAX(stMotionStageX.fHomePosition, astPositionStateX[E_DGPDState.OUT].fPosition));
+                    AND (stMotionStageX.Axis.NcToPlc.ActPos <= MAX(stMotionStageX.fHomePosition, astPositionStateX[E_DGPDState.OUT].fPosition));
 ]]></ST>
     </Implementation>
   </POU>

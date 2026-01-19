@@ -11,7 +11,7 @@ VAR_IN_OUT
     stMotionStageX	 : ST_MotionStage;
     stMotionStageY   : ST_MotionStage;
     stMotionStageZ   : ST_MotionStage;
-	
+
     stMCS2ChanParameterRET : ST_MCS2ChanParameter;
     stMCS2ChanParameterX   : ST_MCS2ChanParameter;
     stMCS2ChanParameterY   : ST_MCS2ChanParameter;
@@ -20,7 +20,7 @@ END_VAR
 
 VAR_INPUT
     bHVActive : BOOL;
-	bMaintenance : BOOL;
+    bMaintenance : BOOL;
     bEnable   : BOOL := TRUE;
 END_VAR
 
@@ -38,7 +38,7 @@ VAR
     epsCalRET: FB_EPS;
     epsRefRET : FB_EPS;
     epsSensRET : FB_EPS;
-	epsMaintColRET : FB_EPS;
+    epsMaintColRET : FB_EPS;
     // X
     epsCalX  : FB_EPS;
     epsRefX  : FB_EPS;
@@ -64,8 +64,8 @@ END_VAR
     epsRefRET.setBit(nBits := 2, bValue := stMCS2ChanParameterRET.stChannelState.bIsReferenced OR bMaintenance);
     epsSensRET(eps := stMotionStageRET.stEPSPowerEnable);
     epsSensRET.setBit(nBits := 3, bValue := stMCS2ChanParameterRET.stChannelState.bSensorPresent);
-	epsMaintColRET(eps := stMotionStageRET.stEPSPowerEnable);
-	epsMaintColRET.setBit(nBits := 4, bValue := TRUE);
+    epsMaintColRET(eps := stMotionStageRET.stEPSPowerEnable);
+    epsMaintColRET.setBit(nBits := 4, bValue := TRUE);
     bSafeToMoveRET := stMotionStageRET.stEPSPowerEnable.bEPS_OK;
 
     // =========== X Axis EPS Directional Checks ===========
@@ -99,7 +99,7 @@ END_VAR
     bSafeToMoveZ := stMotionStageZ.stEPSPowerEnable.bEPS_OK;
 
     // --- Global output ---
-    bSafeToMove := bSafeToMoveRET AND bSafeToMoveX AND bSafeToMoveY AND bSafeToMoveZ;	
+    bSafeToMove := bSafeToMoveRET AND bSafeToMoveX AND bSafeToMoveY AND bSafeToMoveZ;
 END_IF
 
 
@@ -119,9 +119,9 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF bEnable THEN
     epsMaintColRET.setBit(nBits := 4, bValue := bRETSafeToMove);
-	IF NOT bRETSafeToMove THEN
-		stMotionStageRET.sCustomErrorMessage := 'RET Locked out: Address collision avoidance hazard';
-	END_IF
+    IF NOT bRETSafeToMove THEN
+        stMotionStageRET.sCustomErrorMessage := 'RET Locked out: Address collision avoidance hazard';
+    END_IF
 END_IF
 ]]></ST>
       </Implementation>

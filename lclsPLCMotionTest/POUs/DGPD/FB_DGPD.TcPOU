@@ -25,10 +25,10 @@ VAR_IN_OUT
     fbFFHWO: FB_HardwareFFOutput;
     // The arbiter to request beam conditions from.
     fbArbiter: FB_Arbiter;
-	stDGPD : ST_DGPD;
+    stDGPD : ST_DGPD;
 END_VAR
 VAR_INPUT
-	bEnable : BOOL;
+    bEnable : BOOL;
     bHVActive            : BOOL;
     bEnablePositionLimits: BOOL;
     sDeviceName          : STRING;
@@ -39,7 +39,7 @@ VAR_INPUT
     bEnableMotion        : BOOL;
     bEPSEnable           : BOOL := TRUE;
     ePrevSetTarget: UINT;
-	
+
 
 END_VAR
 VAR_OUTPUT
@@ -74,10 +74,10 @@ END_VAR
 
 VAR
     fbDGPDEPS	: FB_DGPDEPS;
-	{attribute 'pytmc' := 'pv: DGPD'}
+    {attribute 'pytmc' := 'pv: DGPD'}
     fbSequencer	: FB_SequenceMover;
     fbDGPDEpsManual	: FB_DGPDEpsManual;
-	
+
     fbDGPDPMPSStateConfigHelper : FB_DGPDPMPSStateConfigHelper(
         astPositionStateRET := astPositionStateRET,
         astPositionStateX := astPositionStateX,
@@ -86,36 +86,36 @@ VAR
     );
     // --- RET axis ---
     astPositionStateRET : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-	{attribute 'pytmc' := 'pv: DGPD:RET'}
+    {attribute 'pytmc' := 'pv: DGPD:RET'}
     fbPositionStateRET : FB_PositionStatePMPS1D;
 
-	{attribute 'hide'}
+    {attribute 'hide'}
     eGetRETTarget : UINT;
-	{attribute 'hide'}
+    {attribute 'hide'}
     eSetRETState : UINT;
     // --- X axis ---
     astPositionStateX : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-	{attribute 'pytmc' := 'pv: DGPD:X'}
+    {attribute 'pytmc' := 'pv: DGPD:X'}
     fbPositionStateX : FB_PositionStatePMPS1D;
-	{attribute 'hide'}
+    {attribute 'hide'}
     eSetXState   : UINT;
-	{attribute 'hide'}
+    {attribute 'hide'}
     eGetXTarget   : UINT;
     // --- Y axis ---
     astPositionStateY : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-	{attribute 'pytmc' := 'pv: DGPD:Y'}
+    {attribute 'pytmc' := 'pv: DGPD:Y'}
     fbPositionStateY : FB_PositionStatePMPS1D;
-	{attribute 'hide'}	
+    {attribute 'hide'}
     eSetYState   : UINT;
-	{attribute 'hide'}
+    {attribute 'hide'}
     eGetYTarget   : UINT;
     // --- Z axis ---
     astPositionStateZ : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
-	{attribute 'pytmc' := 'pv: DGPD:Z'}
+    {attribute 'pytmc' := 'pv: DGPD:Z'}
     fbPositionStateZ : FB_PositionStatePMPS1D;
-	{attribute 'hide'}
+    {attribute 'hide'}
     eGetZTarget   : UINT;
-	{attribute 'hide'}
+    {attribute 'hide'}
     eSetZState   : UINT;
 
     {attribute 'hide'}
@@ -130,7 +130,7 @@ VAR
     ftGlobalMaint  : F_TRIG;
     {attribute 'hide'}
     rtMaintenanceMode : R_TRIG;
-	ePrevState : E_DGPDState;
+    ePrevState : E_DGPDState;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[
@@ -191,15 +191,15 @@ fbDGPDEPS(
     stMCS2ChanParameterZ   := stMCS2ChanParameterZ,
     stMCS2ChanParameterRET   := stMCS2ChanParameterRET,
     bEnable := bEPSEnable,
-	bMaintenance := stDGPD.bMaintMode,
+    bMaintenance := stDGPD.bMaintMode,
     bHVActive   := bHVActive
  );
- 
+
 IF stDGPD.bReset THEN
-	fbPositionStateRET.stEpicsToPlc.bReset := TRUE;
-	fbPositionStateX.stEpicsToPlc.bReset := TRUE;
-	fbPositionStateY.stEpicsToPlc.bReset := TRUE;
-	fbPositionStateZ.stEpicsToPlc.bReset := TRUE;
+    fbPositionStateRET.stEpicsToPlc.bReset := TRUE;
+    fbPositionStateX.stEpicsToPlc.bReset := TRUE;
+    fbPositionStateY.stEpicsToPlc.bReset := TRUE;
+    fbPositionStateZ.stEpicsToPlc.bReset := TRUE;
     fbSequencer.Reset();
 END_IF
 

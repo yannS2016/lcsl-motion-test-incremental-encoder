@@ -72,7 +72,6 @@
     </Compile>
     <Compile Include="POUs\DGPD\PRG_DGPD.TcPOU">
       <SubType>Code</SubType>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="POUs\DGPD\PRG_DGPD_SIM.TcPOU">
       <SubType>Code</SubType>
@@ -167,6 +166,12 @@
     <PlaceholderReference Include="PMPS">
       <DefaultResolution>PMPS, * (SLAC - LCLS)</DefaultResolution>
       <Namespace>PMPS</Namespace>
+      <Parameters>
+        <Parameter ListName="PMPS_PARAM" xmlns="">
+          <Key>MAX_FAST_FAULTS</Key>
+          <Value>80</Value>
+        </Parameter>
+      </Parameters>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
@@ -202,11 +207,6 @@
     <None Include="lclsPLCMotionTest.tmc">
       <SubType>Content</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <SubObject Include="FB_SequenceMover.MultiAxisCollisionAvoidance">
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </SubObject>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>

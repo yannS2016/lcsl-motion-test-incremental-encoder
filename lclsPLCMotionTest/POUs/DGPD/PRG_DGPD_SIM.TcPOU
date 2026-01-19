@@ -18,7 +18,7 @@ VAR
         .stDS402Drive.nDriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:X^ctl/mode/pos RxPDO^Control Word;
     '}
     fbDGPDX : FB_MotionStageMCS2(			
-			stMotionStage:=Main_Sim.M9,
+			stMotionStage:=Main.M9,
 			stMCS2ChanParameter:=GVL_MCS2.stDGPDXParameter,
 			eModule:=E_Module.CHAN2
 	);
@@ -38,7 +38,7 @@ VAR
         .stDS402Drive.nDriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Y^ctl/mode/pos RxPDO^Control Word;
     '}
     fbDGPDY : FB_MotionStageMCS2(			
-			stMotionStage:=Main_Sim.M10,
+			stMotionStage:=Main.M10,
 			stMCS2ChanParameter:=GVL_MCS2.stDGPDYParameter,
 			eModule:=E_Module.CHAN3
 	);
@@ -78,7 +78,7 @@ fbDGPDZ : FB_MotionStage();
         .stDS402Drive.nDriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:RET^ctl/mode/pos RxPDO^Control Word
     '}
     fbDGPDRET : FB_MotionStageMCS2(			
-			stMotionStage:=Main_Sim.M12,
+			stMotionStage:=Main.M12,
 			stMCS2ChanParameter:=GVL_MCS2.stDGPDRETParameter,
 			eModule:=E_Module.CHAN1
 	);
@@ -119,10 +119,10 @@ bEnable R= MOTION_GVL.fbPmpsFileReader.bBusy;
 fbDGPD(
 	bEnable := bEnable,
     stDGPD := stDGPD,
-    stMotionStageX	:= Main_Sim.M9,
-    stMotionStageY	:= Main_Sim.M10,
-    stMotionStageZ	:= Main_Sim.M11,
-    stMotionStageRET	:= Main_Sim.M12,
+    stMotionStageX	:= Main.M9,
+    stMotionStageY	:= Main.M10,
+    stMotionStageZ	:= Main.M11,
+    stMotionStageRET	:= Main.M12,
 	stMCS2ChanParameterX := GVL_MCS2.stDGPDXParameter,
 	stMCS2ChanParameterY := GVL_MCS2.stDGPDYParameter,
 	stMCS2ChanParameterZ := GVL_MCS2.stDGPDZParameter,
@@ -143,7 +143,7 @@ fbDGPDRET ();
 fbDGPDX();
 fbDGPDY();
 //fbDGPDZ();
-fbDGPDZ(stMotionStage:=Main_Sim.M11);
+fbDGPDZ(stMotionStage:=Main.M11);
 
 
 ]]></ST>

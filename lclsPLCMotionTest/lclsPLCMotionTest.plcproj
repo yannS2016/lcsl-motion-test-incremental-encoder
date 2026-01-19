@@ -46,20 +46,10 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
-    <Compile Include="GVLs\GVL_PLC_Interfaces.TcGVL">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GVLs\GVL_PLC_Interfances.TcGVL">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="GVLs\GVL_PMPS.TcGVL">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GVLs\Main.TcGVL">
-      <SubType>Code</SubType>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </Compile>
-    <Compile Include="GVLs\Main_Sim.TcGVL">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">

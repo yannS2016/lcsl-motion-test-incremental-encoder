@@ -1085,7 +1085,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{E31ADAA4-9B77-495F-982E-6D67EFCA2359}" Name="lclsPLCMotionTest" PrjFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.plcproj" TmcFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{9469947E-CF82-3C10-6426-5FEDD72EF249}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{2AA4B462-F32F-85AF-6F28-77D10BC758C7}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
 			<Name>lclsPLCMotionTest Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="8" AreaNo="4">
@@ -1233,46 +1233,6 @@ External Setpoint Generation:
 				<Var>
 					<Name>PRG_DGPD_SIM.fbDGPDRET.stDS402Drive.uScantargetVelocity</Name>
 					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>GVL_PMPS.fbFastFaultOutput1.q_xFastFaultOut</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M9.Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M9.bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M10.Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M10.bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M11.Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M11.bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M12.Axis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M12.bBrakeRelease</Name>
-					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
-					<Type>BOOL</Type>
 				</Var>
 				<Var>
 					<Name>PRG_DGPD_SIM.fbDGPD.fbPositionStateRET.astMotionStageMax[1].Axis.PlcToNc</Name>
@@ -1634,6 +1594,46 @@ External Setpoint Generation:
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
+				<Var>
+					<Name>GVL_PMPS.fbFastFaultOutput1.q_xFastFaultOut</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.Axis.PlcToNc</Name>
+					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.bBrakeRelease</Name>
+					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.Axis.PlcToNc</Name>
+					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.bBrakeRelease</Name>
+					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.Axis.PlcToNc</Name>
+					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.bBrakeRelease</Name>
+					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.Axis.PlcToNc</Name>
+					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.bBrakeRelease</Name>
+					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
 			</Vars>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
@@ -1727,182 +1727,6 @@ CSP drive mode]]></Comment>
 					<Name>PRG_DGPD_SIM.fbDGPDRET.stDS402Drive.nSlaveAddr</Name>
 					<Comment><![CDATA[ Port Number of EtherCAT Slave ]]></Comment>
 					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M9.Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M9.bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M9.bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M9.bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M9.bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M9.nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M9.nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M9.nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M9.nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M10.Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M10.bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M10.bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M10.bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M10.bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M10.nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M10.nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M10.nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M10.nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M11.Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M11.bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M11.bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M11.bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M11.bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M11.nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M11.nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M11.nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M11.nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M12.Axis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M12.bLimitForwardEnable</Name>
-					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M12.bLimitBackwardEnable</Name>
-					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M12.bHome</Name>
-					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M12.bHardwareEnable</Name>
-					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M12.nRawEncoderULINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
-					<Type>ULINT</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M12.nRawEncoderUINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M12.nRawEncoderINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
-					<Type>INT</Type>
-				</Var>
-				<Var>
-					<Name>Main_Sim.M12.nRawEncoderDINT</Name>
-					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
-					<Type>DINT</Type>
 				</Var>
 				<Var>
 					<Name>PRG_DGPD_SIM.fbDGPD.fbPositionStateRET.astMotionStageMax[1].Axis.NcToPlc</Name>
@@ -3664,6 +3488,182 @@ CSP drive mode]]></Comment>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
+				<Var>
+					<Name>Main.M9.Axis.NcToPlc</Name>
+					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.bLimitForwardEnable</Name>
+					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.bLimitBackwardEnable</Name>
+					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.bHome</Name>
+					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.bHardwareEnable</Name>
+					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.nRawEncoderULINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.nRawEncoderUINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.nRawEncoderINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M9.nRawEncoderDINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.Axis.NcToPlc</Name>
+					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.bLimitForwardEnable</Name>
+					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.bLimitBackwardEnable</Name>
+					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.bHome</Name>
+					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.bHardwareEnable</Name>
+					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.nRawEncoderULINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.nRawEncoderUINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.nRawEncoderINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M10.nRawEncoderDINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.Axis.NcToPlc</Name>
+					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.bLimitForwardEnable</Name>
+					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.bLimitBackwardEnable</Name>
+					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.bHome</Name>
+					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.bHardwareEnable</Name>
+					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.nRawEncoderULINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.nRawEncoderUINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.nRawEncoderINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M11.nRawEncoderDINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.Axis.NcToPlc</Name>
+					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.bLimitForwardEnable</Name>
+					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.bLimitBackwardEnable</Name>
+					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.bHome</Name>
+					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.bHardwareEnable</Name>
+					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.nRawEncoderULINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
+					<Type>ULINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.nRawEncoderUINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.nRawEncoderINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>Main.M12.nRawEncoderDINT</Name>
+					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
+					<Type>DINT</Type>
+				</Var>
 			</Vars>
 			<UnrestoredVarLinks ImportTime="2025-10-19T16:02:30">
 				<OwnerA Name="InputDst" Prefix="TIPC^lclsPLCMotionTest^lclsPLCMotionTest Instance" Type="1">
@@ -3920,9 +3920,9 @@ CSP drive mode]]></Comment>
 	<Mappings>
 		<OwnerA Name="lclsPLCMotionTest Instance">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03">
-				<Link VarA="PlcTask Inputs^Main_Sim.M10.nRawEncoderDINT" VarB="DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main_Sim.M12.nRawEncoderDINT" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
-				<Link VarA="PlcTask Inputs^Main_Sim.M9.nRawEncoderDINT" VarB="DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^Main.M10.nRawEncoderDINT" VarB="DREAM:DGPD:MMT:Y^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^Main.M12.nRawEncoderDINT" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
+				<Link VarA="PlcTask Inputs^Main.M9.nRawEncoderDINT" VarB="DREAM:DGPD:MMT:X^mode/status/pos/fError TxPDO^Position Actual Value" AutoLink="true"/>
 				<Link VarA="PlcTask Inputs^PRG_DGPD_SIM.fbDGPDRET.stDS402Drive.nFollowingError" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Following Error Actual Value" AutoLink="true"/>
 				<Link VarA="PlcTask Inputs^PRG_DGPD_SIM.fbDGPDRET.stDS402Drive.nModeOfOperationDisplay" VarB="DREAM:DGPD:MMT:RET^mode/status/pos/fError TxPDO^Modes of Operation Display" AutoLink="true"/>
 				<Link VarA="PlcTask Inputs^PRG_DGPD_SIM.fbDGPDRET.stDS402Drive.nSlaveAddr" VarB="InfoData^AdsAddr^port" AutoLink="true"/>
@@ -3943,29 +3943,29 @@ CSP drive mode]]></Comment>
 				<Link VarA="PlcTask Outputs^PRG_DGPD_SIM.fbDGPDY.stDS402Drive.nModeOfOperation" VarB="DREAM:DGPD:MMT:Y^ctl/mode/pos RxPDO^Modes of Operation" AutoLink="true"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1^Axes^M10_DREAM_DGPD_MMT_Y">
-				<Link VarA="PlcTask Inputs^Main_Sim.M10.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Main.M10.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
 				<Link VarA="PlcTask Inputs^PRG_DGPD_SIM.fbDGPDY.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
 				<Link VarA="PlcTask Inputs^PRG_DGPD_SIM.fbDGPDY.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
 				<Link VarA="PlcTask Inputs^PRG_DGPD_SIM.fbDGPDY.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^Main_Sim.M10.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="PlcTask Outputs^Main.M10.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1^Axes^M11_DREAM_DGPD_MMT_Z">
-				<Link VarA="PlcTask Inputs^Main_Sim.M11.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^Main_Sim.M11.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="PlcTask Inputs^Main.M11.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^Main.M11.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1^Axes^M12_DREAM_DGPD_MMT_RET">
-				<Link VarA="PlcTask Inputs^Main_Sim.M12.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Main.M12.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
 				<Link VarA="PlcTask Inputs^PRG_DGPD_SIM.fbDGPDRET.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
 				<Link VarA="PlcTask Inputs^PRG_DGPD_SIM.fbDGPDRET.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
 				<Link VarA="PlcTask Inputs^PRG_DGPD_SIM.fbDGPDRET.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^Main_Sim.M12.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="PlcTask Outputs^Main.M12.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1^Axes^M9_DREAM_DGPD_MMT_X">
-				<Link VarA="PlcTask Inputs^Main_Sim.M9.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Inputs^Main.M9.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
 				<Link VarA="PlcTask Inputs^PRG_DGPD_SIM.fbDGPDX.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl1" AutoLink="true" Size="8"/>
 				<Link VarA="PlcTask Inputs^PRG_DGPD_SIM.fbDGPDX.stDS402Drive.nDriveControlNC" VarB="Drive^Outputs^Out^nCtrl2" AutoLink="true" Size="8" OffsA="8"/>
 				<Link VarA="PlcTask Inputs^PRG_DGPD_SIM.fbDGPDX.stDS402Drive.nModeOfOperationNC" VarB="Drive^Outputs^Out^nCtrl5" AutoLink="true"/>
-				<Link VarA="PlcTask Outputs^Main_Sim.M9.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="PlcTask Outputs^Main.M9.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>

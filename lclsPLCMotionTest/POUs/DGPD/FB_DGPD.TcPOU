@@ -7,9 +7,9 @@
     This function block implements the complete interlock, sequencing, and maintenance/manual mode logic
     for the DREAM Sample Paddle's 4 axis (RET, X, Y, Z). It supports:
     - Automatic sequence mode: RET, X, Y, Z move in a defined interlocked order toward user-selected targets with overall safety interlock.
-    - Maintenance/manual mode: Allows for per-axis manual positioning, with full collision avoidance and safe-to-move checks.
+    - Maintenance/manual mode: Allows for per-axis manual positioning, with collision avoidance and safe-to-move checks.
     - Dynamic, cyclic evaluation of safety via EPS (HV interlock, calibration/reference/sensor status for each axis in both forward and backward directions).
-    - Latching and auto-latching of maintenance mode for all axes, with safe global exit via edge-detection (F_TRIG).
+    - Latching and auto-latching of maintenance mode for all axes, with safe global exit.
 *)
 FUNCTION_BLOCK FB_DGPD
 VAR_IN_OUT

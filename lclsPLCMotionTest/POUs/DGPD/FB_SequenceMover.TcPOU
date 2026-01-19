@@ -143,12 +143,14 @@ ELSE
         E_DGPDSequence.DONE:
             bEnteredDone := TRUE;
             bSequenceComplete := TRUE;
+			 eLastReqState := E_DGPDState.UNKNOWN;
             IF eReqState <> E_DGPDState.UNKNOWN THEN
                 axisSequenceStep := E_DGPDSequence.INIT;
                 bSequenceComplete := FALSE;
             END_IF
 
         E_DGPDSequence.ERROR:
+		    eLastReqState := E_DGPDState.UNKNOWN;
             bEnteredError := TRUE;
             bMoveRET := FALSE; bMoveX := FALSE; bMoveY := FALSE; bMoveZ := FALSE;
             bSequenceComplete := FALSE;

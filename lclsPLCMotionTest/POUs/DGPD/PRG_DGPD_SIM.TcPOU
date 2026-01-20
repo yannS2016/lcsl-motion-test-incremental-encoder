@@ -19,7 +19,7 @@ VAR
     '}
     fbDGPDX : FB_MotionStageMCS2(			
 			stMotionStage:=Main.M9,
-			stMCS2ChanParameter:=GVL_MCS2.stDGPDXParameter,
+			stMCS2ChanParameter:=GVL_MCS2.stDGPDXParam,
 			eModule:=E_Module.CHAN2
 	);
 
@@ -39,29 +39,10 @@ VAR
     '}
     fbDGPDY : FB_MotionStageMCS2(			
 			stMotionStage:=Main.M10,
-			stMCS2ChanParameter:=GVL_MCS2.stDGPDYParameter,
+			stMCS2ChanParameter:=GVL_MCS2.stDGPDYParam,
 			eModule:=E_Module.CHAN3
 	);
 
-    (* Axis Z *)
-//     {attribute 'TcLinkToOSO' := '
-//         .stDS402Drive.nModeOfOperationNC      := <0,8,0>TINC^NC-Task 1^Axes^M11_DREAM_DGPD_MMT_Z^Drive^Outputs^Out^nCtrl5;
-//         .stDS402Drive.nDriveControlNC  := <0,8,0>TINC^NC-Task 1^Axes^M11_DREAM_DGPD_MMT_Z^Drive^Outputs^Out^nCtrl1;
-//         .stDS402Drive.nDriveControlNC  := <8,8,0>TINC^NC-Task 1^Axes^M11_DREAM_DGPD_MMT_Z^Drive^Outputs^Out^nCtrl2;
-//     '}
-//     {attribute 'TcLinkTo' := '
-//         .stDS402Drive.nSlaveAddr              := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^InfoData^AdsAddr^port;
-//         .stDS402Drive.stDriveStatus      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^mode/status/pos/fError TxPDO^Status Word;
-//         .stDS402Drive.nFollowingError         := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^mode/status/pos/fError TxPDO^Following Error Actual Value;
-//         .stDS402Drive.nModeOfOperation        := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^ctl/mode/pos RxPDO^Modes of Operation;
-//         .stDS402Drive.nModeOfOperationDisplay := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^mode/status/pos/fError TxPDO^Modes of Operation Display;
-//         .stDS402Drive.nDriveControl      := TIID^Device 1 (EtherCAT)^TMO-DREAM-SMARACT-03^DREAM:DGPD:MMT:Z^ctl/mode/pos RxPDO^Control Word;
-//     '}
-//     fbDGPDZ : FB_MotionStageMCS2(			
-// 			stMotionStage:=Main.M11,
-// 			stMCS2ChanParameter:=GVL_MCS2.stDGPDZParameter,
-// 			eModule:=E_Module.CHAN1
-// 	);
 fbDGPDZ : FB_MotionStage();
     (* Axis RET *)
     {attribute 'TcLinkToOSO' := '
@@ -79,64 +60,59 @@ fbDGPDZ : FB_MotionStage();
     '}
     fbDGPDRET : FB_MotionStageMCS2(			
 			stMotionStage:=Main.M12,
-			stMCS2ChanParameter:=GVL_MCS2.stDGPDRETParameter,
+			stMCS2ChanParameter:=GVL_MCS2.stDGPDRETParam,
 			eModule:=E_Module.CHAN1
 	);
-
     // sequencer
-	{attribute 'pytmc' := 'pv: DREAM'}
+    {attribute 'pytmc' := 'pv: DREAM'}
     fbDGPD : FB_DGPD;
-    // General control/flags
-	// link this IO
-	{attribute 'pytmc' := 'pv: DREAM'}
-    bHVActive            : BOOL := FALSE;
-	
+    {attribute 'pytmc' := 'pv: DREAM:DGPD'}
+    stDGPD : ST_DGPD;
+
     bEnablePositionLimits: BOOL := TRUE;
-    bReadDBNow           : BOOL := FALSE;
-    bMaintenanceMode     : BOOL := FALSE;
+    bReadDBNow           : BOOL;
+    bMaintenanceMode     : BOOL;
     bEnableBeamParams    : BOOL := TRUE;
     bEnableMotion        : BOOL := TRUE;
+    bEnable: BOOL ;
     // Device/transition key names
     sDeviceName    : STRING := 'DREAM:PF';
     sTransitionKey : STRING := 'DREAM:PF-TRANSITION';
-    bEnable: BOOL ;
-	{attribute 'pytmc' := 'pv: DREAM:DGPD'}
-	stDGPD : ST_DGPD;
     {attribute 'hide'}
-	ftpmpDbReadDone : F_TRIG;;
+    ftpmpDbReadDone : F_TRIG;;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[// for test only
-GVL_MCS2.stDGPDZParameter.stChannelState.bIsCalibrated   := TRUE;
-GVL_MCS2.stDGPDZParameter.stChannelState.bIsReferenced   := TRUE; 
-GVL_MCS2.stDGPDZParameter.stChannelState.bSensorPresent   := TRUE;
+GVL_MCS2.stDGPDZParam.stChannelState.bIsCalibrated   := TRUE;
+GVL_MCS2.stDGPDZParam.stChannelState.bIsReferenced   := TRUE; 
+GVL_MCS2.stDGPDZParam.stChannelState.bSensorPresent   := TRUE;
 
 ftpmpDbReadDone(CLK:=MOTION_GVL.fbPmpsFileReader.bBusy);
 bEnable S= ftpmpDbReadDone.Q;
 bEnable R= MOTION_GVL.fbPmpsFileReader.bBusy;
 
 fbDGPD(
-	bEnable := bEnable,
+    bEnable := bEnable,
     stDGPD := stDGPD,
-    stMotionStageX	:= Main.M9,
-    stMotionStageY	:= Main.M10,
-    stMotionStageZ	:= Main.M11,
-    stMotionStageRET	:= Main.M12,
-	stMCS2ChanParameterX := GVL_MCS2.stDGPDXParameter,
-	stMCS2ChanParameterY := GVL_MCS2.stDGPDYParameter,
-	stMCS2ChanParameterZ := GVL_MCS2.stDGPDZParameter,
-	stMCS2ChanParameterRET := GVL_MCS2.stDGPDRETParameter,
+    stMotionStageX	:= MAIN.M9,
+    stMotionStageY	:= MAIN.M10,
+    stMotionStageZ	:= MAIN.M11,
+    stMotionStageRET	:= MAIN.M12,
+    stMCS2ChanParameterX := GVL_MCS2.stDGPDXParam,
+    stMCS2ChanParameterY := GVL_MCS2.stDGPDYParam,
+    stMCS2ChanParameterZ := GVL_MCS2.stDGPDZParam,
+    stMCS2ChanParameterRET := GVL_MCS2.stDGPDRETParam,
     fbFFHWO	:= GVL_PMPS.fbFastFaultOutput1,
     fbArbiter	:= GVL_PMPS.fbArbiter,
-    bHVActive	:= bHVActive,
+    bHVActive	:= GVL_EPS.bSafetyLoopStatus,
     bEnablePositionLimits := bEnablePositionLimits,
     sDeviceName	:= sDeviceName,
     sTransitionKey	:= sTransitionKey,
     bReadDBNow	:= bReadDBNow,
     bEPSEnable	:= TRUE,
     bEnableBeamParams	:= bEnableBeamParams,
-    bEnableMotion	:= bEnableMotion,
+    bEnableMotion	:= bEnableMotion
 );
 
 fbDGPDRET ();

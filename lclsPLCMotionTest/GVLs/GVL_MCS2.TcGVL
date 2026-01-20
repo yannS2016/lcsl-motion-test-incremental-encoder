@@ -5,16 +5,16 @@
 VAR_GLOBAL
 	
     {attribute 'pytmc':='pv: DREAM:DGPD:MMT:X'}
-	stDGPDXParameter : ST_MCS2ChanParameter;
+	stDGPDXParam : ST_MCS2ChanParameter;
 
     {attribute 'pytmc':='pv: DREAM:DGPD:MMT:Y'}
-	stDGPDYParameter : ST_MCS2ChanParameter;
+	stDGPDYParam : ST_MCS2ChanParameter;
 
     {attribute 'pytmc':='pv: DREAM:DGPD:MMT:Z'}
-	stDGPDZParameter : ST_MCS2ChanParameter;
+	stDGPDZParam : ST_MCS2ChanParameter;
 
     {attribute 'pytmc':='pv: DREAM:DGPD:MMT:RET'}
-	stDGPDRETParameter : ST_MCS2ChanParameter;
+	stDGPDRETParam : ST_MCS2ChanParameter;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

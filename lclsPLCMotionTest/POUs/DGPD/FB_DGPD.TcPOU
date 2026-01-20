@@ -70,6 +70,7 @@ VAR_OUTPUT
     bEnteredMoveZToTarget   : BOOL;
     bEnteredDone            : BOOL;
     bEnteredError           : BOOL;
+    ePrevState : E_DGPDState;
 END_VAR
 
 VAR
@@ -130,7 +131,6 @@ VAR
     ftGlobalMaint  : F_TRIG;
     {attribute 'hide'}
     rtMaintenanceMode : R_TRIG;
-    ePrevState : E_DGPDState;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[
@@ -228,7 +228,7 @@ ELSE
 
 END_IF
 
-//stDGPD.eSetTarget := E_DGPDState.UNKNOWN;
+stDGPD.eSetTarget := E_DGPDState.UNKNOWN;
 stDGPD.bReset := FALSE;
 //--- RET axis ---
 fbPositionStateRET(

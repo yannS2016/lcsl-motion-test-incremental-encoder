@@ -1085,7 +1085,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{E31ADAA4-9B77-495F-982E-6D67EFCA2359}" Name="lclsPLCMotionTest" PrjFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.plcproj" TmcFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{65ECCA63-025D-41B7-BAA1-721BC60EBADB}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{346090E1-18A8-2448-AFEC-049F37639A72}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
 			<Name>lclsPLCMotionTest Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="8" AreaNo="4">
@@ -1592,6 +1592,10 @@ External Setpoint Generation:
 				<Var>
 					<Name>PRG_DGPD_SIM.fbDGPD.fbPositionStateZ.astMotionStageMax[10].bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_EPS.bSafetyLoopEnable</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
@@ -3487,6 +3491,10 @@ CSP drive mode]]></Comment>
 					<Name>PRG_DGPD_SIM.fbDGPD.fbPositionStateZ.astMotionStageMax[10].nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_EPS.bSafetyLoopStatus</Name>
+					<Type>BOOL</Type>
 				</Var>
 				<Var>
 					<Name>Main.M9.Axis.NcToPlc</Name>

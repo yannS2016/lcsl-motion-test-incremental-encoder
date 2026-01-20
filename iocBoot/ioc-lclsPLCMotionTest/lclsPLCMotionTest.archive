@@ -1,3 +1,7 @@
+DREAM:SL:ENABLE_RBV.VAL	1	scan
+DREAM:SL:ENABLE.VAL	1	scan
+DREAM:SL:STATUS_RBV.VAL	1	scan
+DREAM:SL:STATUS.VAL	1	scan
 $(PREFIX)LCLSGeneral:GlobalLogTrickleTrip_RBV.VAL	1	scan
 $(PREFIX)LCLSGeneral:LogHost_RBV.VAL	1	scan
 $(PREFIX)LCLSGeneral:LogHost.VAL	1	scan
@@ -2870,8 +2874,6 @@ $(PREFIX)RequestedBP:Transmission_RBV.VAL	1	monitor
 $(PREFIX)RequestedBP:PhotonEnergy_RBV.VAL	1	monitor
 $(PREFIX)RequestedBP:eVRanges_RBV.VAL	1	monitor
 $(PREFIX)RequestedBP:Valid_RBV.VAL	1	monitor
-DREAM_RBV.VAL	1	scan
-DREAM.VAL	1	scan
 DREAM:DGPD:RET:STATE:10:MOVE_OK_RBV.VAL	1	scan
 DREAM:DGPD:RET:STATE:10:SETPOINT_RBV.VAL	1	scan
 DREAM:DGPD:RET:STATE:10:SETPOINT.VAL	1	scan

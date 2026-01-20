@@ -28,8 +28,9 @@ VAR_INPUT
     {attribute 'pytmc' := '
         pv: fDriftTol
         io: io
+        field: DESC Blades drifting tolerance
     '}
-    fDriftTol      : LREAL := 0.003; // 3um
+    fDriftTol      : LREAL := 0.004; // 4um
 
     {attribute 'hide'}
     bEnableBeamParams    : BOOL := TRUE;
@@ -37,9 +38,47 @@ VAR_INPUT
     {attribute 'pytmc' := '
         pv: RESET
         io: io
+        field: DESC global SL3K4 reset
     '}
     bReset               : BOOL;
-    iMotor : UINT;
+    iBlade : UINT;
+END_VAR
+VAR_OUTPUT
+    bIsMaintenance       : BOOL;
+    bGoalIsNormal        : BOOL;
+    bFoundTransition     : BOOL;
+    bFoundGoal           : BOOL;
+    bBPTMEnable : BOOL;
+    stMaintenanceGoal    : ST_DbStateParams;
+    stNormalGoal         : ST_DbStateParams;
+    stTransitionGoal     : ST_DbStateParams;
+    bDBStatesLoaded      : BOOL;
+    bSafeToMove          : BOOL;
+    bLocked              : BOOL;
+    bMaintenanceActive   : BOOL;
+    bProgrammerError     : BOOL;
+    {attribute 'pytmc' := '
+        pv: sStatusMsg
+        io: i
+        field: DESC SL3K4 Status Message
+    '}
+    sStatusMsg           : STRING;
+    bAnybladeError       : BOOL;
+    bArbiterError        : BOOL;
+    bTransitionAuthorized: BOOL;
+    bDriftFF             : BOOL;
+    bModeTransitionStarted : BOOL;
+    bModeTransitionDone : BOOL;
+    bTransitionCompleted   : BOOL;
+    nBlades              : UINT;
+    stGoalParams         : ST_DbStateParams;
+    stTransParams        : ST_DbStateParams;
+    {attribute 'pytmc' := '
+        pv: aBladesfDrift
+        io: i
+        field: DESC SL3K4 blades drift
+    '}
+    aBladesfDrift	: ARRAY[1..nActiveMotorCount] OF LREAL;
 END_VAR
 VAR
 
@@ -52,100 +91,28 @@ VAR
     fbSL3K4ReadPMPSDB    : FB_SL3K4ReadPMPSDB;
 
     {attribute 'pytmc' := '
-        pv: STATE
+        pv: STATE:SET
         io: io
         field: DESC SL3K4 state
     '}
-    eSL3K4State	: UINT := E_SL3K4State.NORMAL;
-
+    eSL3K4StateSet	: UINT := E_SL3K4State.NORMAL;
+	eSL3K4StateSetLast   : UINT := E_SL3K4State.UNKNOWN; // Buffer for state tracking
+    {attribute 'pytmc' := '
+        pv: STATE:GET
+        io: i
+        field: DESC SL3K4 state
+    '}
+    eSL3K4StateGet	: UINT;
+	
     {attribute 'pytmc' := 'pv: STATE'}
     stPMPSEpicsToPlc     : ST_StatePMPSEpicsToPlc;
 
-    {attribute 'pytmc' := '
-        pv: aBladesfDrift
-        io: io
-        field: DESC SL3K4 blades drift
-    '}
-    aBladesfDrift	: ARRAY[1..nActiveMotorCount] OF LREAL;
-
     {attribute 'hide'}
     abBladeEnable        : ARRAY[1..MotionConstants.MAX_STATE_MOTORS] OF BOOL;
-	
     {attribute 'hide'}
     ePrevState            : E_SL3K4State := E_SL3K4State.NORMAL;
-	
-	{attribute 'hide'}
-    bBPTMEnable : BOOL;
-    {attribute 'hide'}
-    stMaintenanceGoal    : ST_DbStateParams;
-    {attribute 'hide'}
-    stNormalGoal         : ST_DbStateParams;
-    {attribute 'hide'}
-    stTransitionGoal     : ST_DbStateParams;
-    {attribute 'hide'}
-    bDBStatesLoaded      : BOOL := FALSE;
-    {attribute 'hide'}
-    bSafeToMove          : BOOL;
-    {attribute 'hide'}
-    bLocked              : BOOL;
-    {attribute 'hide'}
-    bMaintenanceActive   : BOOL;
-    {attribute 'hide'}
-    bProgrammerError     : BOOL;
-    {attribute 'hide'}
-    sStatusMsg           : STRING;
-    {attribute 'hide'}
-    bAnybladeError       : BOOL;
-    {attribute 'hide'}
-    bArbiterError        : BOOL;
-    {attribute 'hide'}
-    nBlades              : UINT;
-    {attribute 'hide'}
-    stGoalParams         : ST_DbStateParams;
-    {attribute 'hide'}
-    stTransParams        : ST_DbStateParams;
-    {attribute 'hide'}
-    bDBReloadRequested   : BOOL := TRUE;
-    {attribute 'hide'}
-    bDBReloadNow         : BOOL;
-    {attribute 'hide'}
-    bReadNow             : BOOL;
-    {attribute 'hide'}
-    bDone                : BOOL;
-    {attribute 'hide'}
-    bDriftFF             : BOOL;
-    {attribute 'hide'}
-    bLastTransAuth       : BOOL;
-
-    {attribute 'hide'}
-    tArbiterTimeout      : TIME := T#3s;
-    {attribute 'hide'}
-    bMoveOnArbiterTimeout: BOOL := TRUE;
-    {attribute 'hide'}
-    bResetBPTMTimeout    : BOOL;
-    {attribute 'hide'}
-    bRetry               : BOOL;
-    {attribute 'hide'}
-    bAtState             : BOOL;
-    {attribute 'hide'}
-    bInternalAuth        : BOOL;
-    {attribute 'hide'}
-    bArbiterTimeout      : BOOL;
-    {attribute 'hide'}
-    allAxesIdle          : BOOL;
-    {attribute 'hide'}
-    axis                 : INT;
     {attribute 'hide'}
     i                    : DINT;
-    {attribute 'hide'}
-    bIsMaintenance       : BOOL;
-    {attribute 'hide'}
-    bGoalIsNormal        : BOOL;
-    {attribute 'hide'}
-    bFoundTransition     : BOOL;
-    {attribute 'hide'}
-    bFoundGoal           : BOOL;
-    {attribute 'hide'}
     fbLogger             : FB_LogMessage := (eSubsystem:=E_SubSystem.MOTION);
     {attribute 'hide'}
     eSevr                : LCLS_General.TcEventSeverity;
@@ -153,8 +120,6 @@ VAR
     sLastStatusMsg       : STRING := '';
     {attribute 'hide'}
     eLastSevr            : TcEventSeverity := TcEventSeverity.Info;
-    {attribute 'hide'}
-    bTransitionAuthorized: BOOL;
     {attribute 'hide'}
     rtEnable             : R_TRIG;
     {attribute 'hide'}
@@ -166,24 +131,17 @@ VAR
     {attribute 'hide'}
     bFoundMaintenance    : BOOL;
     {attribute 'hide'}
-    stDbStateParams      : ST_DbStateParams;
-    {attribute 'hide'}
-    bIsNormal: BOOL;
-    {attribute 'hide'}
     rtTransAuth          : R_TRIG;
     {attribute 'hide'}
     rtTransDone          : R_TRIG;
-    {attribute 'hide'}
-    bModeTransitionStarted : BOOL;
-    {attribute 'hide'}
-    bModeTransitionDone : BOOL;
-    {attribute 'hide'}
-    bTransitionCompleted   : BOOL;
+	rtTransCompleted: R_TRIG;
+	rtBPTMBusy: R_TRIG;
+	bValidGoal: BOOL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF bReset THEN
-    FOR iMotor := 1 TO  nActiveMotorCount DO
-        astMotionStage[iMotor].bReset := TRUE;
+    FOR iBlade := 1 TO  nActiveMotorCount DO
+        astMotionStage[iBlade].bReset := TRUE;
     END_FOR
     bReset := FALSE;
 END_IF
@@ -240,32 +198,23 @@ IF rtUpdateDBState.Q THEN
         bDBStatesLoaded := TRUE;
     END_IF
 END_IF
+
 //
 IF bDBStatesLoaded THEN
-    CASE eSL3K4State OF
-        E_SL3K4State.MAINTENANCE: stGoalParams := stMaintenanceGoal;
-        E_SL3K4State.NORMAL:      stGoalParams := stNormalGoal;
-        ELSE                     stGoalParams := stNormalGoal; // Default fallback
+    CASE eSL3K4StateSet OF
+        E_SL3K4State.MAINTENANCE:
+            stGoalParams := stMaintenanceGoal;
+        E_SL3K4State.NORMAL:
+           stGoalParams := stNormalGoal;
     END_CASE
     stTransParams := stTransitionGoal;
 END_IF
 
-ffProgrammerError(
-    i_xOK := NOT bProgrammerError,
-    i_xAutoReset := TRUE,
-    i_DevName := sDeviceName,
-    i_Desc := 'Required PMPS state not found in DB or config error',
-    i_TypeCode := E_MotionFFType.INTERNAL_ERROR,
-    io_fbFFHWO := fbFFHWO
-);
-
-// Enable only if valid state/request, no errors
-bBPTMEnable := ((eSL3K4State = E_SL3K4State.MAINTENANCE) OR (eSL3K4State = E_SL3K4State.NORMAL))
-              AND NOT bProgrammerError
-              AND stPMPSEpicsToPlc.bArbiterEnabled
-              AND bEnableBeamParams;
-rtEnable(CLK := bBPTMEnable);
-
+IF eSL3K4StateSet <> E_SL3K4State.UNKNOWN THEN
+	eSL3K4StateSetLast := eSL3K4StateSet;
+	eSL3K4StateSet := E_SL3K4State.UNKNOWN;
+	eSL3K4StateGet := E_SL3K4State.UNKNOWN;
+END_IF
 // Aggregate blade errors
 bAnybladeError := FALSE;
 FOR nBlades := 1 TO nActiveMotorCount DO
@@ -274,6 +223,14 @@ FOR nBlades := 1 TO nActiveMotorCount DO
     END_IF
 END_FOR
 
+// Enable only if valid state/request, no errors
+bBPTMEnable := (*((eSL3K4StateSet = E_SL3K4State.MAINTENANCE) OR (eSL3K4StateSet = E_SL3K4State.NORMAL))
+              AND*) NOT bProgrammerError
+              AND stPMPSEpicsToPlc.bArbiterEnabled
+              AND bEnableBeamParams;
+
+rtEnable(CLK := bBPTMEnable);
+
 fbSL3K4BPTM(
     fbArbiter     := fbArbiter,
     fbFFHWO       := fbFFHWO,
@@ -281,19 +238,28 @@ fbSL3K4BPTM(
     stGoalParams  := stGoalParams,
     stTransParams := stTransParams,
     bEnable       := bBPTMEnable,
-    bRetry        := rtEnable.Q AND nGoalAtClear = eSL3K4State,
+    bRetry        := rtEnable.Q AND nGoalAtClear = eSL3K4StateSetLast,
     bBladeError   := bAnybladeError,
     bTransitionAuthorized => bTransitionAuthorized
 );
 
 fbMotionClearAsserts(
     astDbStateParams := fbSL3K4ReadPMPSDB.astDbStateParams,
-    fbArbiter        := fbArbiter,
-    bExecute         := NOT fbSL3K4BPTM.bEnable
+    fbArbiter := fbArbiter,
+    bExecute := NOT fbSL3K4BPTM.bEnable
 );
 
 IF fbMotionClearAsserts.bExecute THEN
-    nGoalAtClear := eSL3K4State;
+    nGoalAtClear := eSL3K4StateSetLast;
+END_IF
+
+// Clear all transition flags & safe-to-move if a request starts or error/busy encountered
+IF (eSL3K4StateSetLast <> nGoalAtClear) OR fbSL3K4BPTM.bBusy OR fbSL3K4BPTM.bError THEN
+    bSafeToMove := FALSE;
+    bModeTransitionStarted := fbSL3K4BPTM.bBusy;
+    bModeTransitionDone := FALSE;
+    bTransitionCompleted := FALSE;
+    nGoalAtClear := eSL3K4StateSetLast;
 END_IF
 
 rtTransAuth(CLK := bTransitionAuthorized);
@@ -306,32 +272,22 @@ END_IF
 IF rtTransDone.Q THEN
     bModeTransitionDone := TRUE;
 END_IF
-bTransitionCompleted := bModeTransitionStarted AND bModeTransitionDone;
 
-// Clear all transition flags & safe-to-move if a request starts or error/busy encountered
-IF (eSL3K4State <> nGoalAtClear) OR fbSL3K4BPTM.bBusy OR fbSL3K4BPTM.bError THEN
-    bSafeToMove := FALSE;
-    bModeTransitionStarted := fbSL3K4BPTM.bBusy;
-    bModeTransitionDone := FALSE;
-    bTransitionCompleted := FALSE;
-    nGoalAtClear := eSL3K4State;
+bTransitionCompleted := bModeTransitionStarted AND bModeTransitionDone;
+rtTransCompleted(CLK := bTransitionCompleted);
+IF rtTransCompleted.Q THEN
+    eSL3K4StateGet := eSL3K4StateSetLast;
 END_IF
 
 // Safe-to-Move checks
-CASE eSL3K4State OF
-    E_SL3K4State.MAINTENANCE:
-        bSafeToMove := bTransitionCompleted AND NOT bAnybladeError;
-    E_SL3K4State.NORMAL:
-        bSafeToMove := FALSE;
-    ELSE
-        bSafeToMove := FALSE;
-END_CASE
+bSafeToMove := (eSL3K4StateSetLast=E_SL3K4State.MAINTENANCE)
+				 AND bTransitionCompleted 
+				 AND NOT bAnybladeError;
 bLocked := NOT bSafeToMove;
-
 // Per-blade enable/disable and drift detection ---
 bDriftFF := FALSE;
 FOR nBlades := 1 TO nActiveMotorCount DO
-    CASE eSL3K4State OF
+    CASE eSL3K4StateSetLast OF
         E_SL3K4State.NORMAL:
             // disabled all blades
             abBladeEnable[nBlades] := FALSE;
@@ -371,11 +327,21 @@ ELSE
     fbMiscStatesErrorFFO.stCurrentBeamReq := PMPS_GVL.cstFullBeam;
 END_IF
 
+
+ffProgrammerError(
+    i_xOK := NOT bProgrammerError,
+    i_xAutoReset := TRUE,
+    i_DevName := sDeviceName,
+    i_Desc := 'Required PMPS state not found in DB or config error',
+    i_TypeCode := E_MotionFFType.INTERNAL_ERROR,
+    io_fbFFHWO := fbFFHWO
+);
+
 fbMiscStatesErrorFFO(
     fbArbiter    := fbArbiter,
     fbFFHWO      := fbFFHWO,
     sDeviceName  := sDeviceName,
-    bKnownState  := eSL3K4State > 0,
+    bKnownState  := eSL3K4StateSet > 0,
     nTransitionID:= stTransParams.nRequestAssertionID
 );
 
@@ -398,17 +364,15 @@ ffDriftFFO(
 IF bDriftFF OR bProgrammerError THEN
     sStatusMsg := 'Device fast faulted (blades, encoder, or config error)';
     eSevr := TcEventSeverity.Critical;
-ELSIF bSafeToMove THEN
-    sStatusMsg := 'Maintenance: PMPS safe, axes enabled for manual scatter/homing.';
+ELSIF (eSL3K4StateGet = E_SL3K4State.MAINTENANCE) AND bSafeToMove THEN
+    sStatusMsg := 'Maintenance: PMPS safe, blades enabled for manual scatter/homing.';
     eSevr := TcEventSeverity.Info;
+ELSIF (eSL3K4StateGet = E_SL3K4State.NORMAL) THEN
+	sStatusMsg := 'Normal: blades locked for PMPS protection.';
+	eSevr := TcEventSeverity.Info;
 ELSE
-    IF (eSL3K4State = E_SL3K4State.NORMAL) THEN
-        sStatusMsg := 'Normal: Axes locked for PMPS protection.';
-        eSevr := TcEventSeverity.Info;
-    ELSE
-        sStatusMsg := 'Axes locked in undefined or error state.';
-        eSevr := TcEventSeverity.Warning;
-    END_IF
+	sStatusMsg := 'Blades locked in undefined or error state.';
+	eSevr := TcEventSeverity.Warning;
 END_IF
 
 // --- Log only on change ---
@@ -420,8 +384,6 @@ IF (sStatusMsg <> sLastStatusMsg) THEN
     sLastStatusMsg := sStatusMsg;
     eLastSevr := eSevr;
 END_IF
-
-
 ]]></ST>
     </Implementation>
   </POU>

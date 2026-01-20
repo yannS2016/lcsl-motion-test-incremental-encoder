@@ -6,10 +6,9 @@
 {attribute 'to_string'}
 TYPE E_SL3K4State :
 (
-	TRANSITION := 0,
+	UNKNOWN := 0,
 	NORMAL := 1,
-	MAINTENANCE := 2,
-	UNKNOWN := 3
+	MAINTENANCE := 2
 )UINT;
 END_TYPE
 ]]></Declaration>

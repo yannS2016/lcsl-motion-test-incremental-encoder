@@ -1,2 +1,2 @@
-epicsEnvSet("IOC_TOP", "/c/Users/ysmandza/Documents/lcls/01_PLC_Samples/dream/iocBoot/ioc-lclsPLCMotionTest")
+epicsEnvSet("IOC_TOP", "/c/Users/ysmandza/Documents/lcls/01_PLC_Samples/dream-slits/iocBoot/ioc-lclsPLCMotionTest")
 epicsEnvSet("IOC_DATA", "/cds/data/iocData")

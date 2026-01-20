@@ -98,10 +98,6 @@
     <Compile Include="POUs\SL3K4\FB_SL3K4ReadPMPSDB.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\SL3K4\FB_SL3K4_BK.TcPOU">
-      <SubType>Code</SubType>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </Compile>
     <Compile Include="POUs\SL3K4\PRG_SL3K4.TcPOU">
       <SubType>Code</SubType>
     </Compile>

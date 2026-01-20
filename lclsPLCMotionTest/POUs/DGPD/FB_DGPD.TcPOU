@@ -228,7 +228,7 @@ ELSE
 
 END_IF
 
-stDGPD.eSetTarget := E_DGPDState.UNKNOWN;
+//stDGPD.eSetTarget := E_DGPDState.UNKNOWN;
 stDGPD.bReset := FALSE;
 //--- RET axis ---
 fbPositionStateRET(

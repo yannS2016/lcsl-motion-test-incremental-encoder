@@ -79,6 +79,7 @@ ELSE
             bEnteredInit := TRUE;
             IF eReqState <> eLastReqState THEN
                 eLastReqState := eReqState;
+				eReqState:=E_DGPDState.UNKNOWN;
                 axisSequenceStep := E_DGPDSequence.CHECK_OUT;
             END_IF
 

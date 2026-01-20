@@ -27,9 +27,10 @@ VAR_IN_OUT
     fbArbiter: FB_Arbiter;
     stDGPD : ST_DGPD;
 END_VAR
+
 VAR_INPUT
     bEnable : BOOL;
-    bHVActive            : BOOL;
+    bSafetyLoopStatus   : BOOL;
     bEnablePositionLimits: BOOL;
     sDeviceName          : STRING;
     sTransitionKey       : STRING;
@@ -39,9 +40,8 @@ VAR_INPUT
     bEnableMotion        : BOOL;
     bEPSEnable           : BOOL := TRUE;
     ePrevSetTarget: UINT;
-
-
 END_VAR
+
 VAR_OUTPUT
     bSafeToMoveRET : BOOL;
     bSafeToMoveX   : BOOL;
@@ -192,7 +192,7 @@ fbDGPDEPS(
     stMCS2ChanParameterRET   := stMCS2ChanParameterRET,
     bEnable := bEPSEnable,
     bMaintenance := stDGPD.bMaintMode,
-    bHVActive   := bHVActive
+    bHVActive   := bSafetyLoopStatus
  );
 
 IF stDGPD.bReset THEN
@@ -228,7 +228,6 @@ ELSE
 
 END_IF
 
-stDGPD.eSetTarget := E_DGPDState.UNKNOWN;
 stDGPD.bReset := FALSE;
 //--- RET axis ---
 fbPositionStateRET(
@@ -241,7 +240,7 @@ fbPositionStateRET(
     fbFFHWO              := fbFFHWO,
     fbArbiter            := fbArbiter,
     bReadDBNow           := bEnable,
-    bEnableMotion        := (fbSequencer.bMoveRET AND bEnableMotion) OR NOT stDGPD.bSeqEnable,
+    bEnableMotion        := (fbSequencer.bMoveRET AND bEnableMotion),
     bEnableBeamParams    := bEnableBeamParams,
     bEnablePositionLimits:= bEnablePositionLimits
 );
@@ -259,7 +258,7 @@ fbPositionStateX(
     fbFFHWO              := fbFFHWO,
     fbArbiter            := fbArbiter,
     bReadDBNow           := fbPositionStateRET.stDbStateParams.bBeamParamsLoaded,
-    bEnableMotion        := (fbSequencer.bMoveX AND bEnableMotion) OR NOT stDGPD.bSeqEnable,
+    bEnableMotion        := (fbSequencer.bMoveX AND bEnableMotion),
     bEnableBeamParams    := bEnableBeamParams ,
     bEnablePositionLimits:= bEnablePositionLimits
 );
@@ -278,7 +277,7 @@ fbPositionStateY(
     fbFFHWO              := fbFFHWO,
     fbArbiter            := fbArbiter,
     bReadDBNow           := fbPositionStateX.stDbStateParams.bBeamParamsLoaded,
-    bEnableMotion        := (fbSequencer.bMoveY AND bEnableMotion) OR NOT stDGPD.bSeqEnable,
+    bEnableMotion        := (fbSequencer.bMoveY AND bEnableMotion),
     bEnableBeamParams    := bEnableBeamParams,
     bEnablePositionLimits:= bEnablePositionLimits
 );
@@ -296,7 +295,7 @@ fbPositionStateZ(
     fbFFHWO              := fbFFHWO,
     fbArbiter            := fbArbiter,
     bReadDBNow           := fbPositionStateY.stDbStateParams.bBeamParamsLoaded,
-    bEnableMotion        := (fbSequencer.bMoveZ AND bEnableMotion) OR NOT stDGPD.bSeqEnable,
+    bEnableMotion        := (fbSequencer.bMoveZ AND bEnableMotion),
     bEnableBeamParams    := bEnableBeamParams AND fbPositionStateY.stDbStateParams.bBeamParamsLoaded,
     bEnablePositionLimits:= bEnablePositionLimits
 );

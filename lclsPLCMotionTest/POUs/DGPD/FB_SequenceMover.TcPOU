@@ -45,6 +45,7 @@ VAR_OUTPUT
     bEnteredMoveZToTarget   : BOOL;
     bEnteredDone            : BOOL;
     bEnteredError           : BOOL;
+	bBusy : BOOL;
 END_VAR
 
 VAR
@@ -58,6 +59,7 @@ END_VAR
     bMoveX := TRUE;
     bMoveY := TRUE;
     bMoveZ := TRUE;
+	eReqState:=E_DGPDState.UNKNOWN;
     RETURN;
 ELSE
     // Default: no moves, no state active
@@ -80,6 +82,7 @@ ELSE
             IF eReqState <> eLastReqState THEN
                 eLastReqState := eReqState;
                 eReqState:=E_DGPDState.UNKNOWN;
+				bBusy := TRUE;
                 axisSequenceStep := E_DGPDSequence.CHECK_OUT;
             END_IF
 
@@ -144,6 +147,7 @@ ELSE
         E_DGPDSequence.DONE:
             bEnteredDone := TRUE;
             bSequenceComplete := TRUE;
+			bBusy := FALSE;
              eLastReqState := E_DGPDState.UNKNOWN;
             IF eReqState <> E_DGPDState.UNKNOWN THEN
                 axisSequenceStep := E_DGPDSequence.INIT;
@@ -153,22 +157,29 @@ ELSE
         E_DGPDSequence.ERROR:
             eLastReqState := E_DGPDState.UNKNOWN;
             bEnteredError := TRUE;
+			bBusy := FALSE;
             bMoveRET := FALSE; bMoveX := FALSE; bMoveY := FALSE; bMoveZ := FALSE;
             bSequenceComplete := FALSE;
     END_CASE
+	// ignore any subsequent state request as long as this one is ongoing.
+	IF bBusy THEN
+		eReqState:=E_DGPDState.UNKNOWN;	
+	END_IF
 END_IF]]></ST>
     </Implementation>
     <Method Name="Reset" Id="{e64a8f33-8ec8-4e50-a8df-0454f00571a2}">
-      <Declaration><![CDATA[METHOD Reset : BOOL
+      <Declaration><![CDATA[METHOD Reset
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[	bMoveRET := FALSE;
-    bMoveX := FALSE;
-    bMoveY := FALSE;
-    bMoveZ := FALSE;
-    axisSequenceStep := E_DGPDSequence.INIT;]]></ST>
+        <ST><![CDATA[bMoveRET := FALSE;
+bMoveX := FALSE;
+bMoveY := FALSE;
+bMoveZ := FALSE;
+bBusy := FALSE;
+eLastReqState:=E_DGPDState.UNKNOWN;
+axisSequenceStep := E_DGPDSequence.INIT;]]></ST>
       </Implementation>
     </Method>
   </POU>

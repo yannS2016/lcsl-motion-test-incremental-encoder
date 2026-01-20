@@ -105,7 +105,7 @@ fbDGPD(
     stMCS2ChanParameterRET := GVL_MCS2.stDGPDRETParam,
     fbFFHWO	:= GVL_PMPS.fbFastFaultOutput1,
     fbArbiter	:= GVL_PMPS.fbArbiter,
-    bHVActive	:= GVL_EPS.bSafetyLoopStatus,
+    bSafetyLoopStatus	:= GVL_EPS.bSafetyLoopStatus,
     bEnablePositionLimits := bEnablePositionLimits,
     sDeviceName	:= sDeviceName,
     sTransitionKey	:= sTransitionKey,

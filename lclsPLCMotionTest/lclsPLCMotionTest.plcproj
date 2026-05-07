@@ -33,9 +33,6 @@
     <Compile Include="POUs\STATES.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\PMPS.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />

@@ -983,7 +983,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{E31ADAA4-9B77-495F-982E-6D67EFCA2359}" Name="lclsPLCMotionTest" PrjFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.plcproj" TmcFilePath="..\..\lclsPLCMotionTest\lclsPLCMotionTest.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{A25B6D33-508E-6EF6-DB4F-B193C3302B81}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{B20B3205-8724-D0F8-36D2-25FB1EDF833F}" TmcPath="lclsPLCMotionTest\lclsPLCMotionTest.tmc">
 			<Name>lclsPLCMotionTest Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="8" AreaNo="4">
@@ -1009,72 +1009,72 @@ External Setpoint Generation:
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
 				<Var>
-					<Name>PMPS.M1.Axis.PlcToNc</Name>
+					<Name>MAIN.M1.Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M1.bBrakeRelease</Name>
+					<Name>MAIN.M1.bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fbMotionStage1.fbDriveVirtual.MasterAxis.PlcToNc</Name>
+					<Name>MAIN.fbMotionStage1.fbDriveVirtual.MasterAxis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M2.Axis.PlcToNc</Name>
+					<Name>MAIN.M2.Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M2.bBrakeRelease</Name>
+					<Name>MAIN.M2.bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fbMotionStage2.fbDriveVirtual.MasterAxis.PlcToNc</Name>
+					<Name>MAIN.fbMotionStage2.fbDriveVirtual.MasterAxis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M3.Axis.PlcToNc</Name>
+					<Name>MAIN.M3.Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M3.bBrakeRelease</Name>
+					<Name>MAIN.M3.bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fbMotionStage3.fbDriveVirtual.MasterAxis.PlcToNc</Name>
+					<Name>MAIN.fbMotionStage3.fbDriveVirtual.MasterAxis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fbFFHWO.q_xFastFaultOut</Name>
+					<Name>MAIN.fbFFHWO.q_xFastFaultOut</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[1].Axis.PlcToNc</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[1].Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[1].bBrakeRelease</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[1].bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[2].Axis.PlcToNc</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[2].Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[2].bBrakeRelease</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[2].bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[3].Axis.PlcToNc</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[3].Axis.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[3].bBrakeRelease</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[3].bBrakeRelease</Name>
 					<Comment><![CDATA[ NC Brake Output: TRUE to release brake]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
@@ -1082,278 +1082,278 @@ External Setpoint Generation:
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
 				<Var>
-					<Name>PMPS.M1.Axis.NcToPlc</Name>
+					<Name>MAIN.M1.Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M1.bLimitForwardEnable</Name>
+					<Name>MAIN.M1.bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M1.bLimitBackwardEnable</Name>
+					<Name>MAIN.M1.bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M1.bHome</Name>
+					<Name>MAIN.M1.bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M1.bHardwareEnable</Name>
+					<Name>MAIN.M1.bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M1.nRawEncoderULINT</Name>
+					<Name>MAIN.M1.nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M1.nRawEncoderUINT</Name>
+					<Name>MAIN.M1.nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M1.nRawEncoderINT</Name>
+					<Name>MAIN.M1.nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M1.nRawEncoderDINT</Name>
+					<Name>MAIN.M1.nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fbMotionStage1.fbDriveVirtual.MasterAxis.NcToPlc</Name>
+					<Name>MAIN.fbMotionStage1.fbDriveVirtual.MasterAxis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M2.Axis.NcToPlc</Name>
+					<Name>MAIN.M2.Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M2.bLimitForwardEnable</Name>
+					<Name>MAIN.M2.bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M2.bLimitBackwardEnable</Name>
+					<Name>MAIN.M2.bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M2.bHome</Name>
+					<Name>MAIN.M2.bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M2.bHardwareEnable</Name>
+					<Name>MAIN.M2.bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M2.nRawEncoderULINT</Name>
+					<Name>MAIN.M2.nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M2.nRawEncoderUINT</Name>
+					<Name>MAIN.M2.nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M2.nRawEncoderINT</Name>
+					<Name>MAIN.M2.nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M2.nRawEncoderDINT</Name>
+					<Name>MAIN.M2.nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fbMotionStage2.fbDriveVirtual.MasterAxis.NcToPlc</Name>
+					<Name>MAIN.fbMotionStage2.fbDriveVirtual.MasterAxis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M3.Axis.NcToPlc</Name>
+					<Name>MAIN.M3.Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M3.bLimitForwardEnable</Name>
+					<Name>MAIN.M3.bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M3.bLimitBackwardEnable</Name>
+					<Name>MAIN.M3.bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M3.bHome</Name>
+					<Name>MAIN.M3.bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M3.bHardwareEnable</Name>
+					<Name>MAIN.M3.bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M3.nRawEncoderULINT</Name>
+					<Name>MAIN.M3.nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M3.nRawEncoderUINT</Name>
+					<Name>MAIN.M3.nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M3.nRawEncoderINT</Name>
+					<Name>MAIN.M3.nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.M3.nRawEncoderDINT</Name>
+					<Name>MAIN.M3.nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fbMotionStage3.fbDriveVirtual.MasterAxis.NcToPlc</Name>
+					<Name>MAIN.fbMotionStage3.fbDriveVirtual.MasterAxis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[1].Axis.NcToPlc</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[1].Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[1].bLimitForwardEnable</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[1].bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[1].bLimitBackwardEnable</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[1].bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[1].bHome</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[1].bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[1].bHardwareEnable</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[1].bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[1].nRawEncoderULINT</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[1].nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[1].nRawEncoderUINT</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[1].nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[1].nRawEncoderINT</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[1].nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[1].nRawEncoderDINT</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[1].nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[2].Axis.NcToPlc</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[2].Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[2].bLimitForwardEnable</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[2].bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[2].bLimitBackwardEnable</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[2].bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[2].bHome</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[2].bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[2].bHardwareEnable</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[2].bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[2].nRawEncoderULINT</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[2].nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[2].nRawEncoderUINT</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[2].nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[2].nRawEncoderINT</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[2].nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[2].nRawEncoderDINT</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[2].nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[3].Axis.NcToPlc</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[3].Axis.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[3].bLimitForwardEnable</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[3].bLimitForwardEnable</Name>
 					<Comment><![CDATA[ NC Forward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[3].bLimitBackwardEnable</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[3].bLimitBackwardEnable</Name>
 					<Comment><![CDATA[ NC Backward Limit Switch: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[3].bHome</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[3].bHome</Name>
 					<Comment><![CDATA[ NO Home Switch: TRUE if at home]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[3].bHardwareEnable</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[3].bHardwareEnable</Name>
 					<Comment><![CDATA[ NC STO Input: TRUE if ok to move]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[3].nRawEncoderULINT</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[3].nRawEncoderULINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for ULINT (Biss-C)]]></Comment>
 					<Type>ULINT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[3].nRawEncoderUINT</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[3].nRawEncoderUINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for UINT (Relative Encoders)]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[3].nRawEncoderINT</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[3].nRawEncoderINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (LVDT)]]></Comment>
 					<Type>INT</Type>
 				</Var>
 				<Var>
-					<Name>PMPS.fb_Move3D.astMotionStageMax[3].nRawEncoderDINT</Name>
+					<Name>MAIN.fb_Move3D.astMotionStageMax[3].nRawEncoderDINT</Name>
 					<Comment><![CDATA[ Raw encoder IO for INT (EL5072 LVDT)]]></Comment>
 					<Type>DINT</Type>
 				</Var>
@@ -1370,27 +1370,27 @@ External Setpoint Generation:
 					</OwnerB>
 				</OwnerA>
 			</UnrestoredVarLinks>
-			<UnrestoredVarLinks ImportTime="2026-05-02T15:16:11">
+			<UnrestoredVarLinks ImportTime="2026-05-07T12:57:01">
 				<OwnerA Name="InputDst" Prefix="TIPC^lclsPLCMotionTest^lclsPLCMotionTest Instance" Type="1">
 					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_PMPS_M1">
-						<Link VarA="MAIN.M1.Axis.NcToPlc" TypeA="MC.NCTOPLC_AXIS_REF" InOutA="0" GuidA="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" VarB="Outputs^ToPlc" RestoreInfo="ANotFound"/>
+						<Link VarA="PMPS.M1.Axis.NcToPlc" TypeA="MC.NCTOPLC_AXIS_REF" InOutA="0" GuidA="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" VarB="Outputs^ToPlc" RestoreInfo="ANotFound"/>
 					</OwnerB>
 					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_PMPS_M2">
-						<Link VarA="MAIN.M2.Axis.NcToPlc" TypeA="MC.NCTOPLC_AXIS_REF" InOutA="0" GuidA="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" VarB="Outputs^ToPlc" RestoreInfo="ANotFound"/>
+						<Link VarA="PMPS.M2.Axis.NcToPlc" TypeA="MC.NCTOPLC_AXIS_REF" InOutA="0" GuidA="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" VarB="Outputs^ToPlc" RestoreInfo="ANotFound"/>
 					</OwnerB>
 					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_PMPS_M3">
-						<Link VarA="MAIN.M3.Axis.NcToPlc" TypeA="MC.NCTOPLC_AXIS_REF" InOutA="0" GuidA="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" VarB="Outputs^ToPlc" RestoreInfo="ANotFound"/>
+						<Link VarA="PMPS.M3.Axis.NcToPlc" TypeA="MC.NCTOPLC_AXIS_REF" InOutA="0" GuidA="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" VarB="Outputs^ToPlc" RestoreInfo="ANotFound"/>
 					</OwnerB>
 				</OwnerA>
 				<OwnerA Name="OutputSrc" Prefix="TIPC^lclsPLCMotionTest^lclsPLCMotionTest Instance" Type="2">
 					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_PMPS_M1">
-						<Link VarA="MAIN.M1.Axis.PlcToNc" TypeA="MC.PLCTONC_AXIS_REF" InOutA="1" GuidA="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" VarB="Inputs^FromPlc" RestoreInfo="ANotFound"/>
+						<Link VarA="PMPS.M1.Axis.PlcToNc" TypeA="MC.PLCTONC_AXIS_REF" InOutA="1" GuidA="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" VarB="Inputs^FromPlc" RestoreInfo="ANotFound"/>
 					</OwnerB>
 					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_PMPS_M2">
-						<Link VarA="MAIN.M2.Axis.PlcToNc" TypeA="MC.PLCTONC_AXIS_REF" InOutA="1" GuidA="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" VarB="Inputs^FromPlc" RestoreInfo="ANotFound"/>
+						<Link VarA="PMPS.M2.Axis.PlcToNc" TypeA="MC.PLCTONC_AXIS_REF" InOutA="1" GuidA="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" VarB="Inputs^FromPlc" RestoreInfo="ANotFound"/>
 					</OwnerB>
 					<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_PMPS_M3">
-						<Link VarA="MAIN.M3.Axis.PlcToNc" TypeA="MC.PLCTONC_AXIS_REF" InOutA="1" GuidA="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" VarB="Inputs^FromPlc" RestoreInfo="ANotFound"/>
+						<Link VarA="PMPS.M3.Axis.PlcToNc" TypeA="MC.PLCTONC_AXIS_REF" InOutA="1" GuidA="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" VarB="Inputs^FromPlc" RestoreInfo="ANotFound"/>
 					</OwnerB>
 				</OwnerA>
 			</UnrestoredVarLinks>
@@ -1413,16 +1413,16 @@ External Setpoint Generation:
 	<Mappings>
 		<OwnerA Name="lclsPLCMotionTest Instance">
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_PMPS_M1">
-				<Link VarA="PlcTask Inputs^PMPS.M1.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^PMPS.M1.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="PlcTask Inputs^MAIN.M1.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^MAIN.M1.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_PMPS_M2">
-				<Link VarA="PlcTask Inputs^PMPS.M2.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^PMPS.M2.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="PlcTask Inputs^MAIN.M2.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^MAIN.M2.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis_PMPS_M3">
-				<Link VarA="PlcTask Inputs^PMPS.M3.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^PMPS.M3.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
+				<Link VarA="PlcTask Inputs^MAIN.M3.Axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^MAIN.M3.Axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>

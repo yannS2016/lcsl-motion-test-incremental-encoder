@@ -14,11 +14,6 @@ VAR
     );
     fbMotionStage1 : FB_MotionStage;
 
-    {attribute 'pytmc' := '
-      pv: TST:MOTION:M1:STATES
-      io: io
-      expand: :%.2d
-    '}
     astPositionState1 : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
 
     (* Axis 2 *)
@@ -32,11 +27,6 @@ VAR
     );
     fbMotionStage2 : FB_MotionStage;
 
-    {attribute 'pytmc' := '
-      pv: TST:MOTION:M2:STATES
-      io: io
-      expand: :%.2d
-    '}
     astPositionState2 : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
 
     (* Axis 3 *)
@@ -50,11 +40,6 @@ VAR
     );
     fbMotionStage3 : FB_MotionStage;
 
-    {attribute 'pytmc' := '
-      pv: TST:MOTION:M3:STATES
-      io: io
-      expand: :%.2d
-    '}
     astPositionState3 : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
 
     {attribute 'pytmc' := '
@@ -71,6 +56,9 @@ VAR
     fbFFHWO: FB_HardwareFFOutput;
     fbArbiter: FB_Arbiter(1);
 	fbSubSysIO       	:  FB_DummyArbIO;
+    {attribute 'pytmc' := '
+      pv: TST:MOTION
+    '}
     fb_Move3D : FB_PositionStatePMPS3D;
 
     stDefault : ST_PositionState := (

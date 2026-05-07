@@ -1765,789 +1765,6 @@ record(waveform, "TST:MOTION:M3:PLC:stEPSP:sMessage_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(bi, "TST:MOTION:M1:STATES:01:MOVE_OK_RBV") {
-  field(DESC, "TRUE if the move would be safe")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState1[1].bMoveOk?")
-  field(ZNAM, "FALSE")
-  field(ONAM, "TRUE")
-  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ai, "TST:MOTION:M1:STATES:01:SETPOINT_RBV") {
-  field(DESC, "Axis position associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState1[1].fPosition?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M1:STATES:01:SETPOINT") {
-  field(DESC, "Axis position associated with this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState1[1].fPosition=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(ai, "TST:MOTION:M1:STATES:01:VELO_RBV") {
-  field(DESC, "Speed at which to move to this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState1[1].fVelocity?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M1:STATES:01:VELO") {
-  field(DESC, "Speed at which to move to this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState1[1].fVelocity=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(longin, "TST:MOTION:M1:STATES:01:ENCODER_RBV") {
-  field(DESC, "Encoder count associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState1[1].nEncoderCount?")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(waveform, "TST:MOTION:M1:STATES:01:NAME_RBV") {
-  field(DESC, "Name of this position state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt8ArrayIn")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState1[1].sName?")
-  field(FTVL, "CHAR")
-  field(NELM, "80")
-  field(MPST, "On Change")
-  field(APST, "On Change")
-  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(bi, "TST:MOTION:M1:STATES:02:MOVE_OK_RBV") {
-  field(DESC, "TRUE if the move would be safe")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState1[2].bMoveOk?")
-  field(ZNAM, "FALSE")
-  field(ONAM, "TRUE")
-  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ai, "TST:MOTION:M1:STATES:02:SETPOINT_RBV") {
-  field(DESC, "Axis position associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState1[2].fPosition?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M1:STATES:02:SETPOINT") {
-  field(DESC, "Axis position associated with this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState1[2].fPosition=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(ai, "TST:MOTION:M1:STATES:02:VELO_RBV") {
-  field(DESC, "Speed at which to move to this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState1[2].fVelocity?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M1:STATES:02:VELO") {
-  field(DESC, "Speed at which to move to this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState1[2].fVelocity=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(longin, "TST:MOTION:M1:STATES:02:ENCODER_RBV") {
-  field(DESC, "Encoder count associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState1[2].nEncoderCount?")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(waveform, "TST:MOTION:M1:STATES:02:NAME_RBV") {
-  field(DESC, "Name of this position state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt8ArrayIn")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState1[2].sName?")
-  field(FTVL, "CHAR")
-  field(NELM, "80")
-  field(MPST, "On Change")
-  field(APST, "On Change")
-  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(bi, "TST:MOTION:M1:STATES:03:MOVE_OK_RBV") {
-  field(DESC, "TRUE if the move would be safe")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState1[3].bMoveOk?")
-  field(ZNAM, "FALSE")
-  field(ONAM, "TRUE")
-  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ai, "TST:MOTION:M1:STATES:03:SETPOINT_RBV") {
-  field(DESC, "Axis position associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState1[3].fPosition?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M1:STATES:03:SETPOINT") {
-  field(DESC, "Axis position associated with this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState1[3].fPosition=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(ai, "TST:MOTION:M1:STATES:03:VELO_RBV") {
-  field(DESC, "Speed at which to move to this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState1[3].fVelocity?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M1:STATES:03:VELO") {
-  field(DESC, "Speed at which to move to this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState1[3].fVelocity=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(longin, "TST:MOTION:M1:STATES:03:ENCODER_RBV") {
-  field(DESC, "Encoder count associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState1[3].nEncoderCount?")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(waveform, "TST:MOTION:M1:STATES:03:NAME_RBV") {
-  field(DESC, "Name of this position state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt8ArrayIn")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState1[3].sName?")
-  field(FTVL, "CHAR")
-  field(NELM, "80")
-  field(MPST, "On Change")
-  field(APST, "On Change")
-  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(bi, "TST:MOTION:M2:STATES:01:MOVE_OK_RBV") {
-  field(DESC, "TRUE if the move would be safe")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState2[1].bMoveOk?")
-  field(ZNAM, "FALSE")
-  field(ONAM, "TRUE")
-  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ai, "TST:MOTION:M2:STATES:01:SETPOINT_RBV") {
-  field(DESC, "Axis position associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState2[1].fPosition?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M2:STATES:01:SETPOINT") {
-  field(DESC, "Axis position associated with this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState2[1].fPosition=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(ai, "TST:MOTION:M2:STATES:01:VELO_RBV") {
-  field(DESC, "Speed at which to move to this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState2[1].fVelocity?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M2:STATES:01:VELO") {
-  field(DESC, "Speed at which to move to this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState2[1].fVelocity=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(longin, "TST:MOTION:M2:STATES:01:ENCODER_RBV") {
-  field(DESC, "Encoder count associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState2[1].nEncoderCount?")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(waveform, "TST:MOTION:M2:STATES:01:NAME_RBV") {
-  field(DESC, "Name of this position state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt8ArrayIn")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState2[1].sName?")
-  field(FTVL, "CHAR")
-  field(NELM, "80")
-  field(MPST, "On Change")
-  field(APST, "On Change")
-  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(bi, "TST:MOTION:M2:STATES:02:MOVE_OK_RBV") {
-  field(DESC, "TRUE if the move would be safe")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState2[2].bMoveOk?")
-  field(ZNAM, "FALSE")
-  field(ONAM, "TRUE")
-  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ai, "TST:MOTION:M2:STATES:02:SETPOINT_RBV") {
-  field(DESC, "Axis position associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState2[2].fPosition?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M2:STATES:02:SETPOINT") {
-  field(DESC, "Axis position associated with this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState2[2].fPosition=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(ai, "TST:MOTION:M2:STATES:02:VELO_RBV") {
-  field(DESC, "Speed at which to move to this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState2[2].fVelocity?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M2:STATES:02:VELO") {
-  field(DESC, "Speed at which to move to this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState2[2].fVelocity=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(longin, "TST:MOTION:M2:STATES:02:ENCODER_RBV") {
-  field(DESC, "Encoder count associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState2[2].nEncoderCount?")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(waveform, "TST:MOTION:M2:STATES:02:NAME_RBV") {
-  field(DESC, "Name of this position state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt8ArrayIn")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState2[2].sName?")
-  field(FTVL, "CHAR")
-  field(NELM, "80")
-  field(MPST, "On Change")
-  field(APST, "On Change")
-  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(bi, "TST:MOTION:M2:STATES:03:MOVE_OK_RBV") {
-  field(DESC, "TRUE if the move would be safe")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState2[3].bMoveOk?")
-  field(ZNAM, "FALSE")
-  field(ONAM, "TRUE")
-  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ai, "TST:MOTION:M2:STATES:03:SETPOINT_RBV") {
-  field(DESC, "Axis position associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState2[3].fPosition?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M2:STATES:03:SETPOINT") {
-  field(DESC, "Axis position associated with this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState2[3].fPosition=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(ai, "TST:MOTION:M2:STATES:03:VELO_RBV") {
-  field(DESC, "Speed at which to move to this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState2[3].fVelocity?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M2:STATES:03:VELO") {
-  field(DESC, "Speed at which to move to this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState2[3].fVelocity=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(longin, "TST:MOTION:M2:STATES:03:ENCODER_RBV") {
-  field(DESC, "Encoder count associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState2[3].nEncoderCount?")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(waveform, "TST:MOTION:M2:STATES:03:NAME_RBV") {
-  field(DESC, "Name of this position state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt8ArrayIn")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState2[3].sName?")
-  field(FTVL, "CHAR")
-  field(NELM, "80")
-  field(MPST, "On Change")
-  field(APST, "On Change")
-  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(bi, "TST:MOTION:M3:STATES:01:MOVE_OK_RBV") {
-  field(DESC, "TRUE if the move would be safe")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState3[1].bMoveOk?")
-  field(ZNAM, "FALSE")
-  field(ONAM, "TRUE")
-  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ai, "TST:MOTION:M3:STATES:01:SETPOINT_RBV") {
-  field(DESC, "Axis position associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState3[1].fPosition?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M3:STATES:01:SETPOINT") {
-  field(DESC, "Axis position associated with this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState3[1].fPosition=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(ai, "TST:MOTION:M3:STATES:01:VELO_RBV") {
-  field(DESC, "Speed at which to move to this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState3[1].fVelocity?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M3:STATES:01:VELO") {
-  field(DESC, "Speed at which to move to this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState3[1].fVelocity=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(longin, "TST:MOTION:M3:STATES:01:ENCODER_RBV") {
-  field(DESC, "Encoder count associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState3[1].nEncoderCount?")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(waveform, "TST:MOTION:M3:STATES:01:NAME_RBV") {
-  field(DESC, "Name of this position state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt8ArrayIn")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState3[1].sName?")
-  field(FTVL, "CHAR")
-  field(NELM, "80")
-  field(MPST, "On Change")
-  field(APST, "On Change")
-  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(bi, "TST:MOTION:M3:STATES:02:MOVE_OK_RBV") {
-  field(DESC, "TRUE if the move would be safe")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState3[2].bMoveOk?")
-  field(ZNAM, "FALSE")
-  field(ONAM, "TRUE")
-  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ai, "TST:MOTION:M3:STATES:02:SETPOINT_RBV") {
-  field(DESC, "Axis position associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState3[2].fPosition?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M3:STATES:02:SETPOINT") {
-  field(DESC, "Axis position associated with this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState3[2].fPosition=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(ai, "TST:MOTION:M3:STATES:02:VELO_RBV") {
-  field(DESC, "Speed at which to move to this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState3[2].fVelocity?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M3:STATES:02:VELO") {
-  field(DESC, "Speed at which to move to this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState3[2].fVelocity=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(longin, "TST:MOTION:M3:STATES:02:ENCODER_RBV") {
-  field(DESC, "Encoder count associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState3[2].nEncoderCount?")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(waveform, "TST:MOTION:M3:STATES:02:NAME_RBV") {
-  field(DESC, "Name of this position state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt8ArrayIn")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState3[2].sName?")
-  field(FTVL, "CHAR")
-  field(NELM, "80")
-  field(MPST, "On Change")
-  field(APST, "On Change")
-  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(bi, "TST:MOTION:M3:STATES:03:MOVE_OK_RBV") {
-  field(DESC, "TRUE if the move would be safe")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState3[3].bMoveOk?")
-  field(ZNAM, "FALSE")
-  field(ONAM, "TRUE")
-  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ai, "TST:MOTION:M3:STATES:03:SETPOINT_RBV") {
-  field(DESC, "Axis position associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState3[3].fPosition?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M3:STATES:03:SETPOINT") {
-  field(DESC, "Axis position associated with this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState3[3].fPosition=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(ai, "TST:MOTION:M3:STATES:03:VELO_RBV") {
-  field(DESC, "Speed at which to move to this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynFloat64")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState3[3].fVelocity?")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(ao, "TST:MOTION:M3:STATES:03:VELO") {
-  field(DESC, "Speed at which to move to this state")
-  field(DTYP, "asynFloat64")
-  field(UDFS, "0")
-  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.astPositionState3[3].fVelocity=")
-  field(PREC, "3")
-  info(autosaveFields, "VAL")
-  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
-  info(archive, "VAL")
-}
-
-record(longin, "TST:MOTION:M3:STATES:03:ENCODER_RBV") {
-  field(DESC, "Encoder count associated with this state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt32")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState3[3].nEncoderCount?")
-  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
-record(waveform, "TST:MOTION:M3:STATES:03:NAME_RBV") {
-  field(DESC, "Name of this position state")
-  field(SCAN, "I/O Intr")
-  field(TSE, "-2")
-  field(DTYP, "asynInt8ArrayIn")
-  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.astPositionState3[3].sName?")
-  field(FTVL, "CHAR")
-  field(NELM, "80")
-  field(MPST, "On Change")
-  field(APST, "On Change")
-  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
-  info(archive, "VAL")
-  field(ASG, "NO_WRITE")
-}
-
 record(mbbi, "TST:MOTION:STATES:GET_RBV") {
   field(DESC, "MAIN.eGetPos")
   field(SCAN, "I/O Intr")
@@ -2601,6 +1818,1298 @@ record(mbbo, "TST:MOTION:STATES:SET") {
   field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.eSetPos=")
   info(autosaveFields_pass0, "COSV DESC DISS EISV ELSV FFSV FRSV FTSV FVSV NISV ONSV SIMS SVSV SXSV TESV THSV TTSV TVSV TWSV UDFS UNSV VAL ZRSV")
   info(archive, "VAL")
+}
+
+record(bi, "TST:MOTION:STATE:M1:01:MOVE_OK_RBV") {
+  field(DESC, "TRUE if the move would be safe")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState1[1].bMoveOk?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:M1:01:SETPOINT_RBV") {
+  field(DESC, "Axis position associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState1[1].fPosition?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M1:01:SETPOINT") {
+  field(DESC, "Axis position associated with this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState1[1].fPosition=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "TST:MOTION:STATE:M1:01:VELO_RBV") {
+  field(DESC, "Speed at which to move to this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState1[1].fVelocity?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M1:01:VELO") {
+  field(DESC, "Speed at which to move to this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState1[1].fVelocity=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(longin, "TST:MOTION:STATE:M1:01:ENCODER_RBV") {
+  field(DESC, "Encoder count associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState1[1].nEncoderCount?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(waveform, "TST:MOTION:STATE:M1:01:NAME_RBV") {
+  field(DESC, "Name of this position state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState1[1].sName?")
+  field(FTVL, "CHAR")
+  field(NELM, "80")
+  field(MPST, "On Change")
+  field(APST, "On Change")
+  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bi, "TST:MOTION:STATE:M1:02:MOVE_OK_RBV") {
+  field(DESC, "TRUE if the move would be safe")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState1[2].bMoveOk?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:M1:02:SETPOINT_RBV") {
+  field(DESC, "Axis position associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState1[2].fPosition?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M1:02:SETPOINT") {
+  field(DESC, "Axis position associated with this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState1[2].fPosition=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "TST:MOTION:STATE:M1:02:VELO_RBV") {
+  field(DESC, "Speed at which to move to this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState1[2].fVelocity?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M1:02:VELO") {
+  field(DESC, "Speed at which to move to this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState1[2].fVelocity=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(longin, "TST:MOTION:STATE:M1:02:ENCODER_RBV") {
+  field(DESC, "Encoder count associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState1[2].nEncoderCount?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(waveform, "TST:MOTION:STATE:M1:02:NAME_RBV") {
+  field(DESC, "Name of this position state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState1[2].sName?")
+  field(FTVL, "CHAR")
+  field(NELM, "80")
+  field(MPST, "On Change")
+  field(APST, "On Change")
+  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bi, "TST:MOTION:STATE:M1:03:MOVE_OK_RBV") {
+  field(DESC, "TRUE if the move would be safe")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState1[3].bMoveOk?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:M1:03:SETPOINT_RBV") {
+  field(DESC, "Axis position associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState1[3].fPosition?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M1:03:SETPOINT") {
+  field(DESC, "Axis position associated with this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState1[3].fPosition=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "TST:MOTION:STATE:M1:03:VELO_RBV") {
+  field(DESC, "Speed at which to move to this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState1[3].fVelocity?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M1:03:VELO") {
+  field(DESC, "Speed at which to move to this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState1[3].fVelocity=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(longin, "TST:MOTION:STATE:M1:03:ENCODER_RBV") {
+  field(DESC, "Encoder count associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState1[3].nEncoderCount?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(waveform, "TST:MOTION:STATE:M1:03:NAME_RBV") {
+  field(DESC, "Name of this position state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState1[3].sName?")
+  field(FTVL, "CHAR")
+  field(NELM, "80")
+  field(MPST, "On Change")
+  field(APST, "On Change")
+  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bi, "TST:MOTION:STATE:M2:01:MOVE_OK_RBV") {
+  field(DESC, "TRUE if the move would be safe")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState2[1].bMoveOk?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:M2:01:SETPOINT_RBV") {
+  field(DESC, "Axis position associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState2[1].fPosition?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M2:01:SETPOINT") {
+  field(DESC, "Axis position associated with this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState2[1].fPosition=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "TST:MOTION:STATE:M2:01:VELO_RBV") {
+  field(DESC, "Speed at which to move to this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState2[1].fVelocity?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M2:01:VELO") {
+  field(DESC, "Speed at which to move to this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState2[1].fVelocity=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(longin, "TST:MOTION:STATE:M2:01:ENCODER_RBV") {
+  field(DESC, "Encoder count associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState2[1].nEncoderCount?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(waveform, "TST:MOTION:STATE:M2:01:NAME_RBV") {
+  field(DESC, "Name of this position state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState2[1].sName?")
+  field(FTVL, "CHAR")
+  field(NELM, "80")
+  field(MPST, "On Change")
+  field(APST, "On Change")
+  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bi, "TST:MOTION:STATE:M2:02:MOVE_OK_RBV") {
+  field(DESC, "TRUE if the move would be safe")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState2[2].bMoveOk?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:M2:02:SETPOINT_RBV") {
+  field(DESC, "Axis position associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState2[2].fPosition?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M2:02:SETPOINT") {
+  field(DESC, "Axis position associated with this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState2[2].fPosition=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "TST:MOTION:STATE:M2:02:VELO_RBV") {
+  field(DESC, "Speed at which to move to this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState2[2].fVelocity?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M2:02:VELO") {
+  field(DESC, "Speed at which to move to this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState2[2].fVelocity=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(longin, "TST:MOTION:STATE:M2:02:ENCODER_RBV") {
+  field(DESC, "Encoder count associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState2[2].nEncoderCount?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(waveform, "TST:MOTION:STATE:M2:02:NAME_RBV") {
+  field(DESC, "Name of this position state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState2[2].sName?")
+  field(FTVL, "CHAR")
+  field(NELM, "80")
+  field(MPST, "On Change")
+  field(APST, "On Change")
+  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bi, "TST:MOTION:STATE:M2:03:MOVE_OK_RBV") {
+  field(DESC, "TRUE if the move would be safe")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState2[3].bMoveOk?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:M2:03:SETPOINT_RBV") {
+  field(DESC, "Axis position associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState2[3].fPosition?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M2:03:SETPOINT") {
+  field(DESC, "Axis position associated with this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState2[3].fPosition=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "TST:MOTION:STATE:M2:03:VELO_RBV") {
+  field(DESC, "Speed at which to move to this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState2[3].fVelocity?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M2:03:VELO") {
+  field(DESC, "Speed at which to move to this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState2[3].fVelocity=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(longin, "TST:MOTION:STATE:M2:03:ENCODER_RBV") {
+  field(DESC, "Encoder count associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState2[3].nEncoderCount?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(waveform, "TST:MOTION:STATE:M2:03:NAME_RBV") {
+  field(DESC, "Name of this position state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState2[3].sName?")
+  field(FTVL, "CHAR")
+  field(NELM, "80")
+  field(MPST, "On Change")
+  field(APST, "On Change")
+  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bi, "TST:MOTION:STATE:M3:01:MOVE_OK_RBV") {
+  field(DESC, "TRUE if the move would be safe")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState3[1].bMoveOk?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:M3:01:SETPOINT_RBV") {
+  field(DESC, "Axis position associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState3[1].fPosition?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M3:01:SETPOINT") {
+  field(DESC, "Axis position associated with this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState3[1].fPosition=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "TST:MOTION:STATE:M3:01:VELO_RBV") {
+  field(DESC, "Speed at which to move to this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState3[1].fVelocity?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M3:01:VELO") {
+  field(DESC, "Speed at which to move to this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState3[1].fVelocity=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(longin, "TST:MOTION:STATE:M3:01:ENCODER_RBV") {
+  field(DESC, "Encoder count associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState3[1].nEncoderCount?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(waveform, "TST:MOTION:STATE:M3:01:NAME_RBV") {
+  field(DESC, "Name of this position state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState3[1].sName?")
+  field(FTVL, "CHAR")
+  field(NELM, "80")
+  field(MPST, "On Change")
+  field(APST, "On Change")
+  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bi, "TST:MOTION:STATE:M3:02:MOVE_OK_RBV") {
+  field(DESC, "TRUE if the move would be safe")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState3[2].bMoveOk?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:M3:02:SETPOINT_RBV") {
+  field(DESC, "Axis position associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState3[2].fPosition?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M3:02:SETPOINT") {
+  field(DESC, "Axis position associated with this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState3[2].fPosition=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "TST:MOTION:STATE:M3:02:VELO_RBV") {
+  field(DESC, "Speed at which to move to this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState3[2].fVelocity?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M3:02:VELO") {
+  field(DESC, "Speed at which to move to this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState3[2].fVelocity=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(longin, "TST:MOTION:STATE:M3:02:ENCODER_RBV") {
+  field(DESC, "Encoder count associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState3[2].nEncoderCount?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(waveform, "TST:MOTION:STATE:M3:02:NAME_RBV") {
+  field(DESC, "Name of this position state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState3[2].sName?")
+  field(FTVL, "CHAR")
+  field(NELM, "80")
+  field(MPST, "On Change")
+  field(APST, "On Change")
+  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bi, "TST:MOTION:STATE:M3:03:MOVE_OK_RBV") {
+  field(DESC, "TRUE if the move would be safe")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState3[3].bMoveOk?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:M3:03:SETPOINT_RBV") {
+  field(DESC, "Axis position associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState3[3].fPosition?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M3:03:SETPOINT") {
+  field(DESC, "Axis position associated with this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState3[3].fPosition=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(ai, "TST:MOTION:STATE:M3:03:VELO_RBV") {
+  field(DESC, "Speed at which to move to this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState3[3].fVelocity?")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ao, "TST:MOTION:STATE:M3:03:VELO") {
+  field(DESC, "Speed at which to move to this state")
+  field(DTYP, "asynFloat64")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.astPositionState3[3].fVelocity=")
+  field(PREC, "3")
+  info(autosaveFields, "VAL")
+  info(autosaveFields_pass0, "DESC DISS DRVH DRVL HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS VAL")
+  info(archive, "VAL")
+}
+
+record(longin, "TST:MOTION:STATE:M3:03:ENCODER_RBV") {
+  field(DESC, "Encoder count associated with this state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState3[3].nEncoderCount?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(waveform, "TST:MOTION:STATE:M3:03:NAME_RBV") {
+  field(DESC, "Name of this position state")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.astPositionState3[3].sName?")
+  field(FTVL, "CHAR")
+  field(NELM, "80")
+  field(MPST, "On Change")
+  field(APST, "On Change")
+  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bi, "TST:MOTION:STATE:RESET_RBV") {
+  field(DESC, "MAIN.fb_Move3D.stEpicsToPlc.bReset")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stEpicsToPlc.bReset?")
+  field(ZNAM, "False")
+  field(ONAM, "True")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bo, "TST:MOTION:STATE:RESET") {
+  field(DESC, "MAIN.fb_Move3D.stEpicsToPlc.bReset")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.stEpicsToPlc.bReset=")
+  field(ZNAM, "False")
+  field(ONAM, "True")
+  info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
+  info(archive, "VAL")
+}
+
+record(bi, "TST:MOTION:STATE:PMPS:ARB:ENABLE_RBV") {
+  # MAIN.fb_Move3D.stPMPSEpicsToPlc.bArbiterEnabled
+  field(DESC, "MAIN.fb_Move3D.stPMP...c.bArbiterEnabled")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSEpicsToPlc.bArbiterEnabled?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bo, "TST:MOTION:STATE:PMPS:ARB:ENABLE") {
+  # MAIN.fb_Move3D.stPMPSEpicsToPlc.bArbiterEnabled
+  field(DESC, "MAIN.fb_Move3D.stPMP...c.bArbiterEnabled")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.stPMPSEpicsToPlc.bArbiterEnabled=")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
+  info(archive, "VAL")
+}
+
+record(bi, "TST:MOTION:STATE:PMPS:MAINT_RBV") {
+  # MAIN.fb_Move3D.stPMPSEpicsToPlc.bMaintMode
+  field(DESC, "MAIN.fb_Move3D.stPMP...sToPlc.bMaintMode")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSEpicsToPlc.bMaintMode?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bo, "TST:MOTION:STATE:PMPS:MAINT") {
+  # MAIN.fb_Move3D.stPMPSEpicsToPlc.bMaintMode
+  field(DESC, "MAIN.fb_Move3D.stPMP...sToPlc.bMaintMode")
+  field(DTYP, "asynInt32")
+  field(UDFS, "0")
+  field(OUT, "@asyn($(PORT),0,1)ADSPORT=851/MAIN.fb_Move3D.stPMPSEpicsToPlc.bMaintMode=")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "COSV DESC DISS OSV SIMS UDFS VAL ZSV")
+  info(archive, "VAL")
+}
+
+record(bi, "TST:MOTION:STATE:PMPS:TRANS:PMPS_LOADED_RBV") {
+  # TRUE if PMPS loaded parameters from the database.
+  field(DESC, "TRUE if PMPS loaded ...rom the database.")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.bBeamParamsLoaded?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(longin, "TST:MOTION:STATE:PMPS:TRANS:PMPS_ID_RBV") {
+  field(DESC, "Assertion Request ID")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.nRequestAssertionID?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(waveform, "TST:MOTION:STATE:PMPS:TRANS:PMPS_STATE_RBV") {
+  field(DESC, "PMPS Database Lookup Key")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.sPmpsState?")
+  field(FTVL, "CHAR")
+  field(NELM, "80")
+  field(MPST, "On Change")
+  field(APST, "On Change")
+  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(waveform, "TST:MOTION:STATE:PMPS:TRANS:BP:Veto_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.aVetoDevices
+  field(DESC, "MAIN.fb_Move3D.stPMP...rams.aVetoDevices")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.aVetoDevices?")
+  field(FTVL, "CHAR")
+  field(NELM, "16")
+  field(MPST, "On Change")
+  field(APST, "On Change")
+  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:PMPS:TRANS:BP:Apt:01:Height_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[1].Height
+  field(DESC, "MAIN.fb_Move3D.stPMP...ertures[1].Height")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[1].Height?")
+  field(PREC, "3")
+  field(EGU, "mm")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:PMPS:TRANS:BP:Apt:01:Width_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[1].Width
+  field(DESC, "MAIN.fb_Move3D.stPMP...pertures[1].Width")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[1].Width?")
+  field(PREC, "3")
+  field(EGU, "mm")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bi, "TST:MOTION:STATE:PMPS:TRANS:BP:Apt:01:OK_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[1].xOK
+  field(DESC, "MAIN.fb_Move3D.stPMP...tApertures[1].xOK")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[1].xOK?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:PMPS:TRANS:BP:Apt:02:Height_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[2].Height
+  field(DESC, "MAIN.fb_Move3D.stPMP...ertures[2].Height")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[2].Height?")
+  field(PREC, "3")
+  field(EGU, "mm")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:PMPS:TRANS:BP:Apt:02:Width_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[2].Width
+  field(DESC, "MAIN.fb_Move3D.stPMP...pertures[2].Width")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[2].Width?")
+  field(PREC, "3")
+  field(EGU, "mm")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bi, "TST:MOTION:STATE:PMPS:TRANS:BP:Apt:02:OK_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[2].xOK
+  field(DESC, "MAIN.fb_Move3D.stPMP...tApertures[2].xOK")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[2].xOK?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:PMPS:TRANS:BP:Apt:03:Height_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[3].Height
+  field(DESC, "MAIN.fb_Move3D.stPMP...ertures[3].Height")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[3].Height?")
+  field(PREC, "3")
+  field(EGU, "mm")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:PMPS:TRANS:BP:Apt:03:Width_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[3].Width
+  field(DESC, "MAIN.fb_Move3D.stPMP...pertures[3].Width")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[3].Width?")
+  field(PREC, "3")
+  field(EGU, "mm")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bi, "TST:MOTION:STATE:PMPS:TRANS:BP:Apt:03:OK_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[3].xOK
+  field(DESC, "MAIN.fb_Move3D.stPMP...tApertures[3].xOK")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[3].xOK?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:PMPS:TRANS:BP:Apt:04:Height_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[4].Height
+  field(DESC, "MAIN.fb_Move3D.stPMP...ertures[4].Height")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[4].Height?")
+  field(PREC, "3")
+  field(EGU, "mm")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:PMPS:TRANS:BP:Apt:04:Width_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[4].Width
+  field(DESC, "MAIN.fb_Move3D.stPMP...pertures[4].Width")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[4].Width?")
+  field(PREC, "3")
+  field(EGU, "mm")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bi, "TST:MOTION:STATE:PMPS:TRANS:BP:Apt:04:OK_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[4].xOK
+  field(DESC, "MAIN.fb_Move3D.stPMP...tApertures[4].xOK")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.astApertures[4].xOK?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(longin, "TST:MOTION:STATE:PMPS:TRANS:BP:BeamClassRanges_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.nBCRange
+  field(DESC, "MAIN.fb_Move3D.stPMP...amParams.nBCRange")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.nBCRange?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(longin, "TST:MOTION:STATE:PMPS:TRANS:BP:BeamClass_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.nBeamClass
+  field(DESC, "MAIN.fb_Move3D.stPMP...Params.nBeamClass")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.nBeamClass?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(longin, "TST:MOTION:STATE:PMPS:TRANS:BP:Cohort_RBV") {
+  field(DESC, "Cohort inc on each arb cycle")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.nCohortInt?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(longin, "TST:MOTION:STATE:PMPS:TRANS:BP:MachineMode_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.nMachineMode
+  field(DESC, "MAIN.fb_Move3D.stPMP...rams.nMachineMode")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.nMachineMode?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(longin, "TST:MOTION:STATE:PMPS:TRANS:BP:Rate_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.nRate
+  field(DESC, "MAIN.fb_Move3D.stPMP...tBeamParams.nRate")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.nRate?")
+  field(EGU, "Hz")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:PMPS:TRANS:BP:Transmission_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.nTran
+  field(DESC, "MAIN.fb_Move3D.stPMP...tBeamParams.nTran")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.nTran?")
+  field(PREC, "2")
+  field(HOPR, "1")
+  field(LOPR, "0")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:PMPS:TRANS:BP:PhotonEnergy_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.neV
+  field(DESC, "MAIN.fb_Move3D.stPMP....stBeamParams.neV")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.neV?")
+  field(PREC, "3")
+  field(EGU, "eV")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(longin, "TST:MOTION:STATE:PMPS:TRANS:BP:eVRanges_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.neVRange
+  field(DESC, "MAIN.fb_Move3D.stPMP...amParams.neVRange")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.neVRange?")
+  field(EGU, "eV")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bi, "TST:MOTION:STATE:PMPS:TRANS:BP:Valid_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.xValid
+  field(DESC, "MAIN.fb_Move3D.stPMP...BeamParams.xValid")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stBeamParams.xValid?")
+  field(ZNAM, "FALSE")
+  field(ONAM, "TRUE")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:PMPS:TRANS:ReParams:PressSP_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stReactiveParams.nPressSP
+  field(DESC, "MAIN.fb_Move3D.stPMP...veParams.nPressSP")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stReactiveParams.nPressSP?")
+  field(PREC, "2")
+  field(EGU, "TORR")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(ai, "TST:MOTION:STATE:PMPS:TRANS:ReParams:TempSP_RBV") {
+  # MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stReactiveParams.nTempSP
+  field(DESC, "MAIN.fb_Move3D.stPMP...iveParams.nTempSP")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynFloat64")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPMPSPlcToEpics.stTransitionDb.stReactiveParams.nTempSP?")
+  field(PREC, "2")
+  field(EGU, "C")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV PREC SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bi, "TST:MOTION:STATE:BUSY_RBV") {
+  field(DESC, "MAIN.fb_Move3D.stPlcToEpics.bBusy")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPlcToEpics.bBusy?")
+  field(ZNAM, "False")
+  field(ONAM, "True")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bi, "TST:MOTION:STATE:DONE_RBV") {
+  field(DESC, "MAIN.fb_Move3D.stPlcToEpics.bDone")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPlcToEpics.bDone?")
+  field(ZNAM, "False")
+  field(ONAM, "True")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(bi, "TST:MOTION:STATE:ERR_RBV") {
+  field(DESC, "MAIN.fb_Move3D.stPlcToEpics.bError")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPlcToEpics.bError?")
+  field(ZNAM, "False")
+  field(ONAM, "True")
+  info(autosaveFields_pass0, "DESC DISS OSV SIMS UDFS ZSV")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(longin, "TST:MOTION:STATE:ERRID_RBV") {
+  field(DESC, "MAIN.fb_Move3D.stPlcToEpics.nErrorID")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt32")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPlcToEpics.nErrorID?")
+  info(autosaveFields_pass0, "DESC DISS HHSV HIGH HIHI HSV LLSV LOLO LOW LSV SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
+}
+
+record(waveform, "TST:MOTION:STATE:ERRMSG_RBV") {
+  field(DESC, "MAIN.fb_Move3D.stPlcToEpics.sErrorMsg")
+  field(SCAN, "I/O Intr")
+  field(TSE, "-2")
+  field(DTYP, "asynInt8ArrayIn")
+  field(INP, "@asyn($(PORT),0,1)ADSPORT=851/POLL_RATE=1/MAIN.fb_Move3D.stPlcToEpics.sErrorMsg?")
+  field(FTVL, "CHAR")
+  field(NELM, "80")
+  field(MPST, "On Change")
+  field(APST, "On Change")
+  info(autosaveFields_pass0, "DESC DISS SIMS UDFS")
+  info(archive, "VAL")
+  field(ASG, "NO_WRITE")
 }
 
 record(bi, "$(PREFIX)DB:REFRESH_RBV") {

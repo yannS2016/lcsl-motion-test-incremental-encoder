@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="STATES" Id="{a9ca3806-a4b7-46e0-91cb-47aceabb0ee6}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM STATES
+VAR
+	(* Axis 1 *)
+    {attribute 'pytmc' := 'pv: TST:MOTION:M1'}
+    M1 : ST_MotionStage := (
+        sName := 'TST:MOTION1',
+        bPowerSelf := TRUE,
+        nEnableMode := ENUM_StageEnableMode.DURING_MOTION,
+        fHomePosition := 0.0,
+        nHomingMode := ENUM_EpicsHomeCmd.NONE
+    );
+    fbMotionStage1 : FB_MotionStage;
+
+    {attribute 'pytmc' := '
+      pv: TST:MOTION:M1:STATES
+      io: io
+      expand: :%.2d
+    '}
+    astPositionState1 : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+
+    (* Axis 2 *)
+    {attribute 'pytmc' := 'pv: TST:MOTION:M2'}
+    M2 : ST_MotionStage := (
+        sName := 'TST:MOTION2',
+        bPowerSelf := TRUE,
+        nEnableMode := ENUM_StageEnableMode.DURING_MOTION,
+        fHomePosition := 0.0,
+        nHomingMode := ENUM_EpicsHomeCmd.NONE
+    );
+    fbMotionStage2 : FB_MotionStage;
+
+    {attribute 'pytmc' := '
+      pv: TST:MOTION:M2:STATES
+      io: io
+      expand: :%.2d
+    '}
+    astPositionState2 : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+
+    (* Axis 3 *)
+    {attribute 'pytmc' := 'pv: TST:MOTION:M3'}
+    M3 : ST_MotionStage := (
+        sName := 'TST:MOTION3',
+        bPowerSelf := TRUE,
+        nEnableMode := ENUM_StageEnableMode.DURING_MOTION,
+        fHomePosition := 0.0,
+        nHomingMode := ENUM_EpicsHomeCmd.NONE
+    );
+    fbMotionStage3 : FB_MotionStage;
+
+    {attribute 'pytmc' := '
+      pv: TST:MOTION:M3:STATES
+      io: io
+      expand: :%.2d
+    '}
+    astPositionState3 : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
+
+    {attribute 'pytmc' := '
+      pv: TST:MOTION:STATES:SET
+      io: io
+    '}
+    eSetPos : ENUM_AxisStates;
+
+    {attribute 'pytmc' := '
+      pv: TST:MOTION:STATES:GET
+      io: i
+    '}
+    eGetPos : ENUM_AxisStates;
+
+    fb_Move3D : FB_PositionState3D;
+
+    stDefault : ST_PositionState := (
+        fDelta := 0.5,
+        fVelocity := 25,
+        bMoveOk := TRUE,
+        bValid := TRUE
+    );
+	fbStateSetup : FB_StateSetupHelper;
+    bLimitBackwardEnable1 : BOOL;
+    bLimitBackwardEnable2 : BOOL;
+    bLimitBackwardEnable3 : BOOL;
+    bLimitForwardEnable1  : BOOL;
+    bLimitForwardEnable2  : BOOL;
+    bLimitForwardEnable3  : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* ===== State setup — all axes, all states ===== *)
+fbStateSetup(stPositionState := stDefault, bSetDefault := TRUE);
+fbStateSetup(stPositionState := astPositionState1[1], sName := 'OUT', fPosition := 100.0);
+fbStateSetup(stPositionState := astPositionState1[2], sName := 'YAG', fPosition := 200.0);
+fbStateSetup(stPositionState := astPositionState1[3], sName := 'TT',  fPosition := 300.0);
+
+fbStateSetup(stPositionState := astPositionState2[1], sName := 'OUT', fPosition := 100.0);
+fbStateSetup(stPositionState := astPositionState2[2], sName := 'YAG', fPosition := 200.0);
+fbStateSetup(stPositionState := astPositionState2[3], sName := 'TT',  fPosition := 300.0);
+
+fbStateSetup(stPositionState := astPositionState3[1], sName := 'OUT', fPosition := 100.0);
+fbStateSetup(stPositionState := astPositionState3[2], sName := 'YAG', fPosition := 200.0);
+fbStateSetup(stPositionState := astPositionState3[3], sName := 'TT',  fPosition := 300.0);
+
+(* ===== Limit enable wiring ===== *)
+M1.bLimitForwardEnable  := bLimitForwardEnable1;
+M1.bLimitBackwardEnable := bLimitBackwardEnable1;
+M1.bHardwareEnable         := TRUE;
+M2.bLimitForwardEnable  := bLimitForwardEnable2;
+M2.bLimitBackwardEnable := bLimitBackwardEnable2;
+M2.bHardwareEnable         := TRUE;
+
+M3.bLimitForwardEnable  := bLimitForwardEnable3;
+M3.bLimitBackwardEnable := bLimitBackwardEnable3;
+M3.bHardwareEnable         := TRUE;
+(* ===== Motion stage cyclic calls ===== *)
+fbMotionStage1(stMotionStage := M1);
+fbMotionStage2(stMotionStage := M2);
+fbMotionStage3(stMotionStage := M3);
+
+(* ===== 3D state mover ===== *)
+fb_Move3D(
+    stMotionStage1    := M1,
+    stMotionStage2    := M2,
+    stMotionStage3    := M3,
+    astPositionState1 := astPositionState1,
+    astPositionState2 := astPositionState2,
+    astPositionState3 := astPositionState3,
+    eEnumSet          := eSetPos,
+    eEnumGet          := eGetPos,
+    bEnable           := TRUE
+);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="E_PMPSState" Id="{018f8515-71cb-4f89-95db-5b7ba67f56e9}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'to_string'}
+TYPE E_PMPSState :
+(
+        UNKNOWN:=0,
+        OUT,
+        TARGET1A,
+        TARGET1B,
+        TARGET1C,
+        TARGET1D,
+        TARGET2,
+        TARGET3,
+        TARGET4,
+        TARGET5,
+        TARGET6
+)UINT;
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

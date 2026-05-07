@@ -80,7 +80,7 @@ VAR
 
     stDefault : ST_PositionState := (
         fDelta := 0.5,
-        fVelocity := 1,
+        fVelocity := 25,
         bMoveOk := TRUE,
         bValid := TRUE
     );
@@ -99,9 +99,9 @@ M1.bLimitForwardEnable     := bLimitForwardEnable1;
 M1.bLimitBackwardEnable    := bLimitBackwardEnable1;
 M1.bHardwareEnable         := TRUE;
 fbStateSetup1(stPositionState := stDefault, bSetDefault := TRUE);
-fbStateSetup1(stPositionState := astStates1[1], sName := 'OUT', fPosition := 10.0);
-fbStateSetup1(stPositionState := astStates1[2], sName := 'YAG', fPosition := 20.0);
-fbStateSetup1(stPositionState := astStates1[3], sName := 'TT',  fPosition := 30.0);
+fbStateSetup1(stPositionState := astStates1[1], sName := 'OUT', fPosition := 100.0);
+fbStateSetup1(stPositionState := astStates1[2], sName := 'YAG', fPosition := 200.0);
+fbStateSetup1(stPositionState := astStates1[3], sName := 'TT',  fPosition := 300.0);
 fbPositionState1D_1(
     stMotionStage := M1,
     astPositionState := astStates1,
@@ -116,9 +116,9 @@ M2.bLimitForwardEnable     := bLimitForwardEnable2;
 M2.bLimitBackwardEnable    := bLimitBackwardEnable2;
 M2.bHardwareEnable         := TRUE;
 fbStateSetup2(stPositionState := stDefault, bSetDefault := TRUE);
-fbStateSetup2(stPositionState := astStates2[1], sName := 'OUT', fPosition := 10.0);
-fbStateSetup2(stPositionState := astStates2[2], sName := 'YAG', fPosition := 20.0);
-fbStateSetup2(stPositionState := astStates2[3], sName := 'TT',  fPosition := 30.0);
+fbStateSetup2(stPositionState := astStates2[1], sName := 'OUT', fPosition := 100.0);
+fbStateSetup2(stPositionState := astStates2[2], sName := 'YAG', fPosition := 200.0);
+fbStateSetup2(stPositionState := astStates2[3], sName := 'TT',  fPosition := 300.0);
 fbPositionState1D_2(
     stMotionStage := M2,
     astPositionState := astStates2,
@@ -133,9 +133,9 @@ M3.bLimitForwardEnable     := bLimitForwardEnable3;
 M3.bLimitBackwardEnable    := bLimitBackwardEnable3;
 M3.bHardwareEnable         := TRUE;
 fbStateSetup3(stPositionState := stDefault, bSetDefault := TRUE);
-fbStateSetup3(stPositionState := astStates3[1], sName := 'OUT', fPosition := 10.0);
-fbStateSetup3(stPositionState := astStates3[2], sName := 'YAG', fPosition := 20.0);
-fbStateSetup3(stPositionState := astStates3[3], sName := 'TT',  fPosition := 30.0);
+fbStateSetup3(stPositionState := astStates3[1], sName := 'OUT', fPosition := 100.0);
+fbStateSetup3(stPositionState := astStates3[2], sName := 'YAG', fPosition := 200.0);
+fbStateSetup3(stPositionState := astStates3[3], sName := 'TT',  fPosition := 300.0);
 fbPositionState1D_3(
     stMotionStage := M3,
     astPositionState := astStates3,

@@ -8,14 +8,7 @@ TYPE E_PMPSState :
         UNKNOWN:=0,
         OUT,
         TARGET1A,
-        TARGET1B,
-        TARGET1C,
-        TARGET1D,
-        TARGET2,
-        TARGET3,
-        TARGET4,
-        TARGET5,
-        TARGET6
+        TARGET1B
 )UINT;
 END_TYPE
 ]]></Declaration>

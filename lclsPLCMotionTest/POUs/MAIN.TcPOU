@@ -46,13 +46,14 @@ VAR
       pv: TST:MOTION:STATE:SET
       io: io
     '}
-    eSetPos : ENUM_AxisStates;
+    eSetPos : E_PMPSState;
 
     {attribute 'pytmc' := '
       pv: TST:MOTION:STATE:GET
       io: i
     '}
-    eGetPos : ENUM_AxisStates;
+    eGetPos : E_PMPSState;
+	
     fbFFHWO: FB_HardwareFFOutput;
     fbArbiter: FB_Arbiter(1);
 	fbSubSysIO       	:  FB_DummyArbIO;

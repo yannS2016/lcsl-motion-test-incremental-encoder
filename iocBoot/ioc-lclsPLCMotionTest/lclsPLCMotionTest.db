@@ -1765,7 +1765,7 @@ record(waveform, "TST:MOTION:M3:PLC:stEPSP:sMessage_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(mbbi, "TST:MOTION:STATES:GET_RBV") {
+record(mbbi, "TST:MOTION:STATE:GET_RBV") {
   field(DESC, "MAIN.eGetPos")
   field(SCAN, "I/O Intr")
   field(TSE, "-2")
@@ -1784,7 +1784,7 @@ record(mbbi, "TST:MOTION:STATES:GET_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(mbbi, "TST:MOTION:STATES:SET_RBV") {
+record(mbbi, "TST:MOTION:STATE:SET_RBV") {
   field(DESC, "MAIN.eSetPos")
   field(SCAN, "I/O Intr")
   field(TSE, "-2")
@@ -1803,7 +1803,7 @@ record(mbbi, "TST:MOTION:STATES:SET_RBV") {
   field(ASG, "NO_WRITE")
 }
 
-record(mbbo, "TST:MOTION:STATES:SET") {
+record(mbbo, "TST:MOTION:STATE:SET") {
   field(DESC, "MAIN.eSetPos")
   field(DTYP, "asynInt32")
   field(UDFS, "0")

@@ -43,13 +43,13 @@ VAR
     astPositionState3 : ARRAY[1..GeneralConstants.MAX_STATES] OF ST_PositionState;
 
     {attribute 'pytmc' := '
-      pv: TST:MOTION:STATES:SET
+      pv: TST:MOTION:STATE:SET
       io: io
     '}
     eSetPos : ENUM_AxisStates;
 
     {attribute 'pytmc' := '
-      pv: TST:MOTION:STATES:GET
+      pv: TST:MOTION:STATE:GET
       io: i
     '}
     eGetPos : ENUM_AxisStates;

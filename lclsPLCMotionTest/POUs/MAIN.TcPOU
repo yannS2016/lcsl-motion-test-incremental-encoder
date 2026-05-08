@@ -54,8 +54,10 @@ VAR
     '}
     eGetPos : E_PMPSState;
 	
-    fbFFHWO: FB_HardwareFFOutput;
-    fbArbiter: FB_Arbiter(1);
+	{attribute 'pytmc' := 'pv: PLC:TST:MOTION:FFO:01'}
+    fbFFHWO          	:  FB_HardwareFFOutput;
+	{attribute 'pytmc' := 'pv: PLC:TST:MOTION:ARB:01'}
+    fbArbiter        	:  FB_Arbiter(1);
 	fbSubSysIO       	:  FB_DummyArbIO;
     {attribute 'pytmc' := '
       pv: TST:MOTION
